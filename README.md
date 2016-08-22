@@ -2,9 +2,10 @@
 This repo contains a digitized version of the course content for IA8470 Secure Web App Development at the University of Nebraska at Omaha.
 
 ### Table of contents
-[Location](#location)
-[Supplies](#supplies)
+[Location](#location)	
+[Supplies](#supplies)	
 [Class topics](#class-topics)
+
 ## Location
 All classroom activities will take place in PKI room 361 (STEAL 2) unless otherwise noted ahead of time.
 
