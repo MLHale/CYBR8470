@@ -17,7 +17,7 @@ All classroom activities will take place in PKI room 361 (STEAL 2) unless otherw
 * [UNO Cloud Deployment Environments](http://view.unomaha.edu)
 
 ### Texts
-* Labs [secwebdev.mlhale.com](http://secwebdev.mlhale.com)
+* Labs: [secwebdev.mlhale.com](http://secwebdev.mlhale.com)
 * Ember Textbook (optional): [Rock and Roll with Ember.js](http://balinterdi.com/rock-and-roll-with-emberjs/)
 * [Django Documentation](https://www.djangoproject.com/)
 
@@ -35,10 +35,11 @@ All classroom activities will take place in PKI room 361 (STEAL 2) unless otherw
  * Handlebars
  * AJAX for External API integration
  * [Lab 1](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab1.html)
-1. Develop your own Serverside API
+1. Develop and harden your own Serverside API
  * Intro to Django
- * Django REST Framework
  * Server-side Model View Controller
+ * Django REST Framework
+ * API Hardening
  * [Lab 2](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab2.html)
 1. Step back and think about Software engineering Principles
  * Software Development Lifecycle
@@ -48,6 +49,10 @@ All classroom activities will take place in PKI room 361 (STEAL 2) unless otherw
  * Browser Object Model Overview
  * JQuery Overview
  * Asynchronicity is your friend
+1. Test-driven Development
+ * Unit testing
+ * Acceptance critera
+ * think-test-build-test-repeat
 1. Time to be creative
  * Come up with your own project idea or implement something for a friend/family member or community organization
  * [Project 1](): Requirements Engineering, Product Design, Architecture, and Client-side Prototype
