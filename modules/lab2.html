@@ -1,0 +1,1390 @@
+<!--
+	Gencyber web content: Day 1. These files are intended to provide step-by-step self paced tutorials to teachers seeking to learn about cybersecurity first principles as part of the UNO Gencyber camp.
+	Copyright (C) 2016  Dr. Matthew L. Hale
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" title="Monokai Sublime" href="css/monokai-sublime.css">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+		<title>UNO: Secure web Development Lab two</title>
+		<style>
+			#unologo{font-size: 1.2em;text-transform:uppercase;font-family:'urwgroteskregular';color:#FFF;display:inline-block;vertical-align:middle;margin-top:10px;margin-left:3px;font-weight:bold;}
+			.logo {
+				float: left;
+				margin-left: 0px;
+				margin-top: 5px;
+			}
+
+			#tagline{font-size: 1em;font-family:'urwgroteskregular';color:#FFF;display:inline-block;vertical-align:middle;margin-top:15px;margin-left:30px;font-weight:bold;}
+
+			.tagline {
+				float: left;
+				margin-left: -350px;
+				margin-top: 25px;
+			}
+			#main{
+				margin-top: 90px;
+				margin-bottom: 50px;
+				margin-left: 0px;
+				width: 100%;
+			}
+
+			pre {padding: 0em;}
+			img {
+				padding-bottom: 20px;
+				padding-top: 10px;
+			}
+			body {
+				font-size: 16px;
+				position: relative;
+			}
+
+			.copy-stmt {
+				margin-right: 20px;
+			}
+			#leftnav ul {
+				position: fixed;
+			}
+			#leftnav ul li a {
+				padding-top: 2px;
+				padding-bottom: 2px;
+
+			}
+			#taskitem {
+				min-height: 1px;
+				height: 1000px;
+			}
+			#scrollable-content {
+				position: relative;
+				height: 100%;
+				overflow-y: scroll;
+			}
+			:target:before {
+				content:"";
+				display:block;
+				height:90px; /* fixed header height*/
+				margin:-90px 0 0; /* negative fixed header height */
+			}
+
+
+		</style>
+	</head>
+	<body>
+		<!-- <nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<img alt="University of Nebraska Omaha" src="images/logo-subsite-o-2.png">
+					<p id="unologo">UNO: Techademy</p>
+					<p id="tagline">Secure Web Development &copy; 2016 - Dr. Matt Hale</p>
+				</div>
+			</div>
+		</nav> -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="row">
+					<img alt="University of Nebraska Omaha" src="images/logo-subsite-o-2.png" style="float: left;">
+					<div class="row logo">
+						<p id="unologo">UNO: Secure web Development</p>
+					</div>
+					<div class="row tagline">
+						<p id="tagline">Lab two &copy; 2016 - Dr. Matthew Hale</p>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div id="main" class="container">
+			<div class="row">
+				<nav class="col-sm-1 hidden-xs" id="leftnav">
+					<ul class="nav nav-pills nav-stacked">
+						<h5>Step:</h5>
+						<li><a href="#task1">1</a></li>
+						<li><a href="#task2">2</a></li>
+						<li><a href="#task3">3</a></li>
+						<li><a href="#task4">4</a></li>
+						<li><a href="#task5">5</a></li>
+						<li><a href="#task6">6</a></li>
+						<li><a href="#task7">7</a></li>
+						<li><a href="#task8">8</a></li>
+						<li><a href="#task9">9</a></li>
+						<li><a href="#task10">10</a></li>
+						<li><a href="#task11">11</a></li>
+						<li><a href="#task12">12</a></li>
+						<li><a href="#task13">13</a></li>
+					</ul>
+				</nav>
+				<!--start content -->
+				<div class="col-sm-11 col-xs-12" id="scrollable-content" data-spy="scroll" data-target="#leftnav" data-offset="90">
+					<div class="jumbotron">
+						<h1>Welcome to Secure Web Development Lab 2</h1>
+						<p>This guide will get you up and running with Apache, Django, and Django REST framework.</p>
+						<h2>Cybersecurity First Principles in this lesson</h2>
+						<ul>
+							<li>
+								<strong>Resource Encapsulation</strong> - Encapsulation is an object oriented concept where all data and functions required to use the resource are packaged into a single self-contained component. The goal is to only allow access or manipulation of the resource in the way the designer intended. An example, assume a flag pole is the object. There are fixed methods on how the flag pole is to be used. Put the flag on, take the flag off, raise or lower the flag. Nothing else can be done to the flag pole. In this lesson, we will use Django to encapsulate resources as part of a REST API.
+							</li>
+							<li>
+								<strong>Abstraction</strong> - An abstraction is a representation of an object or concept. The gauges in an automobile are an abstraction of the performance of a car. A map is an abstraction of the earth. Abstraction allows us to model an object without considering all of the (possibly infinite) complexity that the object may contain. In this lesson, we use abstraction to model data structures similarly as we did in lesson one.
+							</li>
+							<li>
+								<strong>Modularity</strong> - Modular programming is a software design technique that emphasizes separating the functionality of a program into independent, interchangeable modules. Each module contains everything necessary to execute a unique part of the desired functionality through well designed interfaces. These well defined interfaces provide all the detail needed for one module to replace another and achieve the needed results. This lesson focuses particularly on how client-side apps need not know the specifics of server-side implementations if well designed RESTful interfaces are used.
+							</li>
+							<li>
+								<strong>Layering</strong> - Layering allows designers to think about different problems at different levels of an implementation. Why should a front-end web developer care how data is stored in a databse? This lesson emphasizes how layering is an effective strategy for improving security. Layering happens in this lesson as part of the Django framework (i.e. seperation between database layer and application framework level) as well as part of the production environment setup (i.e. apache as a host, django as a web API, client-side as a web app).
+							</li>
+							<li>
+								<strong>Least Privilege</strong> - The principle of least privilege says to allow the minimum number of privileges necessary to accomplish the task. This lesson emphasizes this principle in its design of the web API calls (i.e. limit user privileges and access to data) as well as its focus on file permissions in the apache server configuration portions.
+							</li>
+						</ul>
+						<p>The guide is split into 6 subunits. Select a unit below or start from the beginning. <a class="btn btn-primary btn-lg" href="#task1" role="button">Get started</a></p>
+					</div>
+					<div class="list-group">
+						<a href="#task1" class="list-group-item">UNIT 1: Installing Apache and Django and configuring a dev. and production enviornment</a>
+						<a href="#task4" class="list-group-item">UNIT 2: Integrating the server-side and client-side</a>
+						<a href="#task5" class="list-group-item">UNIT 3: Adding Authentication and sessions</a>
+						<a href="#task7" class="list-group-item">UNIT 4: Adding a user profile</a>
+						<a href="#task10" class="list-group-item">UNIT 5: Access control and Permissions</a>
+						<a href="#task13" class="list-group-item">UNIT 6: Input filtering and API hardening</a>
+					</div>
+					<div id="task1" class="taskitem">
+						<h2>UNIT1: Unit 1: Installing Apache and Django and configuring a dev. and production enviornment</h2>
+						<h3 class="taskitem">1. Installing and running Apache</h3>
+
+			            Open your ubuntu server-vm. Once its booted up, login and then press ctrl+alt+t to open a new terminal <br>
+			           	To install apache type the following in the terminal:<br>
+			            <pre><code>sudo apt-get update
+sudo apt-get install apache2</code></pre><br>
+			            <br>
+			            You should see: <img src="images/apache-install.png"/><br>
+
+			            Lets run apache and confirm that "It Works!"<br>
+			            To do so, restart apache from the command line via:<br>
+			            <pre><code>sudo service apache2 restart</code></pre><br>
+			            <br>
+			            With the server restarted, open your a browser (click chrome icon on the left) and navigate to "localhost" (without quotes)
+			            You should see the default configuration running and it should look something like this:<br>
+			            <img src="images/apache-it-works.png"/><br>
+			            <br>
+			            At this point you are hosting a webserver just like you would find almost anywhere online. Pretty simple to start with right? Well at this point apache is just serving a single page, index.html, called a "static file." You can find this page (the configuration page) in the /var/www/html/ directory using the file browser or command line. Open it up and take a look and you will see the raw html used to make the "It works" page. Hit control + x to exit the editor.<br>
+
+									<pre><code>nano /var/www/html/index.html</code></pre><br>
+
+					</div><!-- End Task 1-->
+					<div id="task2" class="taskitem">
+						<h3 class="taskitem">2. Setup your development environment: Installing Django and Forking the starter serverside code</h3>
+
+			            Now that we have a default install of apache ready, lets make our webserver more interesting by installing and configuring a web application framework called "Django" to work with the server. We will start with setting up a development environment. Step 3 will get django setup for production<br>
+
+			            First install Django and its REST framework by typing the following in the command line:<br>
+			            <pre><code>sudo apt-get install python-pip
+pip install Django==1.9.7
+pip install djangorestframework
+pip install markdown 
+pip install django-filter</code></pre><br>
+			           	Easy enough to install...<br>
+			            Next, lets create your first Django app by starting with some basic code I created for you to get going.<br>
+
+						Go to <a href="https://github.com/MLHale/gencyberdjango">https://github.com/MLHale/gencyberdjango</a> and fork the repository by clicking the "fork" button in the upper right.<br>
+						<img src="images/fork-django-project.png"/><br>
+
+						This should create a copy of the repository that you can control.<br>
+						<img src="images/forked-repo.png"/><br>
+						When you are done it should look something like:<br>
+						<img src="images/forked-repo2.png"/><br>
+						Notice in the red elipse that you now have your own copy of the repo. If you go to "https://github.com/&lt;yourusername&gt;/gencyberdjango" you should see it.<br>
+			            Back in your virtual machine, lets get started with this code (we will review what is in there in a moment)<br>
+			            (make sure to replace &lt;yourusername&gt; with your actual github username). The chown command recursively (-R) chances the ownership of files and directories under /var/www/ to "student" user and group "www-data". If you have different account name than "student" then use that instead.<br>
+
+			            <pre><code>sudo chown student:www-data -R /var/www/
+cd /var/www/
+git clone https://github.com/&lt;yourusername&gt;/gencyberdjango gencybersite
+cd gencybersite/</code></pre><br>
+
+			            With this project, you will get a directory structure that looks like
+			            <img src="images/django-project-structure.png"/><br>
+
+			            Now that we have Django installed and a project running we should be able to test Django in development mode using a utility called "runserver" that runs a development version of django for you to develop your code with. This utility provides real-time recompilation as you edit python files and keeps your app hosted on localhost:8000. Localhost is also accessible at IP address: 127.0.0.1. runserver is helpful for testing purposes. The utility also provides real-time feedback every time you save python files in your django directory. This can help you debug if you make errors along the way. Lets take a look at runserver now:<br>
+			            <pre><code>python manage.py runserver</code></pre><br>
+			            You should see something that looks like:
+			            <img src="images/django-runserver.png"/><br>
+			            Now, open up a chrome browser window and navigate to <a href=localhost:8000/api/>localhost:8000/api</a><br>
+			            You should see that your django server is running and that there are three types of data served by your api: users, likes, and userprofiles.
+						<img src="images/api-running-in-runserver.png"/><br>
+						Lets investigate these data structures using the django admin interface. In your browser go to <a href=localhost:8000/admin/>localhost:8000/admin/</a> and login using the username/password student/gencyberstudent <br>
+						You should see something like: <img src="images/admin-interface.png"/><br>
+						Then, click on "likes" and then on "someflickrphototitle".<br>
+						You should see something like: <img src="images/admin-interface2.png"/><br>
+						Also take a look at the userprofile and user models.<br>
+						You should see something like: <img src="images/admin-interface3.png"/><br>
+
+						Feel free to manipulate some fields and click "save"<br>
+
+						Now lets take a look at these items as our application will eventually see them: that is of course, in JSON format (javascript object notation).<br>
+						Go to <a href=localhost:8000/api/likes>localhost:8000/api/likes</a> and you should see: <br>
+						then: <img src="images/api-likes.png"/><br>
+			        </div><!-- End Task 2-->
+			        <div id="task3" class="taskitem">
+			        	<h3 class="taskitem">3. Configuring Django for production</h3>
+			        	In the first step we installed apache. In the second, we install django. Notice they are running on different ports (port 80 for apache, i.e. just localhost, and port 8000 for django, i.e. localhost:8000). What we want is to setup apache to actually host django - so that when we make changes to our development enviornment we can 'push' them to production. Usually your production server would be an entirely different system. For the rest of this tutorial, we will just use a seperate folder. Lets get this setup. <br><br>
+
+			        	First, start by cloning your django repo into a new folder. Then, we use a <b>find</b> command to grab every directory (given by -type d) beneath the path ( /var/www/production/ ) and changes its permissions to 755 with a <b>chmod</b> command. The permissions are described as follows: The first number gives permission 7 to the owner (the first 7), 7 to group (the second 7), and 5 to all others (the 5).
+								The numbers can range from: 0 to 7 as follows:
+								<ul>
+									<li>0 – no permission</li>
+									<li>1 – execute</li>
+									<li>2 – write</li>
+									<li>3 – write and execute</li>
+									<li>4 – read</li>
+									<li>5 – read and execute</li>
+									<li>6 – read and write</li>
+									<li>7 – read, write, and execute</li>
+								</ul>
+								<br>
+								A second find command does a similar operation, but on files and sets their permissions to 664. <br>
+								The chown command recursively (-R) chances the ownership of files and directories under /var/www/production to "student" user and group "www-data". Again, if you have a different account name, use that instead of "student"
+
+			        	<pre><code>cd /var/www/
+git clone https://github.com/&lt;yourusername&gt;/gencyberdjango production
+sudo find /var/www/production/ -type d -exec chmod 775 {} +
+sudo find /var/www/production/ -type f -exec chmod 664 {} +
+sudo chown -R student:www-data /var/www/production/
+cd production</code></pre><br>
+						Now you have two copies of django, one for development in /var/www/gencybersite/ and one in /var/www/production/ that you will be letting apache serve. <br>
+						Lets get this 'production environment' (a term based in the <b>domain seperation and layering first principles</b>) configured. <br>
+
+						You will need a module called <a href=https://modwsgi.readthedocs.io/en/develop/>mod_wsgi</a> to allow apache to talk to the django python kernel (a run time environment for python). Lets go ahead and install it:<br>
+
+			            <pre><code>sudo apt-get install libapache2-mod-wsgi</code></pre>
+			            This library allows Django to tell apache what to serve at any given time. <br>
+			            To make it work, we need to make some changes to our apache configuration file in /etc/apache2/sites-available/ to tell it to host django instead of the default "it works" page that we started with.
+			            <br>
+			            Lets take a look at our current running apache config: open a new terminal window (ctrl+shift+t in terminal) and type<br>
+			            <pre><code>nano /etc/apache2/sites-available/000-default.conf</code></pre><br>
+			            Notice that it is hosting the files in /var/www/html/ that we looked at in step 1. Hit control + x to exit the editor.<br>
+						<img src="images/apache-default-conf.png"/><br>
+			            To change it to django lets disable this site and create a new virtualhost setup for django:<br>
+			            First, lets create the new virtualhost conf file.
+			            <pre><code>sudo nano /etc/apache2/sites-available/django.conf</code></pre>
+			            Copy the following and paste it into the conf file (right click the terminal, select paste):<br>
+			            <pre><code>&lt;VirtualHost *:80&gt;
+        ServerName localhost
+
+        ServerAdmin youremail@youremail.edu
+
+        # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+        # error, crit, alert, emerg.
+        # It is also possible to configure the loglevel for particular
+        # modules, e.g.
+        LogLevel info
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        Alias /static/ /var/www/production/static/
+
+        #allow access to static files
+        &lt;Directory /var/www/production/static&gt;
+            Options -Indexes
+            Require all granted
+        &lt;/Directory&gt;
+
+        #allow access to wsgi file
+        &lt;Directory /var/www/production/gencybersite&gt;
+            &lt;Files wsgi.py&gt;
+                Require all granted
+            &lt;/Files&gt;
+        &lt;/Directory&gt;
+
+        ServerSignature Off
+&lt;/VirtualHost&gt;
+WSGIScriptAlias / /var/www/production/gencybersite/wsgi.py
+WSGIPythonPath /var/www/production/:/home/student/.local/lib/python2.7/site-packages/</code></pre><br>
+
+						Hit <b>control + x</b>, <b>y</b> and then <b>enter</b> to save the file. <br>&nbsp<br>
+
+						To make these files active lets give apache access to site-packages and then reload and restart our server. The <b>chmod</b> command gives permission 7 to the owner (the first 7), 7 to group (the second 7), and 5 to all others (the 5).<br>
+						The numbers can range from: 0 to 7 as follows:
+						<ul>
+							<li>0 – no permission</li>
+							<li>1 – execute</li>
+							<li>2 – write</li>
+							<li>3 – write and execute</li>
+							<li>4 – read</li>
+							<li>5 – read and execute</li>
+							<li>6 – read and write</li>
+							<li>7 – read, write, and execute</li>
+						</ul>
+						<br>
+						The second command (find) grabs every directory (given by -type d) beneath the path ( /home/student/.local/lib ) and changes its permissions to 755.<br>&nbsp<br>
+						If you have different account, replace "student" with that account name.<br>&nbsp<br>
+
+						<pre><code>sudo chmod 775 /home/student/.local
+sudo find /home/student/.local/lib -type d -exec chmod 755 {} +
+cd /var/www/
+sudo a2ensite django
+sudo a2dissite 000-default
+sudo service apache2 restart</code></pre><br>
+						This virtual host is apache's way of binding certain ports to certain hosted files. In this configuration we are enabling django to run inside of apache using the WSGI interface using mod_wsgi module. The WSGIScriptAlias maps to the wsgi.py file in our django install and the python path points to the directory where our project code is at. This configuration also hosts a static files directory that can be used to host any static files (like css or js or ...your ember flickr app).<br>
+						<br>
+
+						If all goes well, you should see the same app as before, but hosted on localhost, instead of using the 8000 port: e.g.<br>
+						<img src="images/apache-django-configured.png"/><br>
+						Now we have two specific setups. One for development (/var/www/gencybersite) and one for production (/var/www/production/). Henceforth, we will make coding changes in development, push our changes to our github repo and then pull them down into our production setup when we are ready.<br>
+						<br>
+
+						To help keep a picture of our environments, review how the GitHub repository, the development, and production environments are related.<br>
+						<img src="images/django-git-dev-prod.png"><br> 
+
+			        </div><!-- End Task 3-->
+
+			        <div id="task4" class="taskitem">
+			        	<h2>UNIT 2: Integrating the server-side and client-side</h2>
+			        	<h3 class="taskitem">4. Configuring Ember with Django</h3>
+			        	Now comes the part where you bring together everything you've done so far: integrating your api and your client-side app. <br>
+
+			            Lets start by integrating this api with the flickr app we built on day 1.<br>
+			            If you didn't entirely finish, or made a mistake, its ok - you can fork the repo at <a href="https://github.com/MLHale/gencyberember">https://github.com/MLHale/gencyberember</a><br>
+			            This repo contains code that has been checkpointed to be in the state that you would have been if you finished all of the steps in day 1. <br>
+			            Just so we are all on the same page, lets go ahead and fork this repo on github and then do the following: (make sure to replace 'yourusername' with your actual username.<br>
+
+			            <pre><code>cd /var/www/
+git clone https://github.com/yourusername/gencyberember.git ember
+cd ember
+git reset 02a023b3 --hard
+npm install
+bower install</code></pre><br>
+			            The reset hard command will revert the code back to the starting point for this tutorial. If you want to look at where you are going, a finished copy is available at the last commit.<br>
+			            After you have the app installed, lets add it to the sublime project workspace:<br>
+
+			            <img src="images/add-folder.png"/><br>
+			            <img src="images/select-folder.png"/><br>
+
+			            When you have it added, your workspace should look like:<br>
+			            <img src="images/project-workspace.png"/><br>
+
+			            Now comes the integration step. In your terminal type the following:<br>
+			            <pre><code>cd /var/www/ember
+ember build --watch -o /var/www/gencybersite/static/ember</code></pre><br>
+			            Now you should see a familiar ember build watch running. The only difference is now it is building into a directory other than /dist/. Specifically it is building into a static folder called "ember/" in /var/www/gencybersite/static/<br>
+			            <br>
+			            <img src="images/ember-build.png"/><br>
+			            <br>
+			            To help visualize again, use the diagram as an overview.  The ember build process puts code into the gencybersite development area to be served via django's web server.  <br>
+			            <img src="images/django-git-dev-prod-ember.png"><br>
+			            <br>
+
+			            Now we just need to tell django to host ember on our root url<br>
+			            In another terminal window (ctrl+shift+t for a new one) run runserver as follows:<br>
+			            <pre><code>cd /var/www/gencybersite/
+python manage.py runserver</code></pre><br>
+						To review, you now have runserver going for your django development environment, you have ember-cli building ember files into your django app, and you have apache running to host your production server.<br>
+
+			            In sublime, open /var/www/gencybersite/gencybersite/settings.py<br>
+			            Find "TEMPLATES" then change the "DIRS" line to:<br>
+			            <pre><code>'DIRS': [os.path.join(BASE_DIR, "static/ember/")],</code></pre><br>
+
+			            <img src="images/templates-dir.png"/><br>
+
+			            Now lets go to views.py in /var/www/gencybersite/api and add:<br>
+			            <pre><code>def home(request):
+  """
+  Send requests to / to the ember.js clientside app  """
+
+  return render_to_response('index.html',
+                {}, RequestContext(request))</code></pre><br>
+                		<img src="images/home-template.png"/><br>
+
+
+
+			            Then in urls.py (in /var/www/gencybersite/gencybersite, <b>NOT</b> the one in /var/www/gencybersite/api) after the other import statements add:<br>
+			            <pre><code>from api import views</code></pre><br>
+			            Then after the api/ pattern, add:<br>
+			            <pre><code> url(r'^', views.home),</code></pre><br>
+			            <br>
+
+			            At this point your file <b>/var/www/gencybersite/gencybersite/urls.py</b> file should look like:<br>
+			            <img src="images/urls-py.png"/><br>
+
+			            This url configuration cascades through admin/ then api/. If it matches one of those, it will be sent to the corresponding set of views. Otherwise, every other possible url will be mapped to the views.home view - which is conveniently hosting our ember app. What this means is that django will offload all urls that don't match the first two patterns to ember (where, they will be handled by the ember client-side router). Nifty yeah?<br>&nbsp<br>
+
+			            To make it all work we need to do one more thing<br>
+			            The asset files aren't hosted at /assets/ as they are in the ember-cli build placement.<br>
+			            To fix this, open your /var/www/ember/app/index.html file and ctrl-h (replace) the word 'assets' with 'static/ember/assets'<br>&nbsp<br>
+
+			            It should look like:<br>
+			            <img src="images/asset-static-fix.png"/><br>
+			            AND THE BUILD PROCESSES ALIGN - AT LAST<br>
+
+			            Now we can edit our ember files, ember-cli will watch for changes and build the result into our django static-file directory.<br>
+			            On the server-side code, if we make changes to our django files, django manage.py will watch for and observe the changes and then restart the server automatically.<br>
+			            <br>
+			            If everything is setup correctly you should see:<br>
+			            <img src="images/django-ember.png"/><br>
+			            This is really nifty and accelerates development<br>
+			            When the app is working as you like it, you can just release it to production via a git push on the development environment and a git pull on the production server. Through this build process, the compiled ember files will be just another script in the /static folder of the django repository and you can still manage client-side code changes from your ember repository (since they are in seperate git repos)<br>&nbsp<br>
+
+			            To save our changes and push to production (illustrating our build process), lets do the following:<br>
+			            <pre><code>cd /var/www/gencybersite/
+git status
+git add .
+git commit -m "ember and django integrated"
+git push</code></pre><br>
+
+			        </div><!-- End Task 4-->
+			        <div id="task5" class="taskitem">
+			        	<h2>UNIT 3: Adding Authentication and sessions</h2>
+			        	Now that we have the basic integrated app put together, lets create a login feature - to allow users to register with our site and create a user profile with a feed of photos they like. <br>
+
+			        	That's a few steps - so lets start with the first part - login and registration. This requires that we create some features in our ember app - to accept a username and password - and some features on our server-side django API to accept login requests and authenticate the user. <br>
+
+			        	<h3 class="taskitem">5. Creating a client-side login component</h3>
+			        	Lets start in the clientside<br>
+			        	With the ember build terminal still running from before, open up your ember app directory in sublime.<br>
+			        	Lets create a new component called "auth-manager" that will handle session based authentication.<br>
+			        	In a new terminal run the following:<br>
+			        	<pre><code>cd /var/www/ember/
+ember generate component auth-manager</code></pre><br>
+						You should see the following:<br>
+						<img src="images/auth-gen.png"/><br>
+						<img src="images/auth-gen2.png"/><br>
+						With this done, open /var/www/ember/app/templates/components/auth-manager.hbs in sublime and copy in the following, replacing {{yield}}:<br>
+						<pre><code>{{#if isLoggedIn}} {{! Display user name and logout button}}
+	&lt;p class=&quot;auth-form&quot;&gt;
+		Hello {{username}}
+		&lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; {{action 'logout'}}&gt;Log out&lt;/button&gt;
+	&lt;/p&gt;
+{{else}} {{!Display login page}}
+	{{#if errorMsg}}
+
+		&lt;form class=&quot;form-inline auth-form&quot;&gt;
+
+			&lt;div class=&quot;form-group has-error&quot;&gt;
+				&lt;label class=&quot;control-label&quot;&gt;&lt;div class=&quot;alert alert-danger&quot; style=&quot;padding: 5px; margin-bottom: 0px;&quot; role=&quot;alert&quot;&gt;{{errorMsg}}&lt;/div&gt;&lt;/label&gt;
+				{{input class=&quot;form-control auth-user-field&quot; value=username action=&quot;login&quot; placeholder=&quot;Username&quot;}}
+			&lt;/div&gt;
+			&lt;div class=&quot;form-group has-error&quot;&gt;
+				{{input class=&quot;form-control auth-user-field&quot; value=password action=&quot;login&quot; placeholder=&quot;Password&quot; type=&quot;password&quot;}}
+			&lt;/div&gt;
+			&lt;label class=&quot;checkbox&quot;&gt;
+				{{input type=&quot;checkbox&quot; checked=remember}} Remember me
+			&lt;/label&gt;
+			&lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; {{action 'login'}}&gt;Sign in&lt;/button&gt;
+
+		&lt;/form&gt;
+	{{else}}
+		&lt;form class=&quot;form-inline auth-form&quot;&gt;
+			&lt;div class=&quot;form-group&quot;&gt;
+				{{input class=&quot;form-control auth-user-field&quot; value=username action=&quot;login&quot; placeholder=&quot;Username&quot;}}
+			&lt;/div&gt;
+			&lt;div class=&quot;form-group&quot;&gt;
+				{{input class=&quot;form-control auth-user-field&quot; value=password action=&quot;login&quot; placeholder=&quot;Password&quot; type=&quot;password&quot;}}
+			&lt;/div&gt;
+			&lt;label class=&quot;checkbox&quot;&gt;
+				{{input type=&quot;checkbox&quot; checked=remember}} Remember me
+			&lt;/label&gt;
+			&lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; {{action 'login'}}&gt;Sign in&lt;/button&gt;
+
+		&lt;/form&gt;
+	{{/if}}
+{{/if}}</code></pre><br>
+						There is a lot going on in this code. Lets break it down. In the outer <b>{{#if}}</b> block, we are checking to see if a variable called 'isLoggedIn' is set to true. If it is, we display a hello username message and the log out button. Otherwise (when it is false) we display a login form that allows a user to enter a username and password. The inner if block will optionally display an error message if the variable 'errorMsg' is set to true. As you might imagine, the default values for these variables is false. Lastly, also note that our input handlers are bound to the 'value' of 'username' and 'password' - both of which are also variables.<br>&nbsp
+						<br>
+						We have only created the login component, it isn't actually being displayed. To display it we need to include it in our /var/www/ember/app/templates/application.hbs file. Open this file in sublime and replace line 8 with the following:<br>
+						<pre><code>{{#bs-form formLayout="inline" class="search-form" action="search"}}</code></pre><br>
+						and edit line 17 by inserting: <pre><code>{{auth-manager}}</code></pre> When you are done, the nav bar code should look like: <br>
+						<img src="images/nav-bar.png"/><br>
+						To see the fruits of your efforts, reload your app in the browser and you should see something like:<br>
+						<img src="images/app-login-form.png"/><br>
+						Notice the nav bar is on two lines in the header. To fix this, lets add a few lines of css to our /var/www/ember/app/styles/app.css file in sublime. Specifically, add the following:<br>
+						<pre><code>.auth-form {
+	margin-top: -34px;
+}
+
+.auth-user-field {
+	width: 150px !important;
+}
+
+.search-form {
+	margin-left: -250px;
+}</code></pre><br>
+					Now it should look better: <br>
+					<img src="images/nav-bar-fixed.png"/><br>
+					Ok, so it looks great - but if we click the "sign in" button nothing happens! Well not to worry, this is just because we haven't actually created the logic to handle this form. Lets do that now. Open up the /var/www/ember/app/components/auth-manager.js file in sublime and lets make this form actually work. <b>Replace</b> the component code with the following (explanation below).<br>
+					<pre><code>import Ember from 'ember';
+
+export default Ember.Component.extend({
+	isLoggedIn: false,
+	username: '',
+	password: '',
+	errorMsg: '',
+	remember: false,
+	userid: -1,
+	actions: {
+		login: function(){
+			//do stuff to authenticate here
+			var username = this.get('username');
+			var password = this.get('password');
+			var remember = this.get('remember');
+			var data = {
+				'username': username,
+				'password': password};
+			var controllerObj = this;
+			Ember.$.post('../api/session/', data, function(response){
+				if(response.isauthenticated){
+					//success
+					console.log('Login POST Request to ../api/session/ was successful.');
+					controllerObj.set('username', response.username);
+					controllerObj.set('userid', response.userid);
+					controllerObj.set('isLoggedIn', true);
+
+					if(remember){
+						//save username and pass to local storage
+						localStorage.setItem('remember', true);
+						localStorage.setItem('username', controllerObj.get('username'));
+						localStorage.setItem('password', controllerObj.get('password'));
+					}
+					else{
+						localStorage.removeItem('remember');
+						localStorage.removeItem('username');
+						localStorage.removeItem('password');
+					}
+					controllerObj.set('password', '');
+				} else{
+					//errors
+					console.log('Login POST Request to ../api/session/ was unsuccessful.');
+					controllerObj.set('errorMsg', response.message);
+				}
+			});
+
+		},
+		logout: function(){
+			var controllerObj = this;
+			Ember.$.ajax({url: '../api/session/', type: 'DELETE'}).then(
+				function(response){
+					console.log('Logout DELETE Request to ../api/session/ was successful:' + response);
+					controllerObj.set('isLoggedIn', false);
+					controllerObj.set('errorMsg', '');
+					controllerObj.set('username', '');
+					controllerObj.set('userid', -1);
+
+					if(localStorage.remember) {
+						controllerObj.set('remember', localStorage.remember);
+						controllerObj.set('username', localStorage.username);
+						controllerObj.set('password', localStorage.password);
+					}
+				}
+			);
+
+		},
+	},
+	init: function(){
+		this._super();
+		var controllerObj = this;
+		Ember.$.get('../api/session/', function(response){
+			if(response.isauthenticated){
+				//success
+				console.log('The user: \''+response.username+'\' is currently logged in.');
+				controllerObj.set('username', response.username);
+				controllerObj.set('userid', response.userid);
+				controllerObj.set('isLoggedIn', true);
+			} else{
+				//errors
+				console.log('The user is not currently logged in.');
+			}
+		});
+		if(localStorage.remember) {
+			this.set('remember', localStorage.remember);
+			this.set('username', localStorage.username);
+			this.set('password', localStorage.password);
+		}
+	}
+});</code></pre><br>
+						Obviously there is a lot going on here. Lets break down each piece. The first few lines declare the variables that we made use of in our template code. These variables include, isLoggedIn (a boolean), username, password, and errorMsg (strings), the remember me (boolean), and lastly a userid (number) initialized to -1. This last variable will be sent back from the server once we create the session-based authentication mechanism in the next portion of this tutorial. <br>&nbsp<br>
+
+						After the variable section, there are a set of actions that we've defined and then finally an init() function. Lets look at the actions first. Note that we have defined two action functions - one called login() and one called logout(). These are the same functions that our template code called above when a user clicks the login or logout buttons (respectively). Looking at the first, login, we see that the function gets the current values of username, password, and remember from the rendered view (i.e. the form shown as part of the template on the page). The next step crafts a 'data' object with the username and password in it to prepare it for an ajax call to our /api/session/ on our REST API (to be created). This ajax request (given in the Ember.$.post block) makes the request and then has a callback function with a variable called response. We will create this later - but for now assume that it contains a dictionary of variables that includes the username (i.e. response.username), the user's id (i.e. response.userid), and a variable called 'isauthenticated' (i.e. response.isautheticated) that tells the client if the login attempt succeeded and the user is actually logged in. Based on the state of this variable, the client knows that the request succeeded or that it failed. We have two handlers for both cases. In the event that it succeeds (i.e if (response.authenticated) is true), then the controller sets the userid, isLoggedIn and either stores the username/password in localstorage or ensures that none of the user data is stored locally. If the request fails (the else block), then the console prints a message and sets the 'errorMsg' variable in the controller to whatever the server sent in the response (i.e response.message). Thats it for login.<br>&nbsp<br>
+
+						The logout action function is simpler. In this function, the client simply makes a DELETE request to /api/session/ and then resets all of the controller variables appropriately when the response returns.<br>&nbsp
+						<br>
+						The last function (not an action), called init, is a special function that executes when the controller initially loads (i.e. when the user first visits the page). This function is used to check if the user is already authenticated, and if she is, sets the controller up approriately. It is also used to automatically insert the data from localstorage, if "remember me" was previously set by the user to true.	<br>
+
+			        </div><!-- End Task 5-->
+			        <div id="task6" class="taskitem">
+			        	<h3 class="taskitem">6. Creating a the server-side authentication component</h3>
+			        	Now that we have the client-side code needed to authenticate - we now need to make it actually work by creating the actual backend server authentication component. This component will handle the requests that the client will send (on /api/session/), check the user's credentials, and then send the appropriate response back in the format discussed above in the previous step.<br>&nbsp<br>
+
+			        	To do that we need to do several things. First lets create a new APIView in /var/www/gencybersite/api/views.py. Open this file in sublime and lets add a "Session" class view as follows between the import statements and your 'home' method.<br>
+			        	<pre><code>class Session(APIView):
+	permission_classes = (AllowAny,)
+	def form_response(self, isauthenticated, userid, username, error=""):
+		data = {
+			'isauthenticated': isauthenticated,
+			'userid': userid,
+			'username': username
+		}
+		if error:
+			data['message'] = error
+
+		return Response(data)
+
+	def get(self, request, *args, **kwargs):
+		# Get the current user
+		if request.user.is_authenticated():
+			return self.form_response(True, request.user.id, request.user.username)
+		return self.form_response(False, None, None)
+
+	def post(self, request, *args, **kwargs):
+		# Login
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+		user = authenticate(username=username, password=password)
+		if user is not None:
+			if user.is_active:
+				login(request, user)
+				return self.form_response(True, user.id, user.username)
+			return self.form_response(False, None, None, "Account is suspended")
+		return self.form_response(False, None, None, "Invalid username or password")
+
+	def delete(self, request, *args, **kwargs):
+		# Logout
+		logout(request)
+		return Response(status=status.HTTP_204_NO_CONTENT)</code></pre><br>
+						Again, there is a lot going on here, so lets break down each piece. First we are declaring a class of type "APIView". This enables our class to inherit from the django-rest class-based view base class. Next, we set the permission_classes for this view to "AllowAny" so that anyone accessing our site can reach the authentication endpoint. If we required authentication or other permissions here, no one would ever be able to authenticate, because this is our authentication mechanism! <br>&nbsp<br>
+
+						Next there are four methods in our class. The first one, called 'form_response' is a helper function that takes 4 inputs (and self) and returns a Response json object. Notice, that this object follows the same format that we created in the client-side app - namely, three variables isauthenticated, userid, and username. It also optionally includes an error message.<br>&nbsp<br>
+
+						The next three functions, get, post, and delete, are the 'meat and potatoes' of the class. Each one of these implement their respective request type (i.e. GET, POST, and DELETE). Think of these as 'request handlers.' Lets start with post, since it maps to the login action. Before when we created our client-side auth component, we were making a POST ajax request to /api/session/ that contained the username and password the user was trying to authenticate with. The post method accepts these parameters as part of the 'request.POST' parameter. The first part of the method grabs the user name and password from this POST object (i.e. POST.get('username')) and then passes these two parameters to django's 'authenticate' method to get the user object if one exists. This method is provided by the 'contrib.auth' package that comes standard with django - see imports above in views.py. The next part of post checks to see if the user object returned exists (i.e. if user is not None) and then checks to make sure the user's account hasn't been suspended (i.e. user.is_active). If both of these conditions hold, then post logs the user in using the 'login' method and then sends a response back to the user formatted using form_response. The structure of this response is something like:<br>&nbsp<br>
+						<pre><code>{
+	'isauthenticated': True,
+	'userid': 123,
+	username': Bob
+		}</code></pre><br>
+						In the event that user account is suspended or non existent, we send responses with error messages, i.e. "Account is suspended" or 'Invalid username or password'.<br>
+						<br>
+						The next method, 'get', is what is used by our client-side auth component's init' method to check to see if the user is already logged in. Get simply checks to see if the request.user is authenticated. If she is then the user's id, username, and the isauthenicated = true flag is send back to the client.<br>
+						<br>
+						The last method, delete, is the simplest of the three. It simply logs the user out if they are logged in (using the 'logout' django function) and then sends an empty 'success' message back to the user in the form of a '204 no content' message.<br>
+						<br>
+						Ok...so we created our view, but when we check localhost:8000/api/session/ in the browser we still get nothing. To make our new view work, we need to tell django to wire the view up to the request handler. To do that, open /var/www/gencybersite/api/urls.py and lets add the following line.<br>
+						<pre><code>url(r'^session/', views.Session.as_view()),</code></pre><br>
+						When done, our urls.py file should look like:<br>
+						<pre><code>from django.conf.urls import *
+
+#Django Rest Framework
+from rest_framework import routers
+from api import views
+
+#REST API routes
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'likes', views.LikeViewSet)
+router.register(r'userprofiles', views.UserprofileViewSet)
+
+urlpatterns = [
+    url(r'^session/', views.Session.as_view()),
+    url(r'^', include(router.urls)),
+
+    #Django Rest Auth
+    url(r'^auth/', include('rest_framework.urls')),
+]</code></pre><br>
+						This line tells django that we should accept requests to /session/, actually /api/session/ - since the /api/ part comes from the urls.py in the main django app. The second part (views.Session.as_view())) tells djang to send all requests for that url to the Session view - that we just created in views.py.<br>
+						<br>
+						Now lets test our new view. Go to your browser and enter <a href=localhost:8000/api/session/>localhost:8000/api/session/</a><br>
+						If you are logged out, you should see something like:<br>
+						<img src="images/session-auth-endpoint.png"/><br>
+						Using the normal django rest login (at the top right of the page - go ahead and login using the username student/gencyberstudent). After you are done you should see:<br>
+						<img src="images/session-auth-logged-in.png"/><br>
+						Great, so lets test the endpoint using our client-side interface that we created earlier. Open your browser again and go to your home page, i.e. <a href=localhost:8000>localhost:8000</a><br>
+						You should see:<br>
+						<img src="images/client-side-already-logged-in.png"/><br>
+						<br>
+						You might say to yourself, 'wow self - how does it already know I am logged in as <b>student</b>??'<br>
+						Well the answer is that the init method in our client-side controller is making a request to /api/session/ and seeing that we are already authenticated to the server-side api. It gets the username from the response it gets. To see this in action, right click anywhere on the page and click 'inspect element'.
+						<img src="images/inspect-element.png"/><br>
+						<br>
+						Then click 'console.' Notice that we see a message that says: <i>The user: 'student' is currently logged in.</i><br>
+						<img src="images/console-init.png"/><br>
+						This message is, if you will remember, produced by our client-side auth component's init method after it sees that we are logged in. Lets actually inspect the network request that occurs to do this and then look at the ember auth component to see it in action.<br>
+						First click "network", then refresh the page. Now scroll down until you see 'session/', click this word and you should see:<br>
+						<img src="images/network-session-get.png"/><br>
+						To see what ember does with this data, click the ember tab, go to view tree, check the 'components box', and finally click the 'auth-manager' component. You should see something like:<br>
+						<img src="images/auth-manager-inspect.png"/><br>
+						Notice, that the controller has set userid to 1 (the userid of the student user), it has set the username to 'student', and there are no error messages.<br>
+						<br>
+						Cool huh?<br>
+						<br>
+						Ok lets test the other two functions in our client-side, namely login and logout. <br>
+						The second part, logout, is easy. With the ember inspector still open, click the logout button in the upper right. We should see the variables change and the interface update. Unfortunately, something is wrong, because if we click the button nothing happens. If you look at the console - you can see that we are getting a 403 error. <br>
+						<img src="images/csrf-error.png"/><br>
+						If you click the url, it will take you to the network tab where we can read the actual error. Click it now, then click the red session word, then click 'preview' to see:<br>
+						<img src="images/csrf-network.png"/><br>
+						This says that CSRF (which stands for cross site request forgery) failed to validate the CSRF token. This is expected - because we are using a REST API that doesn't need CSRF protections.
+						Lets fix this by getting rid of CSRF protections on all of our RESTful request handlers. Start by creating a new file in /var/www/gencybersite/api/ using sublime (right click api, select new file). In the file paste in the following:<br>
+						<pre><code>from rest_framework.authentication import SessionAuthentication
+
+class CsrfExemptSessionAuthentication (SessionAuthentication):
+	def enforce_csrf(self, request):
+		return</code></pre><br>
+						Save the file (ctrl + s) as 'rest_framework_config.py'
+						<img src="images/csrf-fix.png"/><br>
+						This is a little piece of middleware that we need to wire up in our settings.py file. Open /var/www/gencybersite/gencybersite/settings.py and go to the bottom of the file in sublime. Add in the following:<br>
+						<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'api.rest_framework_config.CsrfExemptSessionAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
+    ]
+}</code></pre><br>
+						The command DEFAULT_AUTHENTICATION_CLASSES tells django to use the new CSRF middleware we just created instead of the basic session authentication middleware. Now, if we save this file, refresh our app homepage in the browser (i.e. <a href=localhost:8000>localhost:8000</a>), open the ember tab, click authManager, and then click the logout button in the upper right - we should see the interface update and our variables update correctly. Lets try it.<br>
+						<img src="images/logout-success.png"/><br>
+						Cool, now we see that everything has been reset as expected, and our username/password form is waiting at the top. If you take a quick look at your django runserver debug log (still open in one of your terminals) you will see something like:<br>
+						<img src="images/runserver-log.png"/><br>
+						The item to look for is the last one (the DELETE request). Clearly our logout function and the backend auth api endpoint are working. <br>
+						Lastly, lets test the login auth component on the client-side. Enter student/gencyberstudent into the form for username and password and then check the remember me box and the click signin. The interface should change and if you click the console you should see the message:<Br>
+						<img src="images/post-success.png"/><br>
+						Lets also check to ensure that the remember me function worked. Click 'Resources' then click 'Local Storage' then click 'http://localhost:8000'. You should see the stored data, e.g.:<br>
+						<img src="images/remember-me-works.png"/><br>
+						Ok! One last thing to check. Click logout, you should see the username and password reset (from localstorage). With the resources tab still open, uncheck remember me and then click signin again. You should see all three localstorage variables disappear! <br>
+
+						<h4>Hooray! Authentication is done and it works!</h4>
+			        </div><!-- End Task 6-->
+			        <div id="task7" class="taskitem">
+			        	<h2>UNIT 4: Adding a user profile</h2>
+			        	<h3 class="taskitem">7. Creating a 'like' feature and storing likes server-side</h3>
+			        	Now that we have created the moving parts to allow users to login, lets create some registered user only functionality. To begin with, lets take a look at our app. Click a random tag in the tag list. I clicked 'farligt' in the screenshot below.<br>
+			        	<img src="images/navbar-css-issue.png"/><br>
+			        	Notice, that our navbar is all messed up when photos are actually loaded - something we didn't test for before with our simple nav-bar fix. Lets adjust this now to a accomodate all different states of the navbar. Open /var/www/ember/app/templates/application.hbs in sublime. Adjust your nav-bar code to the following (just add the class="auth-mgr" and userid=userid parts). The userid portion will be discussed later.<br>
+			        	<pre><code>&lt;nav class=&quot;navbar navbar-default navbar-fixed-top&quot;&gt;
+	&lt;div class=&quot;container-fluid&quot;&gt;
+		&lt;div class=&quot;navbar-header&quot;&gt;
+			&lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;My App&lt;/a&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;navbar-right search-field&quot;&gt;
+			{{#bs-form formLayout=&quot;inline&quot; class=&quot;search-form&quot; action=&quot;search&quot;}}
+				{{#if filteredPhotos}}
+					{{bs-input type=&quot;text&quot; value=searchField placeholder=&quot;filter photos&quot;}}
+				{{/if}}
+				{{bs-input type=&quot;text&quot; value=tagSearchField action=&quot;search&quot; placeholder=&quot;search for a flickr tag&quot;}}
+				&lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;
+					&lt;span class=&quot;glyphicon glyphicon-search&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+				&lt;/button&gt;
+			{{/bs-form}}
+			{{auth-manager class=&quot;auth-mgr&quot; userid=userid}}
+
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/nav&gt;</code></pre><br>
+						Now open your /var/www/ember/app/styles/app.css file in sublime. We will make the following changes:<br>
+						<ul>
+							<li>Remove the .auth-form css</li>
+							<li>change the .search-form css to float: left;</li>
+							<li>Add a .navbar-brand css </li>
+							<li>add a .auth-mgr property and in it, add the float:right; directive</li>
+						</ul>
+						To make these changes, replace the entire contents of the app.css file with the following: <br>
+						<pre><code>.feed-img {
+	max-width: 100%
+}
+body { padding-top: 70px; }
+.search-field {
+	padding-top: 8px;
+	padding-right: 10px;
+	width: 100%;
+}
+
+.tag-button {
+	padding:4px;
+	margin: 1px;
+}
+.post-tag-button {
+	padding:2px;
+	margin-top: 1px;
+}
+.feed-img {
+	background: url('../loading-img.gif');
+	min-height: 64px;
+	min-width: 64px;
+	max-width: 240px;
+}
+
+.auth-user-field {
+	width: 150px !important;
+}
+
+.search-form {
+	float: left;
+}
+
+.navbar-brand {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	z-index: -1;
+}
+
+.auth-mgr {
+	float: right;
+}</code></pre><br>
+						Save your files and lets review the changes. Basically, we have centered the "My App" title, floated the search bar to the left, and floated the authentication form to the right. Reloading your app homepage on <a href=localhost:8000>localhost:8000</a>, you should see something like:<br>
+						<img src="images/navbar-fixed-unauthed.png"/><br>
+						and
+						<img src="images/navbar-fixed-authed.png"/><br>
+						<br>
+						With that fixed, lets move on to actually adding a like button to each photo. open /var/www/ember/app/templates/application.hbs again and lets modify the media-heading to include a like button.<br>
+						The media-body, becomes (replace lines 35-38): <br>
+						<pre><code>&lt;div class=&quot;media-body&quot;&gt;
+	&lt;h4 class=&quot;media-heading&quot;&gt;{{photo.title}} ({{photo.views}} Views)
+	{{#if photo.liked}}
+		&lt;button class=&quot;btn btn-warning btn-xs pull-right&quot; disabled=&quot;disabled&quot;&gt;
+			&lt;span class=&quot;glyphicon glyphicon-thumbs-up&quot;&gt;&lt;/span&gt; Like
+		&lt;/button&gt;
+	{{else}}
+		&lt;button class=&quot;btn btn-default btn-xs pull-right&quot; {{action &quot;like&quot; photo}}&gt;
+			&lt;span class=&quot;glyphicon glyphicon-thumbs-up&quot;&gt;&lt;/span&gt; Like
+		&lt;/button&gt;
+	{{/if}}
+	&lt;/h4&gt;
+	{{{photo.description}}}
+&lt;/div&gt;</code></pre><br>
+						Notice that we have introduced a variable called photo.liked and an action called 'like'. Lets refresh the page and you should see the like button displayed on each post:<br>
+						<img src="images/like-button.png"/><br>
+						Now lets make it actually work. Open /var/www/ember/app/controllers/application.js in sublime. We will be adding a new action in actions: {} that talks to the server-side and creates a new like when the user clicks the like button. The code to do this is below and should be inserted in the action block, before the search action (line 29).<br>
+
+						<pre><code>like: function (photo) {
+	var title = photo.get('title');
+	if(title.length >= 97){
+		title = title.substring(0,96) + "...";
+	}
+	var photodata = {
+		'user': this.get('userid'),
+		'title': title,
+		'objid': photo.get('id'),
+		'farm': photo.get('farm'),
+		'secret': photo.get('secret'),
+		'server': photo.get('server'),
+	};
+	Ember.$.post('../api/likes/', photodata, function(response){
+		photo.set('liked', true);
+		console.log('Request to add like for photo: '+photo.get('title')+' returned the following response');
+		console.log(response);
+	});
+},</code></pre>
+						The first part of the code states the action name (i.e. like) that gets invoked by the like button. The next parts grab information from the photo that was passed in by the action from the template and create a photodata object with the parameters that the server-side needs in order to store a new like. Since the server only accepts a title of length 100, we first check to ensure that the title is no more than 100 characters (concatenating it if it is). The last part (the Ember.$.post portion) makes a request to the serverside to store a new like, sets the 'liked' parameter on the photo to true, and logs the response from the server. Note that there isn't any error handling, but errors would be printed to the console.<br>
+
+						If you reload your browser, click a tag from the list, and then click like on a photo - you should see something like:<br>
+						<img src="images/like-button-works.png"/><br>
+						In the console, you should also see the object created by the server printed for you. E.g.: <br>
+						<img src="images/like-button-works2.png"/><br>
+
+						If we open our django runserver terminal, we can also see the request as it was received by the server:<br>
+						<img src="images/like-button-works3.png"/><br>
+
+						Lastly, if we open up the API view in our browser (i.e. localhost:8000/api/likes/) we should see our newly created like listed in the output.<br>
+						<img src="images/like-button-works4.png"/><br>
+						Pretty cool!
+
+			        </div><!-- End Task 7-->
+			        <div id="task8" class="taskitem">
+			        	<h3 class="taskitem">8. Refactoring the app to support multi-pages for the user profile feed</h3>
+			        	Now that a user can like photos, lets make it so they can see a feed of all photos they have previously liked. Up until this point, our app has been entirely contained in one page. Now we will do some quick refactoring to make it a multi-page app. Lets start by creating some new files using ember cli. In a new terminal window do the following:<br>
+			        	<pre><code>cd /var/www/ember/
+ember generate route profile
+ember generate controller profile
+ember generate route home
+ember generate controller home</code></pre><br>
+						These two items (home and profile) will be the two pages in our app. Next lets move the code currently in application.js to home.js.
+						Open /var/www/ember/app/controllers/home.js in sublime and replace its contents with the following:<br>
+						<pre><code>import Ember from 'ember';
+
+var PhotoCollection = Ember.ArrayProxy.extend(Ember.SortableMixin, {
+	sortProperties: ['dates.taken'],
+	sortAscending: false,
+	content: [],
+});
+
+export default Ember.Controller.extend({
+	applicationController: Ember.inject.controller('application'),
+	photos: PhotoCollection.create(),
+	searchField: '',
+	tagSearchField: '',
+	filteredPhotosLoaded: function(){
+		return this.get('filteredPhotos').length >0;
+	}.property('filteredPhotos.length'),
+	tagList: ['hi','cheese'],
+	filteredPhotos: function () {
+		var filter = this.get('searchField');
+		var rx = new RegExp(filter, 'gi');
+		var photos = this.get('photos');
+
+		return photos.filter(function(photo){
+			return photo.get('title').match(rx) || photo.get('owner.username').match(rx);
+		});
+	}.property('photos.@each','searchField'),
+	actions: {
+		like: function (photo) {
+			var title = photo.get('title');
+			if(title.length >= 97){
+				title = title.substring(0,96) + "...";
+			}
+			var photodata = {
+				'user': this.get('applicationController').get('userid'),
+				'title': title,
+				'objid': photo.get('id'),
+				'farm': photo.get('farm'),
+				'secret': photo.get('secret'),
+				'server': photo.get('server'),
+			};
+			Ember.$.post('../api/likes/', photodata, function(response){
+				photo.set('liked', true);
+				console.log('Request to add like for photo: '+photo.get('title')+' returned the following response');
+				console.log(response);
+			});
+		},
+		search: function () {
+			this.set('loading', true);
+			this.get('photos').content.clear();
+			this.store.unloadAll('photo');
+			this.send('getPhotos',this.get('tagSearchField'));
+		},
+		getPhotos: function(tag){
+			var apiKey = '01dbbdd8cb57d5d34b5f804aad4e392b';
+			var host = 'https://api.flickr.com/services/rest/';
+			var method = "flickr.photos.search";
+			var requestURL = host + "?method="+method + "&api_key="+apiKey+"&tags="+tag+"&per_page=50&format=json&nojsoncallback=1";
+			var photos = this.get('photos');
+			var t = this;
+			Ember.$.getJSON(requestURL, function(data){
+				if (! data.photos ) {
+					console.log("Could not load photos. Check your API key");
+					return;
+				}
+				//callback for successfully completed requests
+				//make secondary requests to get all of the photo information
+				data.photos.photo.map(function(photoitem) {//iterate over each photo
+					var infoRequestURL = host + "?method="+"flickr.photos.getInfo" + "&api_key="+apiKey+ "&photo_id="+photoitem.id+"&format=json&nojsoncallback=1";
+					Ember.$.getJSON(infoRequestURL, function(item){
+						var photo = item.photo;
+						var tags = photo.tags.tag.map(function(tagitem){
+							return tagitem._content;
+						});
+						var newPhotoItem = t.store.createRecord('photo',{
+							title: photo.title._content,
+							dates: photo.dates,
+							owner: photo.owner,
+							description: photo.description._content,
+							link: photo.urls.url[0]._content,
+							views: photo.views,
+							tags: tags,
+							//flickr url data
+							id: photo.id,
+							farm: photo.farm,
+							secret: photo.secret,
+							server: photo.server,
+						});
+						photos.pushObject(newPhotoItem);
+					});
+				});
+			});
+		},
+		clicktag: function(tag){
+			this.set('tagSearchField', tag);
+			this.set('loading', true);
+			this.get('photos').content.clear();
+			this.store.unloadAll('photo');
+			this.send('getPhotos',tag);
+		}
+	},
+	init: function(){
+		this._super.apply(this, arguments);
+		var apiKey = '4435e3a217bc7afc94dfcba607b70eb1';
+		var host = 'https://api.flickr.com/services/rest/';
+		var method = "flickr.tags.getHotList";
+		var requestURL = host + "?method="+method + "&api_key="+apiKey+"&count=75&format=json&nojsoncallback=1";
+		var t = this;
+		Ember.$.getJSON(requestURL, function(data){
+			//callback for successfully completed requests
+			console.log(data);
+			data.hottags.tag.map(function(tag) {
+				t.get('tagList').pushObject(tag._content);
+			});
+		});
+	}
+});</code></pre><br>
+						This code is identically equal to what you had in application.js previously with two exceptions. Line 10 now injects the application controller and line 34 uses this controller to reference the userid (if a user is authenticated). Open up /var/www/ember/app/templates/application.js - we need to add one small property to handle the navbar (described next). In sublime replace the contents of application.js with the following:<br>
+						<pre><code>import Ember from 'ember';
+
+export default Ember.Controller.extend({
+	isHome: function(){
+		return this.get('currentRouteName') =='home';
+	}.property('currentRouteName')
+});
+</code></pre><br>
+						This is just a simple property that returns true if the user is currently on the home page and false otherwise.<br>
+						Now replace the contents of /var/www/ember/app/templates/application.hbs with the following:<br>
+						<pre><code>&lt;!-- app/templates/application.hbs --&gt;
+&lt;nav class=&quot;navbar navbar-default navbar-fixed-top&quot;&gt;
+	&lt;div class=&quot;container-fluid&quot;&gt;
+		&lt;div class=&quot;navbar-header&quot;&gt;
+			&lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;My App&lt;/a&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;navbar-right search-field&quot;&gt;
+			{{#if isHome}}
+				{{#bs-form formLayout=&quot;inline&quot; class=&quot;search-form&quot; action=&quot;search&quot;}}
+					{{#if filteredPhotos}}
+						{{bs-input type=&quot;text&quot; value=searchField placeholder=&quot;filter photos&quot;}}
+					{{/if}}
+					{{bs-input type=&quot;text&quot; value=tagSearchField action=&quot;search&quot; placeholder=&quot;search for a flickr tag&quot;}}
+					&lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;
+						&lt;span class=&quot;glyphicon glyphicon-search&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+					&lt;/button&gt;
+				{{/bs-form}}
+			{{else}}
+				&lt;ul class=&quot;nav navbar-nav left-menu&quot;&gt;
+					&lt;li&gt;{{#link-to 'home'}}Home{{/link-to}}&lt;/li&gt;
+				&lt;/ul&gt;
+			{{/if}}
+			{{auth-manager class=&quot;auth-mgr&quot; userid=userid}}
+
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/nav&gt;
+&lt;div class=&quot;container&quot;&gt;
+	{{outlet}}
+&lt;/div&gt;</code></pre><br>
+						Notice that we have made the search form only appear if the user is on the home page. If they are not, the user will instead see a navigational link to home. All of the stuff in the container has been replaced by {{outlet}}. This is where our pages will render. Basically the navigational bar code will remain, but everything else will swap out every time the user switches pages.<br>
+						All of the code formerly in the container in application.hbs now needs to be copied into /var/www/ember/app/templates/home.hbs. To ensure that it is correct, replace the contents of home.hbs with the following:<br>
+						<pre><code>{{#liquid-if filteredPhotosLoaded use=&quot;toDown&quot;}}
+	&lt;ul class=&quot;list-group&quot;&gt;
+		{{#each photo in filteredPhotos}}
+		&lt;li class=&quot;list-group-item&quot;&gt;
+			&lt;div class=&quot;media&quot;&gt;
+				&lt;div class=&quot;media-left media-middle&quot;&gt;
+					{{light-box href=photo.url data-lightbox=photo.id data-title=photo.title
+						data-class=&quot;media-object feed-img&quot;}}
+					Taken: &lt;a href={{photo.link}}&gt;{{photo.humanReadableDate}}&lt;br&gt;&lt;/a&gt;
+					By: &lt;a href={{photo.ownerurl}} target=&quot;_blank&quot;&gt;{{photo.owner.username}}&lt;/a&gt;&lt;br&gt;
+				&lt;/div&gt;
+				&lt;div class=&quot;media-body&quot;&gt;
+					&lt;h4 class=&quot;media-heading&quot;&gt;{{photo.title}} ({{photo.views}} Views)
+					{{#if photo.liked}}
+						&lt;button class=&quot;btn btn-warning btn-xs pull-right&quot; disabled=&quot;disabled&quot;&gt;
+							&lt;span class=&quot;glyphicon glyphicon-thumbs-up&quot;&gt;&lt;/span&gt; Like
+						&lt;/button&gt;
+					{{else}}
+						&lt;button class=&quot;btn btn-default btn-xs pull-right&quot; {{action &quot;like&quot; photo}}&gt;
+							&lt;span class=&quot;glyphicon glyphicon-thumbs-up&quot;&gt;&lt;/span&gt; Like
+						&lt;/button&gt;
+					{{/if}}
+					&lt;/h4&gt;
+					{{{photo.description}}}
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;br&gt;
+			&lt;div class=&quot;row&quot;&gt;
+				&lt;div class=&quot;col-md-1 col-xs-1 col-sm-1&quot;&gt;Tags:&lt;/div&gt;
+				&lt;div class=&quot;col-md-11 col-xs-11 col-sm-11&quot;&gt;
+					{{#each tag in photo.tags}}
+						&lt;button class=&quot;btn btn-info btn-xs post-tag-button&quot; {{action &quot;clicktag&quot; tag}}&gt;#{{tag}}&lt;/button&gt;
+					{{/each}}
+				&lt;/div&gt;
+			&lt;/div&gt;
+
+		&lt;/li&gt;
+		{{/each}}
+	&lt;/ul&gt;
+{{else}}
+	{{#liquid-if loading use=&quot;toDown&quot;}}
+		&lt;img src=&quot;../page-loading.gif&quot; class=&quot;img-responsive center-block&quot;/&gt;
+	{{else}}
+		&lt;div class=&quot;jumbotron&quot;&gt;
+			&lt;h1&gt;[app-name]&lt;/h1&gt;
+			&lt;p&gt;Created by [yourname]&lt;/p&gt;
+			&lt;p&gt;Click one of the popular flickr tags below or search one above:&lt;/p&gt;
+			{{#each tag in tagList}}
+				&lt;button class=&quot;btn btn-info btn-small tag-button&quot; {{action &quot;clicktag&quot; tag}}&gt;#{{tag}}&lt;/button&gt;
+			{{/each}}
+		&lt;/div&gt;
+	{{/liquid-if}}
+
+{{/liquid-if}}</code></pre><br>
+						The above code remains unchanged from before.<br>&nbsp</b>
+						Lastly, lets add one small css change at the end of /var/www/ember/app/styles/app.css<br>
+						<pre><code>.left-menu {
+	margin-top: -8px;
+}</code></pre><br>
+						This will adjust the home link up a few pixels to account for our other styling.<Br>
+						Thats it - your app is now refactored to be a multi-page app.<br>
+
+
+			        </div><!-- End Task 8-->
+			        <div id="task9" class="taskitem">
+			        	<h3 class="taskitem">9. Adding the actual user profile feed</h3>
+			        	Now that we've got the refactoring out of the way, lets get on with the task of creating the user profile.<br>
+			        	Start by creating a link to user profile in /var/www/ember/app/templates/components/auth-manager.hbs. Replace the line where it says "Hello {{username}} (line 3) with the following:<br>
+			        	<pre><code>Hello {{#link-to "profile" userid}}{{username}}{{/link-to}}</code></pre><br>
+			        	This will link to the profile page and pass in a parameter called userid.<br>
+			        	Next open /var/www/ember/app/router.js. Replace the line "this.route('profile')" (line 9) with <pre><code>this.route('profile', {path: "profile/:userid"});</code></pre> to allow the parameter to be passed. At this point, open your browser and got to <a href=localhost:8000/home>localhost:8000/home</a>. Click 'student' and you should see the following in the inpector ember tab (check components in the view tree view):<br>
+			        	<img src="images/nav-profile.png"/><br>
+			        	<img src="images/nav-profile2.png"/><br>
+			        	As you can see, the userid was passed in as a model that we can access from the profile controller.<br>
+			        	<br>
+			        	Now examine /var/www/ember/app/templates/profile.hbs and /var/www/ember/app/routes/profile.js in sublime. In /var/www/ember/app/routes/profile.js, lets create the code to actually get the liked photos for a user and send them to the controller.<br>
+			        	Replace the contents of profile.js file with the following:<br>
+			        	<pre><code>import Ember from 'ember';
+
+export default Ember.Route.extend({
+	setupController: function(controller, model){
+		var url = '../api/userprofiles/' + model.userid +'/';
+		Ember.$.get(url, function(response){
+			if(!response.detail){
+				//success
+				controller.set('likes', response.likes);
+				console.log('Loading user profile');
+
+			} else{
+				//errors
+				console.log('Error loading user profile.');
+			}
+			console.log(response);
+		});
+	}
+});</code></pre><br>
+						Basically, this function tells the controller to load the userid in model and then forms and sends a request to the server to get back whatever is on /api/userprofiles/userid.<br>
+
+						Now that we have our data loaded, open /var/www/ember/app/templates/profile.hbs and replace its contents with the following:<br>
+						<pre><code>&lt;ul class=&quot;list-group&quot;&gt;
+	{{#each like in likes}}
+		{{like-item like=like}}
+	{{/each}}
+&lt;/ul&gt;</code></pre><br>
+						This simply iterates over each like in likes and sends it to a component called like-item to be displayed. Lets create like-item now: In a terminal, type:<br>
+						<pre><code>cd /var/www/ember/
+ember generate component like-item</code></pre><br>
+						Now, open up /var/www/ember/app/templates/components/like-item.hbs and copy in the following:<br>
+						<pre><code>&lt;li class=&quot;list-group-item&quot;&gt;
+	&lt;div class=&quot;media&quot;&gt;
+		&lt;h4 class=&quot;media-heading&quot;&gt;{{like.title}}&lt;/h4&gt;
+		&lt;div class=&quot;media-body&quot;&gt;
+			&lt;img src=&quot;{{url}}&quot; class=&quot;media-object profile-feed-img&quot;/&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/li&gt;
+</code></pre><br>
+						This simply creates a full page image with a title above it. To make it work, we need to do one last thing, modify the like-item component code. Open /var/www/ember/app/components/like-item.js in sublime and replace its contents with the following:<br>
+						<pre><code>import Ember from 'ember';
+
+export default Ember.Component.extend({
+	url: Ember.computed('like.farm','like.server','like.id','like.secret', function(){
+		return "https://farm"+this.get('like').farm+
+		".staticflickr.com/"+this.get('like').server+
+		"/"+this.get('like').objid+"_"+this.get('like').secret+"_b.jpg";
+	}),
+});
+</code></pre><br>
+						This function simply computes a url (similar to the photo model we created before) - allowing the image to load easily.<br>
+						Lastly, lets add a line of css to /var/www/ember/app/styles/app.css.<br>
+						<pre><code>.profile-feed-img {
+	min-width: 100%;
+}</code></pre><br>
+						Open your browser and load <a href=localhost:8000/profile/1>localhost:8000/profile/1</a> and you should see something like:<br>
+						<img src="images/feed-done.png"/><br>
+						That's it - we're done!
+			        </div><!-- End Task 9-->
+			        <div id="task10" class="taskitem">
+			        	<h2>UNIT 5: Access control and Permissions</h2>
+			        	<h3 class="taskitem">10. See how vulnerable the API is by default</h3>
+			        	Finally, we are ready to switch back to security work. We've created this pretty cool API and nice client-side interface to use it. However, our API is by default pretty insecure! <br>
+			        	There are several problems. First, lets go back to our browser and go to <a href=localhost:8000/api/likes/>localhost:8000/api/likes/</a>. Now make sure you are logged out and you should still see all of the data:<br>
+			        	<img src="images/insecure-1.png"/><br>
+			        	Thinking about this screenshot, it might occur to you that this is problematic. This issue illustrates the failure of a cybersecurity first principle: Resource encapsulation. The REST APIs are currently a "exposed represenation" that can be invoked independent of other interfaces. Right now, all of our API calls can be executed without a user actually being logged in. To prove this and explore just how bad the security of the API is, we will be using a tool called the 'advanced rest client' Open the tool by going <a href="chrome-extension://bljmokabgbdkoefbmccaeficehkmlnao/RestClient.html" target="_parent">here</a>.<br>
+
+			        	Once opened, lets start with a simple GET request to http://localhost:8000/api/likes/. Enter the url, select GET and hit 'send'. As you can see the data is wide open without authentication or permissions.<br>
+			        	<img src="images/insecure-2.png"/><br>
+			        	Next lets try making an un-authenticated POST request. Select POST, click 'form', and then enter the following key / value pairs in the payload.
+			        	user: 1
+			        	title: &lt;p onmouseover=javascript:alert('well, this is insecure')&gt;test&lt;/p&gt;
+			        	objid: 1000
+			        	secret: hi
+			        	server: hi
+			        	farm: hi
+			        	<img src="images/rest-client-1.png"/><br>
+			        	<img src="images/rest-client-2.png"/><br>
+			        	Notice that it happily accepts the submission and produces the new like for us. This is a totally random, unauthenticated user that just made an arbitrary textual post to another user's profile page. Worse, the post has malicious javascript in it that could run if the real user 1 sees the page. Lets check this out. Going back and signing in as student and going to the student user profile we see <a href=localhost:8000/profile/1>localhost:8000/profile/1</a>:<br>
+			        	<img src="images/rest-client-3.png"/><br>
+			        	Clearly, the attack has been injected into the user's browser - thankfully ember filters out these basic kinds of attacks automatically. That said - we shouldnt rely on in-browser and in-framework protections - we should make the API itself be more secure.<br>
+			        	Lets try two more attacks - a PUT (to overrite existing content) and a DELETE - to remove content entirely. Change the target address to http://localhost:8000/api/likes/&lt;idjustcreated&gt;/ where &lt;idjustcreated&gt; is replaced with the number returned under 'id' in the response for the previous request, for me that number is 27. Change the title to something else - like "see what i did here" and send. As you can see - anonymous users can overrite existing data - a huge problem!<br>&nbsp<br>
+			        	<img src="images/rest-client-4.png"/><br>
+			        	<img src="images/rest-client-5.png"/><br>
+			        	Lastly, lets DELETE this item entirely. Select DELETE and just hit send.<br>
+			        	<img src="images/rest-client-6.png"/><br>
+			        	Poof - there it goes.<br> Check it yourself: <a href=http://localhost:8000/profile/1>http://localhost:8000/profile/1</a>. Log in as student if you are not to notice the deleted "see what i did" post that we have put there before.
+			        </div><!-- End Task 10-->
+			        <div id="task11" class="taskitem">
+			        	<h3 class="taskitem">11. Adding access control and permissions for API calls</h3>
+			        	Obviously there are lots of problems with these default security measures. Lets start by actually requiring users to at least authenticate before they can make requests to the API.<br>
+			        	Do enable authenicated views only, we need to open /var/www/gencybersite/gencybersite/settings.py in sublime<br>
+			        	Scroll down until you see the REST_FRAMEWORK block and add in the following:<br>
+			        	<pre><code>'DEFAULT_PERMISSION_CLASSES': [
+    'rest_framework.permissions.IsAuthenticated'
+],</code></pre><br>
+						When you are done the REST_FRAMEWORK block should be:<br>
+						<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'api.rest_framework_config.CsrfExemptSessionAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
+    ]
+}</code></pre>
+						This requires users to be authenticated before they can view the API. Lets test it, go back to the advanced rest client and try to make a new post.<br>
+						<img src="images/rest-client-7.png"/><br>
+						Ok that was easy!<br> That will take care of the case where unauthenticated users can muck with data - but it doesn't prevent one authenticated user from mucking with another's data. Lets create a second user and use it to test. Go to <a href=localhost:8000/admin/>localhost:8000/admin/</a> and login with "student/gencyberstudent" credentials, click the + sign that says "Add" on the "Users" row. Make the username:test and the password:gencybertest. Now logout as student from the admin page. Next vist <a href=http://localhost:8000/api/>http://localhost:8000/api/</a> and login as the "test" user. <br>&nbsp<br>
+
+						Now, go back to the advanced rest client and lets try to make a post to user 1's (student) profile, but using the "test" users account. You can select a previous POST you made from the history tab:<br>
+						<img src="images/rest-client-8.png"/><br>
+						Notice below that the POST works even though we are logged in as test and not student.<br>
+						<img src="images/rest-client-9.png"/><br>
+
+			        </div><!-- End Task 11-->
+			        <div id="task12" class="taskitem">
+			        	<h3 class="taskitem">12. Enforcing object-level permissions</h3>
+			        	To fix this issue and limit access by the owner of the object, we need object-level permissions.<br>
+			        	We can solve this problem now. Its actually quite easy.<br>
+			        	To limit the objects that a user can see to only their own, we need to change how the methods in the API viewsets compute their querysets. Open /var/www/gencybersite/api/views.py in sublime and scroll down to the "LikeViewSet"<br>
+			        	Let's replace this viewset code with the following:<br>
+			        	<pre><code>class LikeViewSet(viewsets.ModelViewSet):
+	"""
+	API endpoint that allows users to be viewed.
+	"""
+	queryset = Like.objects.all()
+	serializer_class = LikeSerializer
+
+	def create(self, request):
+		serializer = self.get_serializer(data=request.data)
+		if serializer.is_valid():
+			if serializer.validated_data['user'] == request.user:
+				serializer.save()
+				print str(serializer.data)
+				profile, created = Userprofile.objects.get_or_create(user__id=int(serializer.data['user']))
+				profile.likes.add(serializer.data['id'])
+				return Response(serializer.data, status=status.HTTP_201_CREATED)
+			else:
+				return Response('Not authorized')
+		else:
+			return Response(serializer.errors)
+
+	def list(self, request):
+		likes = Like.objects.filter(user=request.user)
+		serializer = LikeSerializer(likes, many=True, context={'request': request})
+		return Response(serializer.data)
+
+	def retrieve(self, request, pk):
+		like = get_object_or_404(Like, id=pk,user=request.user)
+		serializer = LikeSerializer(like, context={'request': request})
+		return Response(serializer.data)</code></pre><br>
+						This does several things. Unlike before, we are no longer relying on all default behavior. Instead, by overriding each method (list, retieve, and create) we are able to specify exactly what the methods should do. In this case, we have modified create to first check to see if the actual authenticated user (request.user) is the same as the user they are trying to create an item for (serializer.validated_data['user']). If they aren't we return an error message. With list and retrieve (for many or one likes respectively), we use object.filter to filter out only those objects that the current authenticated user owns. All other objects are never even computed or sent to the currently logged in user. This prevents others from seeing the objects at all. <br>
+			        	When done, you should see that the requests made from user 3 (test) in your browser to user 1 (student) results in a 'not authorized' response that looks like:<br>
+			        	<img src="images/rest-client-10.png"/><br>
+
+			        	Whereas, if you log out of test and back in as student you would see:<br>
+			        	<img src="images/rest-client-11.png"/><br>
+
+			        	If we wanted to be absolutely complete, we would override the other 3 methods for PUTs and DELETEs. In this case, the point is made - so we are moving on.<br>
+			        </div><!-- End Task 12-->
+			        <div id="task13" class="taskitem">
+			        	<h2>UNIT 6: Input filtering </h2>
+			        	<h3 class="taskitem">13. Filtering POST and PUT requests and adding validators</h3>
+			        	For our last magic trick, we will be filtering text-based submissions before saving them to the database. It is unwise to assume that only safe inputs will be provided to software that accepts input from users.	As we saw earlier in step 10, our API allowed users to submit potentially malicious strings that were saved directly into the database. To prevent common code or data injection attacks, it is important to filter and redact, or outright reject requests that attempt to store malicious code.<br>&nbsp<br>
+
+			        	This unit will briefly cover how to do exactly that using <b>serializers</b>.<br>
+
+			        	Lets start by opening the /var/www/gencybersite/api/serializers.py file in sublime.<br>
+			        	Only replace the contents of class LikeSerializer (line 12) with the following:<br>
+			        	<pre><code>class LikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Like
+        fields = ('id', 'user', 'title', 'objid', 'farm', 'secret', 'server')
+
+    def validate_user(self, value):
+        return self.check_str(value);
+
+    def validate_title(self, value):
+        return self.check_str(value);
+
+    def validate_farm(self, value):
+        return self.check_str(value);
+
+    def validate_secret(self, value):
+        return self.check_str(value);
+
+    def validate_server(self, value):
+        return self.check_str(value);
+
+    def check_str(self, value):
+        if 'javascript' in str(value):
+            raise serializers.ValidationError('Malicious content is blocked')
+        elif '>' in str(value) or '<' in str(value):
+            raise serializers.ValidationError('HTML is not allowed')
+        return value
+</code></pre><br>
+						The first portion is what we had before. The rest of the method is made of 'validate_&lt;field&gt;' methods and a check_str method. Since most of the fields in our like model are strings, we can define one master method to run through and check for different possible bas things we want our API to avoid. In this case, check_str only searches for the word 'javascript' and for special characters &lt; and &gt;. Obviously this isn't robust, but it illustrates the basic point of input filtering - try to look for and prevent patterns of input from being accepted by an API. In general, any security related filtering should follow a "default deny" principle. Then whitelist allowed items, followed by a blacklist of not allowed items. But for illustration purposes a simple blacklist of characters that are not allowed is created here. In practice, a regular expression of allowed character patterns should be used for input filtering. <br>
+						<br>&nbsp<br>
+						Now if we log in as student, lets try some different requests that violate these rules.<br>
+						Start with changing the title in advanced rest client to 'something something javascript'<br>
+						If we send the request off we should see our malicious code violation error message. E.g. <br>
+						<img src="images/rest-client-12.png"/><br>
+						Replace ' javascript ' with the &lt; sign.<br>
+						Doing that should yield the second warning:<br>
+						<img src="images/rest-client-13.png"/><br>
+						Pretty nifty. For larger applications that require real, robust solutions to input filtering, you need larger more robust libraries to do input sanitization. In django, there is a nice library called django-bleach (available at <a href="https://bitbucket.org/ionata/django-bleach">https://bitbucket.org/ionata/django-bleach</a>). I would suggest using it for larger applications - but we are going to stop here - because the point is made and you now have a feel for how to integrate client and server-side components as well as how to secure them.
+
+			        </div><!-- End Task 13-->
+			        <div id="task14" class="taskitem">
+			        	<h3 class="taskitem">14. Pushing to production</h3>
+			        	Now it is time to push our working application over to our production space that we setup before.<br>
+			        	To do this, open a terminal:<br>
+			        	<pre><code>cd /var/www/gencybersite/
+git status
+git add .
+git commit -m "end of the tutorial, time to push to production"
+git push
+cd /var/www/production
+git reset --hard
+git clean -df
+git pull
+sudo chown -R student:www-data static/
+sudo service apache2 restart</code></pre><br>
+						BAM! You are done. With these commands you pushed the remaining changes you had from the development environment to github. Then you reset the production directory by removing all local changes and cleaning out untracked files. Lastly, you pulled in the changes and restarted your apache server to push them live. You should see your app. Click home to get started. Try liking a few things and checking out your user profile.<br>
+			        </div><!-- End Task 14-->
+				</div><!--end scrollable content -->
+				<!-- Copyright info -->
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">UNO Secure Web Development Content</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="mlhale.com" property="cc:attributionName" rel="cc:attributionURL">Dr. Matthew L. Hale</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/MLHale/GenCyber-web-content" rel="dct:source">https://github.com/MLHale/GenCyber-web-content</a>.
+				<p>A special thanks to Robin Gandhi for reviewing this module.</p>
+			</div><!-- end row -->
+
+
+
+
+		</div><!-- end main -->
+		<p class="text-muted pull-right copy-stmt">Secure Web Development &copy; 2015 - Dr. Matt Hale</p>
+	</body>
+</html>

@@ -12,7 +12,7 @@ All classroom activities will take place in PKI room 361 (STEAL 2) unless otherw
 ## Supplies
 
 ### Hardware/software
-* [VMWare Workstation (windows) or Fusion (mac)](/vmware/vmware.pdf)
+* [Virtualbox](http://www.virtualbox.org) or [VMWare Workstation (windows) or Fusion (mac)](/vmware/vmware.pdf)
 * [Lucidchart](http://www.lucidchart.com)
 * [UNO Cloud Deployment Environments](http://view.unomaha.edu)
 
@@ -23,7 +23,38 @@ All classroom activities will take place in PKI room 361 (STEAL 2) unless otherw
 
 
 ## Class Topics
-
+1. Introduction to Web apps
+ * Threat vectors
+ * Basic Architecture
+ * Client-side vs Server-side debate
+ * [Github primer](/modules/github-primer.md)
+ * [Virtualization primer](/modules/virtualization-primer.md)
+1. Jump right into Client-side Development
+ * Model View Controller
+ * Ember.js
+ * Handlebars
+ * AJAX for External API integration
+ * [Lab 1](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab1.html)
+1. Develop your own Serverside API
+ * Intro to Django
+ * Django REST Framework
+ * Server-side Model View Controller
+ * [Lab 2](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab2.html)
+1. Step back and think about Software engineering Principles
+ * Software Development Lifecycle
+ * Requirements Engineering and Use/Misuse case review
+ * Software Architecting
+ * Integration patterns between Servers and Clients
+ * Browser Object Model Overview
+ * JQuery Overview
+ * Asynchronicity is your friend
+1. Time to be creative
+ * Come up with your own project idea or implement something for a friend/family member or community organization
+ * [Project 1](): Requirements Engineering, Product Design, Architecture, and Client-side Prototype
+ * [Project 2](): Server-side API Creation and Client-side Integration
+1. Classwide project final
+ * Work together with the rest of your classmates to develop a real app for a non-profit
+ * Organization TBA
 
 ## License  
 Secure Web App Development 

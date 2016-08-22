@@ -1,0 +1,147 @@
+<!--
+	secwebdev web content
+	Copyright (C) 2016  Dr. Matthew L. Hale
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" title="Monokai Sublime" href="css/monokai-sublime.css">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+		<title>SecWebDev Lab One</title>
+		<style>
+			#unologo{font-size: 1.2em;text-transform:uppercase;font-family:'urwgroteskregular';color:#FFF;display:inline-block;vertical-align:middle;margin-top:10px;margin-left:3px;font-weight:bold;}
+			.logo {
+				float: left;
+				margin-left: 0px;
+				margin-top: 5px;
+			}
+
+			#tagline{font-size: 1em;font-family:'urwgroteskregular';color:#FFF;display:inline-block;vertical-align:middle;margin-top:15px;margin-left:30px;font-weight:bold;}
+
+			.tagline {
+				float: left;
+				margin-left: -350px;
+				margin-top: 25px;
+			}
+			#main{
+				margin-top: 90px;
+				margin-bottom: 50px;
+				margin-left: 0px;
+				width: 100%;
+			}
+
+			pre {padding: 0em;}
+			img {
+				padding-bottom: 20px;
+				padding-top: 10px;
+			}
+			body {
+				font-size: 16px;
+				position: relative;
+			}
+
+			.copy-stmt {
+				margin-right: 20px;
+			}
+			#leftnav ul {
+				position: fixed;
+			}
+			#leftnav ul li a {
+				padding-top: 2px;
+				padding-bottom: 2px;
+
+			}
+			#taskitem {
+				min-height: 1px;
+				height: 1000px;
+			}
+			#scrollable-content {
+				position: relative;
+				height: 100%;
+				overflow-y: scroll;
+			}
+			:target:before {
+				content:"";
+				display:block;
+				height:90px; /* fixed header height*/
+				margin:-90px 0 0; /* negative fixed header height */
+			}
+			.vendor-logo {
+				width:	500px;
+			}
+
+
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="row">
+					<img alt="University of Nebraska Omaha" src="images/logo-subsite-o-2.png" style="float: left;">
+					<div class="row logo">
+						<p id="unologo">UNO: Secure web Development</p>
+					</div>
+					<div class="row tagline">
+						<p id="tagline">Lab one &copy; 2016 - Dr. Matthew Hale</p>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div id="main" class="container">
+			<div class="row">
+				<nav class="col-sm-1 hidden-xs" id="leftnav">
+					
+				</nav>
+				<!--start content -->
+				<div class="col-sm-11 col-xs-12" id="scrollable-content" data-spy="scroll" data-target="#leftnav" data-offset="90">
+					<div class="jumbotron">
+						<h1>Welcome to Sec Web Development</h1>
+						<p>Select a lab below to get started</p>
+						
+					</div>
+					<div class="list-group">
+						<a href="https://dl.dropboxusercontent.com/u/4594444/ia8080-labs/lab1.html" class="list-group-item">Lab 1: Clientside app development and external RESTful API mashups</a>
+						<a href="https://dl.dropboxusercontent.com/u/4594444/ia8080-labs/lab2.html" class="list-group-item">Lab 2: Serverside API creation, client-server integration, and API hardening</a>
+						<a href="#" class="list-group-item">Lab 3: TBA</a>
+					</div>
+					<div class="taskitem">
+						<h2 class="taskitem">Platforms and Tools used in these lessons</h2>
+						<a href="http://emberjs.com/" target="_blank"><img class="img-rounded vendor-logo" src="images/ember-js-logo.png"/></a>
+						<a href="https://www.lucidchart.com/" target="_blank"><img class="img-rounded vendor-logo" src="images/lucidchart-logo.png"/></a>
+						<a href="https://www.djangoproject.com/" target="_blank"><img class="img-rounded vendor-logo" src="images/django-logo.png"/></a>
+						<a href="http://www.django-rest-framework.org/" target="_blank"><img class="img-rounded vendor-logo" src="images/django-rest-logo.png"/></a>
+						<a href="https://jquery.com/" target="_blank"><img class="img-rounded vendor-logo" src="images/jquery-logo.png"/></a>
+						<a href="http://handlebarsjs.com/" target="_blank"><img class="img-rounded vendor-logo" src="images/handlebars-logo.png"/></a>
+						<a href="https://github.com/" target="_blank"><img class="img-rounded vendor-logo" src="images/github-logo.png"/></a>
+					</div><!--end task2-->
+				</div><!--end scrollable content -->
+				<!-- Copyright info -->
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">UNO Secure Web Development Content</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="mlhale.com" property="cc:attributionName" rel="cc:attributionURL">Dr. Matthew L. Hale</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/MLHale/GenCyber-web-content" rel="dct:source">https://github.com/MLHale/GenCyber-web-content</a>.
+			</div><!-- end row -->
+
+
+
+
+		</div><!-- end main -->
+		<p class="text-muted pull-right copy-stmt">Secure Web Development &copy; 2015 - Dr. Matt Hale</p>
+	</body>
+</html>
