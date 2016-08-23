@@ -23,7 +23,7 @@ All classroom activities will take place in PKI room 361 (STEAL 2) unless otherw
 
 
 ## Class Topics
-1. Introduction to Web apps [PDF](/lectures/lecture1.pdf)
+1. Introduction to Web apps ([PDF](/lectures/lecture1.pdf))
  * Threat vectors
  * Basic Architecture
  * Client-side vs Server-side debate
