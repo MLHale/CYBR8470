@@ -54,7 +54,7 @@ sudo apt-get -y install git
 ```
 The `-y` option automates the installation by responding YES to any prompts. After the installation succeeds, type `git` to see various command options. To clone a remote repository (what we set out to do), we first need a reference URL to find it. On Github.com, navigate to your hello-world repository and click on the button that says `Clone`. Copy that URL.
 
-![clone](../img/primer/clonerepo.png)
+![clone](githubprimer-img/clonerepo.png)
 
 Now we are ready to clone this remote repository, and create a local repository. To do this we will use the `git clone <repository URL>` command. In the command below use the URL you copied above by pressing the `Clone` button.
 
@@ -92,13 +92,13 @@ Git is based on a "de-centralized" model of ownership - which means that there i
 Let's open the hello-world folder in the Ubuntu Desktop OS VM and make changes to the `README.md` file in a text editor.  
 
 1. Navigate to the files
->![readme](../img/primer/clonedrepo.png)
+>![readme](githubprimer-img/clonedrepo.png)
 
 2. Open README.md by double-clicking it
->![readme](../img/primer/openreadme.png)
+>![readme](githubprimer-img/openreadme.png)
 
 3. Edit README.md to add a message. Like the one below.
->![readme](../img/primer/editfile.png)
+>![readme](githubprimer-img/editfile.png)
 
 Once you save the edited README.md, check the status of the local repository using the following command. Make sure you navigate to a folder within your repository in the terminal first.
 
@@ -107,7 +107,7 @@ git status
 ```
 You should see something like this:
 
->![gitstatus](../img/primer/gitstatus.png)
+>![gitstatus](githubprimer-img/gitstatus.png)
 
 A few things to notice here about these status messages:  
 1. `On branch master`: You are on the master branch in your local repository.  
@@ -126,7 +126,7 @@ git status
 ```
 You should see something like this:
 
->![gitadd](../img/primer/gitadd.png)
+>![gitadd](githubprimer-img/gitadd.png)
 
 This time the modified files are staged for a commit and appear in green.
 
@@ -137,14 +137,14 @@ git config --global user.name "replace this with your name"
 git config --global user.email youremail@example.com
 ```
 You should see something like this:
->![gitconfig](../img/primer/gitconfig.png)
+>![gitconfig](githubprimer-img/gitconfig.png)
 
 Check your configuration changes by using the following command:
 ```bash
 git config --list
 ```
 You should see something like this:
->![gitconfiglist](../img/primer/gitconfiglist.png)
+>![gitconfiglist](githubprimer-img/gitconfiglist.png)
 
 You only have to set the config parameters once. Now that they are set, git will keep reusing them when making commits or merging your changes with other repositories.
 
@@ -154,7 +154,7 @@ Now let's commit the changes that we staged before. Here we use the `commit` opt
 git commit -m "added UNO description"
 ```
 You should see something like this:
->![gitcommit](../img/primer/gitcommit.png)
+>![gitcommit](githubprimer-img/gitcommit.png)
 
 Use this command to see all your commits:
 ```bash
@@ -181,18 +181,18 @@ To push local commits to the remote repository, use the following command:
  git push origin master
 ```
 You should see something like this:
->![gitpush](../img/primer/gitpush.png)
+>![gitpush](githubprimer-img/gitpush.png)
 
 Issue this command to check your repository status once again:
 ```bash
 git status
 ```
 You should see something like this:
->![gitpush](../img/primer/gitstatuspush.png)
+>![gitpush](githubprimer-img/gitstatuspush.png)
 
 If you visit your remote repository on Github.com your changes will be reflected there. You should also see your commit message there. Clicking on the commit message will show the file differences in that commit.
 
-![updateremote](../img/primer/remoteupdate.png)
+![updateremote](githubprimer-img/remoteupdate.png)
 
 As mentioned before in the introduction, git version control is very efficient for text files. It does not store entire files for old versions but only the differences. So it is prudent to make frequent commits and then push these changes to the remote repository - so that you have as many checkpoints as possible should you need to roll back.
 
@@ -204,13 +204,13 @@ What happens if we make some changes to README.md on Github.com? How do we get t
 So, I realized that I forgot to add a link to UNO's Cybersecurity programs in the README.md file. So I will make these changes and commit those changes on Github.com itself.
 
 1. First click on README.md file on Github and then click the edit option as shown below:
->![githubedit](../img/primer/githubedit.png)
+>![githubedit](githubprimer-img/githubedit.png)
 
 2. Make changes, add a commit message and click `Commit changes`
->![githubcommit](../img/primer/githubcommit.png)
+>![githubcommit](githubprimer-img/githubcommit.png)
 
 3. See changes in your README.md file
->![githubupdated](../img/primer/githubupdated.png)
+>![githubupdated](githubprimer-img/githubupdated.png)
 
 Now the remote repository is one commit ahead of the local repository. To bring the _local_ repository up to speed, we use the following command in a terminal.
 
@@ -218,15 +218,15 @@ Now the remote repository is one commit ahead of the local repository. To bring 
 git pull
 ```
 You should see something like this:
->![gitpull](../img/primer/gitpull.png)
+>![gitpull](githubprimer-img/gitpull.png)
 
 Now if we look at our local README.MD file, it should have the updated link.
 
 1. Locate README.md on your computer
->![readme](../img/primer/openreadme.png)
+>![readme](githubprimer-img/openreadme.png)
 
 2. View README.md contents
->![localpullupdate](../img/primer/localpullupdate.png)
+>![localpullupdate](githubprimer-img/localpullupdate.png)
 
 At this point you know enough to keep both the local and remote repositories synchronized.    
 
@@ -249,7 +249,7 @@ Here is what Github [says](https://help.github.com/articles/fork-a-repo/):
 So head-on over to a hello-world repository developed by one of your peers. You can do this by browsing to the git URL of their hello-world repository in your browser.  
 
 You should see something like this on your peer's repository:
->![githubfork](../img/primer/githubfork.png)
+>![githubfork](githubprimer-img/githubfork.png)
 
 Click the "Fork" button.
 
@@ -265,28 +265,28 @@ In this step we make changes to the fork of your peers' repository on Github.com
 Let's assume that a `gencyber` (insert your ID here) user forks `robinagandhi/hello-world` repository (this will be your peer's repository).
 
 The forked repository for the `gencyber` user will look like this:
->![forkedrepo](../img/primer/forkedrepo.png)
+>![forkedrepo](githubprimer-img/forkedrepo.png)
 
 The `gencyber` user now makes changes to the README.md file in this forked repository. She is also the owner of this forked repository.
->![forkupdate](../img/primer/forkupdate.png)
+>![forkupdate](githubprimer-img/forkupdate.png)
 
 Now to suggest these changes to `robinagandhi` user; the `gencyber` user needs to create a `pull` request. So the `gencyber` user switches over to the 'Pull Request' tab on forked repository and clicks the 'new pull request' button. It will look something like this:
->![forkpulltab](../img/primer/forkpulltab.png)
+>![forkpulltab](githubprimer-img/forkpulltab.png)
 
 Here is an open pull request that compares the master branches across the two repositories.
->![forkpullopen](../img/primer/forkpullopen.png)
+>![forkpullopen](githubprimer-img/forkpullopen.png)
 
 The `robinagandhi` user is now notified of a pull request on his hello-world repository.He examines the suggested changes, and in this case the files can be automatically merged.
->![forkmerge](../img/primer/forkmerge.png)
+>![forkmerge](githubprimer-img/forkmerge.png)
 
 In cases where files cannot be merged automatically, discussions around the pull request can help to resolve the conflicts manually. In this case that won't be necessary. With a few more simple clicks the changes are merged. Your peer will see something like this to confirm the merge:
->![mergeconfirm](../img/primer/mergeconfirm.png)
+>![mergeconfirm](githubprimer-img/mergeconfirm.png)
 
 Here is a confirmation message after a successful merge:
->![mergemsg](../img/primer/mergemsg.png)
+>![mergemsg](githubprimer-img/mergemsg.png)
 
 The updated content is now reflected in the peer's repository. It will be something like this:
->![finalupdate](../img/primer/forkupdatefinal.png)
+>![finalupdate](githubprimer-img/forkupdatefinal.png)
 
 Now return the favor to your peer. Help them fork your hello-world repository and make a pull request to you.
 
@@ -329,3 +329,6 @@ Finally, Github repositories separate source code from other resources. This sep
 
 #### License
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Cybersecurity Modules</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://faculty.ist.unomaha.edu/rgandhi/" property="cc:attributionName" rel="cc:attributionURL">Robin Gandhi</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+### Modifications
+This module has been modified slightly for the Secure Web Development course by Matt Hale.
