@@ -27,8 +27,8 @@ All classroom activities will take place in PKI room 361 (STEAL 2) unless otherw
  * Threat vectors
  * Basic Architecture
  * Client-side vs Server-side debate
- * [Github primer](/modules/github-primer.md)
  * [Virtualization primer](/modules/virtualization-primer.md)
+ * [Github primer](/modules/github-primer.md)
 1. Jump right into Client-side Development
  * Model View Controller
  * Ember.js
