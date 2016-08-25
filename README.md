@@ -7,7 +7,7 @@ This repo contains a digitized version of the course content for IA8470 Secure W
 [Class topics](#class-topics)
 
 ## Location
-All classroom activities will take place in PKI room 361 (STEAL 2) unless otherwise noted ahead of time.
+All classroom activities will take place in PKI room 260 unless otherwise noted ahead of time.
 
 ## Supplies
 
