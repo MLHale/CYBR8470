@@ -2,12 +2,12 @@
 This repo contains a digitized version of the course content for IA8470 Secure Web App Development at the University of Nebraska at Omaha.
 
 ### Table of contents
-[Online discussion area](#online-discussion-area) 
-[Location](#location)	
-[Supplies](#supplies)	
-[Class topics](#class-topics) 
-[Syllabus](#syllabus) 
-[License](#license) 
+[Online discussion area](#online-discussion-area)  
+[Location](#location)	 
+[Supplies](#supplies)	 
+[Class topics](#class-topics)  
+[Syllabus](#syllabus)  
+[License](#license)  
 
 ## Online Discussion Area
 I have setup an online discussion board on slack.com for usage in this class. If you decide to work on a group project, I can create some private channels for you to work on, but I want to be able to participate in your conversations - so please use the space on slack. 
