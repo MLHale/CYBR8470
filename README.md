@@ -37,13 +37,13 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
  * Client-side vs Server-side debate
  * [Virtualization primer](/modules/virtualization-primer.md)
  * [Github primer](/modules/github-primer.md)
-1. Jump right into Client-side Development
+1. Jump right into Client-side Development ([PDF](/lectures/lecture2.pdf))
  * Model View Controller
  * Ember.js
  * Handlebars
  * AJAX for External API integration
  * [Lab 1](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab1.html)
-1. Develop and harden your own Serverside API
+1. Develop and harden your own Serverside API ([PDF](/lectures/lecture3.pdf))
  * Intro to Django
  * Server-side Model View Controller
  * Django REST Framework
