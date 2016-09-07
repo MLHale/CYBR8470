@@ -1199,7 +1199,25 @@ getPhotos: function(tag){
 			photos.pushObject(newPhotoItem);
 		});
 	});
-},</code></pre>
+},</code></pre>			
+						At this time you can also remove the photo model we created earlier locally in the controller. This code should be on lines 3-18. For reference you are specifically removing the code below:
+
+						<pre><code>var Photo = Ember.Object.extend({
+	title: '',
+	username: '',
+	//flickr extra data
+	owner: '',
+	//flickr url data
+	id: '',
+	farm: 0,
+	secret: '',
+	server: '',
+	url: function(){
+		return "https://farm"+this.get('farm')+
+		".staticflickr.com/"+this.get('server')+
+		"/"+this.get('id')+"_"+this.get('secret')+"_b.jpg";
+	}.property('farm','server','id','secret'),
+});</code></pre>
 						<br>
 						Save (Ctrl+s). This introduces the ember concept of a <b>store</b> which houses records for you. It also maintains the seperation between controllers and models (in this case a Photo) in case you want to use your model elsewhere in your app outside of this controller.
 
