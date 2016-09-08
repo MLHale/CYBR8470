@@ -1642,7 +1642,7 @@ git push</code></pre>
 sudo ember install liquid-fire@0.21.*</code></pre><br>
 						Now switch to the terminal running ember server and restart it (ctrl+c, then press up arrow key, then hit enter).<br>
 
-						Then to enable it, open your  /home/student/Desktop/myproject/app/templates/application.hbs file and change the following block: <pre><code>{{if}}</code></pre>
+						Then to enable it, open your  /home/student/Desktop/myproject/app/templates/application.hbs file and change the following block: <pre><code>{{#if filteredPhotos}}</code></pre>
 
 						To the following:<br>
 						<pre><code>{{#liquid-if filteredPhotosLoaded use="toDown"}}
