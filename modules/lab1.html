@@ -1597,8 +1597,10 @@ git push</code></pre>
 {{/if}}</code></pre>
 						<br>
 						Save (ctrl+s). Now download the page-loading gif from <a href="http://www.bkmag.com/wp-content/uploads/2014/09/loading.gif" target="_blank">http://www.bkmag.com/wp-content/uploads/2014/09/loading.gif</a><br>
-						Right click and download this file to your /Desktop/myproject/public folder.
-						Also, change your search and clicktag methods in the /home/student/Desktop/myproject/app/controllers/application.js controller to the following:<br>
+						Right click and download this file to your /Desktop/myproject/public folder as page-loading.gif.
+						
+
+                        Also, change your search and clicktag methods in the /home/student/Desktop/myproject/app/controllers/application.js controller to the following:<br>
 						<pre><code>search: function () {
 	this.set('loading', true);
 	this.get('photos').content.clear();
