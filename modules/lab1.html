@@ -1597,8 +1597,8 @@ git push</code></pre>
 {{/if}}</code></pre>
 						<br>
 						Save (ctrl+s). Now download the page-loading gif from <a href="http://www.bkmag.com/wp-content/uploads/2014/09/loading.gif" target="_blank">http://www.bkmag.com/wp-content/uploads/2014/09/loading.gif</a><br>
-						Right click and download this file to your /Desktop/myproject/public folder.
-						Also, change your search and clicktag methods in the /home/student/Desktop/myproject/app/controllers/application.js controller to the following:<br>
+						Right click and download this file to your /Desktop/myproject/public folder as page-loading.gif.
+                        Also, change your search and clicktag methods in the /home/student/Desktop/myproject/app/controllers/application.js controller to the following:<br>
 						<pre><code>search: function () {
 	this.set('loading', true);
 	this.get('photos').content.clear();
@@ -1642,7 +1642,7 @@ git push</code></pre>
 sudo ember install liquid-fire@0.21.*</code></pre><br>
 						Now switch to the terminal running ember server and restart it (ctrl+c, then press up arrow key, then hit enter).<br>
 
-						Then to enable it, open your  /home/student/Desktop/myproject/app/templates/application.hbs file and change the following block: <pre><code>{{if}}</code></pre>
+						Then to enable it, open your  /home/student/Desktop/myproject/app/templates/application.hbs file and change the following block: <pre><code>{{#if filteredPhotos}}</code></pre>
 
 						To the following:<br>
 						<pre><code>{{#liquid-if filteredPhotosLoaded use="toDown"}}
