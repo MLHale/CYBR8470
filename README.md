@@ -53,7 +53,7 @@ Project 1 will use the skills you learned in Project 1 and have you create some 
  * Django REST Framework
  * API Hardening
  * [Lab 2](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab2.html)
-1. Step back and think about Software engineering Principles
+1. Step back and think about Software engineering Principles ([PDF](/lectures/lecture4.pdf))
  * Software Development Lifecycle
  * Requirements Engineering and Use/Misuse case review
  * Software Architecting
