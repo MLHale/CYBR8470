@@ -5,6 +5,7 @@ This repo contains a digitized version of the course content for IA8470 Secure W
 [Online discussion area](#online-discussion-area)  
 [Location](#location)	 
 [Supplies](#supplies)	 
+[Projects](#projects)	 
 [Class topics](#class-topics)  
 [Syllabus](#syllabus)  
 [License](#license)  
@@ -29,6 +30,9 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 * Ember Textbook (optional): [Rock and Roll with Ember.js](http://balinterdi.com/rock-and-roll-with-emberjs/)
 * [Django Documentation](https://www.djangoproject.com/)
 
+## Projects
+[Project 1 rubric](/modules/IA8470-project-1-rubric.pdf) - Creating and securing a prototype application
+Project 1 will use the skills you learned in Project 1 and have you create some software engineering documents to help you flesh out an idea and implement the client-side portion of the idea that will use for the rest of the semester. For this, and the rest of the projects in the course, you will be able to use your own project idea. You will be expected to satisfy the following rubrics. See the [rubric](/modules/IA8470-project-1-rubric.pdf) for specific details.
 
 ## Class Topics
 1. Introduction to Web apps ([PDF](/lectures/lecture1.pdf))
@@ -63,8 +67,8 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
  * think-test-build-test-repeat
 1. Time to be creative
  * Come up with your own project idea or implement something for a friend/family member or community organization
- * [Project 1](): Requirements Engineering, Product Design, Architecture, and Client-side Prototype
- * [Project 2](): Server-side API Creation and Client-side Integration
+ * [Project 1](#projects): Requirements Engineering, Product Design, Architecture, and Client-side Prototype
+ * [Project 2](#projects): Server-side API Creation and Client-side Integration
 1. Classwide project final
  * Work together with the rest of your classmates to develop a real app for a non-profit
  * Organization TBA
