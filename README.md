@@ -46,13 +46,13 @@ Project 1 will use the skills you learned in Project 1 and have you create some 
  * Ember.js
  * Handlebars
  * AJAX for External API integration
- * [Lab 1](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab1.html)
+ * [Lab 1](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab1.html) [Alt link](https://dl.dropboxusercontent.com/u/4594444/8470/lab1.html)
 1. Develop and harden your own Serverside API ([PDF](/lectures/lecture3.pdf))
  * Intro to Django
  * Server-side Model View Controller
  * Django REST Framework
  * API Hardening
- * [Lab 2](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab2.html)
+ * [Lab 2](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab2.html) [Alt link](https://dl.dropboxusercontent.com/u/4594444/8470/lab2.html)
 1. Step back and think about Software engineering Principles ([PDF Part 1](/lectures/lecture4.pdf))
  * Software Development Lifecycle
  * Requirements Engineering and Use/Misuse case review
