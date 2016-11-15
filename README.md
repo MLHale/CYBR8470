@@ -61,7 +61,7 @@ Project 1 will use the skills you learned in Project 1 and have you create some 
  * Browser Object Model Overview
  * JQuery Overview ([PDF Lecture 5](/lectures/lecture5.pdf)) 
  * Asynchronicity is your friend
-1. Configuration and hardening
+1. Configuration and hardening ([PDF Lecture 6](/lectures/lecture6.pdf)) 
  * Apache Hardening
  * [IP Tables and OS Hardening](modules/iptable-exercise.md)
 1. Test-driven Development
