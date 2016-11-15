@@ -35,28 +35,28 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 Project 1 will use the skills you learned in Project 1 and have you create some software engineering documents to help you flesh out an idea and implement the client-side portion of the idea that will use for the rest of the semester. For this, and the rest of the projects in the course, you will be able to use your own project idea. You will be expected to satisfy the following rubrics. See the [rubric](/modules/IA8470-project-1-rubric.pdf) for specific details.
 
 ## Class Topics
-1. Introduction to Web apps ([PDF](/lectures/lecture1.pdf))
+1. Introduction to Web apps ([PDF Lecture 1](/lectures/lecture1.pdf))
  * Threat vectors
  * Basic Architecture
  * Client-side vs Server-side debate
  * [Virtualization primer](/modules/virtualization-primer.md)
  * [Github primer](/modules/github-primer.md)
-1. Jump right into Client-side Development ([PDF](/lectures/lecture2.pdf))
+1. Jump right into Client-side Development ([PDF Lecture 2](/lectures/lecture2.pdf))
  * Model View Controller
  * Ember.js
  * Handlebars
  * AJAX for External API integration
  * [Lab 1](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab1.html) [Alt link](https://dl.dropboxusercontent.com/u/4594444/8470/lab1.html)
-1. Develop and harden your own Serverside API ([PDF](/lectures/lecture3.pdf))
+1. Develop and harden your own Serverside API ([PDF Lecture 3](/lectures/lecture3.pdf))
  * Intro to Django
  * Server-side Model View Controller
  * Django REST Framework
  * API Hardening
  * [Lab 2](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab2.html) [Alt link](https://dl.dropboxusercontent.com/u/4594444/8470/lab2.html)
-1. Step back and think about Software engineering Principles ([PDF Part 1](/lectures/lecture4.pdf))
+1. Step back and think about Software engineering Principles ([PDF Lecture 4 Part 1](/lectures/lecture4.pdf))
  * Software Development Lifecycle
  * Requirements Engineering and Use/Misuse case review
- * Software Architecting ([PDF Part 2](/lectures/lecture4-part2.pdf)) 
+ * Software Architecting ([PDF Lecture 4 Part 2](/lectures/lecture4-part2.pdf)) 
  * Integration patterns between Servers and Clients
  * Browser Object Model Overview
  * JQuery Overview ([PDF Lecture 5](/lectures/lecture5.pdf)) 
@@ -64,7 +64,7 @@ Project 1 will use the skills you learned in Project 1 and have you create some 
 1. Configuration and hardening ([PDF Lecture 6](/lectures/lecture6.pdf)) 
  * Apache Hardening
  * [IP Tables and OS Hardening](modules/iptable-exercise.md)
-1. Test-driven Development
+1. Test-driven Development ([PDF Lecture 7](/lectures/lecture6.pdf)) 
  * Unit testing
  * Acceptance critera
  * think-test-build-test-repeat
