@@ -24,11 +24,11 @@ The name firewall is inspired from its physical manifestation in construction wh
 
 While these firewalls are "cool", we are interested in a different kind of firewall. Namely, the ones that protect internal networks from external networks. These kinds of firewalls allow us to control the flow of information between networks. Firewalls, __minimize__ the number of ways that internal networks and computers on them can be exploited. They also encourage __least functionality__ by turning off ports that are not needed. Firewalls can also drop network traffic that does not conform to expected patterns (such as malicious requests to an application server).
 
-![network firewalls](/images/firewall/networkfirewall.png)
+![network firewalls](images/firewall/networkfirewall.png)
 
 All popular operating systems now come with a firewall installed. For server installations we will focus on the NETfilter packet filtering module built into the linux kernel itself. This module is configured using the `iptables` command issued in a terminal. The iptables provides a lot of flexibility and control over the configuration of the firewall.
 
-![iptables screenshot](/images/firewall/iptables.png)
+![iptables screenshot](images/firewall/iptables.png)
 
 In order for two machines to communicate (such as a client talking to a server), there are many different __layers__ that are involved. Each of these layers is progressively lower level as you move downward. In general there are 7 layers:
 
@@ -64,7 +64,7 @@ A Firewall can be understood as a collection of valves
   - Permit traffic in one or both directions  
   - Deny traffic  
 
-![valves](/images/firewall/valves.png)  
+![valves](images/firewall/valves.png)  
 
 Here are three basic scenarios to keep in mind.  
 
@@ -86,7 +86,7 @@ Always start firewall configuration with a _whitelisting_ philosophy, where you 
 
 Lets look at an example.
 
-![valves](/images/firewall/examplerules.png)  
+![valves](images/firewall/examplerules.png)  
 
 **Rule 1** permits externally initiated requests to a webserver behind the firewall. So the source is “any”, since we cannot anticipate a specific IP address at the time of writing the rule. The destination is the IP address of the webserver and the service specifies the port number where the service is typically hosted. That would be port 80 for a web server. If these three match an incoming packet then the action is “ACCEPT”
 
@@ -116,7 +116,7 @@ sudo iptables -nL
 ```
 You should see something like this:
 
-![iptables screenshot](/images/firewall/iptables.png)
+![iptables screenshot](images/firewall/iptables.png)
 
 What are those `-nL` commandline parameters for?  
 
@@ -140,7 +140,7 @@ sudo iptables -nL INPUT
 ```
 You should see something like this.
 
-![iptables screenshot](/images/firewall/inputdrop.png)
+![iptables screenshot](images/firewall/inputdrop.png)
 
 Notice `(policy DROP)`. You should NOT be able to access your server now from your client web-app. Go ahead and try it!
 
@@ -186,7 +186,7 @@ Let's examine the INPUT chain now.
 ```bash
 sudo iptables -nL INPUT
 ```
-![iptables screenshot](/images/firewall/inputwebrule.png)
+![iptables screenshot](images/firewall/inputwebrule.png)
 
 This output looks very similar to the example table that we discussed earlier. Here source and desination ip addresses of `0.0.0.0\0` is equivalent to "any". So the rule is equivalent to saying, match all TCP packets from **any** source to **any** desitination with a destination port 80.
 
@@ -203,7 +203,7 @@ Notice that with `-A` you do not have to specify the rule number. The rule just 
 ```bash
 sudo iptables -nL INPUT
 ```
-![iptables screenshot](/images/firewall/inputhttpsrule.png)
+![iptables screenshot](images/firewall/inputhttpsrule.png)
 
 The secure web portion of your server should also be now available to client apps. Go ahead and confirm.
 
@@ -218,7 +218,7 @@ This command will most likely timeout due to firewall restrictions. The error me
 
 First you want the server to be able to communicate with itself. This is often called sending traffic to "loopback" interface. Also, a special network adapter is dedicated to the loopback interface. You may check its name by using the `ifconfig` command. This command shows all the network adapters and associated network addresses. Below we see that the name for the loopback adapter is `lo`.
 
-![ifconfig](/images/firewall/ifconfig.png)
+![ifconfig](images/firewall/ifconfig.png)
 
 To author a permissive firewall rule on the INPUT chain we use the `-i lo` matching criteria for the input loopback interface, with the target ACCEPT.
 
@@ -260,11 +260,11 @@ ss -s
 
 Notice anything in the output?
 
-![iptables screenshot](/images/firewall/ssoutput.png)
+![iptables screenshot](images/firewall/ssoutput.png)
 
 How about now?
 
-![iptables screenshot](/images/firewall/ssoutput2.png)
+![iptables screenshot](images/firewall/ssoutput2.png)
 
 Turns out we controlled the IPv4 network interface, but completely forgot about **IPv6**. This happens a lot in real systems too. In particular, while port 22 for ssh access may be blocked in IPv4, but it is often left accessible using a IPv6 address. Check if that is the case with your server.
 
@@ -273,7 +273,7 @@ Run the following command to check the state of IPv6 interface on our server. No
 ```bash
 sudo ip6tables -nL
 ```
-![iptables screenshot](/images/firewall/ip6tablesoutput.png)
+![iptables screenshot](images/firewall/ip6tablesoutput.png)
 
 The IPv6 network interface is WIDE OPEN!!! So if a ssh service was running, it would be easily accessible using the IPv6 address.
 
