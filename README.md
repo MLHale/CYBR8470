@@ -64,7 +64,7 @@ Project 1 will use the skills you learned in Project 1 and have you create some 
 1. Configuration and hardening ([PDF Lecture 6](/lectures/lecture6.pdf)) 
  * Apache Hardening
  * [IP Tables and OS Hardening](modules/iptable-exercise.md)
-1. Test-driven Development ([PDF Lecture 7](/lectures/lecture6.pdf)) 
+1. Test-driven Development ([PDF Lecture 7](/lectures/lecture7.pdf)) 
  * Unit testing
  * Acceptance critera
  * think-test-build-test-repeat
