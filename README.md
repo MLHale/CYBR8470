@@ -39,6 +39,17 @@ Project 2 continues the web development and design initiated in Project 1. You w
 
 [Final Assignment rubric](/modules/final-project-rubric.pdf) - This last assignment tasks you with assessing your partner's install guide, user guide, and application. See the [rubric](/modules/final-project-rubric.pdf) for specific details.
 
+2016 Projects and Final Presentations:
+* MHefley (PEViewer - Private REPO)
+* SFrench (FlightPlanCompanion - Private REPO)
+* DEllis and GFilter ([SimpleFit](https://github.com/dlellis/SimpleFit))
+* Fkangaye (Micro - Private REPO)
+* IShrestha ([Karyalaya](https://github.com/IsaacShrestha/Final-Karyalaya-Project))
+* GWethor ([Chartreuse](https://github.com/gewethor/Chartreuse-Front-End))
+* Lanreogunmola and SBagayogo ([Afrimat](https://github.com/lanreogunmola/Afrimat))
+* CWaka ([WorldLearning](https://github.com/ambar28/WorldLearning))
+* DNelson ([Waze Place Discovery and Audit](https://github.com/DaJoNel/wpda))
+
 ## Class Topics
 1. Introduction to Web apps ([PDF Lecture 1](/lectures/lecture1.pdf))
  * Threat vectors
