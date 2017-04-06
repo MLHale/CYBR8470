@@ -3,9 +3,9 @@ This repo contains a digitized version of the course content for IA8470 Secure W
 
 ### Table of contents
 [Online discussion area](#online-discussion-area)  
-[Location](#location)	 
-[Supplies](#supplies)	 
-[Projects](#projects)	 
+[Location](#location)  
+[Supplies](#supplies)  
+[Projects](#projects)  
 [Class topics](#class-topics)  
 [Syllabus](#syllabus)  
 [License](#license)  
@@ -51,46 +51,46 @@ Project 2 continues the web development and design initiated in Project 1. You w
 * DNelson ([Waze Place Discovery and Audit](https://github.com/DaJoNel/wpda))
 
 ## Class Topics
-1. Introduction to Web apps ([PDF Lecture 1](/lectures/lecture1.pdf))
- * Threat vectors
- * Basic Architecture
- * Client-side vs Server-side debate
- * [Virtualization primer](/modules/virtualization-primer.md)
- * [Github primer](/modules/github-primer.md)
-1. Jump right into Client-side Development ([PDF Lecture 2](/lectures/lecture2.pdf))
+* Introduction to Web apps ([PDF Lecture 1](/lectures/lecture1.pdf))
+  * Threat vectors
+  * Basic Architecture
+  * Client-side vs Server-side debate
+  * [Virtualization primer](/modules/virtualization-primer.md)
+  * [Github primer](/modules/github-primer.md)
+* Jump right into Client-side Development ([PDF Lecture 2](/lectures/lecture2.pdf))
  * Model View Controller
  * Ember.js
  * Handlebars
  * AJAX for External API integration
  * [Lab 1](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab1.html) [Alt link](https://dl.dropboxusercontent.com/u/4594444/8470/lab1.html)
-1. Develop and harden your own Serverside API ([PDF Lecture 3](/lectures/lecture3.pdf))
- * Intro to Django
- * Server-side Model View Controller
- * Django REST Framework
- * API Hardening
- * [Lab 2](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab2.html) [Alt link](https://dl.dropboxusercontent.com/u/4594444/8470/lab2.html)
-1. Step back and think about Software engineering Principles ([PDF Lecture 4 Part 1](/lectures/lecture4.pdf))
- * Software Development Lifecycle
- * Requirements Engineering and Use/Misuse case review
- * Software Architecting ([PDF Lecture 4 Part 2](/lectures/lecture4-part2.pdf)) 
- * Integration patterns between Servers and Clients
- * Browser Object Model Overview
- * JQuery Overview ([PDF Lecture 5](/lectures/lecture5.pdf)) 
- * Asynchronicity is your friend
-1. Configuration and hardening ([PDF Lecture 6](/lectures/lecture6.pdf)) 
- * Apache Hardening
- * [IP Tables and OS Hardening](modules/iptable-exercise.md)
-1. Test-driven Development ([PDF Lecture 7](/lectures/lecture7.pdf)) 
- * Unit testing
- * Acceptance critera
- * think-test-build-test-repeat
-1. Time to be creative
- * Come up with your own project idea or implement something for a friend/family member or community organization
- * [Project 1](#projects): Requirements Engineering, Product Design, Architecture, and Client-side Prototype
- * [Project 2](#projects): Server-side API Creation and Client-side Integration
-1. Classwide project final
- * Work together with the rest of your classmates to develop a real app for a non-profit
- * Organization TBA
+* Develop and harden your own Serverside API ([PDF Lecture 3](/lectures/lecture3.pdf))
+  * Intro to Django
+  * Server-side Model View Controller
+  * Django REST Framework
+  * API Hardening
+  * [Lab 2](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab2.html) [Alt link](https://dl.dropboxusercontent.com/u/4594444/8470/lab2.html)
+* Step back and think about Software engineering Principles ([PDF Lecture 4 Part 1](/lectures/lecture4.pdf))
+  * Software Development Lifecycle
+  * Requirements Engineering and Use/Misuse case review
+  * Software Architecting ([PDF Lecture 4 Part 2](/lectures/lecture4-part2.pdf)) 
+  * Integration patterns between Servers and Clients
+  * Browser Object Model Overview
+  * JQuery Overview ([PDF Lecture 5](/lectures/lecture5.pdf)) 
+  * Asynchronicity is your friend
+* Configuration and hardening ([PDF Lecture 6](/lectures/lecture6.pdf)) 
+  * Apache Hardening
+  * [IP Tables and OS Hardening](modules/iptable-exercise.md)
+* Test-driven Development ([PDF Lecture 7](/lectures/lecture7.pdf)) 
+  * Unit testing
+  * Acceptance critera
+  * think-test-build-test-repeat
+* Time to be creative
+  * Come up with your own project idea or implement something for a friend/family member or community organization
+  * [Project 1](#projects): Requirements Engineering, Product Design, Architecture, and Client-side Prototype
+  * [Project 2](#projects): Server-side API Creation and Client-side Integration
+* Classwide project final
+  * Work together with the rest of your classmates to develop a real app for a non-profit
+  * Organization TBA
 
 ## Syllabus
 ### Date/Time: Tuesday 5:30pm – 8:10pm
@@ -105,9 +105,9 @@ Web applications are pervasive fixtures of 21st century culture. Web application
 ### Grading Breakdown (due dates are tentative)
  * (10%) Flickr Client-side app (Lab 1 - no rubric)
  * (10%) Flickr Server-side app (Lab 2 - no rubric)
- * (30%) Project 1 - Design and Prototype (rubric TBA)
- * (30%) Project 2 - Full Implementation and Documentation (rubric TBA)
- * (20%) Final class-wide Group project (rubric TBA)
+ * (30%) Project 1 - Design and Prototype
+ * (30%) Project 2 - Full Implementation and Documentation
+ * (20%) Final class-wide Group project
 
 Each project will have a specific grading rubric that includes the core requirements for the project (i.e. what the application must do), any required intermediate milestone goals (such as short progress meetings with the instructor), the project due date, and the list of items that must be submitted. Each project will include a presentation component to be presented in class on the project due date. Projects build upon each other. The final Project is considered to be comprehensive. This means that <i>there is no final exam</i>. Final Project presentations will be presented on the day of the Final (December 14th during normal class time).
 
