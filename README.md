@@ -58,11 +58,11 @@ Project 2 continues the web development and design initiated in Project 1. You w
   * [Virtualization primer](/modules/virtualization-primer.md)
   * [Github primer](/modules/github-primer.md)
 * Jump right into Client-side Development ([PDF Lecture 2](/lectures/lecture2.pdf))
- * Model View Controller
- * Ember.js
- * Handlebars
- * AJAX for External API integration
- * [Lab 1](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab1.html) [Alt link](https://dl.dropboxusercontent.com/u/4594444/8470/lab1.html)
+  * Model View Controller
+  * Ember.js
+  * Handlebars
+  * AJAX for External API integration
+  * [Lab 1](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab1.html) [Alt link](https://dl.dropboxusercontent.com/u/4594444/8470/lab1.html)
 * Develop and harden your own Serverside API ([PDF Lecture 3](/lectures/lecture3.pdf))
   * Intro to Django
   * Server-side Model View Controller
