@@ -32,14 +32,20 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 * [Django Documentation](https://www.djangoproject.com/)
 
 ## Class Topics
-* Introduction to Web apps ([PDF Lecture 1](/lectures/lecture1.pdf))
+* Class Intro  
+  * Overview of Web apps
+  * Concept inventory
   * Threat vectors
-  * Basic Architecture
-  * Client-side vs Server-side debate
   * [Github primer](/modules/github/README.md)
+* Introduction to Web Services ([PDF Lecture 1 TBA]())
+  * Concept Inventory
+  * HTTP Review
+  * Web Services and APIs
+  * Service oriented Architectures (SOA)
+  * `Client-side` and `Server`
   * [Container primer](/modules/containers/README.md)
-
-* Jump right into Client-side Development ([PDF Lecture 2](/lectures/lecture2.pdf))
+  * [Creating a new Web service](/modules/building-a-server/README.md)
+* Client-side Development ([PDF Lecture 2](/lectures/lecture2.pdf))
   * Model View Controller
   * Ember.js
   * Handlebars
@@ -83,7 +89,7 @@ Project 2 continues the web development and design initiated in Project 1. You w
 
 [Final Assignment rubric](/modules/final-project-rubric.pdf) - This last assignment tasks you with assessing your partner's install guide, user guide, and application. See the [rubric](/modules/final-project-rubric.pdf) for specific details.
 
-2016 Projects and Final Presentations:
+## 2016 Projects and Final Presentations:
 * MHefley (PEViewer - Private REPO)
 * SFrench (FlightPlanCompanion - Private REPO)
 * DEllis and GFilter ([SimpleFit](https://github.com/dlellis/SimpleFit))
@@ -95,12 +101,12 @@ Project 2 continues the web development and design initiated in Project 1. You w
 * DNelson ([Waze Place Discovery and Audit](https://github.com/DaJoNel/wpda))
 
 ## Syllabus
-### Date/Time: Tuesday 5:30pm – 8:10pm
-### Instructor:  Dr. Hale
-### Office:  PKI 174-D, (402) 554-3978
-### Office Hours:  Open door policy, or by appointment
-### E-mail:  mlhale@unomaha.edu
-### Slack: @mlhale
+**Date/Time**: Tuesday 5:30pm – 8:10pm  
+**Instructor**:  Dr. Hale  
+**Office**:  PKI 174-D, `(402) 554-3978`  
+**Office Hours**:  Open door policy, or by appointment  
+**E-mail**:  `mlhale@unomaha.edu`  
+
 
 ### Course Abstract
 Web applications are pervasive fixtures of 21st century culture. Web application security is an inclusive, amorphous, term that spans application level security, i.e. ensuring high level code cannot be exploited, server level security, i.e. ensuring server resources such as databases and file systems cannot be exploited, and network security, i.e. ensuring unauthorized parties cannot access a server or tamper with user sessions. The Secure Web Application Development course will mix traditional lecture with hands-on labs to expose students to common web development activities and cross-cut different web application security concepts. After the class, students will be proficient with web application security from the ground up, including the ability to securely deploy and configure a web server (e.g. apache or node.js), select and install a web development framework to best suit application and security requirements (e.g. Django, Ember, or both), and develop secure application architectures and code using at least one web framework. Students will also leave with a basic understanding of core web protocols including TCP/IP, SSL, and HTTP/HTTPs, web development tools (e.g. chrome dev toolkit), unit testing (e.g. QUnit), and best practices for accepting, parsing, and storing user input.
