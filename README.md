@@ -31,26 +31,6 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 * Ember Textbook (optional): [Rock and Roll with Ember.js](http://balinterdi.com/rock-and-roll-with-emberjs/)
 * [Django Documentation](https://www.djangoproject.com/)
 
-## Projects
-[Project 1 rubric](/modules/IA8470-project-1-rubric.pdf) - Creating and securing a prototype application
-Project 1 will use the skills you learned in the Labs and have you create some software engineering documents to help you flesh out an idea and implement the client-side portion of the idea that will use for the rest of the semester. For this, and the rest of the projects in the course, you will be able to use your own project idea. You will be expected to satisfy the following rubrics. See the [rubric](/modules/IA8470-project-1-rubric.pdf) for specific details.
-
-[Project 2 rubric](/modules/IA8470-project-2-rubric.pdf) - Server-side API creation and Client-side Integration
-Project 2 continues the web development and design initiated in Project 1. You will create a Django REST API for servicing CRUD (create, read, update, delete) requests coming from your clientside ember app. Project 2 also offers you the first real opportunity to start realizing core security functionality. You will deploy your REST API on an Apache server and harden it against various forms of attack. Among other things you will harden your API by adding validators for each create or update operation and ensure that there are no side-effects from your methods. Additionally, you will update your design documents to reflect your server-side changes. See the [rubric](/modules/IA8470-project-2-rubric.pdf) for specific details.
-
-[Final Assignment rubric](/modules/final-project-rubric.pdf) - This last assignment tasks you with assessing your partner's install guide, user guide, and application. See the [rubric](/modules/final-project-rubric.pdf) for specific details.
-
-2016 Projects and Final Presentations:
-* MHefley (PEViewer - Private REPO)
-* SFrench (FlightPlanCompanion - Private REPO)
-* DEllis and GFilter ([SimpleFit](https://github.com/dlellis/SimpleFit))
-* Fkangaye (Micro - Private REPO)
-* IShrestha ([Karyalaya](https://github.com/IsaacShrestha/Final-Karyalaya-Project))
-* GWethor ([Chartreuse](https://github.com/gewethor/Chartreuse-Front-End))
-* Lanreogunmola and SBagayogo ([Afrimat](https://github.com/lanreogunmola/Afrimat))
-* CWaka ([WorldLearning](https://github.com/ambar28/WorldLearning))
-* DNelson ([Waze Place Discovery and Audit](https://github.com/DaJoNel/wpda))
-
 ## Class Topics
 * Introduction to Web apps ([PDF Lecture 1](/lectures/lecture1.pdf))
   * Threat vectors
@@ -93,6 +73,26 @@ Project 2 continues the web development and design initiated in Project 1. You w
 * Classwide project final
   * Work together with the rest of your classmates to develop a real app for a non-profit
   * Organization TBA
+
+## Projects
+[Project 1 rubric](/modules/IA8470-project-1-rubric.pdf) - Creating and securing a prototype application
+Project 1 will use the skills you learned in the Labs and have you create some software engineering documents to help you flesh out an idea and implement the client-side portion of the idea that will use for the rest of the semester. For this, and the rest of the projects in the course, you will be able to use your own project idea. You will be expected to satisfy the following rubrics. See the [rubric](/modules/IA8470-project-1-rubric.pdf) for specific details.
+
+[Project 2 rubric](/modules/IA8470-project-2-rubric.pdf) - Server-side API creation and Client-side Integration
+Project 2 continues the web development and design initiated in Project 1. You will create a Django REST API for servicing CRUD (create, read, update, delete) requests coming from your clientside ember app. Project 2 also offers you the first real opportunity to start realizing core security functionality. You will deploy your REST API on an Apache server and harden it against various forms of attack. Among other things you will harden your API by adding validators for each create or update operation and ensure that there are no side-effects from your methods. Additionally, you will update your design documents to reflect your server-side changes. See the [rubric](/modules/IA8470-project-2-rubric.pdf) for specific details.
+
+[Final Assignment rubric](/modules/final-project-rubric.pdf) - This last assignment tasks you with assessing your partner's install guide, user guide, and application. See the [rubric](/modules/final-project-rubric.pdf) for specific details.
+
+2016 Projects and Final Presentations:
+* MHefley (PEViewer - Private REPO)
+* SFrench (FlightPlanCompanion - Private REPO)
+* DEllis and GFilter ([SimpleFit](https://github.com/dlellis/SimpleFit))
+* Fkangaye (Micro - Private REPO)
+* IShrestha ([Karyalaya](https://github.com/IsaacShrestha/Final-Karyalaya-Project))
+* GWethor ([Chartreuse](https://github.com/gewethor/Chartreuse-Front-End))
+* Lanreogunmola and SBagayogo ([Afrimat](https://github.com/lanreogunmola/Afrimat))
+* CWaka ([WorldLearning](https://github.com/ambar28/WorldLearning))
+* DNelson ([Waze Place Discovery and Audit](https://github.com/DaJoNel/wpda))
 
 ## Syllabus
 ### Date/Time: Tuesday 5:30pm – 8:10pm
