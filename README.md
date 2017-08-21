@@ -28,6 +28,9 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 * Ember Textbook (optional): [Rock and Roll with Ember.js](http://balinterdi.com/rock-and-roll-with-emberjs/)
 * [Django Documentation](https://www.djangoproject.com/)
 
+## Lab Listing (links also in Class topics)
+* RESTful APIs - [Twitter & Postman](/modules/restful-api/README.md)
+
 ## Class Topics
 * Class Intro ([Lecture 1 Slides](/slides/lecture1/index.html))
   * Overview of Web apps
