@@ -175,7 +175,7 @@ APIs allow you to get and save data back to an application, without needing to t
 
 ...Enough talk! Lets look at an API!
 
-Open Chrome and go to https://dev.twitter.com/rest/tools/console
+Open Chrome and go to: [https://dev.twitter.com/rest/tools/console](https://dev.twitter.com/rest/tools/console)
 
 ![Twitter API](./img/twitter-api1.png)
 
@@ -200,7 +200,7 @@ Secure APIs don't just accept requests and provide responses to anyone. APIs use
 
 To ensure that only we can issue commands to our account, Twitter requires a form of authentication called an `API Key`. This key is a really long alphanumerical string that would be hard to crack. There are several types of `API Keys`. Some are single strings that don't change over time. Some are `tokens` that persist for a certain amount of time and can be `revoked` as necessary. Twitter uses the most popular and wide spread authentication framework called `Oauth`. Twitter uses both `Ouath 1.0` and `Oauth 2.0` depending on the type of request you are making. Instead of just using tools like APIGee, we are going to create a new `twitter app` that uses `Oauth 2.0` to authenticate and receive an `API Key` in the form of an `Oauth 2.0 Access Token`.
 
-* Create a new twitter app at https://apps.twitter.com/app/new You can call the app whatever you want. I called mine _8470-twitter-app_.
+* Create a new twitter app at [https://apps.twitter.com/app/new](https://apps.twitter.com/app/new) You can call the app whatever you want. I called mine _8470-twitter-app_.
 
 ![Twitter API](./img/twitter-app1.png)
 
@@ -246,14 +246,14 @@ At this point your request should look something like:
 ![Twitter API](./img/postman3.png)
 
 ### Step 5: Other GET Requests
-Try some other requests using the `search API` on twitter. See: https://dev.twitter.com/rest/public/search for more information about the different options.
+Try some other requests using the `search API` on twitter. See: [https://dev.twitter.com/rest/public/search](https://dev.twitter.com/rest/public/search) for more information about the different options.
 
-Your queries should target https://api.twitter.com/1.1/search/tweets.json
+Your queries should target [https://api.twitter.com/1.1/search/tweets.json](https://api.twitter.com/1.1/search/tweets.json)
 
 ### Step 6: First POST request to create a new tweet
-Now that we have the basics of `GET requests` to access tweet data, lets try making a new tweet! We will work with the `API endpoint` here: https://dev.twitter.com/rest/reference/post/statuses/update
+Now that we have the basics of `GET requests` to access tweet data, lets try making a new tweet! We will work with the `API endpoint` here: [https://dev.twitter.com/rest/reference/post/statuses/update](https://dev.twitter.com/rest/reference/post/statuses/update)
 
-Configure a request to https://api.twitter.com/1.1/statuses/update.json
+Configure a request to [https://api.twitter.com/1.1/statuses/update.json](https://api.twitter.com/1.1/statuses/update.json)
 
 * Make sure to add a `user_id` field corresponding to your twitter user id (shown on the APP page as the `owner id`) and a `status` field which will be the 140 character or less message to post to your account. In my case I'm trying to post to my account `mlhale_` (id: `	246485084`) with the status:
 
@@ -284,7 +284,7 @@ Notice that the API Resource reference [here](https://dev.twitter.com/rest/refer
 
 ![Twitter API](./img/sign-in-flow3-3legged.png)
 
-* For now lets use what we have. Visit https://apps.twitter.com/
+* For now lets use what we have. Visit [https://apps.twitter.com/](https://apps.twitter.com/)
 * Click the app you created.
 * Now in `POSTMAN` select `Authorization` and then set the type to `Oauth 1`
 * Enter your information:
@@ -304,12 +304,10 @@ Lets review what we've learned.
 ### Additional Resources
 For more information, investigate the following.
 
-* https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview - Overview of basic HTTP operations
-* https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages - Overview of request and response messages in HTTP
-* https://dev.twitter.com/rest/reference/ - Twitter API reference
+* [https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview) - Overview of basic HTTP operations
+* [https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages) - Overview of request and response messages in HTTP
+* [https://dev.twitter.com/rest/reference/](https://dev.twitter.com/rest/reference/) - Twitter API reference
 
-### Acknowledgements
-Special thanks to [Dr. Robin Gandhi](http://faculty.ist.unomaha.edu/rgandhi/), Andrew Li, and April Guerin for reviewing and editing this module.
 
 ### License
 Based upon [GenCyber Littlebits RESTFul API Lesson](https://github.com/MLHale/nebraska-gencyber/tree/master/teachers/restful-api) Copyright (C) [Dr. Matthew Hale](http://faculty.ist.unomaha.edu/mhale/) 2017.  
