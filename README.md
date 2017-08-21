@@ -29,7 +29,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 * [Django Documentation](https://www.djangoproject.com/)
 
 ## Class Topics
-* Class Intro  
+* Class Intro ([Lecture 1 Slides](/slides/lecture1/index.html))
   * Overview of Web apps
   * Concept inventory
   * Threat vectors
@@ -42,30 +42,30 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * `Client-side` and `Server`
   * [Container primer](/modules/containers/README.md)
   * [Creating a new Web service](/modules/building-a-server/README.md)
-* Client-side Development ([PDF Lecture 2](/lectures/lecture2.pdf))
+* Client-side Development
   * Model View Controller
   * Ember.js
   * Handlebars
   * AJAX for External API integration
-  * [Lab 1](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab1.html) [Alt link](https://dl.dropboxusercontent.com/u/4594444/8470/lab1.html)
-* Develop and harden your own Serverside API ([PDF Lecture 3](/lectures/lecture3.pdf))
+  * Short Dev Lab
+* Develop and harden your own Serverside API
   * Intro to Django
   * Server-side Model View Controller
   * Django REST Framework
   * API Hardening
-  * [Lab 2](https://htmlpreview.github.io/?https://github.com/MLHale/8470-Secure-web-app-development/blob/master/modules/lab2.html) [Alt link](https://dl.dropboxusercontent.com/u/4594444/8470/lab2.html)
-* Step back and think about Software engineering Principles ([PDF Lecture 4 Part 1](/lectures/lecture4.pdf))
+  * Short Dev Lab
+* Step back and think about Software engineering Principles
   * Software Development Lifecycle
   * Requirements Engineering and Use/Misuse case review
-  * Software Architecting ([PDF Lecture 4 Part 2](/lectures/lecture4-part2.pdf))
+  * Software Architecting
   * Integration patterns between Servers and Clients
   * Browser Object Model Overview
-  * JQuery Overview ([PDF Lecture 5](/lectures/lecture5.pdf))
+  * JQuery Overview
   * Asynchronicity is your friend
-* Configuration and hardening ([PDF Lecture 6](/lectures/lecture6.pdf))
+* Configuration and hardening
   * Apache Hardening
   * [IP Tables and OS Hardening](modules/iptable-exercise.md)
-* Test-driven Development ([PDF Lecture 7](/lectures/lecture7.pdf))
+* Test-driven Development
   * Unit testing
   * Acceptance critera
   * think-test-build-test-repeat
