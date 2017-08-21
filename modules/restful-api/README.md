@@ -19,7 +19,7 @@
 * __Simplicity__: Simplicity allows a person to better understand hardware and software. Without the clutter of unnecessarily complicated code and interfaces, the software will be more understandable by people that will update the code when requirements change. It will be easier to understand by the testers and they will be able to spot problems sooner. By keeping software as simple and as focused as possible, the reliability and security is greatly increased.
 
 ### Introduction
-In this module, you will learn what a RESTful API is, how Littlebits uses APIs to monitor and issue commands to the cloudbit, and how you can use the Littlebits API yourself.
+In this module, you will learn what a RESTful API is, how Twitter uses APIs to expose their data to the world, and how you can interact with an API.
 
 ### Goals
 By the end of this tutorial, you will be able to:
@@ -33,11 +33,12 @@ For this lesson, you will need:
 
 * PC
 * Internet connection
-* Little bits cloud bit and API Key
-* Little bits sensor and actuator
+* A twitter account
+* Google Chrome
+* [The POSTMAN Chrome App](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
 
-### Prerequisite lessons
-You should complete the [Hands on IoT: Little Bits Intro](../hands-on-iot-little-bits-intro/README.md) and [Hands on IoT: Build an IFTTT IoT app w/ Little Bits](../hands-on-iot-little-bits-ifttt-app/README.md) lessons before attempting this lesson.
+### Prerequisites
+None
 
 ### Table of Contents
 <!-- TOC START min:1 max:3 link:true update:true -->
@@ -46,16 +47,15 @@ You should complete the [Hands on IoT: Little Bits Intro](../hands-on-iot-little
     - [Introduction](#introduction)
     - [Goals](#goals)
     - [Materials Required](#materials-required)
-    - [Prerequisite lessons](#prerequisite-lessons)
+    - [Prerequisites](#prerequisites)
     - [Table of Contents](#table-of-contents)
-    - [Step 1: Hands-on Demo](#step-1-hands-on-demo)
+    - [Step 1: Background](#step-1-background)
     - [Step 2: Ok, lets take a look at a real API](#step-2-ok-lets-take-a-look-at-a-real-api)
     - [Step 3: Getting our API Key](#step-3-getting-our-api-key)
     - [Step 4: Making your first REST request](#step-4-making-your-first-rest-request)
-    - [Step 5: GET device info](#step-5-get-device-info)
-    - [Step 6: First POST request to turn the device on](#step-6-first-post-request-to-turn-the-device-on)
+    - [Step 5: Other GET Requests](#step-5-other-get-requests)
+    - [Step 6: First POST request to create a new tweet](#step-6-first-post-request-to-create-a-new-tweet)
     - [Checkpoint](#checkpoint)
-    - [Step 7: Adding a subscriber to handle incoming events.](#step-7-adding-a-subscriber-to-handle-incoming-events)
     - [Additional Resources](#additional-resources)
     - [Acknowledgements](#acknowledgements)
     - [License](#license)
@@ -169,152 +169,136 @@ Bodies can be broadly divided into three categories:
 *   **[Multiple-resource bodies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#multipartform-data)**, consisting of a multipart body, each containing a different section of information. These are relatively rare.
 
 ### Step 2: Ok, lets take a look at a real API
-Phew, enough background. In the previous [lesson](../hands-on-iot-little-bits-ifttt-app/README.md), we wired our `cloudbit` up to the web and explored how we could send it signals using [IFTTT](www.ifttt.com). We saw that if our cloud bit detected an input signal (a `request`), we could have `IFTTT` do something (send a `response`). These concepts, i.e. _request_ and _response_, are central to the concept of `RESTful APIs`. REST, or REpresentational State Transfer, APIs, or Application Programming Interfaces, are tools that developers use to provide __abstraction__ and __resource encapsulation__ to people who want to interact with their data.
+These concepts, i.e. _request_ and _response_, are central to the concept of `RESTful APIs`. REST, or REpresentational State Transfer, APIs, or Application Programming Interfaces, are tools that developers use to provide __abstraction__ and __resource encapsulation__ to people who want to interact with their data.
 
-APIs allow you to get and save data back to the application, without needing to tightly integrate with that application. This improves __simplicity__ and helps your code to be more __modular__. APIs include `endpoints`, such as `/api/events`, that allow you to access certain specific data (e.g. events in this example). API endpoints help provide __minimization__ since users can only interact with the application through those interfaces provided by the developer.
+APIs allow you to get and save data back to an application, without needing to tightly integrate with that application. This improves __simplicity__ and helps your code to be more __modular__. APIs include `endpoints`, such as `/api/events`, that allow you to access certain specific data (e.g. events in this example). API endpoints help provide __minimization__ since users can only interact with the application through those interfaces provided by the developer.
 
 ...Enough talk! Lets look at an API!
 
-Open Chrome and go to http://developers.littlebitscloud.cc/. You are looking at the `cloudbit` API. This is what `IFTTT` uses to handle requests and responses.
+Open Chrome and go to https://dev.twitter.com/rest/tools/console
 
-You can see that Littlebits tells us all about how to interact with our `cloudbit` using the API. Lets try it out.
+![Twitter API](./img/twitter-api1.png)
+
+* Select `Oauth 1` (we'll talk about this in a second)
+* Grant permission to APIGee using your twitter Login
+
+![Twitter API](./img/twitter-api2.png)
+
+* Once authenticated, select `trends/place`
+
+![Twitter API](./img/twitter-api3.png)
+
+* Click this option, in the `id` field enter `2465512` (the id for omaha)
+* Click send to see the results of the query (a list of top recent trending tweets in Omaha.)
+
+![Twitter API](./img/twitter-api4.png)
+
+Ok, so the API works.
 
 ### Step 3: Getting our API Key
-Secure APIs don't just accept requests and provide responses to anyone. APIs use a concept called `least privilege` to allow end-users to only have access to the features they need. Since we own the cloudbit, we should have the ability to do anything we want with it, but we might want to prevent other people from abusing and misusing our cloudbit.
+Secure APIs don't just accept requests and provide responses to anyone. APIs use a concept called `least privilege` to allow end-users to only have access to the features they need. Since we own a twitter account, we should have the ability to do anything we want with it, but we might want to prevent other people from abusing and misusing our access.
 
-To ensure that only we can program our cloudbit, Littlebits provides something called an `API Key`. This key is a really long alphanumerical string that would be hard to crack. Lets find our key, so we can issue commands to our cloudbit.
+To ensure that only we can issue commands to our account, Twitter requires a form of authentication called an `API Key`. This key is a really long alphanumerical string that would be hard to crack. There are several types of `API Keys`. Some are single strings that don't change over time. Some are `tokens` that persist for a certain amount of time and can be `revoked` as necessary. Twitter uses the most popular and wide spread authentication framework called `Oauth`. Twitter uses both `Ouath 1.0` and `Oauth 2.0` depending on the type of request you are making. Instead of just using tools like APIGee, we are going to create a new `twitter app` that uses `Oauth 2.0` to authenticate and receive an `API Key` in the form of an `Oauth 2.0 Access Token`.
 
-Go to http://control.littlebitscloud.cc/
+* Create a new twitter app at https://apps.twitter.com/app/new You can call the app whatever you want. I called mine _8470-twitter-app_.
 
-Login using the account you used in the [previous lesson](../hands-on-iot-little-bits-ifttt-app/README.md)
+![Twitter API](./img/twitter-app1.png)
 
-Once logged in, click on your `cloudbit`:
+* Click the `Keys and Access Tokens` tab once created.
+* Click `Create my access token`
+* Don't share this info with anyone, it is your private key.
 
-Now go to the `settings` menu. You should see your access token `API Key`, you will need this string in next steps - so keep it handy. In practice, you wouldn't want to share this with anyone.
 
 ### Step 4: Making your first REST request
 Now that we have our API Key, lets use it to make a request.
 
-POSTMAN is a REST client, that allows end users to make requests to test their APIs. Lets use it to test the cloudbit API. Launch POSTMAN by typing ```chrome://apps``` into the Chrome address bar, hit enter, and then click the POSTMAN icon.
+POSTMAN is a REST client, that allows end users to make requests to test their APIs. Lets use it to test the `twitter API`. Launch POSTMAN by typing ```chrome://apps``` into the Chrome address bar, hit enter, and then click the POSTMAN icon.
 
 ![Loading Postman](./img/postman1.png)
 
-In POSTMAN, lets build a new GET request targetted at the URL https://api-http.littlebitscloud.cc/v2/devices
+In POSTMAN, lets build a new GET request targeted at the URL we explored before:
+https://api.twitter.com/1.1/trends/place.json
 
-* Find and click the ```headers``` button and add the following
+* Find and click the `Authorization` button and then click `Get New Access Token`
 
-```
-Authorization: Bearer <your access token with no angled brackets>
-```
+![Twitter API](./img/twitter-app2.png)
 
-You can add the header as a key value pair, where the key is ```Authorization``` and the value is ```Bearer <insert your access token here, remove the angled brackets>```. Make sure to use your access token.
+* In the popup, add in your info from the twitter API app page. It should look something like mine:
 
-* Hit the ```send``` button to issue the _GET request_ to the URL.
+![Twitter API](./img/twitter-app3.png)
 
-If all goes well you should see something like:
+> Note that `clientID` is your `App Consumer Key` and `client secret` is `App Consumer Secret` on twitter
 
-![GET request](./img/postman2.png)
+* Hit `Request token` when done. This will ask twitter for an `API Key` that `POSTMAN` can then use to authenticate subsequent requests to the API.
 
-* The `response` you got back, when you sent the GET request contains the name and meta information for each of the `cloudbits` currently connected to your account. In the screenshot above, the JSON data returned for me was:
+> For reference this is what happens in the background:
 
-```
-[
-    {
-        "label": "mlhale-cloudbit",
-        "id": "00e04c036f15",
-        "subscriptions": [],
-        "subscribers": [],
-        "user_id": 175306,
-        "is_connected": true,
-        "input_interval_ms": 200
-    }
-]
-```
-This tells me the label of my cloudbit is ```mlhale-cloudbit``` and that it currently doesn't have any subscribers or subscriptions.
+![Twitter API](./img/app-auth-diagram.png)
 
-### Step 5: GET device info
-Now that we know our device id, we can use it to make a specific `request` for our device.
+* Now that we have a token, you should see that the token has been added as a parameter called `access_token`. Lets add the `id` for Omaha again.
 
-* make a new `GET` request in POSTMAN to
+At this point your request should look something like:
 
-```
-https://api-http.littlebitscloud.cc/v2/devices/<your-device-id>
-```
+![Twitter API](./img/postman2.png)
 
-* e.g. ```https://api-http.littlebitscloud.cc/v2/devices/00e04c036f15``` in my example
+* Hit the ```send``` button to issue the _GET request_ to the URL. You should see recent results. In my case I wrote this during the 2017 eclipse and saw the following as the eclipse went through Omaha.
 
-You should get the same device info back, but notice that it is now not in square brackets - this means it is a singleton instead of a list.
+![Twitter API](./img/postman3.png)
 
-![GET request](./img/postman3.png).
+### Step 5: Other GET Requests
+Try some other requests using the `search API` on twitter. See: https://dev.twitter.com/rest/public/search for more information about the different options.
 
-### Step 6: First POST request to turn the device on
-Now that we have the basics of GET requests to access device info, lets try issuing a POST request to actually make our device do something.
+Your queries should target https://api.twitter.com/1.1/search/tweets.json
 
-* Make sure you arrange your Littlebits as shown in the following picture:
+### Step 6: First POST request to create a new tweet
+Now that we have the basics of `GET requests` to access tweet data, lets try making a new tweet! We will work with the `API endpoint` here: https://dev.twitter.com/rest/reference/post/statuses/update
 
-![Littlebits Setup](./img/configuration.jpg)
+Configure a request to https://api.twitter.com/1.1/statuses/update.json
 
-* make a POST request using POSTMAN to set the voltage output on the cloudbit for a few seconds
+* Make sure to add a `user_id` field corresponding to your twitter user id (shown on the APP page as the `owner id`) and a `status` field which will be the 140 character or less message to post to your account. In my case I'm trying to post to my account `mlhale_` (id: `	246485084`) with the status:
 
 ```
-https://api-http.littlebitscloud.cc/v2/devices/<your-device-id>/output
-```
-* e.g. ```https://api-http.littlebitscloud.cc/v2/devices/00e04c036f15/output``` in my example
-
-Before you issue the request make sure the headers are set as follows:
-
-Headers:
-```
-Authorization: Bearer <your access token>
-Content-type: application/json
+Testing%20RESTful%20API%20lesson%20for%20%23security%20%23webdev%20class%20%23unomaha
 ```
 
-![POST request](img/postman4.png)
-
-Now click on the Body tab (next to the Headers tab). Select the Raw input option and type the JSON shown below to tell cloudbit to turn the LED on at 100% brightness and to stay on for 5 seconds.
-
-Body:
-```
-{
-    "percent": 100,
-    "duration_ms": 5000
-}
-```
-
-![POST request](img/postman5.png)
-
-Now send the request
-You should get back:
+Which is a URL encoded (to remove spaces and special characters) of the status:
 
 ```
-{
-    "success": true
-}
+Testing RESTful API lesson for #security #webdev class #unomaha
 ```
 
-and you should see your led light up. You just used REST!
+![Twitter API](./img/post-request-1.png)
 
+* Hit the ```send``` button to issue the _POST request_ to the URL.
+* What happened?
+
+![Twitter API](./img/post-request-2.png)
+
+* Twitter restricts the access of `Tokens` to the context that it has access to. Since we are using an `App Key` we do not have access to the user.
+
+Notice that the API Resource reference [here](https://dev.twitter.com/rest/reference/post/statuses/update) marks the required authentication with `user context only`. This means that you need to be logged in using that user's context to successfully `POST` as them.
+
+![Twitter API](./img/post-request-3.png)
+
+* To do this, we need to switch to `Oauth 1` and provide a user context. Remember that `access token` you generated in Step 3? Now is where it will be useful. Basically, what you did was grant the app you created access to your twitter account. Now we are going to use the token it was given to authorize it to post on your behalf. Usually you would implement a 3 way oauth chain to get this token:
+
+![Twitter API](./img/sign-in-flow3-3legged.png)
+
+* For now lets use what we have. Visit https://apps.twitter.com/
+* Click the app you created.
+* Now in `POSTMAN` select `Authorization` and then set the type to `Oauth 1`
+* Enter your information:
+
+![Twitter API](./img/post-request-4.png)
+
+* Click send. You should see a success message now! Check your twitter account:
+
+![Twitter API](./img/post-request-5.png)
+> It worked!
 
 ### Checkpoint
 Lets review what we've learned.
 
-https://www.qzzr.com/c/quiz/429280/8f69a8f7-0a69-4efa-9c3e-2aa38944ed1d
-
-### Step 7: Adding a subscriber to handle incoming events.
-Lets add a subscriber to catch input events going to the cloudbit:
-* Make a POST request to https://api-http.littlebitscloud.cc/v2/subscriptions
-* In our case we want to make a server listen for the cloudbit, so lets use a URI endpoint as the subscriber
-
-same headers as before
-body:
-```
-{
-    "publisher_id": "<your device id>",
-    "subscriber_id": "http://ourserver.com/endpoint"
-}
-```
-
-But where is our server? We don't have one yet. We will talk about deploying a server in the next lesson and then come back to this.
 
 
 ### Additional Resources
@@ -322,15 +306,13 @@ For more information, investigate the following.
 
 * https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview - Overview of basic HTTP operations
 * https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages - Overview of request and response messages in HTTP
-* [http://developers.littlebitscloud.cc/](http://developers.littlebitscloud.cc/) - API reference for the Littlebits web service.
+* https://dev.twitter.com/rest/reference/ - Twitter API reference
 
 ### Acknowledgements
 Special thanks to [Dr. Robin Gandhi](http://faculty.ist.unomaha.edu/rgandhi/), Andrew Li, and April Guerin for reviewing and editing this module.
 
 ### License
-[Nebraska GenCyber](https://github.com/MLHale/nebraska-gencyber) <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+Based upon [GenCyber Littlebits RESTFul API Lesson](https://github.com/MLHale/nebraska-gencyber/tree/master/teachers/restful-api) Copyright (C) [Dr. Matthew Hale](http://faculty.ist.unomaha.edu/mhale/) 2017.  
 
-Overall content: Copyright (C) 2017  [Dr. Matthew L. Hale](http://faculty.ist.unomaha.edu/mhale/), [Dr. Robin Gandhi](http://faculty.ist.unomaha.edu/rgandhi/), and [Doug Rausch](http://www.bellevue.edu/about/leadership/faculty/rausch-douglas).
-
-Lesson content: Copyright (C) [Dr. Matthew Hale](http://faculty.ist.unomaha.edu/mhale/) 2017.  
+Adapted for Twitter: Copyright (C) [Dr. Matthew Hale](http://faculty.ist.unomaha.edu/mhale/) 2017.  
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">This lesson</span> is licensed by the author under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
