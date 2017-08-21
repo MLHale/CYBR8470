@@ -33,6 +33,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Overview of Web apps
   * Concept inventory
   * Threat vectors
+  * [REST and Twitter API](/modules/restful-api/README.md)
   * [Github primer](/modules/github/README.md)
 * Introduction to Web Services ([PDF Lecture 1 TBA]())
   * Concept Inventory
