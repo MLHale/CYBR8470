@@ -35,6 +35,7 @@ The following tutorials focus on how you can use Git and Github for collaboratio
 
 ### Materials required
 - [git](https://git-scm.com/download/) (Windows Version)
+- git and Github also work well with Linux or Mac
 
 ### Prerequisite lessons
 - Lots of curiosity
@@ -65,8 +66,9 @@ ls  # list files and directories in current directory
     - [Step 6: Fork Repository](#step-6-fork-repository)
     - [Step 7: Make a Pull Request](#step-7-make-a-pull-request)
     - [Step 8: Markdown](#step-8-markdown)
-    - [Fork Our whole camp](#fork-our-whole-camp)
-    - [Cyber security First Principle Reflections](#cyber-security-first-principle-reflections)
+    - [Fork Our whole class](#fork-our-whole-class)
+    - [Cybersecurity First Principle Reflections](#cybersecurity-first-principle-reflections)
+  - [Git, err...Get your engines ready!](#git-errget-your-engines-ready)
   - [Additional Resources](#additional-resources)
   - [Acknowledgements](#acknowledgements)
   - [License](#license)
@@ -368,10 +370,12 @@ You are now ready to explore the wonderful world of open source on Github. Enjoy
 
 [Top](#table-of-contents)
 
-### Fork Our whole camp
-We practice what we preach. Our whole camp has been developed on GitHub using markdown, for your viewing pleasure and for you to take home with you. Now that you are a git guru, you may as well fork all of the camp content to take it home with you.
+### Fork Our whole class
+We (Dr. Gandhi and Dr. Hale) practice what we preach. Our whole classes have been developed on GitHub using markdown, for your viewing pleasure and for you to keep with you after you levae the class. Now that you are a git guru, you may as well fork all of the class content for later.
 
-Go to the top of this page and click fork. Boom, you have our whole camp, use responsibly.
+- Visit https://github.com/mlhale/CYBR8470
+- Go to the top of the page and click `fork`.
+- Boom, you have our whole class, use responsibly.
 
 ### Cybersecurity First Principle Reflections
 
@@ -406,5 +410,7 @@ Finally, Github repositories separate source code from other resources. This sep
 
 Overall content: Copyright (C) 2017  [Dr. Matthew L. Hale](http://faculty.ist.unomaha.edu/mhale/), [Dr. Robin Gandhi](http://faculty.ist.unomaha.edu/rgandhi/), and [Doug Rausch](http://www.bellevue.edu/about/leadership/faculty/rausch-douglas).
 
-Lesson content: Copyright (C) [Robin Gandhi](http://faculty.ist.unomaha.edu/rgandhi/) 2017.  
+Slight Modifications for 8470: Matt Hale, 2017.
+
+Original Lesson content: Copyright (C) [Robin Gandhi](http://faculty.ist.unomaha.edu/rgandhi/) 2017.  
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">This lesson</span> is licensed by the author under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
