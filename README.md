@@ -38,7 +38,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Threat vectors
   * [REST and Twitter API](/modules/restful-api/README.md)
   * [Github primer](/modules/github/README.md)
-* Introduction to Web Services ([PDF Lecture 1 TBA]())
+* Introduction to Web Services ([Slides TBA]())
   * Concept Inventory
   * HTTP Review
   * Web Services and APIs
