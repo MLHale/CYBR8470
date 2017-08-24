@@ -98,7 +98,6 @@ Project 2 continues the web development and design initiated in Project 1. You w
 * IShrestha ([Karyalaya](https://github.com/IsaacShrestha/Final-Karyalaya-Project))
 * GWethor ([Chartreuse](https://github.com/gewethor/Chartreuse-Front-End))
 * Lanreogunmola and SBagayogo ([Afrimat](https://github.com/lanreogunmola/Afrimat))
-* CWaka ([WorldLearning](https://github.com/ambar28/WorldLearning))
 * DNelson ([Waze Place Discovery and Audit](https://github.com/DaJoNel/wpda))
 
 ## Syllabus
