@@ -38,13 +38,13 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Threat vectors
   * [REST and Twitter API](/modules/restful-api/README.md)
   * [Github primer](/modules/github/README.md)
+  * [Container primer](/modules/containers/README.md)
 * Introduction to Web Services ([Slides TBA]())
   * Concept Inventory
   * HTTP Review
   * Web Services and APIs
   * Service oriented Architectures (SOA)
   * `Client-side` and `Server`
-  * [Container primer](/modules/containers/README.md)
   * [Creating a new Web service](/modules/building-a-server/README.md)
 * Client-side Development
   * Model View Controller
