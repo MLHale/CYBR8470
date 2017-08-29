@@ -328,7 +328,7 @@ RUN pip install psycopg2
 
 ### Step 1: Clone a repository
 Let us clone a repository that includes the above DockerFile.  
-The DockerFile is typically in the top level project directory
+The DockerFile is typically in the top level project directory. For this we are going to use a recent web server demo we used this summer in a GenCyber camp. The server was built to interact with little IoT devices and show events gathered from the device.
 
 In a new ```Powershell```:
 ```bash
