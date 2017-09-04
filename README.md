@@ -36,15 +36,15 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Overview of Web apps
   * Concept inventory
   * Threat vectors
-  * [REST and Twitter API](/modules/restful-api/README.md)
+  * HTTP Review
+  * [REST and Twitter API Lab](/modules/restful-api/README.md)
   * [Github primer](/modules/github/README.md)
   * [Container primer](/modules/containers/README.md)
-* Introduction to Web Services ([Slides TBA]())
+* Web Services ([Slides TBA]())
   * Concept Inventory
-  * HTTP Review
   * Web Services and APIs
   * Service oriented Architectures (SOA)
-  * `Client-side` and `Server`
+  * `Client` and `Server`
   * [Creating a new Web service](/modules/building-a-server/README.md)
 * Client-side Development
   * Model View Controller
@@ -112,11 +112,14 @@ Project 2 continues the web development and design initiated in Project 1. You w
 Web applications are pervasive fixtures of 21st century culture. Web application security is an inclusive, amorphous, term that spans application level security, i.e. ensuring high level code cannot be exploited, server level security, i.e. ensuring server resources such as databases and file systems cannot be exploited, and network security, i.e. ensuring unauthorized parties cannot access a server or tamper with user sessions. The Secure Web Application Development course will mix traditional lecture with hands-on labs to expose students to common web development activities and cross-cut different web application security concepts. After the class, students will be proficient with web application security from the ground up, including the ability to securely deploy and configure a web server (e.g. apache or node.js), select and install a web development framework to best suit application and security requirements (e.g. Django, Ember, or both), and develop secure application architectures and code using at least one web framework. Students will also leave with a basic understanding of core web protocols including TCP/IP, SSL, and HTTP/HTTPs, web development tools (e.g. chrome dev toolkit), unit testing (e.g. QUnit), and best practices for accepting, parsing, and storing user input.
 
 ### Grading Breakdown (due dates are tentative)
- * (10%) Flickr Client-side app (Lab 1 - no rubric)
- * (10%) Flickr Server-side app (Lab 2 - no rubric)
- * (20%) Project 1 - Design and Prototype
- * (30%) Project 2 - Full Implementation and Documentation
- * (20%) Final class-wide Group project
+ * (25%) Labs
+  * Twitter REST API (Lab 1 - no rubric)
+  * Containers (Lab 2 - no rubric)
+  * Building a Server (Lab 3 - no rubric)
+  * Penetration Testing (Lab 4 - no rubric)
+ * (20%) Project 1 - Product Design and Mockup
+ * (20%) Project 2 - Implementation and Documentation
+ * (25%) Project 3 - Polish and Final Delivery
  * (10%) Class Participation
 
 Each project will have a specific grading rubric that includes the core requirements for the project (i.e. what the application must do), any required intermediate milestone goals (such as short progress meetings with the instructor), the project due date, and the list of items that must be submitted. Each project will include a presentation component to be presented in class on the project due date. Projects build upon each other. The final Project is considered to be comprehensive. This means that *there is no final exam*. Final Project presentations will be presented on the day of the Final (December 14th during normal class time).
