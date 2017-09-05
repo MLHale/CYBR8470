@@ -48,8 +48,9 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Data Formats: XML, JSON
 * Server-side Development in Django ([Lecture 3 Slides](/slides/lecture2/index.html))
   * Intro to Django
-  * Server-side Model View Controller
+  * Server-side Model View Controller Pattern
   * Django REST Framework
+  * Django in Docker
   * [Creating a new Web service](/modules/building-a-server/README.md)
 * Client-side Development
   * Browser Object Model Overview
