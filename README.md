@@ -27,12 +27,14 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 * [Lucidchart](http://www.lucidchart.com)
 
 ### Texts
-* Labs: [secwebdev.mlhale.com](http://secwebdev.mlhale.com)
 * Ember Textbook (optional): [Rock and Roll with Ember.js](http://balinterdi.com/rock-and-roll-with-emberjs/)
 * [Django Documentation](https://www.djangoproject.com/)
 
 ## Lab Listing (links also in Class topics)
-* RESTful APIs - [Twitter & Postman](/modules/restful-api/README.md)
+* [Github primer](/modules/github/README.md)
+* [REST and Twitter API Exploration](/modules/restful-api/README.md)
+* [Container primer](/modules/containers/README.md)
+* [Creating a new Web service](/modules/building-a-server/README.md)
 
 ## Class Topics
 * Class Intro ([Lecture 1 Slides](/slides/lecture1/index.html))
@@ -40,7 +42,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Concept inventory
   * Threat vectors
   * HTTP Review
-  * [REST and Twitter API Lab](/modules/restful-api/README.md)
+  * [REST and Twitter API Exploration](/modules/restful-api/README.md)
   * [Github primer](/modules/github/README.md)
   * [Container primer](/modules/containers/README.md)
 * Web Services ([Lecture 2 Slides](/slides/lecture2/index.html))
@@ -49,7 +51,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Web Service Standards (`WS-*`)
   * Methods: SOAP / REST / Web sockets
   * Data Formats: XML, JSON
-* Server-side Development in Django ([Lecture 3 Slides](/slides/lecture2/index.html))
+* Server-side Development in Django ([Lecture 3 Slides](/slides/lecture3/index.html))
   * Intro to Django
   * Server-side Model View Controller Pattern
   * Django REST Framework
@@ -89,6 +91,9 @@ Project 1 will use the skills you learned in the Labs and have you create some s
 Project 2 continues the web development and design initiated in Project 1. You will create a Django REST API for servicing CRUD (create, read, update, delete) requests coming from your clientside ember app. Project 2 also offers you the first real opportunity to start realizing core security functionality. You will deploy your REST API on an Apache server and harden it against various forms of attack. Among other things you will harden your API by adding validators for each create or update operation and ensure that there are no side-effects from your methods. Additionally, you will update your design documents to reflect your server-side changes. See the [rubric](/modules/IA8470-project-2-rubric.pdf) for specific details.
 
 [Final Assignment rubric](/modules/final-project-rubric.pdf) - This last assignment tasks you with assessing your partner's install guide, user guide, and application. See the [rubric](/modules/final-project-rubric.pdf) for specific details.
+
+## 2016 Archived Lab content
+[secwebdev.mlhale.com](http://secwebdev.mlhale.com)
 
 ## 2016 Projects and Final Presentations:
 * MHefley (PEViewer - Private REPO)
