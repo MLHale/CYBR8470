@@ -7,6 +7,9 @@
 [Syllabus](#syllabus)  
 [License](#license)  
 
+## Viewing these materials
+The class materials are best viewed at [https://mlhale.github.io/CYBR8470/]https://mlhale.github.io/CYBR8470/]
+
 ## Online Discussion Area
 I have setup an online discussion board on slack.com for usage in this class. If you decide to work on a group project, I can create some private channels for you to work on, but I want to be able to participate in your conversations - so please use the space on slack.
 
