@@ -25,21 +25,16 @@ In this module, you will learn how to build a server of your own and connect it 
 By the end of this tutorial, you will be able to:
 * Build and deploy a `Django` server into a `container`
 * Create a `REST endpoint` on the `application server`
-* Connect your server to Littlebits to signal your `cloudbit` to turn on
 
 
 ### Materials Required
 For this lesson, you will need:
 
-* PC
+* PC or Mac with Docker
 * Internet connection
-* Littlebits cloud bit and API Key
-* Littlebits sensor and actuator
 
 ### Prerequisite lessons
 You should complete the following lessons before attempting this lesson.
-* [Hands on IoT: Little Bits Intro](../hands-on-iot-little-bits-intro/README.md),
-* [Hands on IoT: Build an IFTTT IoT app w/ Little Bits](../hands-on-iot-little-bits-ifttt-app/README.md),
 * [Web Services and REST](../restful-api/README.md)
 * [Containers](../containers/README.md)
 
@@ -69,30 +64,28 @@ You should complete the following lessons before attempting this lesson.
 
 <!-- TOC END -->
 
-### Step 1: Review - Where are we so far?
-Before we get started, lets talk about what we've done so far. First, we looked at `Littlebits` and saw that we could plug and play the parts together to create new inventions. We wired these up and hooked them to `IFTTT` to let the web control our `cloudbit`. Then, in the `REST` lesson, we looked behind-the-scenes to see how `web services` like IFTTT and Littlebits actually work. We played around with `POSTMAN` and interacted with the Littlebits `API`.
 
-The last thing we left off with was hooking the Littlebits API up to our own server (instead of IFTTT) so we could make our own home-automation controller Dashboard. We saw how `containers` could be used to host `isolated` servers on another host machine.
+### Step 1: Review - Where are we so far?
+We saw how `containers` could be used to host `isolated` servers on another host machine.
 
 Now, in this lesson, we will examine how to create our own server and deploy it in a container.
 
-For reference, this is the overall design we are looking at. On the left side, you have Littlebits and the `Littlebits API`. We previously worked with the API using `IFTTT`. In the container lesson, you saw how we can setup a new standalone server. In this lesson, we will begin building the item marked `custom web API` in the figure below. It will have features to support authentication, managing our `cloudbit`, and logging events.
+For reference, this is the overall design we are looking at. On the left side, you have some sensors - they could be anything, since this isn't an IoT class, we can just assume we are getting data from them. In this lesson, we will begin building the item marked `custom web API` in the figure below. It will have features to support authentication, logging events, and we can even include a hook to trigger another service (like `IFTTT`).
 ![Web App Architecture](./img/web-app-architecture.png)
 
-
 ### Step 2: No, you won't be starting from scratch
-The process of creating a new application server from the ground up takes some time and attention. Instead of having you start from the ground up, we are providing you with some **starter** skeleton code. This code does the basics of accepting requests and storing data that comes in. Instead of building it, we will look at and examine how it operates before modifying it to make it more secure.
+The process of creating a new application server from the ground up takes some time and attention. Instead of having you start from the ground up, I'll provide you with some **starter** skeleton code. This code does the basics - you will extend it to accepting requests, store the data that comes in, and then trigger another service.
 
-* First, `fork` our repo by visiting the https://github.com/MLHale/nebraska-gencyber-dev-env and clicking 'fork'. This will copy the code from our repository into your GitHub account - so you can track your changes as you go.
-* Since this project includes a `submodule` you need to fork it as well. Visit https://github.com/MLHale/littlebits-rest-api and click `fork`.
+* First, `fork` the repo for this lab by visiting the https://github.com/MLHale/CYBR8470-building-a-webservice-lab and clicking 'fork'. This will copy the code from our repository into your GitHub account - so you can track your changes as you go.
+* Since this project includes a `submodule` that you will edit, you need to fork it as well. Visit https://github.com/MLHale/CYBR8470-building-a-webservice-lab-backend and click `fork`.
 * Let's get started locally on your machine by changing into the Desktop directory and then using `git` to clone the skeleton code repository and get it in onto our local machine.
 
 Open a new `Powershell terminal instance:
 
 ```bash
 cd Desktop
-git clone https://github.com/<your-github-id without the brackets>/nebraska-gencyber-dev-env
-cd nebraska-gencyber-dev-env/
+git clone https://github.com/<your-github-id without the brackets>/CYBR8470-building-a-webservice-lab
+cd CYBR8470-building-a-webservice-lab/
 ```
 
 Add the folder to your `Atom` workspace.
@@ -102,10 +95,10 @@ Open the `.gitmodules` file. Edit the `backend` submodule to point to your forke
 ```
 [submodule "backend"]
 	path = backend
-	url = https://github.com/MLHale/littlebits-rest-api
+	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab
 [submodule "frontend"]
 	path = frontend
-	url = https://github.com/MLHale/littlebits-rest-api-frontend
+	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab-frontend
 ```
 
 becomes
@@ -113,31 +106,31 @@ becomes
 ```
 [submodule "backend"]
 	path = backend
-	url = https://github.com/<your-github-id without the angled brackets>/littlebits-rest-api
+	url = https://github.com/<your-github-id without the angled brackets>/CYBR8470-building-a-webservice-lab-backend
 [submodule "frontend"]
 	path = frontend
-	url = https://github.com/MLHale/littlebits-rest-api-frontend
+	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab-frontend
 ```
 
-This command tells git to use the new url as the path for the submodule. To pull down the code run the following (in the terminal):
+This command tells git to use the new url as the path for the submodule. To pull down the code run the following (in the terminal/powershell):
 
 ```bash
 git submodule sync
 git submodule update --init --recursive --remote
 cd backend/
-git checkout tags/server-lesson-start
-git checkout -b my-server-work
-git push --set-upstream origin my-server-work
+git checkout tags/lesson-start
+git checkout -b my-work
+git push --set-upstream origin my-work
 cd ..
 git add -A
 git commit -m "updated to forked submodule repository"
 git push
 ```
 
-This should checkout the code for the start of this lesson and create a new branch called `my-server-work`. It also updates the `nebraska-gencyber-dev-env` repository you forked to include the correct pointer to the new forked submodule. You should also see your file tree in `Atom` update. Any new updates you make you can always run the commands `git add`, `git commit`, and `git push` to save your changes in the branch to your remote repo.
+This should checkout the code for the start of this lesson and create a new branch called `my-work`. It also updates the `CYBR8470-building-a-webservice-lab-backend` repository you forked to include the correct pointer to the new forked submodule. You should also see your file tree in `Atom` update. Any new updates you make you can always run the commands `git add`, `git commit`, and `git push` to save your changes in the branch to your remote repo.
 
 For now, we have our code ready.
-Now use `docker` to build the `image` that our container will use:
+Now use `docker` to build the `image` that our container will use, from the `CYBR8470-building-a-webservice-lab-backend` directory:
 
 ```bash
 docker-compose build
@@ -148,7 +141,7 @@ With this, we should be able to type the following and see our new image.
 ```bash
 docker images
 ```
-It will be called something like `nebraskagencyberdevenv_django`.
+It will be called something like `CYBR8470-building-a-webservice-lab-backend_django`.
 
 ### Step 3: Setup the server
 This server is completely new, so we need to do some setup to get it initially configured. Execute the following to run the server and open up a bash terminal to interact with it.
@@ -169,15 +162,15 @@ exit
 * Now open `Atom` on your desktop,
 * go to the File -> "Add Project Folder..."
 
-![Add folder](./img/add-folder.png)
-> note that your interface may look slightly different on windows.
+<!-- ![Add folder](./img/add-folder.png)
+> note that your interface may look slightly different on windows. -->
 
-* Find your `nebraska-gencyber-dev-env` folder (it should be located at `C:/Users/student/Desktop/`)
-* Upon opening it you should see:
+* Find your `CYBR8470-building-a-webservice-lab-backend` folder (it should be located at `C:/Users/student/Desktop/`)
+* Upon opening it you should see the file tree of the folder structure.
 
-![File Tree](./img/file-tree1.png)
+<!-- ![File Tree](./img/file-tree1.png) -->
 
-Now, in `Atom`, open the `/nebraska-gencyber-dev-env/backend/django_backend/settings.py` file by navigating to it in the file tree (on the left) and clicking it.
+Now, in `Atom`, open the `/CYBR8470-building-a-webservice-lab-backend/backend/django_backend/settings.py` file by navigating to it in the file tree (on the left) and clicking it.
 
 find the line marked:
 ```
@@ -185,7 +178,7 @@ ALLOWED_HOSTS = ['137.48.185.230', 'localhost']
 ```
 Replace '137.48.185.230' with your `ip address`.
 
-* to get your server ip, you need to open a `Powershell` and type:
+* to get your server ip, you need to open a `Powershell` and type (use `ifconfig` instead for Mac/Linux):
 ```bash
 ipconfig --all
 ```
@@ -204,23 +197,21 @@ This server, diagrammatically looks like:
 
 ![Django Architecture](./img/django-architecture.png)
 
-The docker command executes the container using the `docker-compose.yml` file located in your `/nebraska-gencyber-dev-env/` folder.
+The docker command executes the container using the `docker-compose.yml` file located in your `/CYBR8470-building-a-webservice-lab-backend/` folder.
 * Leave this terminal running
 * It works by mapping `port 80` on the `host` to `port 8000` in the container.
 * Inside the container, Django executes its `runserver` utility - which works like a web server.
 * There is also a second container that starts up and runs our `postgres` database server.
-* You can take a look at the `Dockerfile` in your `/nebraska-gencyber-dev-env/` folder to learn more about what happens behind the scenes.
+* You can take a look at the `Dockerfile` in your `/CYBR8470-building-a-webservice-lab-backend/` folder to learn more about what happens behind the scenes.
 
 With the server running, you should be able to visit [http://localhost](http://localhost) to see your server. You should an interface that looks something like the following.  
 
-![skeleton client app](./img/skeleton-client.png)
+<!-- ![skeleton client app](./img/skeleton-client.png) -->
 
-This is a `web client` (also called a `frontend`) that we've built for demo purposes to work with our server. You will be making the server work better with the client.
+This is a `web client` (also called a `frontend`) that I've built for demo purposes to work with our server. You will be making the server work with the client. I've included the client code in the `/frontend` folder, but you won't need to modify it for this lab. Later labs will deal with client-side development.
 
 ### Step 5: Explore the server
 Since our focus is the `backend` - lets take a look at our server environment. First. Lets explore the file tree.
-
-
 
 * click `backend` in the file tree to explore the actual files our server is using
 * Click `api` and `django_backend` to expand out the folders and see what we have.
