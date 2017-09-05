@@ -40,32 +40,31 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * [REST and Twitter API Lab](/modules/restful-api/README.md)
   * [Github primer](/modules/github/README.md)
   * [Container primer](/modules/containers/README.md)
-* Web Services ([Slides TBA]())
-  * Concept Inventory
-  * Web Services and APIs
+* Web Services ([Lecture 2 Slides](/slides/lecture2/index.html))
+  * Background
   * Service oriented Architectures (SOA)
-  * `Client` and `Server`
+  * Web Service Standards (`WS-*`)
+  * Methods: SOAP / REST / Web sockets
+  * Data Formats: XML, JSON
+* Server-side Development in Django ([Lecture 3 Slides](/slides/lecture2/index.html))
+  * Intro to Django
+  * Server-side Model View Controller
+  * Django REST Framework
   * [Creating a new Web service](/modules/building-a-server/README.md)
 * Client-side Development
+  * Browser Object Model Overview
+  * JQuery Overview
+  * Asynchronicity is your friend
   * Model View Controller
   * Ember.js
   * Handlebars
   * AJAX for External API integration
-  * Short Dev Lab
-* Develop and harden your own Serverside API
-  * Intro to Django
-  * Server-side Model View Controller
-  * Django REST Framework
-  * API Hardening
-  * Short Dev Lab
+* Pen testing and Hardening
 * Step back and think about Software engineering Principles
   * Software Development Lifecycle
   * Requirements Engineering and Use/Misuse case review
   * Software Architecting
   * Integration patterns between Servers and Clients
-  * Browser Object Model Overview
-  * JQuery Overview
-  * Asynchronicity is your friend
 * Configuration and hardening
   * Apache Hardening
   * [IP Tables and OS Hardening](modules/iptable-exercise.md)
@@ -77,9 +76,6 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Come up with your own project idea or implement something for a friend/family member or community organization
   * [Project 1](#projects): Requirements Engineering, Product Design, Architecture, and Client-side Prototype
   * [Project 2](#projects): Server-side API Creation and Client-side Integration
-* Classwide project final
-  * Work together with the rest of your classmates to develop a real app for a non-profit
-  * Organization TBA
 
 ## Projects
 [Project 1 rubric](/modules/IA8470-project-1-rubric.pdf) - Creating and securing a prototype application
