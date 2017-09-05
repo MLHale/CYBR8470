@@ -55,11 +55,7 @@ You should complete the following lessons before attempting this lesson.
     - [Step 6: Press the button](#step-6-press-the-button)
     - [Step 7: Chrome Dev Tools - Your new best friend](#step-7-chrome-dev-tools---your-new-best-friend)
     - [Step 8: Make a new REST endpoint to make the client button work with the backend](#step-8-make-a-new-rest-endpoint-to-make-the-client-button-work-with-the-backend)
-    - [Step 9: Get events from Littlebits](#step-9-get-events-from-littlebits)
-    - [Step 10: Profit!](#step-10-profit)
-    - [Checkpoint](#checkpoint-1)
-    - [Additional Resources](#additional-resources)
-    - [Acknowledgements](#acknowledgements)
+    - [Step 9: Profit!](#step-9-profit)
     - [License](#license)
 
 <!-- TOC END -->
