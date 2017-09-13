@@ -266,7 +266,7 @@ Next lets look at `urls.py`. This file tells Django which URLs are accessible on
 **api/urls.py**
 ```python
 urlpatterns = [
-    url(r'^session/', controllers.Session.as_view()),
+    url(r'^session', csrf_exempt(controllers.Session.as_view())),
     url(r'^register', csrf_exempt(controllers.Register.as_view())),
     url(r'^', include(router.urls)),
 ]
@@ -279,8 +279,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/', include(api_urls)),
-    url(r'^xss-example/', controllers.css_example),
-    url(r'^', views.home),
+    url(r'^xss-example/', controllers.xss_example),
+    url(r'^', controllers.home),
 ]
 ```
 
