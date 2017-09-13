@@ -370,7 +370,7 @@ class Events(APIView):
 **new api/urls.py**
 ```python
 urlpatterns = [
-    url(r'^session/', controllers.Session.as_view()),
+    url(r'^session', csrf_exempt(controllers.Session.as_view())),
     url(r'^register', csrf_exempt(controllers.Register.as_view())),
     url(r'^events', csrf_exempt(controllers.Events.as_view())),
     url(r'^', include(router.urls)),
@@ -420,7 +420,7 @@ When you've looked over the different features. Come back and click on the `netw
 
 
 * If you click on `activateIFTTT` you will see the exact request that is getting sent.
-* You should see a similar error to method not allowed like we saw before. That is becaus
+* You should see a similar error to  `method not allowed` like we saw before. This is because we haven't actually defined or enabled the activateIFTTT endpoint on the server-side yet. We will do that next.
 * If you click over to the `response` tab you will see the raw response that the server is returning when this button is clicked.
 
 ### Step 8: Make a new REST endpoint to make the client button work with the backend
