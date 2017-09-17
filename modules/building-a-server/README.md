@@ -51,7 +51,7 @@ You should complete the following lessons before attempting this lesson.
     - [Step 2: No, you won't be starting from scratch](#step-2-no-you-wont-be-starting-from-scratch)
     - [Step 3: Setup the server](#step-3-setup-the-server)
     - [Step 4: Run the server](#step-4-run-the-server)
-    - [Step 5: Explore the server](#step-5-explore-the-server)
+    - [Step 5: Building the server event API endpoint](#step-5-building-the-server-event-api-endpoint)
     - [Step 6: Press the button](#step-6-press-the-button)
     - [Step 7: Chrome Dev Tools - Your new best friend](#step-7-chrome-dev-tools---your-new-best-friend)
     - [Step 8: Make a new REST endpoint to make the client button work with the backend](#step-8-make-a-new-rest-endpoint-to-make-the-client-button-work-with-the-backend)
@@ -318,6 +318,12 @@ class Events(APIView):
     parser_classes = (parsers.JSONParser,parsers.FormParser)
     renderer_classes = (renderers.JSONRenderer, )
 
+    def get(self, request, format=None):
+        events = Event.objects.all()
+        json_data = serializers.serialize('json', events)
+        content = {'events': json_data}
+        return HttpResponse(json_data, content_type='json')
+
     def post(self, request, *args, **kwargs):
         print 'REQUEST DATA'
         print str(request.data)
@@ -344,12 +350,6 @@ class Events(APIView):
         print 'New Event Logged from: ' + requestor
         return Response({'success': True}, status=status.HTTP_200_OK)
 
-    def get(self, request, format=None):
-        events = Event.objects.all()
-        json_data = serializers.serialize('json', events)
-        content = {'events': json_data}
-        return HttpResponse(json_data, content_type='json')
-
 ```
 * There is a fair bit of code here, so lets break it down. The first three fields sets some parameters to allow this endpoint to be accessible and parsed using a form parser and then displayed using the JSON renderer. If we look at `Django REST Framework` each of these items is defined. They are unimportant, at the moment.
 * Below this, we see the `GET` method that we need to support our client.
@@ -363,6 +363,7 @@ class Events(APIView):
   * This takes in a request, parses out the data, and saves a new event to our database of events.
   * It uses the request's header data (in request.META) to log the IP of the user making the request.
   * If the data conforms to our validations, the new event is saved and a response message is returned. Otherwise, if the request is malformed, we send a `BAD_REQUEST` error response.
+  * Add this method in and save the file.
 
 * Now that our methods for this endpoint are defined, we need to now create a URL to expose the endpoint to the web.
 * open `api/urls.py` and edit it to look like the following:
