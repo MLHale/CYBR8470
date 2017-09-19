@@ -1,7 +1,7 @@
 # Django REST API Exercise
 
 ## Introduction
-This exercise is to practice the skills you learned about in the [Building a Server Lab](./README.md). You should submit a link to your github repository on canvas.
+This exercise is to practice the skills you learned about in the [Building a Server Lab](./README.md). See the [submission](#submission) section for more information about what you should submit for this lab assignment.
 
 ## Due Date
 Thursday September 28th.
@@ -31,6 +31,7 @@ A breed should contain the following fields:
 ### Todo List
 
 To do this, do the following:
+ - track all of your changes using github. You can use the github repo you used for the webservice lab.
  - add a `Dog` and `Breed` models to models.py
  - migrate your database to include tables for `Dog` and `Breed`
  - add a two `class-based API view` controllers for handling `Breed` REST endpoints to controllers.py
@@ -44,5 +45,11 @@ To do this, do the following:
     - The `BreedList` class should have two methods named `get` and `post`
     - refer to [http://www.django-rest-framework.org/tutorial/3-class-based-views/](http://www.django-rest-framework.org/tutorial/3-class-based-views/) for examples
  - add the approrpriate url patterns to the urls.py file to accept all of the patterns and map them to the correct controller
- 
- 
+ - test your endpoints with `POSTMAN`, taking screenshots of each type of request. There should be 5 requests total for each type of model, for a total of 10 tests and screenshots.
+    - GET (list), POST to `/api/dogs/`
+    - GET, PUT, DELETE to `/api/dogs/<id>`
+    - GET (list), POST to `/api/breeds/`
+    - GET, PUT, DELETE to `/api/breeds/<id>`
+    
+## Submission
+Submit a link to canvas with a link to your github repository along with the screenshots showing that you tested each method type. 
