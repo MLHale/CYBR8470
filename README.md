@@ -57,6 +57,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Django REST Framework
   * Django in Docker
   * [Creating a new Web service](/modules/building-a-server/README.md)
+  * [Building API endpoint exercise](/modules/building-a-server/django-exercise.md)
 * Client-side Development
   * Browser Object Model Overview
   * JQuery Overview
