@@ -87,6 +87,9 @@ There can be many different scenarios that lead to errors.
 * Maybe something went wrong with the implementation (an `algorithm fault`)
 * Maybe something occurs in the deployment environment that changes the setup and causes a `mechanical fault`
 
+![bad design](./img/watering-can.jpg)
+> Image credit: Katerina Kamprani (Wired), https://www.wired.com/2014/04/perfect-terrible-redesigns/
+
 ![error-slides](./img/error-slide3.png)
 > Image credit: Bruegge and Dutoit, _Object-oriented Software Engineering: Using UML, Patterns, and Java_, Prentice Hall, 2010
 
@@ -94,10 +97,10 @@ There can be many different scenarios that lead to errors.
  > Image credit: Bruegge and Dutoit, _Object-oriented Software Engineering: Using UML, Patterns, and Java_, Prentice Hall, 2010
 
 #### What can we do about errors and faults?
-We can Test! The goal of testing is to discover `faults` before they lead to `errors`. Once we know what is wrong, we can `mitigate` it in some way to prevent it from becoming an issue.
+We can **Test!** The goal of testing is to discover `faults` before they lead to `errors`. Once we know what is wrong, we can `mitigate` it in some way to prevent it from becoming an issue.
 
 * Testing often means traversing the different ways in which your app operates.
-* This is especially true for `penetration` tests which identify `security faults` (commonly known as `software weaknesses`).
+* This is especially true for `penetration` tests which identify `security faults` (commonly known as `software weaknesses`) that lead to `security vulnerabilities`.
 
 ![error-slides](./img/error-slide5.png)
 > Image credit: Bruegge and Dutoit, _Object-oriented Software Engineering: Using UML, Patterns, and Java_, Prentice Hall, 2010
@@ -125,8 +128,8 @@ Ok, so we understand the basics of testing. How do developers think about penetr
 Often `use cases` and `user stories` are used to define what a system should be doing.
 
 * For our app, some user stories might be:
-1. As a **cloudbit owner**, I want to **control my lights from my phone**, so that _I don't have to get off the couch to turn them on or off_.
-1. As a **cloudbit owner**, I want to **view previous device events**, so that _I know when my device was used_.
+1. As a **home automation enthusiast**, I want to **control my lights from my phone using IFTTT**, so that _I don't have to get off the couch to turn them on or off_.
+1. As a **home automation enthusiast**, I want to **view previous home device events**, so that _I know when my devices were used_.
 
 Once you know what the app _should_ do, you can define `misuse cases` or `misuser stories` that describe how bad actors might abuse or impair the use cases and user stories. These `misuse` scenarios guide the kind of penetration testing you might do.
 
@@ -166,10 +169,10 @@ Unfortunately, the surface is not the only place where vulnerabilities can occur
 ### Step 4: Getting started testing in POSTMAN
 We've created this pretty cool API and nice client-side interface to use it. However, as you will see, our API is, by default, pretty insecure! In the next sections, we will see just how bad it is by using some penetration tests to identify and highlight problems.
 
-* We will look at them one at a time. First lets start our server. Change into your `nebraska-gencyber-dev-env` folder.
+* We will look at them one at a time. First lets start our server. Change into your `webservice lab` folder (i.e. the one you used for the previous lab).
 * type `docker-compose up` to run the server
 
-> Note: This assumes your work is completed from the previous lesson. If you want to run this module stand-alone. Ensure you have the correct code and operational environment. For stand-alone setup, see [stand-alone setup](#stand-alone-lesson-setup) below.
+> Note: This assumes your work is completed from the previous lesson.
 
 * Now open `POSTMAN` and send a simple `GET` request to your local server at `https://localhost`.
 * What do you get?
@@ -182,13 +185,13 @@ The first issue on our server is that it doesn't enforce `authentication`. This 
 * Lets go back to our browser and go to http://localhost.
 * If you are logged in, click `logout`
 
-![data still there!](./img/logged-in.png)
+<!-- ![data still there!](./img/logged-in.png) -->
 > Note your data items probably look slightly different than mine, since I am developing this lesson and haven't loaded much data in the app!
 
 * click `home` after logging out
 * What do you see?
 
-![data still there!](./img/logged-out.png)
+<!-- ![data still there!](./img/logged-out.png) -->
 > Note your data items probably look slightly different than mine, since I am developing this lesson and haven't loaded much data in the app!
 
 What gives? Our data is still visible when we are logged out.
