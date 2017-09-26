@@ -176,7 +176,7 @@ We've created this pretty cool API and nice client-side interface to use it. How
 
 * Now open `POSTMAN` and send a simple `GET` request to your local server at `https://localhost`.
 * What do you get?
-* Now try sending a `GET` request to `https://localhost/api/deviceevents`
+* Now try sending a `GET` request to `https://localhost/api/events`
 * What do you see?
 
 ### Step 5: Exploring Authentication and permissions
@@ -203,7 +203,7 @@ That means that anyone can get this data?
 Lets confirm this from `POSTMAN`:
 
 * open your `POSTMAN` window
-* Make a `GET` request to `https://localhost/api/deviceevents`
+* Make a `GET` request to `https://localhost/api/events`
 
 ![Unauthenticated GET Request](./img/unauthenticated-GET.png)
 > Note your data items probably look slightly different than mine, since I am developing this lesson and haven't loaded much data in the app!
