@@ -264,7 +264,7 @@ TEMPLATES = [
     },
 ]
 ```
-This configuration setting joins the operating system's `BASE_DIR` (or base directory) to the `static/ember/` directory. This means, it looks for `/<path-where-django-exists>/static/ember/`. For us that is `/nebraska-gencyber-dev-env/backend/static/ember/`. If we look in that folder we will see the index.html file that loads in the javascript and other files associated with the client you have been looking at all of this time when you visit https://localhost
+This configuration setting joins the operating system's `BASE_DIR` (or base directory) to the `static/ember/` directory. This means, it looks for `/<path-where-django-exists>/static/ember/`. For us that is `../backend/static/ember/`. If we look in that folder we will see the index.html file that loads in the javascript and other files associated with the client you have been looking at all of this time when you visit https://localhost
 
 > In practice you would need to do a full assessment of the client. For now, we will assume it is 'safe' from the point of view of the server.
 
@@ -272,13 +272,13 @@ Overall, our server should assume that clients can be compromised and, therefore
 
 What Cybersecurity First Principle might that be?
 
-### Step 7: Explore the `ActivateCloudbit` endpoint
-Next up is the `ActivateCloudbit` class. We created this controller in the [previous lesson](../building-a-server/README.md). Since this endpoint includes a `POST` request handler, we should carefully review and assess it.
+### Step 7: Explore the `ActivateIFTTT` endpoint
+Next up is the `ActivateIFTTT` class. We created this controller in the [previous lesson](../building-a-server/README.md). Since this endpoint includes a `POST` request handler, we should carefully review and assess it.
 
 #### First Question
 The first question is does it `require authentication`? Authentication should be used anytime you want to restrict access to data as part of an effort of __information hiding__.
 
-Should `ActivateCloudbit` require authentication?
+Should `ActivateIFTTT` require authentication?
 
 Keep track of your answers.
 
@@ -295,7 +295,7 @@ Sometimes you want to restrict access to data based on who is making the request
 In our case, the question is 'does our method restrict who can make the `POST` request?' Assuming authentication was put in place, who has access?
 
 #### Answering Question 1 (Authentication)
-Lets evaluate authentication. This one is easy. Looking at the code we see the line: `permission_classes = (AllowAny,)` in the ActivateCloudbit class. This, as the name implies, literally allows anyone to access this method. We can confirm this in `POSTMAN`.
+Lets evaluate authentication. This one is easy. Looking at the code we see the line: `permission_classes = (AllowAny,)` in the `ActivateIFTTT` class. This, as the name implies, literally allows anyone to access this method. We can confirm this in `POSTMAN`.
 
 * Open `POSTMAN`
 * Issue the following request:
@@ -312,18 +312,14 @@ Body:
 ```json
 {
     "eventtype": "test",
-    "timestamp": 1500681745
+    "timestamp": 1500681745,
+    "userid": 1,
 }
 ```
-* If you send the request when your `cloudbit` is disconnected you will get:
 
-![request](./img/activate-request1.png)
+> Response img goes here
 
-* If you connect it, you should get:
-
-![request](./img/activate-request2.png)
-
-In either case, we were able to execute the method without logging in. So clearly, **authentication is not required here**. It should be - since our cloudbit could otherwise be turned on by anyone.
+We were able to execute the method without logging in! So clearly, **authentication is not required here**. It should be - since without authentication **ANYONE** could turn on **OUR** `IFTTT` account!
 
 #### Answering Question 2 (Parameterization)
 The next question was whether or not the request is `parameterized`. Looking at our `post` method we see that it only accepts two input fields from the requestor. Everything else is collected elsewhere:
@@ -336,10 +332,8 @@ timestamp = int(request.data.get('timestamp'))
 We also see that overall, the method uses the `DeviceEvent` `model` schema to create a new event.
 
 ```python
-newEvent = DeviceEvent(
-    device=device,
+newEvent = Event(
     eventtype=eventtype,
-    power=-1,
     timestamp=datetime.datetime.fromtimestamp(timestamp/1000, pytz.utc),
     userid=userid,
     requestor=requestor
@@ -349,19 +343,17 @@ newEvent = DeviceEvent(
 The DeviceEvent method is parameterized by definition - i.e. each of the fields are typed in the definition of the model:
 
 ```python
-class DeviceEvent(models.Model):
-    device = models.ForeignKey(Device, on_delete=models.CASCADE, related_name='events')
+class Event(models.Model):
     eventtype = models.CharField(max_length=1000, blank=False)
-    power = models.IntegerField()
     timestamp = models.DateTimeField()
     userid = models.CharField(max_length=1000, blank=True)
     requestor = models.GenericIPAddressField(blank=False)
 
     def __str__(self):
-        return str(self.eventtype) + str(self.device)
+        return str(self.eventtype)
 ```
 
-The only fields of concern here are `eventtype` and `timestamp`. We need to ensure that these fields are `character` (string) and `integer` fields respectively. Since **accepting arbitrary string data is bad**, it is also a good idea to not allow any raw special characters or symbols that can be used for nefarious purposes (like the keyword `javascript` or parentheses and slashes). For these characters, you want to either remove them or `escape` them.
+The only fields of concern here are `eventtype` and `userid`. We need to ensure that these fields are actually strings. Since **accepting arbitrary string data is bad**, it is also a good idea to not allow any raw special characters or symbols that can be used for nefarious purposes (like the keyword `javascript` or parentheses and slashes). For these characters, you want to either remove them or `escape` them.
 
 Let's test our fields.
 
@@ -457,53 +449,9 @@ Lets review what we've learned.
 ### Additional Resources
 For more information, investigate the following.
 
-* [http://developers.littlebitscloud.cc/](http://developers.littlebitscloud.cc/) - API reference for the Littlebits web service.
 * [Bruegge and Dutoit, _Object-oriented Software Engineering: Using UML, Patterns, and Java_, Prentice Hall, 2010](http://dl.acm.org/citation.cfm?id=1795808)
 
-#### Stand Alone Lesson Setup
-If you want to run this lesson without running [Building a server](../building-a-server/README.md) you can run the following commands.
-
-Open a `Powershell` terminal and change directory to your `Desktop`:
-```bash
-git clone https://github.com/MLHale/nebraska-gencyber-dev-env --recursive
-cd nebraska-gencyber-dev-env
-cd backend/
-git checkout tags/step10-server
-cd ..
-docker-compose build
-docker-compose run django bash
-python manage.py flush
-python manage.py makemigrations
-python manage.py migrate
-python manage.py createsuperuser --username admin --email admin
-exit
-docker-compose up
-```
-
-Now, in `Atom`, open the `/nebraska-gencyber-dev-env/backend/django_backend/settings.py` file.
-
-find the line marked:
-```
-ALLOWED_HOSTS = ['137.48.185.230', 'localhost']
-```
-Replace '137.48.185.230' with your `ip address`.
-
-* to get your server ip, you need to open a `Powershell` and type:
-```bash
-ipconfig --all
-```
-* find your ipv4 address on the ip record for the ethernet card attached to your machine
-* alternatively, you can go to http://google.com and search for 'my ip address'
-
-Also be sure to login to http://localhost/admin/ and add your API key by clicking `Api keys` and then `Add Api Key`. If you forgot it or don't have your key handy, you can retrieve it by visiting http://control.littlebitscloud.cc/ and clicking on `settings`. Set `owner` to `admin` and then click save to store it.
-
-### Acknowledgements
-Special thanks to [Dr. Robin Gandhi](http://faculty.ist.unomaha.edu/rgandhi/), Andrew Li, and April Guerin for reviewing and editing this module.
 
 ### License
-[Nebraska GenCyber](https://github.com/MLHale/nebraska-gencyber) <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
-
-Overall content: Copyright (C) 2017  [Dr. Matthew L. Hale](http://faculty.ist.unomaha.edu/mhale/), [Dr. Robin Gandhi](http://faculty.ist.unomaha.edu/rgandhi/), and [Doug Rausch](http://www.bellevue.edu/about/leadership/faculty/rausch-douglas).
-
-Lesson content: Copyright (C) [Dr. Matthew Hale](http://faculty.ist.unomaha.edu/mhale/) 2017.  
+Lesson content: Copyright (C) [Dr. Matthew Hale](http://faculty.ist.unomaha.edu/mhale/) 2017 or as listed.  
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">This lesson</span> is licensed by the author under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
