@@ -58,6 +58,11 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Django in Docker
   * [Creating a new Web service](/modules/building-a-server/README.md)
   * [Building API endpoint exercise](/modules/building-a-server/django-exercise.md)
+* Test-driven Development
+  * Unit testing
+  * [Pen testing Lab](/modules/penetration-testing/README.md)
+  * Acceptance critera
+  * think-test-build-test-repeat
 * Client-side Development
   * Browser Object Model Overview
   * JQuery Overview
@@ -66,7 +71,6 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Ember.js
   * Handlebars
   * AJAX for External API integration
-* Pen testing and Hardening
 * Step back and think about Software engineering Principles
   * Software Development Lifecycle
   * Requirements Engineering and Use/Misuse case review
@@ -75,10 +79,6 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 * Configuration and hardening
   * Apache Hardening
   * [IP Tables and OS Hardening](modules/iptable-exercise.md)
-* Test-driven Development
-  * Unit testing
-  * Acceptance critera
-  * think-test-build-test-repeat
 * Time to be creative
   * Come up with your own project idea or implement something for a friend/family member or community organization
   * [Project 1](#projects): Requirements Engineering, Product Design, Architecture, and Client-side Prototype
