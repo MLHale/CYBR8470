@@ -218,9 +218,9 @@ Our web server exposes several endpoints for end-user consumption, look at the f
 * `/api-auth/<approved rest_framework urls>` -> Rest api-auth package
 * `/api/session` -> controllers.Session (Class)
 * `/api/register` -> controllers.Register (Class)
-* `/api/deviceevents` -> controllers.DeviceEvents (Class)
-* `/api/activatecloudbit` -> controllers.ActivateCloudbit (Class)
-* `css-example/` -> controllers.css_example (method that demonstrates cross-site scripting),
+* `/api/events` -> controllers.Events (Class)
+* `/api/activateIFTTT` -> controllers.ActivateIFTTT (Class)
+* `xss-example/` -> controllers.xss_example (method that demonstrates cross-site scripting),
 * `/*` -> controllers.home (Single Method that serves up our frontend client)
 
 For our purposes, we will assume that the open source, highly reviewed, and security tested code from the `Django Admin` Package and the `Django REST Framework` library have been sufficiently assessed.
@@ -278,7 +278,7 @@ Next up is the `ActivateIFTTT` class. We created this controller in the [previou
 #### First Question
 The first question is does it `require authentication`? Authentication should be used anytime you want to restrict access to data as part of an effort of __information hiding__.
 
-Should `ActivateIFTTT` require authentication?
+Should `ActivateIFTTT` require authentication, what about the `event` controller?
 
 Keep track of your answers.
 
@@ -297,8 +297,9 @@ In our case, the question is 'does our method restrict who can make the `POST` r
 #### Answering Question 1 (Authentication)
 Lets evaluate authentication. This one is easy. Looking at the code we see the line: `permission_classes = (AllowAny,)` in the `ActivateIFTTT` class. This, as the name implies, literally allows anyone to access this method. We can confirm this in `POSTMAN`.
 
+* Logout of the application
 * Open `POSTMAN`
-* Issue the following request:
+* Issue the following `POST` request to http://localhost/api/events
 
 Headers:
 ```json
@@ -306,30 +307,42 @@ Headers:
   "Content-Type": "application/json"
 }
 ```
-![request](./img/activate-headers.png)
 
 Body:
 ```json
 {
     "eventtype": "test",
     "timestamp": 1500681745,
-    "userid": 1,
+    "userid": "myname"
 }
 ```
+![](./assets/README-d64d6.png)
 
-> Response img goes here
+We were able to create a new event without logging in! What about the `ActivateIFTTT` endpoint?
 
-We were able to execute the method without logging in! So clearly, **authentication is not required here**. It should be - since without authentication **ANYONE** could turn on **OUR** `IFTTT` account!
+* Issue the same request to http://localhost/api/activateifttt
+
+![](./assets/README-d0691.png)
+
+It works too! So clearly, **authentication is not required here**. It should be - since without authentication **ANYONE** could turn on **OUR** `IFTTT` account or create events for our devices!
 
 #### Answering Question 2 (Parameterization)
-The next question was whether or not the request is `parameterized`. Looking at our `post` method we see that it only accepts two input fields from the requestor. Everything else is collected elsewhere:
+The next question was whether or not the request is `parameterized`. Looking at our `post` method for `Events` we see that it only accepts two input fields from the requestor. Everything else is collected elsewhere:
+
+```python
+eventtype = request.data.get('eventtype')
+timestamp = int(request.data.get('timestamp'))
+userid = request.data.get('userid')
+```
+
+Looking the the `post` method in `ActivateIFTTT` we see it only accepts two parameters.
 
 ```python
 eventtype = request.data.get('eventtype')
 timestamp = int(request.data.get('timestamp'))
 ```
 
-We also see that overall, the method uses the `DeviceEvent` `model` schema to create a new event.
+We also see that overall, both methods uses the `Event` `model` schema to create a new event.
 
 ```python
 newEvent = Event(
@@ -340,7 +353,7 @@ newEvent = Event(
 )
 ```
 
-The DeviceEvent method is parameterized by definition - i.e. each of the fields are typed in the definition of the model:
+The `Event` model is parameterized by definition - i.e. each of the fields are typed in the definition of the model:
 
 ```python
 class Event(models.Model):
@@ -359,14 +372,12 @@ Let's test our fields.
 
 * Send a request with string data in the `timestamp` field
 
-![request](./img/activate-request3.png)
+![request](./assets/README-97693.png)
 
-What happened? Oops, we caused the server to generate a 500 error. This happened because it tried to turn an arbitrary string into an int i.e. `timestamp = int(request.data.get('timestamp'))`. It is good that it didn't accept it, but it is bad that it crashed!
+What happened? Oops, we caused the server to generate a 500 error. This happened because it tried to turn an arbitrary string into an `DateTimeField`. It is good that it didn't accept it, but it is bad that it crashed! Look at that error message it gave us!
 
 * lets change the `timestamp` back and try to send a `cross-site scripting attack` using the event field.
-
-![request](./img/activate-accepts-arbitrary-input1.png)
-![request](./img/activate-accepts-arbitrary-input2.png)
+* Issue a `POST` request to http://localhost/api/activateifttt with the following body:
 
 ```json
 {
@@ -374,20 +385,23 @@ What happened? Oops, we caused the server to generate a 500 error. This happened
        "timestamp": 1500681745
 }
 ```
+![](./assets/README-b8337.png)
+![](./assets/README-b8337.png)
 
-* It worked! We can send any string text to our app.
+* It worked! We can send any string text to our app!
 * The good news is that `Django` automatically `escapes` the string before storing it in the database.
 * The other good news is that our client also `escaped` the string before inserting it into the page.
 * The bad news is that if a client rendered that string as `HTML` bad stuff would happen.
 
-To show you how bad storing arbitrary string text can be, the skeleton code includes an endpoint we have ignored up to this point called `css_example`. This stands for _cross-site scripting example_. The code for the example is loaded in a stand-alone index.html file in the `nebraska-gencyber-dev-env/backend/static/dumb-test-app` folder. Specifically, this **dumb** client includes the following (fairly typical) javascript method that is often used for loading data.
+To show you how bad storing arbitrary string text can be, the skeleton code in the original lab includes an endpoint we have ignored up to this point called `xss_example`. This stands for _cross-site scripting example_. The code for the example is loaded in a stand-alone index.html file in the `/backend/static/dumb-test-app` folder. Specifically, this **dumb** client includes the following (fairly typical) javascript method that is often used for loading data.
+
 
 ```html
 <html>
   <head>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script type="text/javascript">
-      $.get('../api/deviceevents').then(function(events){
+      $.get('../api/events').then(function(events){
         console.log(events)
         events.forEach(function(event){
           $('#this-is-bad').append("<br>");
@@ -412,27 +426,27 @@ To show you how bad storing arbitrary string text can be, the skeleton code incl
 * While this type of data loading is **quite typical** in many web applications it is **highly vulnerable** to a type of `cross-site scripting (XSS)` attack called `stored cross-site scripting`.
 * In our case, our server `API endpoint` did not filter the string text, so it allows for XSS text to be stored as a string. When the client loads the data from the server, it `renders it as HTML` causing the XSS attack to succeed and a popup to be generated.
 
-If you visit, https://localhost/css_example/ you can see this `Stored XSS` attack in action.
+If you visit, https://localhost/xss_example/ you can see this `Stored XSS` attack in action.
 
-![request](./img/activate-accepts-arbitrary-input3.png)
+![request](./assets/README-d6363.png)
+![request](./assets/README-de3d7.png)
 
 #### Answering Question 3 (Object Level Permissions)
 In this case, our method doesn't use authentication, so it **doesn't** use `object-level permissions` by default. If we did add authentication and wanted to check for object-level permissions. We would need to check that the code checks not just if the user is authenticated but also if they have permissions on that object to do what they are asking to do.
 
-We will come back to this in the next lesson.
+We may come back to this .
 
 ### Step 8: Perform a similar analysis on the other endpoints
 Look at the other URLs our app makes use of. Ask yourself similar questions and back them up with some tests. Keep track of the results you find as you go along.
 
 ### Step 9: Exploring Error Handling Behavior
 Earlier, in Step 7 we saw that sending a string in the `timestamp` field generated the following error message:
-![request](./img/activate-request3.png)
+![request](./assets/README-97693.png)
 
 The problem here is not just that the field is mishandled, but that the error gives **FULL DETAILS ABOUT THE SERVER CONFIG**. As you can imagine listing out all the server details is bad practice.
 
 Accidentally revealing server information is a big problem. While this info is really helpful during development, it can expose the server if users see it in production. You can turn off debug information by setting a `DEBUG = False` in the `/django_backend/settings.py` file.
 
-We will return to this in the next lesson.
 
 ### Step 10: Risk Assessment - Summarizing your test results
 For now, lets summarize the `test results` that we have collected to identify what our risks look like. Usually, risks are collected and then ranked according to `severity` (or `impact`) and `likelihood` (i.e. how probable an attack is to occur). In organizations or systems with many risks, preventing all of them isn't always feasible. `Risk prioritization` can help you decide which threats to focus on first and which vulnerabilities need to be mitigated most.
@@ -441,10 +455,73 @@ For now, lets summarize the `test results` that we have collected to identify wh
 
 Based on the risks you've identified, score them and rank them based what you think the `likelihood` and `impact` of exploitation might be. While our list is small (and we can mitigate all of the problems) - this tool is useful when you have limited time, money, and other resources.
 
-### Checkpoint
-Lets review what we've learned.
+### Step 11: We aren't really done
+Tests are not meant to be once and done. As we talked about in the `Test Driven Development` discussion, you should think of tests as a driver for writing software. You should also run them almost every time you make a change to your code. This is why we need a `unit testing` framework to really rigrously and continuously test our code. For the purposes of this lesson, we will focus on blackbox unit tests that only test `REST endpoints`. We can use `POSTMAN` - which is actually even more amazing than we've seen so far.
 
-<insert quiz here>
+`POSTMAN` uses a concept called `Collections` that allow you to group and run many requests with a single button. Collections also allow you to easily create blackbox tests for your rest endpoints.
+
+It turns out that there is a great tutorial on `POSTMAN` collections. Lets explore that first and then return here.
+
+* Visit [http://blog.getpostman.com/2014/03/07/writing-automated-tests-for-apis-using-postman/](http://blog.getpostman.com/2014/03/07/writing-automated-tests-for-apis-using-postman/) and follow along with part 1 and part 2 of the tutorial. Then return here.
+
+### Step 12: Automated tests for our REST API
+Lets create some `unit tests` for our `REST API` using `POSTMAN` collections.
+
+* Start by creating a new collection. Call it `Demo REST API Unit tests`
+* Using the `POST` request to http://localhost/api/activateifttt click `tests`, and then add the following:
+
+```javascript
+var jsonData = JSON.parse(responseBody);
+tests["XSS Prevented"] = jsonData.success === false;
+```
+* Save the request to the collection using the name `Persistent XSS test`
+* This small piece of javascript creates a new test in the array of `tests` called 'XSS Prevented'. This test passes if the `success` field is false in the response.
+* If we click our `tests` tab in the response, we should see it currently failing
+
+![](./assets/README-57642.png)
+
+Lets create a test to check authentication (question 1).
+
+* Create a new `GET` request to http://localhost/api/session
+* click the `tests` tab and add the following script to save the response `isauthenticated` result as a global variable for later use in other tests.
+
+```javascript
+var jsonData = JSON.parse(responseBody);
+postman.setGlobalVariable("isauthenticated", jsonData.isauthenticated);
+```
+* Now save the request using the name `Auth check`
+* Now create a new `POST` request to http://localhost/api/events with the following:
+
+Headers:
+```json
+{
+  "Content-Type": "application/json"
+}
+```
+
+Body:
+```json
+{
+    "eventtype": "unit-test-events",
+    "timestamp": 1500681745,
+    "userid": "myname"
+}
+```
+
+Tests tab:
+```javascript
+var jsonData = JSON.parse(responseBody);
+tests["Event Endpoint Authentication Check"] =  (jsonData.success === true) && JSON.parse(globals.isauthenticated);
+```
+* This check ensures that if success is returned by the server, globals.isauthenticated is also true. Since the request is in the same collection, the check auth request will ensure that `isauthenticated` is correctly populated.
+* Make some other unit tests for your `API endpoints`. In practice, you would want a test for every endpoint.
+
+### Step 13: Mitigating vulnerabilities
+Lets fix some of our vulnerabilities. For our XSS script, we might either 1) whitelist only certain characters (such as letters and numbers) for our event name and userid fields or 2) escape the characters in either a `javascript` or `html` format.
+
+Look to the [OWASP cheat sheet](https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet) for more information on input validation. [Python Bleach](https://pypi.python.org/pypi/bleach) is a great library for doing sanitization.
+
+Try to sanitize and validate some of the fields to make the tests pass by rejecting requests that contain unacceptable characters.
 
 ### Additional Resources
 For more information, investigate the following.
