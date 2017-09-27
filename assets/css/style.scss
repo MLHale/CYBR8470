@@ -1,0 +1,23 @@
+---
+---
+
+@import "{{ site.theme }}";
+section {
+  width: 70%;
+}
+header {
+  width: 20%;
+}
+div.wrapper {
+  width:100%;
+}
+
+
+@media only screen and (max-width: 960px) {
+  header {
+    width: 100%;
+  }
+  section {
+    width: 100%;
+  }
+}

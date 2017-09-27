@@ -25,21 +25,16 @@ In this module, you will learn how to build a server of your own and connect it 
 By the end of this tutorial, you will be able to:
 * Build and deploy a `Django` server into a `container`
 * Create a `REST endpoint` on the `application server`
-* Connect your server to Littlebits to signal your `cloudbit` to turn on
 
 
 ### Materials Required
 For this lesson, you will need:
 
-* PC
+* PC or Mac with Docker
 * Internet connection
-* Littlebits cloud bit and API Key
-* Littlebits sensor and actuator
 
 ### Prerequisite lessons
 You should complete the following lessons before attempting this lesson.
-* [Hands on IoT: Little Bits Intro](../hands-on-iot-little-bits-intro/README.md),
-* [Hands on IoT: Build an IFTTT IoT app w/ Little Bits](../hands-on-iot-little-bits-ifttt-app/README.md),
 * [Web Services and REST](../restful-api/README.md)
 * [Containers](../containers/README.md)
 
@@ -56,43 +51,37 @@ You should complete the following lessons before attempting this lesson.
     - [Step 2: No, you won't be starting from scratch](#step-2-no-you-wont-be-starting-from-scratch)
     - [Step 3: Setup the server](#step-3-setup-the-server)
     - [Step 4: Run the server](#step-4-run-the-server)
-    - [Step 5: Explore the server](#step-5-explore-the-server)
+    - [Step 5: Building the server event API endpoint](#step-5-building-the-server-event-api-endpoint)
     - [Step 6: Press the button](#step-6-press-the-button)
     - [Step 7: Chrome Dev Tools - Your new best friend](#step-7-chrome-dev-tools---your-new-best-friend)
     - [Step 8: Make a new REST endpoint to make the client button work with the backend](#step-8-make-a-new-rest-endpoint-to-make-the-client-button-work-with-the-backend)
-    - [Step 9: Get events from Littlebits](#step-9-get-events-from-littlebits)
-    - [Step 10: Profit!](#step-10-profit)
-    - [Checkpoint](#checkpoint-1)
-    - [Additional Resources](#additional-resources)
-    - [Acknowledgements](#acknowledgements)
+    - [Step 9: Profit!](#step-9-profit)
     - [License](#license)
 
 <!-- TOC END -->
 
-### Step 1: Review - Where are we so far?
-Before we get started, lets talk about what we've done so far. First, we looked at `Littlebits` and saw that we could plug and play the parts together to create new inventions. We wired these up and hooked them to `IFTTT` to let the web control our `cloudbit`. Then, in the `REST` lesson, we looked behind-the-scenes to see how `web services` like IFTTT and Littlebits actually work. We played around with `POSTMAN` and interacted with the Littlebits `API`.
 
-The last thing we left off with was hooking the Littlebits API up to our own server (instead of IFTTT) so we could make our own home-automation controller Dashboard. We saw how `containers` could be used to host `isolated` servers on another host machine.
+### Step 1: Review - Where are we so far?
+We saw how `containers` could be used to host `isolated` servers on another host machine.
 
 Now, in this lesson, we will examine how to create our own server and deploy it in a container.
 
-For reference, this is the overall design we are looking at. On the left side, you have Littlebits and the `Littlebits API`. We previously worked with the API using `IFTTT`. In the container lesson, you saw how we can setup a new standalone server. In this lesson, we will begin building the item marked `custom web API` in the figure below. It will have features to support authentication, managing our `cloudbit`, and logging events.
+For reference, this is the overall design we are looking at. On the left side, you have some sensors - they could be anything, since this isn't an IoT class, we can just assume we are getting data from them. In this lesson, we will begin building the item marked `custom web API` in the figure below. It will have features to support authentication, logging events, and we can even include a hook to trigger another service (like `IFTTT`).
 ![Web App Architecture](./img/web-app-architecture.png)
 
-
 ### Step 2: No, you won't be starting from scratch
-The process of creating a new application server from the ground up takes some time and attention. Instead of having you start from the ground up, we are providing you with some **starter** skeleton code. This code does the basics of accepting requests and storing data that comes in. Instead of building it, we will look at and examine how it operates before modifying it to make it more secure.
+The process of creating a new application server from the ground up takes some time and attention. Instead of having you start from the ground up, I'll provide you with some **starter** skeleton code. This code does the basics - you will extend it to accepting requests, store the data that comes in, and then trigger another service.
 
-* First, `fork` our repo by visiting the https://github.com/MLHale/nebraska-gencyber-dev-env and clicking 'fork'. This will copy the code from our repository into your GitHub account - so you can track your changes as you go.
-* Since this project includes a `submodule` you need to fork it as well. Visit https://github.com/MLHale/littlebits-rest-api and click `fork`.
+* First, `fork` the repo for this lab by visiting the https://github.com/MLHale/CYBR8470-building-a-webservice-lab and clicking 'fork'. This will copy the code from our repository into your GitHub account - so you can track your changes as you go.
+* Since this project includes a `submodule` that you will edit, you need to fork it as well. Visit https://github.com/MLHale/CYBR8470-building-a-webservice-lab-backend and click `fork`.
 * Let's get started locally on your machine by changing into the Desktop directory and then using `git` to clone the skeleton code repository and get it in onto our local machine.
 
 Open a new `Powershell terminal instance:
 
 ```bash
 cd Desktop
-git clone https://github.com/<your-github-id without the brackets>/nebraska-gencyber-dev-env
-cd nebraska-gencyber-dev-env/
+git clone https://github.com/<your-github-id without the brackets>/CYBR8470-building-a-webservice-lab
+cd CYBR8470-building-a-webservice-lab/
 ```
 
 Add the folder to your `Atom` workspace.
@@ -102,10 +91,10 @@ Open the `.gitmodules` file. Edit the `backend` submodule to point to your forke
 ```
 [submodule "backend"]
 	path = backend
-	url = https://github.com/MLHale/littlebits-rest-api
+	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab
 [submodule "frontend"]
 	path = frontend
-	url = https://github.com/MLHale/littlebits-rest-api-frontend
+	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab-frontend
 ```
 
 becomes
@@ -113,31 +102,31 @@ becomes
 ```
 [submodule "backend"]
 	path = backend
-	url = https://github.com/<your-github-id without the angled brackets>/littlebits-rest-api
+	url = https://github.com/<your-github-id without the angled brackets>/CYBR8470-building-a-webservice-lab-backend
 [submodule "frontend"]
 	path = frontend
-	url = https://github.com/MLHale/littlebits-rest-api-frontend
+	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab-frontend
 ```
 
-This command tells git to use the new url as the path for the submodule. To pull down the code run the following (in the terminal):
+This command tells git to use the new url as the path for the submodule. To pull down the code run the following (in the terminal/powershell):
 
 ```bash
 git submodule sync
 git submodule update --init --recursive --remote
 cd backend/
-git checkout tags/server-lesson-start
-git checkout -b my-server-work
-git push --set-upstream origin my-server-work
+git checkout master
+git checkout -b my-work
+git push --set-upstream origin my-work
 cd ..
 git add -A
 git commit -m "updated to forked submodule repository"
 git push
 ```
 
-This should checkout the code for the start of this lesson and create a new branch called `my-server-work`. It also updates the `nebraska-gencyber-dev-env` repository you forked to include the correct pointer to the new forked submodule. You should also see your file tree in `Atom` update. Any new updates you make you can always run the commands `git add`, `git commit`, and `git push` to save your changes in the branch to your remote repo.
+This should checkout the code for the start of this lesson and create a new branch called `my-work`. It also updates the `CYBR8470-building-a-webservice-lab-backend` repository you forked to include the correct pointer to the new forked submodule. You should also see your file tree in `Atom` update. Any new updates you make you can always run the commands `git add`, `git commit`, and `git push` to save your changes in the branch to your remote repo.
 
 For now, we have our code ready.
-Now use `docker` to build the `image` that our container will use:
+Now use `docker` to build the `image` that our container will use, from the `CYBR8470-building-a-webservice-lab-backend` directory:
 
 ```bash
 docker-compose build
@@ -148,7 +137,7 @@ With this, we should be able to type the following and see our new image.
 ```bash
 docker images
 ```
-It will be called something like `nebraskagencyberdevenv_django`.
+It will be called something like `CYBR8470-building-a-webservice-lab-backend_django`.
 
 ### Step 3: Setup the server
 This server is completely new, so we need to do some setup to get it initially configured. Execute the following to run the server and open up a bash terminal to interact with it.
@@ -169,15 +158,15 @@ exit
 * Now open `Atom` on your desktop,
 * go to the File -> "Add Project Folder..."
 
-![Add folder](./img/add-folder.png)
-> note that your interface may look slightly different on windows.
+<!-- ![Add folder](./img/add-folder.png)
+> note that your interface may look slightly different on windows. -->
 
-* Find your `nebraska-gencyber-dev-env` folder (it should be located at `C:/Users/student/Desktop/`)
-* Upon opening it you should see:
+* Find your `CYBR8470-building-a-webservice-lab-backend` folder (it should be located at `C:/Users/student/Desktop/`)
+* Upon opening it you should see the file tree of the folder structure.
 
-![File Tree](./img/file-tree1.png)
+<!-- ![File Tree](./img/file-tree1.png) -->
 
-Now, in `Atom`, open the `/nebraska-gencyber-dev-env/backend/django_backend/settings.py` file by navigating to it in the file tree (on the left) and clicking it.
+Now, in `Atom`, open the `/CYBR8470-building-a-webservice-lab-backend/backend/django_backend/settings.py` file by navigating to it in the file tree (on the left) and clicking it.
 
 find the line marked:
 ```
@@ -185,7 +174,7 @@ ALLOWED_HOSTS = ['137.48.185.230', 'localhost']
 ```
 Replace '137.48.185.230' with your `ip address`.
 
-* to get your server ip, you need to open a `Powershell` and type:
+* to get your server ip, you need to open a `Powershell` and type (use `ifconfig` instead for Mac/Linux):
 ```bash
 ipconfig --all
 ```
@@ -204,23 +193,21 @@ This server, diagrammatically looks like:
 
 ![Django Architecture](./img/django-architecture.png)
 
-The docker command executes the container using the `docker-compose.yml` file located in your `/nebraska-gencyber-dev-env/` folder.
+The docker command executes the container using the `docker-compose.yml` file located in your `/CYBR8470-building-a-webservice-lab-backend/` folder.
 * Leave this terminal running
 * It works by mapping `port 80` on the `host` to `port 8000` in the container.
 * Inside the container, Django executes its `runserver` utility - which works like a web server.
 * There is also a second container that starts up and runs our `postgres` database server.
-* You can take a look at the `Dockerfile` in your `/nebraska-gencyber-dev-env/` folder to learn more about what happens behind the scenes.
+* You can take a look at the `Dockerfile` in your `/CYBR8470-building-a-webservice-lab-backend/` folder to learn more about what happens behind the scenes.
 
 With the server running, you should be able to visit [http://localhost](http://localhost) to see your server. You should an interface that looks something like the following.  
 
-![skeleton client app](./img/skeleton-client.png)
+<!-- ![skeleton client app](./img/skeleton-client.png) -->
 
-This is a `web client` (also called a `frontend`) that we've built for demo purposes to work with our server. You will be making the server work better with the client.
+This is a `web client` (also called a `frontend`) that I've built for demo purposes to work with our server. You will be making the server work with the client. I've included the client code in the `/frontend` folder, but you won't need to modify it for this lab. Later labs will deal with client-side development.
 
-### Step 5: Explore the server
+### Step 5: Building the server event API endpoint
 Since our focus is the `backend` - lets take a look at our server environment. First. Lets explore the file tree.
-
-
 
 * click `backend` in the file tree to explore the actual files our server is using
 * Click `api` and `django_backend` to expand out the folders and see what we have.
@@ -230,40 +217,40 @@ Since our focus is the `backend` - lets take a look at our server environment. F
 * Look over these three files, first `models.py`, then `urls.py`, then `controllers.py`
 
 #### Models.py
-* In `models.py` you will see that we have defined two `models` `Device` and `DeviceEvent`. Both of these are `schema` that have fields in them for each of the types of data they hold.
-* In our `Device` model we have fields for the `owner` and the `deviceid`. This model will hold data about our cloudbit so that our backend server can make use of it.
+* In `models.py` you will see that we have defined two `models`: `Event` and `ApiKey`. Both of these are `schema` that have fields in them for each of the types of data they hold.
+* In our `ApiKey` model we have fields for the `owner` and the actual `key`. These will hold our IFTTT key that we will use later to communicate with IFTTT via `webhooks`.
+* We have also provided an `Admin` class that lists out the fields. This is used by Django's admin interface to display the data for management.
 
 ```python
-class Device(models.Model):
+class ApiKey(models.Model):
     owner = models.CharField(max_length=1000, blank=False)
-    deviceid = models.CharField(max_length=1000, blank=False)
+    key = models.CharField(max_length=5000, blank=False)
 
     def __str__(self):
-        return str(self.deviceid)
+        return str(self.owner) + str(self.key)
 
-    class JSONAPIMeta:
-        resource_name = "devices"
+class ApiKeyAdmin(admin.ModelAdmin):
+    list_display = ('owner','key')
 ```
 
-* In the `DeviceEvent` model we have fields for:
-  * `device` (i.e. the cloudbit the device event was created for),
+* In the `Event` model we have fields for:
   * the `eventtype` which describes what occurred,
-  * the `power` which identifies the power level on the device when the event occurred
   * `timestamp` (when it happened)
-  * `userid` which is the Littlebits id of the user
-  * and `requestor` which logs the IP of the Littlebits server that sent the message
+  * `userid` which is the id of the user
+  * and `requestor` which logs the IP of the client that sent the message
 
 ```python
-class DeviceEvent(models.Model):
-    device = models.ForeignKey(Device, on_delete=models.CASCADE, related_name='events')
+class Event(models.Model):
     eventtype = models.CharField(max_length=1000, blank=False)
-    power = models.IntegerField()
     timestamp = models.DateTimeField()
-    userid = models.CharField(max_length=1000, blank=True, unique=True)
+    userid = models.CharField(max_length=1000, blank=True)
     requestor = models.GenericIPAddressField(blank=False)
 
     def __str__(self):
-        return str(self.eventtype) + str(self.device)
+        return str(self.eventtype)
+
+class EventAdmin(admin.ModelAdmin):
+    list_display = ('eventtype', 'timestamp')
 ```
 
 * Both of the models also include a `__str__` function which outputs a string if the model is converted to a string.
@@ -279,9 +266,8 @@ Next lets look at `urls.py`. This file tells Django which URLs are accessible on
 **api/urls.py**
 ```python
 urlpatterns = [
-    url(r'^session/', controllers.Session.as_view()),
+    url(r'^session', csrf_exempt(controllers.Session.as_view())),
     url(r'^register', csrf_exempt(controllers.Register.as_view())),
-    url(r'^deviceevents', csrf_exempt(controllers.DeviceEvents.as_view())),
     url(r'^', include(router.urls)),
 ]
 
@@ -293,20 +279,26 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/', include(api_urls)),
-    url(r'^css-example/', controllers.css_example),
-    url(r'^', views.home),
+    url(r'^xss-example/', controllers.xss_example),
+    url(r'^', controllers.home),
 ]
 ```
 
 #### Controllers.py
 Next, lets look at the `controllers.py` file to see what the server does when a URL is visited.
 
-There is a lot of code in this file. Lets look at the function that handles requests to the `/api/deviceevents` URL.
+There is some code in this file that handles session-based authentication and registration, but we need to create more code to make this app work.
 
-* Find the code below.
-* Notice that this is a `class` that extends the Django REST class `APIView`.
-* An `APIView` allows you to define functions that handle `GET` (single), `GET`(list), `POST`, `PUT`, and `DELETE` requests that might arrive at `/api/deviceevents`
-* The `GET` (single) request is used whenever a user wants to get a single item (typically by id), something like `/api/deviceevents/4` would return the event with id 4.
+Specifically the client is trying to retrieve events, so it can display them accordingly in the app. We need an `API endpoint` that handles requests to the `/api/events` URL.
+
+Inspect the network console to see the requests the client is making.
+
+![skeleton client app](./img/event-endpoint-failing.png)
+ > Notice it is making a request to /api/events/ and getting a 405 Method not allow error - because our API does not support this endpoint.
+
+* We can fix this by adding a new `class` that extends the Django REST class `APIView` to implement our endpoint.
+* An `APIView` allows you to define functions that handle `GET` (single), `GET`(list), `POST`, `PUT`, and `DELETE` requests that might arrive at `/api/events`
+* The `GET` (single) request is used whenever a user wants to get a single item (typically by id), something like `/api/events/4` would return the event with id 4.
 * The `GET` (list) request is used whenever a user wants to get all of the events.
 * The `POST` request is used whenever a user wants to make a new event.
 * The `PUT` request is used whenever a user wants to modify an existing event.
@@ -314,44 +306,35 @@ There is a lot of code in this file. Lets look at the function that handles requ
 
 > These conventions are not specific to `Django` they are based on `RESTful API` design standards.
 
-* In our `APIView` we have created two `REST endpoints` for handling `POST` requests and `GET` (list) requests.
+* In our `APIView` we need to create two `REST endpoints` for handling `POST` requests and `GET` (list) requests.
 
-* The `post` function looks at the incoming request,
-* extracts the data fields from it,
-* gets the stored `Device` record (if one exists) or creates a new `Device` record (if one does not exist),
-* and then creates and stores a new `DeviceEvent` record based on the incoming request data
+* The `post` function looks at the incoming request, extracts the data fields from it, and then creates and stores a new `Event` record based on the incoming request data. IF we were working with a real app, another sensor or service could call this endpoint and store data about an event that occured.
 
-* The `get` function simply queries the database for all `DeviceEvent` objects and returns them to the requestor in `JSON` format
+* The `get` function simply queries the database for all `Event` objects and returns them to the requestor in `JSON` format
 
 ```python
-class DeviceEvents(APIView):
+class Events(APIView):
     permission_classes = (AllowAny,)
     parser_classes = (parsers.JSONParser,parsers.FormParser)
     renderer_classes = (renderers.JSONRenderer, )
 
-    def post(self, request, *args, **kwargs):
-        json_req = json.loads(request.POST.get('request'))
+    def get(self, request, format=None):
+        events = Event.objects.all()
+        json_data = serializers.serialize('json', events)
+        content = {'events': json_data}
+        return HttpResponse(json_data, content_type='json')
 
-        eventtype = json_req.get('payload').get('delta')
-        power = json_req.get('payload').get('percent')
-        timestamp = json_req.get('timestamp')
-        userid = json_req.get('user_id')
+    def post(self, request, *args, **kwargs):
+        print 'REQUEST DATA'
+        print str(request.data)
+
+        eventtype = request.data.get('eventtype')
+        timestamp = int(request.data.get('timestamp'))
+        userid = request.data.get('userid')
         requestor = request.META['REMOTE_ADDR']
 
-        try:
-            device = Device.objects.get(deviceid=json_req.get('bit_id'))
-        except Device.DoesNotExist:
-            #device not created - Create it
-            device = Device(
-                deviceid=json_req.get('bit_id'),
-                owner=userid
-            )
-            device.save()
-
-        newEvent = DeviceEvent(
-            device=device,
+        newEvent = Event(
             eventtype=eventtype,
-            power=power,
             timestamp=datetime.datetime.fromtimestamp(timestamp/1000, pytz.utc),
             userid=userid,
             requestor=requestor
@@ -364,37 +347,65 @@ class DeviceEvents(APIView):
             return Response({'success':False, 'error':e}, status=status.HTTP_400_BAD_REQUEST)
 
         newEvent.save()
-        print 'New Event Logged from: ' + json_req.get('bit_id')
-        print json_req.get('payload')
+        print 'New Event Logged from: ' + requestor
         return Response({'success': True}, status=status.HTTP_200_OK)
 
-    def get(self, request, format=None):
-        events = DeviceEvent.objects.all()
-        json_data = serializers.serialize('json', events)
-        content = {'deviceevents': json_data}
-        return Response(content)
+```
+* There is a fair bit of code here, so lets break it down. The first three fields sets some parameters to allow this endpoint to be accessible and parsed using a form parser and then displayed using the JSON renderer. If we look at `Django REST Framework` each of these items is defined. They are unimportant, at the moment.
+* Below this, we see the `GET` method that we need to support our client.
+  * This method makes a database `Query` using Django's Database management system (DBMS) to get all of the events..e.g. `Event.objects.all()`
+  * Once retrieved, the events are serialized as json using a supporting JSON library loaded in python.
+  * These JSON-serialized events are then dropped into a json object called `events` (which is what our client was expecting).
+  * These events are returned back to the client.
+  * Go ahead and add this method in and save the file.
+
+* Below the `GET` request handler, we also have a `POST` handler.
+  * This takes in a request, parses out the data, and saves a new event to our database of events.
+  * It uses the request's header data (in request.META) to log the IP of the user making the request.
+  * If the data conforms to our validations, the new event is saved and a response message is returned. Otherwise, if the request is malformed, we send a `BAD_REQUEST` error response.
+  * Add this method in and save the file.
+
+* Now that our methods for this endpoint are defined, we need to now create a URL to expose the endpoint to the web.
+* open `api/urls.py` and edit it to look like the following:
+
+**new api/urls.py**
+```python
+urlpatterns = [
+    url(r'^session', csrf_exempt(controllers.Session.as_view())),
+    url(r'^register', csrf_exempt(controllers.Register.as_view())),
+    url(r'^events', csrf_exempt(controllers.Events.as_view())),
+    url(r'^', include(router.urls)),
+]
+
 ```
 
+* This tells Django to serve our new endpoint in controllers.py at the url `api/events`
+* now refresh the app
+* examine the console and notice that the GET requests are now succeeding, but no data is being returned.
+* in your browser, navigate to `chrome://apps/` and launch `POSTMAN`
+* Craft a request that looks like the following:
+
+![request](./img/post-an-event.png)
+
+* Now revist http://localhost and refresh the page. Do you see your event?
+* Try posting some more from POSTMAN. It auto-refreshes!
+* Well thats neat. What about that other button in the app though to turn IFTTT on?
 
 #### Checkpoint
-1. Is the URL `<myserver>/api/deviceevents` a valid URL?
+1. Is the URL `<myserver>/api/events` a valid URL?
 1. Is the URL `<myserver>/api/session` a valid URL?
 1. What function gets called when the user visits `<myserver>/api/register`?
-1. What would be the result of making a `DELETE` request to `<myserver>/api/deviceevents`?
-1. What would be the result of making a `POST` request to `<myserver>/api/deviceevents`?
+1. What would be the result of making a `DELETE` request to `<myserver>/api/events`?
+1. What would be the result of making a `POST` request to `<myserver>/api/events`?
 
 ### Step 6: Press the button
-Ok, so you now have a loose familiarity with the skeleton `backend` code that was provided to you. Lets build upon it.
+Ok, so you now have a loose familiarity with the skeleton `backend` code that was provided to you. Lets build some more upon it.
 
-When you login, you should see a green button that says **turn cloudbit on** when visiting `localhost`. Time to push it!
+When you login, you should see a green button that says **turn IFTTT on** when visiting `localhost`. Time to push it!
 
-
-* connect the `power module` to the pink `button` input module
-* connect the `button` module to the `cloudbit` module
-* connect the `cloudbit` module to the `LED` module
 
 * in your browser, go to http://localhost
-* press the button
+* press the UI button
 * what happened?
 * How can we tell?
 
@@ -407,28 +418,23 @@ Lets use the `chrome development tools` to take a closer look.
 Instead of me reinventing the wheel, head over to [https://developers.google.com/web/tools/chrome-devtools/](https://developers.google.com/web/tools/chrome-devtools/) to learn the basics of what Chrome Development tools can do.
 
 When you've looked over the different features. Come back and click on the `network` tab to inspect what is happening with our button.
-You should see:
 
-[button](./img/button-request.png)
 
-If you click on `activatecloudbit` you will see the exact request that is getting sent.
-
-[button](./img/button-failing.png)
-
-If you click over to the `response` tab you will see the raw HTML that the server is returning when this button is clicked.
+* If you click on `activateIFTTT` you will see the exact request that is getting sent.
+* You should see a similar error to  `method not allowed` like we saw before. This is because we haven't actually defined or enabled the activateIFTTT endpoint on the server-side yet. We will do that next.
+* If you click over to the `response` tab you will see the raw response that the server is returning when this button is clicked.
 
 ### Step 8: Make a new REST endpoint to make the client button work with the backend
-Currently, the server doesn't know that it needs to do anything special with the URL `/api/activatecloudbit` so it is just rendering the home page (what we have been looking at this whole time) in response. What we need is for our server to **recognize that a new event has occurred** from the client and then **do something to handle it**, in this case, contact the `Littlebits API`.
+Currently, the server doesn't know that it needs to do anything special with the URL `/api/activateIFTTT` so it is just rendering the home page (what we have been looking at this whole time) in response. What we need is for our server to **recognize that a new event has occurred** from the client and then **do something to handle it**, in this case, contact `IFTTT`.
 
-For this to work, we need to create a new REST Endpoint controller to handle the request. Open up your `controllers.py` file and add a new entry called `ActivateCloudbit`. This entry will only expose a `POST` endpoint. The goal is to:
+For this to work, we need to create a new REST Endpoint controller to handle the request. Open up your `controllers.py` file and add a new entry called `ActivateIFTTT`. This entry will only expose a `POST` endpoint. The goal is to:
 
 * capture the info from the client
-* Talk to `Littlebits API` to retrieve the device info for the current user
-* Use the retrieved device info to craft a `request` to turn on the `Cloudbit`
-* Turn on the cloudbit and log the resulting event locally
+* Retrieve the stored API Key for IFTTT
+* Turn on the a webhook named `test` and log the resulting event locally
 
 ```python
-class ActivateCloudbit(APIView):
+class ActivateIFTTT(APIView):
     permission_classes = (AllowAny,)
     parser_classes = (parsers.JSONParser,parsers.FormParser)
     renderer_classes = (renderers.JSONRenderer, )
@@ -441,49 +447,27 @@ class ActivateCloudbit(APIView):
         timestamp = int(request.data.get('timestamp'))
         requestor = request.META['REMOTE_ADDR']
         api_key = ApiKey.objects.all().first()
-
-        #get device info from Littlebits API
-        r = requests.get('https://api-http.littlebitscloud.cc/v2/devices/', headers= {
-            'Authorization' : 'Bearer ' + api_key.key
-        })
-        print 'Retrieving List of Devices from Littlebits:'
-        print r.json()
-        userid = r.json()[0].get('user_id')
-        deviceid= r.json()[0].get('id')
-
-        try:
-            device = Device.objects.get(deviceid=deviceid)
-        except Device.DoesNotExist:
-            #device not created - Create it
-            device = Device(
-                deviceid=deviceid,
-                owner=userid
-            )
-            device.save()
+        event_hook = "test"
 
         print "Creating New event"
 
-        newEvent = DeviceEvent(
-            device=device,
+        newEvent = Event(
             eventtype=eventtype,
-            power=-1,
             timestamp=datetime.datetime.fromtimestamp(timestamp/1000, pytz.utc),
-            userid=userid,
+            userid=str(api_key.owner),
             requestor=requestor
         )
 
         print newEvent
-        print "Sending Device Event to: " + str(deviceid)
+        print "Sending Device Event to IFTTT hook: " + str(event_hook)
 
-        #send the new event (to turn on the device) to littlebits API
-        event_req = requests.post('https://api-http.littlebitscloud.cc/v2/devices/'+deviceid+'/output', headers= {
-            'Authorization' : 'Bearer ' + api_key.key
+        #send the new event to IFTTT and print the result
+        event_req = requests.post('https://maker.ifttt.com/trigger/'+str(event_hook)+'/with/key/'+api_key.key, data= {
+            'value1' : timestamp,
+            'value2':  "\""+str(eventtype)+"\"",
+            'value3' : "\""+str(requestor)+"\""
         })
-        print event_req.json()
-
-        #check to ensure the device was on and received the event
-        if (event_req.json().get('success')!='true'):
-            return Response({'success':False, 'error':event_req.json().get('message')}, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+        print event_req.text
 
         #check that the event is safe to store in the databse
         try:
@@ -496,132 +480,65 @@ class ActivateCloudbit(APIView):
         newEvent.save()
         print 'New Event Logged'
         return Response({'success': True}, status=status.HTTP_200_OK)
+
 ```
 
-Now that we have the endpoint defined we need to make it available on the web server. Modify `api/urls.py` to include a new line in the `urlpatterns`:
+Now that we have the endpoint defined we need to make it available on the web server. Modify `api/urls.py` to include a new line in the `urlpatterns`, make it look like:
 
 ```python
 urlpatterns = [
-  url(r'^activatecloudbit', csrf_exempt(controllers.ActivateCloudbit.as_view())),
-  ...other stuff...
+    url(r'^session', csrf_exempt(controllers.Session.as_view())),
+    url(r'^register', csrf_exempt(controllers.Register.as_view())),
+    url(r'^events', csrf_exempt(controllers.Events.as_view())),
+    url(r'^activateifttt', csrf_exempt(controllers.ActivateIFTTT.as_view())),
+    url(r'^', include(router.urls)),
 ]
 ```
-> Note: don't include the ...other stuff... portion.
 
 This will make the endpoint available on the webserver. Now go back to http://localhost and try to click the button. What happens?
 
 Did you get an error?
 
-![error with key](./img/error-with-key.png)
-
 This is because we haven't added our `API Key` to our server, so the field `api_key = ApiKey.objects.all().first()` returns null (or `NoneType`). To fix this, open your browser and go to http://localhost/admin/api/apikey/. Click 'add api key'.
 
-![error with key](./img/add-api-key.png)
+* Then enter your username (probably `admin`) in the `owner` field.
+* In the `key` field add in your `IFTTT` API key.
+  * To get that, you need to register for an IFTTT account here: [https://ifttt.com](https://ifttt.com).
+  * Once signed up, go to: [https://ifttt.com/maker_webhooks](https://ifttt.com/maker_webhooks) to enable webhooks.
+  * Once enabled, go to [https://ifttt.com/services/maker_webhooks/settings](https://ifttt.com/services/maker_webhooks/settings).
+  * Your API Key is the part that comes in the url after `https://maker.ifttt.com/use/`
+* we also need to create a new webhook applet named `test` to receive our events.
+  * go to: [https://ifttt.com/create](https://ifttt.com/create)
+  * for the `IF` condition select `webhook`
+  * For the `then` condition you can have IFTTT send you an email or any number of other events. Pick one. When done, save the applet.
 
-Then enter your username (probably `admin`) in the `owner` field. In the `key` field add in your `Littlebits` API key used in the previous lesson (without the word `Bearer`). If you forgot it or don't have it handy, you can retrieve it here by visiting http://control.littlebitscloud.cc/ and clicking on `settings`. When added, save the key.
+* Now go back to your app at localhost and click the green button. What happened?
 
-Since you made some changes to your code repository, lets track the changes with `git`:
 
-in a terminal change directory in the the `/nebraska-gencyber-dev-env` folder and execute the following:
+* Since you made some changes to your code repository, lets track the changes with `git`:
+
+* in a terminal change directory in the the `/backend` folder and execute the following:
 
 ```bash
 git status
 git add -A
 git status
-git commit -m "added activatecloudbit code"
+git commit -m "added endpoints for events and IFTTT"
 git push
 ```
 
 You just pushed your local changes to `remote` on `github`!
 
 #### Stray observations
-* Our new endpoint is a `module` that exemplifies the `modularization` Cybersecurity First Principle. It doesn't rely on the other modules (endpoints).
+* Our new endpoints are each individual `modules` that exemplifies the `modularization` Cybersecurity First Principle. They don't rely on the other modules (endpoints).
 * We did not hardcode our `API key` in the code to protect it from static lookup - this is an example of the `information hiding` Cybersecurity First Principle.
-* We made use of `abstraction` and `resource encapsulation` as they relate to the API design for our server and for the `Littlebits API`
+* We made use of `abstraction` and `resource encapsulation`.
+* We've made our first `web service`!
 
-### Step 9: Get events from Littlebits
-The next step is to not only `send` events to Littlebits, but also to `subscribe` to and `receive` events that are output from the `cloudbit.` To do that, we need to use `POSTMAN` to add a subscriber. This was the last step where we left off in the [REST API](../restful-api/README.md) tutorial. Now we are ready!
-
-Lets add a subscriber to catch input events going to the cloudbit:
-* make a POST request, using `POSTMAN` to https://api-http.littlebitscloud.cc/v2/subscriptions
-* In our case we want to make a server listen for the `cloudbit`, so lets use a URI endpoint as the subscriber
-* Make sure you use the same headers that you used in the `REST` tutorial. If you don't remember it should be:
-
-`headers`:
-```json
-{
-    "Authorization": "Bearer <your api key here without the angled brackets>",
-  "Content-type": "application/json"
-}
-```
-
-This time, in the body, we are going to use:
-
-`body`:
-```json
-{
-    "publisher_id": "<your device id without the angled brackets>",
-    "subscriber_id": "http://gencyber2017.unomaha.edu/api/proxy/<your-server-ip without the angled brackets>/api/deviceevents",
-  "publisher_events": ["amplitude:delta:ignite"]
-}
-```
-
-* to get your server ip, you need to open a `Powershell` and type:
-```bash
-ipconfig --all
-```
-* find your ipv4 address on the ethernet card attached to your machine
-* alternatively, you can go to http://google.com and search for 'my ip address'
-* put the ip in the body of the request above and send the message to the `Littlebits API`
-* If the request works, you should see your request echoed back to you
-
-#### Stray observations
-* We are using http://gencyber2017.unomaha.edu/api/proxy so the requests from Littlebits can make it to your servers in this room.
-* UNO, like other universities and companies, uses a `defense in depth` strategy that includes `perimeter network firewalls`. This is an example of `layering`. In this case, we are filtering external requests through a proxy to check their conformity. If they are clean, they are forwarded through our network firewall to your individual servers.
-* The `publisher_events` field allows you to subscribe to several different types of events. You can find a full list here: http://developers.littlebitscloud.cc/#create-subscription
-* Please do not denial of service the proxy portal - your IP might get automatically banned if you do.
-
-### Step 10: Profit!
+### Step 9: Profit!
 Pretty neat. Observe your handy work.
 
-* connect the `power module` to the pink `button` input module
-* connect the `button` module to the `cloudbit` module
-* connect the `cloudbit` module to the `LED` module
-
-Now, press the button on `button` module. Watch as your server get the events from the `Littlebits API`, logs them locally (creating a database record), stores them for later, and then loads them into the client app for you to see.
-
-> Note: the client is designed to check for updates every 3 seconds.
-
-
-### Checkpoint
-Lets review what we've learned.
-
-https://www.qzzr.com/c/quiz/435902/custom-server-development
-
-
-### Additional Resources
-For more information, investigate the following.
-
-* [http://developers.littlebitscloud.cc/](http://developers.littlebitscloud.cc/) - API reference for the Littlebits web service.
-* [https://developers.google.com/web/tools/chrome-devtools/](https://developers.google.com/web/tools/chrome-devtools/) - Chrome Dev Tools overview
-
-#### Checkpointed code
-If you want to fast forward between lessons, I have provided you with a complete solution through step 10 of this lesson. You can update to that version using the following command from the terminal where your `nebraska-gencyber-dev-env` is running:
-
-```bash
-git checkout tags/step10-server
-```
-
-This will update your local code copy to the tagged release version. You can merge it back into your master branch by making a `pull request` into your master branch using `Github`.
-
-
-### Acknowledgements
-Special thanks to [Dr. Robin Gandhi](http://faculty.ist.unomaha.edu/rgandhi/), Andrew Li, and April Guerin for reviewing and editing this module.
 
 ### License
-[Nebraska GenCyber](https://github.com/MLHale/nebraska-gencyber) <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
-
-Overall content: Copyright (C) 2017  [Dr. Matthew L. Hale](http://faculty.ist.unomaha.edu/mhale/), [Dr. Robin Gandhi](http://faculty.ist.unomaha.edu/rgandhi/), and [Doug Rausch](http://www.bellevue.edu/about/leadership/faculty/rausch-douglas).
-
 Lesson content: Copyright (C) [Dr. Matthew Hale](http://faculty.ist.unomaha.edu/mhale/) 2017.  
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">This lesson</span> is licensed by the author under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

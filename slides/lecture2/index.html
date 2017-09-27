@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+	<html class="sl-root decks export offline loaded">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>8470-Lecture-2 (Web Services): Slides</title>
+		<meta name="description" content="Slides">
+
+		<link rel="stylesheet" type="text/css" href="lib/offline-v2.css">
+
+
+
+	</head>
+	<body class="reveal-viewport theme-font-quicksand theme-color-black-orange">
+		<div class="reveal">
+			<div class="slides">
+				<section data-id="0733f2b9522892dcae6bd62cd0c92e5e" data-background-image="8470-lecture-1-1/96515e3479ab58f89e136f5df60d54af.png" data-background-size="contain"><div class="sl-block" data-block-type="text" style="width: 774px; left: 24px; top: 432px; height: auto;" data-block-id="7c407330a0bc7d1cc86023ac3534119a"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 11; color: rgb(255, 255, 255); font-size: 79%;">
+<h3 style="text-align:left"><strong>Web services</strong></h3>
+</div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 793px; height: 291px; left: 14px; top: 414px;" data-block-id="b20a4a8075d35951d3a8d9c52f6c9c57"><div class="sl-block-style" style="z-index: 10; opacity: 0.56;"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="#000000" data-shape-stretch="true" style="z-index: 10;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 793 291"><rect width="793" height="291" class="shape-element" fill="#000000"></rect></svg></div></div></div>
+<div class="sl-block" data-block-type="text" style="width: 774px; left: 24px; top: 482px; height: auto;" data-block-id="3b490844c30f67a360d086508a0d3c97"><div class="sl-block-style" style="z-index: 12;"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 12; color: rgb(255, 255, 255); border-width: 1px; text-align: left;" dir="ui"><h3 style="text-align:left">Secure Web Application Development</h3></div></div></div>
+<div class="sl-block" data-block-type="text" style="width: 774px; left: 24px; top: 606px; height: auto;" data-block-id="62ec2c505235a384d66a624b768726cf"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 14; color: rgb(255, 255, 255); line-height: 0.871;" data-has-line-height="">
+<p style="text-align:left"><span style="color:#FFA500">Dr. Hale</span></p>
+
+<p style="text-align:left">University of Nebraska at Omaha</p>
+
+<p style="text-align:left">CYBR 8470 - Lecture 2</p>
+</div></div></section><section data-id="4e2cde31b6de5a89c3a092770a5d004c"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="3f68ebc7b6a3de65da13006a770ae466"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; padding: 40px;">
+<h2>Today: Web Services</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 1280px; left: 0px; top: 144px; height: auto;" data-block-id="98f106cc8e300d04ce4c69f1165f8e50"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; padding: 40px;" dir="ui">
+<p> </p>
+
+<p>Part 1:<span style="color:#FFA500"> Service-oriented Architectures (SOA)</span></p>
+
+<ol>
+	<li>History and SOA introduction</li>
+	<li>Service actors</li>
+	<li>Modularization and Service orientedness</li>
+	<li>types of services</li>
+</ol>
+
+<p>Part 2: <span style="color:#FFA500">Service Oriented Methods</span> and Data formats</p>
+
+<ol>
+	<li>WSDL, SOAP, and WS-* standards</li>
+	<li>REST and JSONAPI standard</li>
+	<li>Web sockets</li>
+	<li>Data Formats: XML, JSON</li>
+</ol>
+</div></div></section><section class="stack" data-id="e10c8f36aa56b10d9867d497060f7573"><section data-id="ad463880ff63e5d5ff12b9c0a93db485"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 313px;" data-block-id="83b46450b739ea2037abdb11757fd1d6"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2>Part1: <span style="color:#FFA500">Service-Oriented Architectures</span>
+</h2>
+</div></div></section><section data-id="1a790c26132c8551126294d7dbd3ec40"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 313px;" data-block-id="da57fdd4618f16c72b66f176d93bbf50"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h3 style="color:rgb(255, 255, 255)">
+<span style="color:#FFA500">History </span>and <span style="color:#FFA500">SOA introduction</span>
+</h3>
+</div></div></section><section data-id="86b1de27ea42f2a99d20ce087086c4b2"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="75da9e504366472e1a7b18b50139bb04"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; padding: 40px;">
+<h2><span style="color:#FFA500">What Is a Service?</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 1280px; left: 0px; top: 135px; height: auto;" data-block-id="c9378c723aa9bb57dbe04b33e463f572"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; padding: 40px;">
+<p><span style="color:#FFA500">Real world</span> <span style="color:#FFA500">'service'</span>:</p>
+
+<ul>
+	<li>
+	<p>A piece of work performed by a service provider</p>
+	</li>
+	<li>
+	<p>Takes some input and produces some desired results</p>
+
+	<ul>
+		<li>
+		<p>e.g. a restaurant: pay some money and get some food</p>
+		</li>
+		<li>
+		<p>e.g. a roofing company: pay some money, get a roof repair</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p>Has quality characteristics (price, time, goodness of product, etc.)</p>
+	</li>
+</ul>
+
+<p><span style="color:#FFA500">Software world 'service'</span>:</p>
+
+<ul>
+	<li>Takes some input, performs some work, produces some output</li>
+	<li>Request-response model: client requests, server responses</li>
+	<li><span style="color:rgb(255, 255, 255)">Has quality characteristics (price, execution time, availability, security,  goodness of product, etc.)</span></li>
+</ul>
+</div></div></section><section data-id="4b9468f0fe94f092f6a1723f9e78249a"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 186px;" data-block-id="fe0f17075be3b375d50018baf54bd0c7"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2 style="text-align:left"><span style="color:#FFA500">Definition</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 275px;" data-block-id="66d30a328edce84b288a6dc4d4035698"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<p style="text-align:left">A <span style="color:#FFA500">"web service" </span>is a piece of software that performs processing and uses a web protocol to accept <span style="color:#FFA500">requests</span> and issue <span style="color:#FFA500">responses</span>.</p>
+</div></div></section><section data-id="5a9bc5508a6bea08147c5936205206ce"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 186px;" data-block-id="25fb824fbe46034779fbf824c9517295"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2 style="text-align:left"><span style="color:#FFA500">Definition</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 275px;" data-block-id="7a380047bce4e837bea6ca19176e2448"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p style="text-align:left"><span style="color:#FFA500">SOA</span> (<span style="color:#FFA500">S</span>ervice-<span style="color:#FFA500">O</span>riented-<span style="color:#FFA500">A</span>rchitecture) is an architectural paradigm that modularizes business functions into services by decoupling and encapsulating different portions of the business logic into different service components.</p>
+
+<ul>
+	<li style="text-align:left">Services in SOA:
+	<ul>
+		<li style="text-align:left">are autonomous and stateless</li>
+		<li style="text-align:left">accept requests and return responses</li>
+		<li style="text-align:left">use well-defined, standard interfaces (standard protocols) that define inputs and output structures</li>
+		<li style="text-align:left">platform independent</li>
+		<li style="text-align:left">discoverable</li>
+	</ul>
+	</li>
+</ul>
+</div></div></section><section data-id="fcb60e392bee6a26e442d6c4874a808e"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 330px;" data-block-id="4021c67c6d2afc1baaad7b65437b0e04"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<p>Autonomous -&gt; Need not be aware of other services</p>
+</div></div></section><section data-id="44e10cac67f033bdaba5da1aba69bec9"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 330px;" data-block-id="536f4d00161001c3ce334a68d0d61b69"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;" dir="ui">
+<p>stateless -&gt; need not remember state from request to request</p>
+
+<p style="text-align:left"> </p>
+
+<ul>
+	<li>Improves scalability through horizontal cloning</li>
+	<li>Can store state in a database if it needs to be saved</li>
+</ul>
+</div></div></section><section data-id="9c6780048c13b01ed2fda88c9265b5ca"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 66px;" data-block-id="c4c480347f14ea096094e2fe473f3056"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<p>standard interfaces -&gt; Re-use web stack and define custom application endpoints</p>​</div></div>
+<div class="sl-block" data-block-type="text" style="width: 587px; left: 373px; top: 661px; height: auto;" data-block-id="94b9b3360111430b2dae5bb1e6f0d884"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 13; font-size: 40%; text-align: left;">
+<p>credit:</p>
+
+<p>Torsten Braun, Universität Bern</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 638px; height: 479px; left: 364px; top: 169px;" data-block-id="14474559199f1e474c9fc8c9b04def84"><div class="sl-block-content" style="z-index: 14;"><img style="" data-natural-width="638" data-natural-height="479" data-lazy-loaded="" data-src="8470-lecture-1-1/31887837e40563a6502801d458d5110f.jpg"></div></div></section><section data-id="4fe369fe0de7ef95fc2710761e551190"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 66px;" data-block-id="ef84bd319e11b1a9c7403116cbf29e81"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<p>platform independent -&gt; Write a service once, support many platforms</p>
+
+<p>​</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 350px; height: 364px; left: 466px; top: 179px;" data-block-id="4abe0336bf7148a87afedab4949fb022"><div class="sl-block-style" style="z-index: 13;"><div class="sl-block-content" style="z-index: 13; border-style: solid; border-width: 1px;"><img style="" data-natural-width="350" data-natural-height="364" data-lazy-loaded="" data-src="8470-lecture-1-1/29cc75d86b42edd9e2c81e46f38645b2.png"></div></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 350px; height: 364px; left: 465px; top: 179px;" data-block-id="78329a145287f898ac35f15380068551"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 10;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 350 364"><rect width="350" height="364" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div></div></section><section data-id="0870fb22461b48795c8c3585a65a4109"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 66px;" data-block-id="2a88633cf7bb4e9ea72ee20de11503e4"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<p>discoverability</p>
+
+<p>​</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 513px; height: 389px; left: 384px; top: 166px;" data-block-id="1ce19706cdc1a73825b520aad60df7b3"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="513" data-natural-height="389" data-lazy-loaded="" data-src="8470-lecture-1-1/7be5383c74a151ee42268bb20185f2a9.png"></div></div></section><section data-id="526053e621bb033e21f70a597beaa096"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="c54316a0f4baad1ddc75cc0a6e93009d"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; padding: 40px;">
+<h2><span style="color:#FFA500">Service Actors </span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 1280px; left: 0px; top: 144px; height: auto;" data-block-id="3ccc439d1f57474574f053d0bfa717ce"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; padding: 40px;">
+<p>Services need <span style="color:#FFA500">consumers</span>. Consumers use a <span style="color:#FFA500">client</span> to make requests to the service's <span style="color:#FFA500">server</span>. They expect to get a desired result or an error message.</p>
+
+<p> </p>
+
+<p>Service <span style="color:#FFA500">providers </span>host and manage their service offerings - maintaining service quality and security.</p>
+
+<p> </p>
+
+<p>Service <span style="color:#FFA500">brokers</span> match service consumers and providers - sometimes <span style="color:#FFA500">composing multiple services</span> to fulfill consumer needs.</p>
+
+<p> </p>
+</div></div></section><section data-id="c2d6a5e7537573567e200af5c66ebfbc"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 313px;" data-block-id="5f45389677afc4b63af542390cf4efad"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h3>
+<span style="color:#FFA500">Modularization</span> and<span style="color:#FFA500"> Service orientedness</span>
+</h3>
+</div></div></section><section data-id="ab3e6ca8107266fed015094e2d1bbad4"><div class="sl-block" data-block-type="text" style="width: 1076px; left: 102px; top: 26px; height: auto;" data-block-id="3f4895d21a2d716a5e8bbf65701d8cfc"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>Modularization Through Service-orientedNess</h2>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 800px; height: 347px; left: 241px; top: 187px;" data-block-id="9d7fa067da56dfa1eea1f96ccf07a63d"><div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="800" data-natural-height="347" data-lazy-loaded="" data-src="8470-lecture-1-1/b7a8fa498196e8da4ed95e5b2f1fe5e0.jpg"></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 306px; height: 354px; left: 744px; top: 187px;" data-block-id="f4a279032feca8219e673c76be2ebe0a"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 12;" data-shape-stroke-color="#ff0000" data-shape-stroke-width="5"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 306 354"><defs><clippath id="shape-mask-2-1504589959528"><rect width="306" height="354"></rect></clippath></defs><rect width="306" height="354" clip-path="url(#shape-mask-2-1504589959528)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#ff0000" stroke-width="10"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" style="width: 320px; left: 744px; top: 557px; height: auto;" data-block-id="350e10e31f66e837347783b4f70adc3d"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 13;">
+<p>Will come back to this</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 1000px; left: 280px; top: 695px; height: auto;" data-block-id="89dbf6110afd95694c20783a1464d169"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 15; font-size: 61%;">
+<p>img credit: http://usblogs.pwc.com/emerging-technology/agile-coding-in-enterprise-it-code-small-and-local/</p>
+</div></div></section><section data-id="d9ba337ebda9d3006a145e95701c724a"><div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 1178px; height: 663px; left: 57px; top: 26px;" data-block-id="6c3d5e730baac67d23bfd8c93578b8b6"><div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="638" data-natural-height="359" data-lazy-loaded="" data-src="8470-lecture-1-1/15b6825e40702cf8fa834cd164ee3cfc.png"></div></div></section><section data-id="3603cb572a0a628ce26f6b6279520639"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="32f3d79182d5e735c357c19a0c12a481"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; padding: 40px;">
+<h2><span style="color:#FFA500">Service Types</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 1280px; left: 0px; top: 144px; height: auto;" data-block-id="cec854dd686c5240590c3ab7a7a3a091"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; padding: 40px;">
+<ol>
+	<li>Infrastructure as a service (IaaS)</li>
+	<li>Platform as a service (PaaS)</li>
+	<li>Software as a service (SaaS)</li>
+	<li>Desktop as a service (DaaS)</li>
+	<li>Service as a service (SaaS2)</li>
+</ol>
+
+<p> </p>
+
+<p> </p>
+</div></div></section><section data-id="736fd9fbfc76d5579aecffb27729d91f"><div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 800px; height: 466px; left: 241px; top: 128px;" data-block-id="d2a34ff0d0b4573445936e0e4a5c36db"><div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="800" data-natural-height="466" data-lazy-loaded="" data-src="8470-lecture-1-1/d3c1aad2300a77a11492ace40b62d43a.png"></div></div></section><section data-id="737a156b2bec5f08f6333a6aa45eac79"><div class="sl-block" data-block-type="text" style="width: 1076px; left: 102px; top: 12px; height: auto;" data-block-id="4e40b473525902401bda437980666e2f"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>Example</h2>
+</div></div>
+
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 673px; height: 529px; left: 304px; top: 96px;" data-block-id="06b81e6f67059f396ac4b04921a14ae2"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="1719" data-natural-height="1350" data-lazy-loaded="" data-src="8470-lecture-1-1/f9312f9cbfab84996792fa13d8633b88.png"></div></div>
+
+<div class="sl-block" data-block-type="text" style="width: 497px; left: 303px; top: 641px; height: auto;" data-block-id="f18b0a104022a81905831c1b09d36228"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 15; font-size: 40%; text-align: left;">
+<p>credit: https://m.oursky.com/saas-paas-and-iaas-explained-in-one-graphic-d56c3e6f4606</p>
+</div></div></section></section><section class="stack" data-id="b6b229fb6b5b3fcdc15e32b351e4d52a"><section data-id="452570d05c5875b979e50bf3d143b084"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 313px;" data-block-id="a367e12f616a247e58a1a5278036760f"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2>Part2: <span style="color:rgb(255, 165, 0); text-align:left">Service Oriented Methods</span><span style="color:rgb(255, 255, 255); text-align:left"> <br>
+and </span><span style="color:#FFA500"><span style="text-align:left">Data formats</span></span>
+</h2>
+</div></div></section><section data-id="87f6a213707eb4cb4544fedbb7e68641"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="3e09047613872e91a06bcc7550c5b21a"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; padding: 40px;">
+<h2><span style="color:#FFA500">Heavy / Light</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 1280px; left: 0px; top: 83px; height: auto;" data-block-id="8555eb95f44387fd877cb43d555e8615"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; padding: 40px;">
+<p><span style="color:#FFA500">Heavyweight Service:</span></p>
+
+<ul>
+	<li>
+	<p>Uses SOAP, WSDL, XML, WS-*, etc</p>
+	</li>
+	<li>
+	<p>Older, more formally specified service types</p>
+	</li>
+</ul>
+
+<p><span style="color:#FFA500">Lightweight /services</span>:</p>
+
+<ul>
+	<li>
+<span style="color:rgb(255, 165, 0)">RESTful services</span><span style="color:rgb(255, 255, 255)">:</span>
+
+	<ul>
+		<li>Uses HTTP, REST, JSON</li>
+		<li>Newer, less formally defined services</li>
+		<li>Good for periodically updated data</li>
+	</ul>
+	</li>
+	<li style="color:rgb(255, 255, 255)">
+<span style="color:rgb(255, 165, 0)">Streaming services</span>:
+	<ul>
+		<li>Uses websockets, JSON</li>
+		<li>Newer, less formally defined services</li>
+		<li>Good for continuous streaming data</li>
+	</ul>
+	</li>
+</ul>
+</div></div></section><section data-id="1aef2461b270ddc615fd8447e3526efc"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 313px;" data-block-id="05dd77ff25d1393850a9e5557e9bb71b"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h3>
+<span style="color:#FFA500">HeavyWeight Services</span><br>
+(AkA OLD School Services)</h3>
+</div></div></section><section data-id="71bcec464d753bd7b842542c55b1c59d"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="ae09d5b44ef50c79d78c230168095a33"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; padding: 40px;">
+<h2><span style="color:#FFA500">Elements of a Heavyweight Service</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 1092px; left: 0px; top: 106px; height: auto;" data-block-id="de461e17d6efe775b8586df83d62ce6a"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 12; text-align: left; padding: 40px;">
+<p>Description in terms of <span style="color:#FFA500">WSDL </span>(Web Service Definition Language):</p>
+
+<ul>
+	<li>Describes what a web service can do</li>
+	<li>WSDL is an XML based, open standard from W3C</li>
+	<li>Declares available methods (endpoints)</li>
+	<li>Identifies Input and output parameters</li>
+</ul>
+
+<p>Protocol uses <span style="color:#FFA500">SOAP to exchange XML, XSD</span> on top of HTTP</p>
+
+<ul>
+	<li>
+	<p>SOAP (Simple Object Access Protocol)</p>
+	</li>
+	<li>
+	<p>XML (Extensible Markup Language)</p>
+	</li>
+	<li>
+	<p>XSD (Extensible Schema Definition)</p>
+	</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 130px; height: 130px; left: 1144px; top: 313px;" data-block-id="2e663a569eb1722f05f32d0e1efe28db"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="130" data-natural-height="130" data-lazy-loaded="" data-src="8470-lecture-1-1/c11e0c01c45b0961c4b83ba2bde2c40a.png"></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 142px; height: 142px; left: 987px; top: 242px;" data-block-id="4f30f096f2c047bdd8876f69d097644e"><div class="sl-block-content" style="z-index: 14;"><img style="" data-natural-width="142" data-natural-height="142" data-lazy-loaded="" data-src="8470-lecture-1-1/feee3577d7c06369552262e9cc3a79d1.png"></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 141px; height: 142px; left: 845px; top: 497px;" data-block-id="90f52c72b85b70a298a2fefff371360c"><div class="sl-block-content" style="z-index: 15;"><img style="" data-natural-width="141" data-natural-height="142" data-lazy-loaded="" data-src="8470-lecture-1-1/f255ede6102e2cb5d69ac17d48d7a914.png"></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 138px; height: 138px; left: 845px; top: 246px;" data-block-id="2eb149d1d9f258fc56b05909a75f9a51"><div class="sl-block-content" style="z-index: 16;"><img style="" data-natural-width="96" data-natural-height="96" data-lazy-loaded="" data-src="8470-lecture-1-1/3335edf38e9901b3a16992cce187219b.png"></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 155px; height: 176px; left: 1001px; top: 497px;" data-block-id="5bc34335559864563409f295bed4630b"><div class="sl-block-content" style="z-index: 17;"><img style="" data-natural-width="155" data-natural-height="176" data-lazy-loaded="" data-src="8470-lecture-1-1/9d3dd83246d5d92d3a297074ea3b6e18.png"></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 419px; height: 41px; left: 845px; top: 450px;" data-block-id="bd873382820a1a313bde2cd2a97d9773"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(244, 204, 204)" data-shape-stretch="true" style="z-index: 18;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 419 41"><rect width="419" height="41" class="shape-element" fill="rgb(244, 204, 204)"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 415px; left: 845px; top: 452px;" data-block-id="89a999998ed58a2b7e019fa8b40f0917"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19;">
+<p><span style="color:#000000">HTTP</span></p>
+</div></div></section><section data-id="7f088bdfe8004e8899dde7628e95a615"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="0504a3b5960badbae36102557eb485e7"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; padding: 40px;">
+<h2><span style="color:#FFA500">Example WSDL</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 867px; height: 438px; left: 207px; top: 142px;" data-block-id="9ef390341747caca1602739163d1e468"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="867" data-natural-height="438" data-lazy-loaded="" data-src="8470-lecture-1-1/44414526ae1542b49c6ac9b8ffc007db.png"></div></div></section><section data-id="10980d294489ec91b1e54c04e8907e02"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="63d43fe6347329af8653fbcdd01650ad"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; padding: 40px;">
+<h2><span style="color:#FFA500">SOAP</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 1092px; left: 0px; top: 106px; height: auto;" data-block-id="2ec94dba487277174bd5bb92832fa0e6"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 12; text-align: left; padding: 40px;">
+<p><span style="color:#FFA500">S</span>imple <span style="color:#FFA500">O</span>bject <span style="color:#FFA500">A</span>ccess <span style="color:#FFA500">P</span>rotocol</p>
+
+<ul>
+	<li>Encapsulated in an Envelope</li>
+	<li>SOAP Header</li>
+	<li>SOAP Body</li>
+	<li>operates over HTTP or TCP</li>
+	<li>Allows for requests and responses</li>
+	<li>fill in parameters according to WSDL</li>
+</ul>
+
+<p> </p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 130px; height: 130px; left: 1107px; top: 24px;" data-block-id="8f5ac545e54ad8edf7a1f13a55e3602c"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="130" data-natural-height="130" data-lazy-loaded="" data-src="8470-lecture-1-1/c11e0c01c45b0961c4b83ba2bde2c40a.png"></div></div>
+
+
+
+
+
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 656px; height: 406px; left: 618px; top: 242px;" data-block-id="e62f4de7a9c456464e11904657dbfe56"><div class="sl-block-content" style="z-index: 14;"><img style="" data-natural-width="979" data-natural-height="606" data-lazy-loaded="" data-src="8470-lecture-1-1/b594c06b14ff24d4b460487a8509fee0.png"></div></div></section><section data-id="f42868b7404ae0e72ddb9dcd42592b55"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="c1e5d80afbdba0f10e0faf10d053076b"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; padding: 40px;">
+<h2><span style="color:#FFA500">SOAP Request Example</span></h2>
+</div></div>
+
+<div class="sl-block" data-block-type="image" style="width: 130px; height: 130px; left: 1107px; top: 24px;" data-block-id="828e82876c11d19eecf3f0b81e099d29"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="130" data-natural-height="130" data-lazy-loaded="" data-src="8470-lecture-1-1/c11e0c01c45b0961c4b83ba2bde2c40a.png"></div></div>
+
+
+
+
+
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 874px; height: 424px; left: 203px; top: 173px;" data-block-id="7e4c729d15d437a7b198856601055eab"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="874" data-natural-height="424" data-lazy-loaded="" data-src="8470-lecture-1-1/f1fa7b9dab2731cf9ad3b1a2440686b3.png"></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 1143px; left: 29px; top: 629px;" data-block-id="a59f28e6a17ac9ab8be32fb99cfe210d"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<p style="text-align:left">Note: Refers to some function called 'CalcDistance' that has two parameters 'startPoint' and 'endpoint'. Each point has an x and y field in the object.</p>
+</div></div></section><section data-id="b15cf8d89c7a05440960b05f33a61687"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="1972d40f811b7ded63fb0330f6f82ef5"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; padding: 40px;">
+<h2><span style="color:#FFA500">SOAP ReSponse Example</span></h2>
+</div></div>
+
+<div class="sl-block" data-block-type="image" style="width: 130px; height: 130px; left: 1107px; top: 24px;" data-block-id="9403c1b01fffd96b1bbcde69b983a105"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="130" data-natural-height="130" data-lazy-loaded="" data-src="8470-lecture-1-1/c11e0c01c45b0961c4b83ba2bde2c40a.png"></div></div>
+
+
+
+
+
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 874px; height: 400px; left: 204px; top: 161px;" data-block-id="f566abe687522ca12344748f40013a56"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="874" data-natural-height="400" data-lazy-loaded="" data-src="8470-lecture-1-1/f1481d0fbdfb18c032dc6a4f96de442a.png"></div></div></section><section data-id="77f7bff8513d0c4e686269f32cdfdf80"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 313px;" data-block-id="0767c10bf71829ce6bd5429ef0ed07af"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h3><span style="color:#FFA500">Lightweight Services</span></h3>
+</div></div></section><section data-id="e23ef30386dbc61c92f6675293ae6808"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="e56636850dc0205678697ba3ec9e69de"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; padding: 40px;">
+<h2><span style="color:#FFA500">REST</span></h2>
+</div></div>
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1217px; left: 37px; top: 154px;" data-block-id="4e7e577789d3803d6aaf8963c71bd70c"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" dir="ui">
+<ul>
+	<li style="text-align:left">Representational State Transfer</li>
+	<li style="text-align:left">Associate every resource with a URI (Universal Resource identifier) - accessible from a URL</li>
+	<li style="text-align:left">Allow CRUD operations to retrieve and persist data -&gt; works really well with SOA</li>
+	<li style="text-align:left">We've seen REST at work with services like Twitter</li>
+</ul>
+</div></div></section><section data-id="0bb0036226bfdd65a19d715db9db48e1"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="af198479dce002b8fc5f104ab553126c"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; padding: 40px;">
+<h2><span style="color:#FFA500">WebSockets</span></h2>
+</div></div>
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1217px; left: 37px; top: 154px;" data-block-id="fbd598c8a5fd107086aae218d9e0536a"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" dir="ui">
+<ul>
+	<li style="text-align:left">Works directly on a single TCP connection</li>
+	<li style="text-align:left">Provides full duplexing (bi-directional) communication between server and client - remains open during the duration of the connection</li>
+	<li style="text-align:left">Great for streaming applications that rely upon a rapidly updating publish/subscribe model</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 381px; height: 343px; left: 704px; top: 333px;" data-block-id="275cdb3f428a0ffdd0656154deb9e478"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="929" data-natural-height="837" data-lazy-loaded="" data-src="8470-lecture-1-1/7cdbfae639c0cad1f8b524537e2001c9.png"></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 408px; height: 383px; left: 691px; top: 315px;" data-block-id="494ad25619817b9da6cb8f07d0542a79"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 10;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 408 383"><rect width="408" height="383" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div></div></section><section data-id="c95ae39f8b031545fda6fece05a11c55"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 313px;" data-block-id="46a2bec24246743d506f23643fc5823e"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h3><font color="#ffa500">DATA Formats</font></h3>
+</div></div></section><section data-id="19699654264e8cea3cc0e5eb0e9e9b4d"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="b21647bfb278e6578dbbfac8a9879984"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; padding: 40px;">
+<h2><span style="color:#FFA500">XML</span></h2>
+</div></div>
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 142px; height: 142px; left: 1120px; top: 19px;" data-block-id="03f6c08c082a6bb86803d1ec1a3098a4"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="142" data-natural-height="142" data-lazy-loaded="" data-src="8470-lecture-1-1/feee3577d7c06369552262e9cc3a79d1.png"></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 923px; left: 37px; top: 154px;" data-block-id="877dddc842c7ff41285885290488219c"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<ul>
+	<li style="text-align:left">XML is a markup-language for data representation</li>
+	<li>Used for encoding documents in machine-readable form</li>
+	<li>Text-based format, consists of tags, attributes and content</li>
+	<li>Can be used for data, meta-data, and structural presentation</li>
+</ul>
+</div></div></section><section data-id="c9330f8e87d1d5c0fc77112922c67263"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="ec4dc3f24e8b6b33d0eebcff9d35c480"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; padding: 40px;">
+<h2><span style="color:#FFA500">JSON</span></h2>
+</div></div>
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 923px; left: 37px; top: 154px;" data-block-id="e978b7c89d0798e619c7ffb6c24bca21"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" dir="ui"><ul>
+<li style="text-align:left">JavaScript Object Notation</li>
+<li style="text-align:left">Basically a set of key:value pairs that define data according to a dictionary structure. </li>
+<li style="text-align:left">Typically much less verbose than XML<ul>
+<li style="text-align:left">e.g. &lt;somedatatype&gt;somedatavalue&lt;/somedatatype&gt; becomes { "somedatatype": somedatavalue}.</li>
+<li style="text-align:left">particularly true for nested structures</li>
+</ul>
+</li>
+<li style="text-align:left">Used for data structures not page or document structuring</li>
+<li style="text-align:left">Can still include meta-data easily.</li>
+</ul></div></div></section></section><section data-id="c450ccd7e173e87065c2bc95d22d31cb"><div class="sl-block" data-block-type="text" style="width: 551px; left: 691px; top: 23px; height: auto;" data-block-id="4620e42faa61f46bcba6af70ae99d103"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11;">
+<h2 style="text-align: right;"><span style="color:#FFA500">Questions?</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 627px; left: 7px; top: 583px; height: auto;" data-block-id="38d6bce7c7d5bdcb4f5f66754eb1ea62"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 12; text-align: left; color: rgb(230, 145, 56); line-height: 0.78;" data-has-line-height="">
+<p>© 2014-2017 Matthew L. Hale or as listed</p>
+
+<p> </p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 613px; height: 574px; left: 627px; top: 120px;" data-block-id="b27c07b5ac48b9755c64cb102f061287"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="347" data-natural-height="325" data-lazy-loaded="" data-src="8470-lecture-1-1/0d587e2647724e0e919407ad36057a65.png"></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 120px; height: 109px; left: 23px; top: 23px;" data-block-id="4f5dab07945e36221926775e8116fe52"><div class="sl-block-content" style="z-index: 14;"><img style="" data-natural-width="96" data-natural-height="87" data-lazy-loaded="" data-src="8470-lecture-1-1/07138034456d883deee1425dfb431666.png"></div></div>
+<div class="sl-block" data-block-type="text" style="width: 551px; left: 48px; top: 289px; height: auto;" data-block-id="303d7ff86d63f6bf0e7f9b3da5b50a3e"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 15; text-align: left;">
+<h3 style="text-align:right"><strong><span style="color:#FFA500">Matt Hale, PHD</span></strong></h3>
+
+<p style="text-align:right"><span style="color:#FFA500">U</span>niversity of <span style="color:#FFA500">N</span>ebraska at <span style="color:#FFA500">O</span>maha</p>
+
+<p style="text-align:right">Assistant Professor, Cybersecurity</p>
+
+<p style="text-align:right">mlhale@unomaha.edu</p>
+
+<p style="text-align:right">twitter: <span style="color:#FFA500">@mlhale_</span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 7px; top: 620px;" data-block-id="5e9d298f5c2a566f4b7dcb5490b6463e"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; line-height: 0.676;" data-has-line-height="">
+<p style="color:rgb(230, 145, 56); text-align:left"><span style="font-size:0.5em">Attribution: Some slides are based on material from:</span></p>
+
+<p style="color:rgb(230, 145, 56); text-align:left"><span style="font-size:0.5em"><span style="color:#FFFFFF">"</span><a href="https://telerikacademy.com/Courses/Courses/Details/187" target="_blank"><span style="color:#FFFFFF">W</span></a><span style="color:#FFFFFF">eb services, SOA, and REST" course by the SoftUNI Foundation and are used under the CC-BY-NC-SA license</span></span></p>
+</div></div></section>
+			</div>
+		</div>
+
+		<script>
+			var SLConfig = {"deck": {"id":1066266,"slug":"8470-lecture-1-1","title":"8470-Lecture-2 (Web Services)","description":"","width":1280,"height":720,"visibility":"self","published_at":"2017-08-21T06:45:00.421Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/8e477d7696509392803cdf4e508821c3/thumb.jpg?106110829","view_count":0,"user":{"id":747632,"username":"matthale","name":"Matt Hale","description":null,"thumbnail_url":"https://lh6.googleusercontent.com/-KSSzYPPGAnk/AAAAAAAAAAI/AAAAAAAAAEI/P7Tqr95ZJSs/photo.jpg?sz=50","paid":true,"pro":true,"lite":false,"team_id":null,"settings":{"id":597999,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true}},"background_transition":"none","transition":"slide","theme_id":null,"theme_font":"quicksand","theme_color":"black-orange","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":true,"rolling_links":false,"center":false,"should_loop":false,"share_notes":false,"slide_number":true,"rtl":false,"version":2,"collaborative":false,"deck_user_editor_limit":1,"data_updated_at":1504595401415,"font_typekit":null,"font_google":null,"notes":{"e3b474a9a29a371c440fcb3260712e4a":"Convert to proper reveal.js slide at somepoint"}}};
+
+
+			// Use local fonts
+			SLConfig.fonts_url = 'lib/fonts/';
+		</script>
+
+		<script src="lib/head.min.js"></script>
+		<script src="lib/reveal.min.js"></script>
+		<script src="lib/offline.js"></script>
+
+		<!-- Initialize the presentation -->
+		<script>
+			Reveal.initialize({
+				width: 1280,
+				height: 720,
+				margin: 0.05,
+
+				controls: true,
+				progress: true,
+				history: true,
+				mouseWheel: false,
+				showNotes: false,
+				slideNumber: true,
+
+				autoSlide: 0 || 0,
+				autoSlideStoppable: true,
+
+				center: false,
+				loop: false,
+				rtl: false,
+
+				transition: "slide",
+				backgroundTransition: "none",
+
+				dependencies: [
+					{ src: 'lib/reveal-plugins/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/reveal-plugins/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/reveal-plugins/highlight/highlight.js', async: true, callback: function() { hljs.initHighlighting(); hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/reveal-plugins/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+		</script>
+
+		
+
+	</body>
+</html>

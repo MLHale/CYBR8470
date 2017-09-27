@@ -7,6 +7,9 @@
 [Syllabus](#syllabus)  
 [License](#license)  
 
+## Viewing these materials
+The class materials are best viewed at [https://mlhale.github.io/CYBR8470/](https://mlhale.github.io/CYBR8470/)
+
 ## Online Discussion Area
 testing branching
 I have setup an online discussion board on slack.com for usage in this class. If you decide to work on a group project, I can create some private channels for you to work on, but I want to be able to participate in your conversations - so please use the space on slack.
@@ -25,62 +28,62 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 * [Lucidchart](http://www.lucidchart.com)
 
 ### Texts
-* Labs: [secwebdev.mlhale.com](http://secwebdev.mlhale.com)
 * Ember Textbook (optional): [Rock and Roll with Ember.js](http://balinterdi.com/rock-and-roll-with-emberjs/)
 * [Django Documentation](https://www.djangoproject.com/)
 
 ## Lab Listing (links also in Class topics)
-* RESTful APIs - [Twitter & Postman](/modules/restful-api/README.md)
+* [Github primer](/modules/github/README.md)
+* [REST and Twitter API Exploration](/modules/restful-api/README.md)
+* [Container primer](/modules/containers/README.md)
+* [Creating a new Web service](/modules/building-a-server/README.md)
 
 ## Class Topics
 * Class Intro ([Lecture 1 Slides](/slides/lecture1/index.html))
   * Overview of Web apps
   * Concept inventory
   * Threat vectors
-  * [REST and Twitter API](/modules/restful-api/README.md)
+  * HTTP Review
+  * [REST and Twitter API Exploration](/modules/restful-api/README.md)
   * [Github primer](/modules/github/README.md)
   * [Container primer](/modules/containers/README.md)
-* Introduction to Web Services ([Slides TBA]())
-  * Concept Inventory
-  * HTTP Review
-  * Web Services and APIs
+* Web Services ([Lecture 2 Slides](/slides/lecture2/index.html))
+  * Background
   * Service oriented Architectures (SOA)
-  * `Client-side` and `Server`
+  * Web Service Standards (`WS-*`)
+  * Methods: SOAP / REST / Web sockets
+  * Data Formats: XML, JSON
+* Server-side Development in Django ([Lecture 3 Slides](/slides/lecture3/index.html))
+  * Intro to Django
+  * Server-side Model View Controller Pattern
+  * Django REST Framework
+  * Django in Docker
   * [Creating a new Web service](/modules/building-a-server/README.md)
+  * [Building API endpoint exercise](/modules/building-a-server/django-exercise.md)
+* Test-driven Development
+  * Unit testing
+  * [Pen testing Lab](/modules/penetration-testing/README.md)
+  * Acceptance critera
+  * think-test-build-test-repeat
 * Client-side Development
+  * Browser Object Model Overview
+  * JQuery Overview
+  * Asynchronicity is your friend
   * Model View Controller
   * Ember.js
   * Handlebars
   * AJAX for External API integration
-  * Short Dev Lab
-* Develop and harden your own Serverside API
-  * Intro to Django
-  * Server-side Model View Controller
-  * Django REST Framework
-  * API Hardening
-  * Short Dev Lab
 * Step back and think about Software engineering Principles
   * Software Development Lifecycle
   * Requirements Engineering and Use/Misuse case review
   * Software Architecting
   * Integration patterns between Servers and Clients
-  * Browser Object Model Overview
-  * JQuery Overview
-  * Asynchronicity is your friend
 * Configuration and hardening
   * Apache Hardening
   * [IP Tables and OS Hardening](modules/iptable-exercise.md)
-* Test-driven Development
-  * Unit testing
-  * Acceptance critera
-  * think-test-build-test-repeat
 * Time to be creative
   * Come up with your own project idea or implement something for a friend/family member or community organization
   * [Project 1](#projects): Requirements Engineering, Product Design, Architecture, and Client-side Prototype
   * [Project 2](#projects): Server-side API Creation and Client-side Integration
-* Classwide project final
-  * Work together with the rest of your classmates to develop a real app for a non-profit
-  * Organization TBA
 
 ## Projects
 [Project 1 rubric](/modules/IA8470-project-1-rubric.pdf) - Creating and securing a prototype application
@@ -90,6 +93,9 @@ Project 1 will use the skills you learned in the Labs and have you create some s
 Project 2 continues the web development and design initiated in Project 1. You will create a Django REST API for servicing CRUD (create, read, update, delete) requests coming from your clientside ember app. Project 2 also offers you the first real opportunity to start realizing core security functionality. You will deploy your REST API on an Apache server and harden it against various forms of attack. Among other things you will harden your API by adding validators for each create or update operation and ensure that there are no side-effects from your methods. Additionally, you will update your design documents to reflect your server-side changes. See the [rubric](/modules/IA8470-project-2-rubric.pdf) for specific details.
 
 [Final Assignment rubric](/modules/final-project-rubric.pdf) - This last assignment tasks you with assessing your partner's install guide, user guide, and application. See the [rubric](/modules/final-project-rubric.pdf) for specific details.
+
+## 2016 Archived Lab content
+[secwebdev.mlhale.com](http://secwebdev.mlhale.com)
 
 ## 2016 Projects and Final Presentations:
 * MHefley (PEViewer - Private REPO)
@@ -113,11 +119,14 @@ Project 2 continues the web development and design initiated in Project 1. You w
 Web applications are pervasive fixtures of 21st century culture. Web application security is an inclusive, amorphous, term that spans application level security, i.e. ensuring high level code cannot be exploited, server level security, i.e. ensuring server resources such as databases and file systems cannot be exploited, and network security, i.e. ensuring unauthorized parties cannot access a server or tamper with user sessions. The Secure Web Application Development course will mix traditional lecture with hands-on labs to expose students to common web development activities and cross-cut different web application security concepts. After the class, students will be proficient with web application security from the ground up, including the ability to securely deploy and configure a web server (e.g. apache or node.js), select and install a web development framework to best suit application and security requirements (e.g. Django, Ember, or both), and develop secure application architectures and code using at least one web framework. Students will also leave with a basic understanding of core web protocols including TCP/IP, SSL, and HTTP/HTTPs, web development tools (e.g. chrome dev toolkit), unit testing (e.g. QUnit), and best practices for accepting, parsing, and storing user input.
 
 ### Grading Breakdown (due dates are tentative)
- * (10%) Flickr Client-side app (Lab 1 - no rubric)
- * (10%) Flickr Server-side app (Lab 2 - no rubric)
- * (20%) Project 1 - Design and Prototype
- * (30%) Project 2 - Full Implementation and Documentation
- * (20%) Final class-wide Group project
+ * (25%) Labs
+  * Twitter REST API (Lab 1 - no rubric)
+  * Containers (Lab 2 - no rubric)
+  * Building a Server (Lab 3 - no rubric)
+  * Penetration Testing (Lab 4 - no rubric)
+ * (20%) Project 1 - Product Design and Mockup
+ * (20%) Project 2 - Implementation and Documentation
+ * (25%) Project 3 - Polish and Final Delivery
  * (10%) Class Participation
 
 Each project will have a specific grading rubric that includes the core requirements for the project (i.e. what the application must do), any required intermediate milestone goals (such as short progress meetings with the instructor), the project due date, and the list of items that must be submitted. Each project will include a presentation component to be presented in class on the project due date. Projects build upon each other. The final Project is considered to be comprehensive. This means that *there is no final exam*. Final Project presentations will be presented on the day of the Final (December 14th during normal class time).
