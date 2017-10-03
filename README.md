@@ -67,6 +67,8 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 * Client-side Development
   * Browser Object Model Overview
   * JQuery Overview
+  * [MIT jQuery Lab](http://web.mit.edu/6.813/www/sp16/labs/lab2-javascript-jquery/)
+  * [Optional Codeacademy HTML/CSS Labs](https://www.codecademy.com/tracks/web)
   * Asynchronicity is your friend
   * Model View Controller
   * Ember.js
