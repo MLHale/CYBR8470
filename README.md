@@ -68,6 +68,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * JQuery Overview
   * [MIT jQuery Lab](http://web.mit.edu/6.813/www/sp16/labs/lab2-javascript-jquery/)
   * [Optional Codeacademy HTML/CSS Labs](https://www.codecademy.com/tracks/web)
+  * [Optional Mozilla Developer Network tutorials on Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
   * [Optional Javascript exercises](https://www.w3resource.com/javascript-exercises/javascript-basic-exercises.php)
   * Asynchronicity is your friend
   * Model View Controller
