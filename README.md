@@ -64,7 +64,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Acceptance critera
   * think-test-build-test-repeat
 * Client-side Development
-  * Browser Object Model Overview ([Lecture 5 Slides](/slides/intro-to-clientside-lecture.pdf))
+  * Browser Object Model Overview ([Lecture 5 Slides](/slides/intro-to-clientside-lecture.pdf))([Lecture 6 Slides](/slides/lecture6/index.html))
   * JQuery Overview
   * [MIT jQuery Lab](http://web.mit.edu/6.813/www/sp16/labs/lab2-javascript-jquery/)
   * [Optional Codeacademy HTML/CSS Labs](https://www.codecademy.com/tracks/web)
