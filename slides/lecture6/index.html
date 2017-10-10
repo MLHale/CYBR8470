@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+	<html class="sl-root decks export offline loaded">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>8470-Lecture-6-emberjs: Slides</title>
+		<meta name="description" content="Slides">
+
+		<link rel="stylesheet" type="text/css" href="lib/offline-v2.css">
+
+
+
+	</head>
+	<body class="reveal-viewport theme-font-quicksand theme-color-black-orange">
+		<div class="reveal">
+			<div class="slides">
+				<section data-id="0733f2b9522892dcae6bd62cd0c92e5e" data-background-image="8470-lecture-1-4/96515e3479ab58f89e136f5df60d54af.png" data-background-size="contain"><div class="sl-block" data-block-type="text" style="width: 774px; left: 24px; top: 432px; height: auto;" data-block-id="7c407330a0bc7d1cc86023ac3534119a"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 12; color: rgb(255, 255, 255); font-size: 79%;">
+<h3 style="text-align: left;"><strong>Introduction to Ember and handlebars</strong></h3>
+</div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 793px; height: 291px; left: 14px; top: 414px;" data-block-id="b20a4a8075d35951d3a8d9c52f6c9c57"><div class="sl-block-style" style="z-index: 11; opacity: 0.56;"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="#000000" data-shape-stretch="true" style="z-index: 11;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 793 291"><rect width="793" height="291" class="shape-element" fill="#000000"></rect></svg></div></div></div>
+<div class="sl-block" data-block-type="text" style="width: 774px; left: 24px; top: 504px; height: auto;" data-block-id="3b490844c30f67a360d086508a0d3c97"><div class="sl-block-style" style="z-index: 13;"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 13; color: rgb(255, 255, 255); border-width: 1px; text-align: left;" dir="ui">
+<h3 style="text-align:left">Secure Web Application Development</h3>
+</div></div></div>
+<div class="sl-block" data-block-type="text" style="width: 774px; left: 24px; top: 604px; height: auto;" data-block-id="62ec2c505235a384d66a624b768726cf"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 14; color: rgb(255, 255, 255); line-height: 0.871;" data-has-line-height="">
+<p style="text-align:left"><span style="color:#FFA500">Dr. Hale</span></p>
+
+<p style="text-align:left">University of Nebraska at Omaha</p>
+
+<p style="text-align:left">CYBR 8470 - Lecture 6</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 823px; left: 24px; top: 472px;" data-block-id="2ac9dfc5b2589cc4fd3dcb0b009c72f6"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; font-size: 67%;">
+<p style="color:rgb(255, 255, 255); text-align:left">become a javascript sorcer{{#if user.isFemale}}ess{{else}}er{{/if}}</p>
+</div></div></section><section data-id="4e2cde31b6de5a89c3a092770a5d004c"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="3f68ebc7b6a3de65da13006a770ae466"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; padding: 40px;">
+<h2>Today: Ember.JS and Handlebars</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 1280px; left: 0px; top: 144px; height: auto;" data-block-id="98f106cc8e300d04ce4c69f1165f8e50"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; padding: 40px;" dir="ui">
+<p><span style="color:#FFA500">Part 1: Client-side App Frameworks</span></p>
+
+<p><span style="color:rgb(255, 165, 0)">Part 2: Ember.js</span></p>
+
+<ul>
+	<li>What is Ember.js?</li>
+	<li>Where does it sit in the server stack?</li>
+	<li>Ember bindings (HEAVEN)</li>
+	<li>Handlebars Syntax</li>
+	<li>Integrating 3rd Party jQuery Libraries</li>
+	<li>Using Ember tools</li>
+	<li>Integrating with a server-side API</li>
+</ul>
+</div></div></section><section class="stack" data-id="6cd703af2ce62cc2ef85da3605cec21f"><section data-id="215b6a858f3c0eaebf83845944a81830"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 313px;" data-block-id="340b7c4554881b27d9ffd6c52c9ca95f"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>Part1: <span style="color:#FFA500">Client-side Apps</span>
+</h2>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 595px; height: 192px; left: 332px; top: 432px;" data-block-id="6098698890ccc3cd5eefa55d4e490d90"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="595" data-natural-height="192" data-lazy-loaded="" data-src="8470-lecture-1-4/02bd512ad48c34c337aa8a0aa6d3c653.png"></div></div></section><section data-id="fac381c18e6d2fc965455336f2e23c4d"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="99784b744fdaedc39fd9b6e95e0dd106"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; padding: 40px;">
+<h2><span style="color:#FFA500">Why clientside App Frameworks?</span></h2>
+</div></div>
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1200px; left: 37px; top: 193px;" data-block-id="7ddcf45056597ba814c3af63293c9370"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" dir="ui">
+<ul>
+	<li style="text-align:left">
+	<p>helps you write rich web applications that are <span style="color:#FFA500">well structured (MVC) and backend agnostic.</span></p>
+	</li>
+	<li style="text-align:left">
+	<p>Helps you <span style="color:#FFA500">cut down</span> the amount of <span style="color:#FFA500">boiler plate code</span> within your application significantly</p>
+	</li>
+	<li style="text-align:left">
+	<p>Easily <span style="color:#FFA500">integrates with third party</span> JavaScript libraries and CSS libraries</p>
+	</li>
+	<li style="text-align:left">
+	<p>Improves usability and app reactivity</p>
+	</li>
+	<li style="text-align:left">
+	<p>Technology of tomorrow for building <span style="color:#FFA500">responsive web applications</span></p>
+	</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 80px; top: 576px;" data-block-id="88f74b854dd65eb8b8d716891636026d"><div class="sl-block-content" data-line-x1="0" data-line-y1="200" data-line-x2="1120" data-line-y2="200" data-line-color="#e69138" data-line-start-type="none" data-line-end-type="none" style="z-index: 13;" data-line-width="6px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="1120" height="1" viewbox="0 200 1120 1"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="200" x2="1120" y2="200"></line><line stroke="#e69138" stroke-width="6" x1="0" y1="200" x2="1120" y2="200"></line></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 80px; top: 538px;" data-block-id="62a9ad76c0ad1d2440f7427901e046bd"><div class="sl-block-content" data-line-x1="-460" data-line-y1="361" data-line-x2="-460" data-line-y2="278" data-line-color="#e69138" data-line-start-type="none" data-line-end-type="none" style="z-index: 14;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="1" height="83" viewbox="-460 278 1 83"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-460" y1="361" x2="-460" y2="278"></line><line stroke="#e69138" stroke-width="4" x1="-460" y1="361" x2="-460" y2="278"></line></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 1200px; top: 538px;" data-block-id="524834052808f07efdba10d815df3b4a"><div class="sl-block-content" data-line-x1="-460" data-line-y1="361" data-line-x2="-460" data-line-y2="278" data-line-color="#e69138" data-line-start-type="none" data-line-end-type="none" style="z-index: 15;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="1" height="83" viewbox="-460 278 1 83"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-460" y1="361" x2="-460" y2="278"></line><line stroke="#e69138" stroke-width="4" x1="-460" y1="361" x2="-460" y2="278"></line></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 220px; left: 9px; top: 629px;" data-block-id="f1952b49954bd3c8204113fd2385ae94"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16;">
+<p>Traditional Websites</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 220px; left: 1054px; top: 629px;" data-block-id="b9f44f23ecf0ada098713f2fecaa60e1"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17;">
+<p>Client-side Apps</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 126px; height: 83px; left: 188px; top: 546px;" data-block-id="1f46f8f264bf300777eec88fd1b73c88"><div class="sl-block-content" style="z-index: 18;"><img style="" data-natural-width="126" data-natural-height="83" data-lazy-loaded="" data-src="8470-lecture-1-4/293808044bba314b0e548292504f8547.png"></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 119px; height: 83px; left: 720px; top: 505px;" data-block-id="bdde1ebc41a2d2b274c81f5d1e826220"><div class="sl-block-content" style="z-index: 19;"><img style="" data-natural-width="82" data-natural-height="57" data-lazy-loaded="" data-src="8470-lecture-1-4/0fbfad4c1c9eb2db4d0f93ce941f99c9.png"></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 192px; height: 103px; left: 840px; top: 553px;" data-block-id="a1f23b40a65148f645e8fa3fb29a723e"><div class="sl-block-content" style="z-index: 20;"><img style="" data-natural-width="160" data-natural-height="86" data-lazy-loaded="" data-src="8470-lecture-1-4/028717c44305cfe5a1a6311e4e16d0ad.png"></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 267px; height: 167px; left: 1007px; top: 413px;" data-block-id="4932874bad6dc46c7c60d87c8dfc4431"><div class="sl-block-content" style="z-index: 21;"><img style="" data-natural-width="640" data-natural-height="400" data-lazy-loaded="" data-src="8470-lecture-1-4/57bb723e40b2bfcd10430e5922c7c559.png"></div></div></section><section data-id="46753c5d8c16c417caaa9fc733bd6f92"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="5f14c5259dac54837eb68c245944c71e"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; padding: 40px;">
+<h2><span style="color:#FFA500">Why clientside App Frameworks?</span></h2>
+</div></div>
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1200px; left: 37px; top: 193px;" data-block-id="d7a2312072ecc977c265a4c60f4dd074"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<ul>
+	<li style="text-align:left">
+	<p>helps you write rich web applications that are <span style="color:#FFA500">well structured (MVC) and backend agnostic.</span></p>
+	</li>
+	<li style="text-align:left">
+	<p>Helps you <span style="color:#FFA500">cut down</span> the amount of <span style="color:#FFA500">boiler plate code</span> within your application significantly</p>
+	</li>
+	<li style="text-align:left">
+	<p>Easily <span style="color:#FFA500">integrates with third party</span> JavaScript libraries and CSS libraries</p>
+	</li>
+	<li style="text-align:left">
+	<p>Improves usability and app reactivity</p>
+	</li>
+	<li style="text-align:left">
+	<p>Technology of tomorrow for building <span style="color:#FFA500">responsive web applications</span></p>
+	</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 80px; top: 576px;" data-block-id="368eaffc8fd5817cb5fb993882516f48"><div class="sl-block-content" data-line-x1="0" data-line-y1="200" data-line-x2="1120" data-line-y2="200" data-line-color="#e69138" data-line-start-type="none" data-line-end-type="none" style="z-index: 12;" data-line-width="6px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="1120" height="1" viewbox="0 200 1120 1"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="200" x2="1120" y2="200"></line><line stroke="#e69138" stroke-width="6" x1="0" y1="200" x2="1120" y2="200"></line></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 80px; top: 538px;" data-block-id="dcbaea416ac838ddfbd333b1a6e595b1"><div class="sl-block-content" data-line-x1="-460" data-line-y1="361" data-line-x2="-460" data-line-y2="278" data-line-color="#e69138" data-line-start-type="none" data-line-end-type="none" style="z-index: 13;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="1" height="83" viewbox="-460 278 1 83"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-460" y1="361" x2="-460" y2="278"></line><line stroke="#e69138" stroke-width="4" x1="-460" y1="361" x2="-460" y2="278"></line></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 1200px; top: 538px;" data-block-id="92ae4320213f4e3399b3170bccc22e57"><div class="sl-block-content" data-line-x1="-460" data-line-y1="361" data-line-x2="-460" data-line-y2="278" data-line-color="#e69138" data-line-start-type="none" data-line-end-type="none" style="z-index: 14;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="1" height="83" viewbox="-460 278 1 83"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-460" y1="361" x2="-460" y2="278"></line><line stroke="#e69138" stroke-width="4" x1="-460" y1="361" x2="-460" y2="278"></line></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 220px; left: 9px; top: 629px;" data-block-id="9c27ad3e0032e57a969e86aed1fba03c"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;">
+<p>Traditional Websites</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 220px; left: 1054px; top: 629px;" data-block-id="5768f677d6957b110e18bc32c4e812b4"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16;">
+<p>Client-side Apps</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 541px; left: 50px; top: 558px;" data-block-id="52ea18609dd98f7948724a4d2647ae65"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17; background-color: rgb(34, 34, 34); font-size: 48%;">
+<ul>
+	<li style="text-align: left;">HTML, CSS and JavaScript serialized on the Server-side and passed to the client</li>
+	<li style="text-align: left;">Full-page refresh when the user clicks on links</li>
+	<li style="text-align: left;">Heavily reliant on the traditional HTTP Request/response lifecycle</li>
+	<li style="text-align: left;">Easy to cache the website pages on the server</li>
+</ul>
+</div></div>
+</section><section data-id="0661304cde8a17395f1e943c43639fc3"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="d7f7c98592085254d09df015c000c389"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; padding: 40px;">
+<h2><span style="color:#FFA500">Why clientside App Frameworks?</span></h2>
+</div></div>
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1200px; left: 37px; top: 193px;" data-block-id="39e61ee8f514da2ec76fff6dc2329a43"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<ul>
+	<li style="text-align:left">
+	<p>helps you write rich web applications that are <span style="color:#FFA500">well structured (MVC) and backend agnostic.</span></p>
+	</li>
+	<li style="text-align:left">
+	<p>Helps you <span style="color:#FFA500">cut down</span> the amount of <span style="color:#FFA500">boiler plate code</span> within your application significantly</p>
+	</li>
+	<li style="text-align:left">
+	<p>Easily <span style="color:#FFA500">integrates with third party</span> JavaScript libraries and CSS libraries</p>
+	</li>
+	<li style="text-align:left">
+	<p>Improves usability and app reactivity</p>
+	</li>
+	<li style="text-align:left">
+	<p>Technology of tomorrow for building <span style="color:#FFA500">responsive web applications</span></p>
+	</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 80px; top: 576px;" data-block-id="7ec6b51f963fd2153b04f9a0121153d4"><div class="sl-block-content" data-line-x1="0" data-line-y1="200" data-line-x2="1120" data-line-y2="200" data-line-color="#e69138" data-line-start-type="none" data-line-end-type="none" style="z-index: 12;" data-line-width="6px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="1120" height="1" viewbox="0 200 1120 1"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="200" x2="1120" y2="200"></line><line stroke="#e69138" stroke-width="6" x1="0" y1="200" x2="1120" y2="200"></line></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 80px; top: 538px;" data-block-id="d1a0f953f74f8f12df50817b2842d3fa"><div class="sl-block-content" data-line-x1="-460" data-line-y1="361" data-line-x2="-460" data-line-y2="278" data-line-color="#e69138" data-line-start-type="none" data-line-end-type="none" style="z-index: 13;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="1" height="83" viewbox="-460 278 1 83"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-460" y1="361" x2="-460" y2="278"></line><line stroke="#e69138" stroke-width="4" x1="-460" y1="361" x2="-460" y2="278"></line></svg></div></div>
+<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 1200px; top: 538px;" data-block-id="cd45b3c7daf4b95da3c0dbe0e8d736e6"><div class="sl-block-content" data-line-x1="-460" data-line-y1="361" data-line-x2="-460" data-line-y2="278" data-line-color="#e69138" data-line-start-type="none" data-line-end-type="none" style="z-index: 14;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="1" height="83" viewbox="-460 278 1 83"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-460" y1="361" x2="-460" y2="278"></line><line stroke="#e69138" stroke-width="4" x1="-460" y1="361" x2="-460" y2="278"></line></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 220px; left: 9px; top: 629px;" data-block-id="66d967b9a8f07d34432df8fe389c6665"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;">
+<p>Traditional Websites</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 220px; left: 1054px; top: 629px;" data-block-id="52db3dac8e5a69fd1ff658a8a1a5c506"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16;">
+<p>Client-side Apps</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 541px; left: 50px; top: 558px;" data-block-id="dc00155dce836bd24b9b5531149e148e"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17; background-color: rgb(34, 34, 34); font-size: 48%;">
+<ul>
+	<li style="text-align: left;">HTML, CSS and JavaScript serialized on the Server-side and passed to the client</li>
+	<li style="text-align: left;">Full-page refresh when the user clicks on links</li>
+	<li style="text-align: left;">Heavily reliant on the traditional HTTP Request/response lifecycle</li>
+	<li style="text-align: left;">Easy to cache the website pages on the server</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 541px; left: 720px; top: 558px;" data-block-id="250d34408b28311d2345a0ce52f970ce"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18; background-color: rgb(34, 34, 34); font-size: 48%;">
+<ul>
+	<li style="text-align:left">
+	<p>Full JavaScript application sent on the ﬁrst request</p>
+	</li>
+	<li style="text-align:left">
+	<p>Subsequent requests only transmit data</p>
+	</li>
+	<li style="text-align:left">
+	<p>Usually have a rich application-like user interface</p>
+	</li>
+	<li style="text-align:left">
+	<p>Faster navigation and user interaction</p>
+	</li>
+	<li style="text-align:left">
+	<p>Supports the rich feature set that users have come to expect from modern web based applications</p>
+	</li>
+</ul>
+</div></div></section><section data-id="fbb9532c7aeb724d638209b956bb9f26"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="1517b7c31cf4640ce6a9a243d76691e6"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 12; padding: 40px;">
+<h2><span style="color:#FFA500">Why is client-side better?</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 779px; left: 12px; top: 544px; height: auto;" data-block-id="94810a70a2b2251ddfcffbe764340abd"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 13; text-align: left; padding: 40px; font-size: 57%;">
+<p>Keeps both the application state and each user’s state on the server</p>
+
+<p>If the user requests data to be updated, a <span style="color:#FFA500">complete new page is generated</span> and transferred over the wire to the browser</p>
+</div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 756px; height: 243px; left: 12px; top: 302px;" data-block-id="cf26f1f5bb6bc0980e5c7adea5b87809"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 11;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 756 243"><rect width="756" height="243" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 721px; height: 212px; left: 30px; top: 318px;" data-block-id="a331a98c925caba4556fcc505794593a"><div class="sl-block-content" style="z-index: 15;"><img style="" data-natural-width="466" data-natural-height="137" data-lazy-loaded="" data-src="8470-lecture-1-4/7362e46fae491e831c10ede2f33643e8.png"></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 280px; height: 401px; left: 906px; top: 293px;" data-block-id="866488413f6bf31e2ad827afaf215a84"><div class="sl-block-content" style="z-index: 16;"><img style="" data-natural-width="206" data-natural-height="295" data-lazy-loaded="" data-src="8470-lecture-1-4/b48fea49f85d0f9d3a844024fcbfef79.png"></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 308px; height: 406px; left: 892px; top: 288px;" data-block-id="5287e29c1afb2ff67b03eeb9e176d53b"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 10;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 308 406"><rect width="308" height="406" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" style="width: 788px; left: 23px; top: 164px; height: auto;" data-block-id="d58f2299ffd97871ae81d71efc383340"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 17; text-align: left; padding: 40px; font-size: 90%;">
+<p>Traditional server-side app</p>
+</div></div></section><section data-id="9fb9a7fc2f76db4f17d9149e5c8a4eda"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="26da4971e0065892ec801673a0c6f9a7"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 13; padding: 40px;">
+<h2><span style="color:#FFA500">Why is client-side better?</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 779px; left: 12px; top: 544px; height: auto;" data-block-id="cb5e672c4e101c026cb0f81f027bbd7a"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 14; text-align: left; padding: 40px; font-size: 57%;">
+<p>Still Keeps both the application state and each user’s state on the server</p>
+
+<p>Still the same number of page requests and processes on the server-side, less overall data transferred results in less bandwidth consumption.</p>
+</div></div>
+<div class="sl-block" data-block-type="shape" style="width: 756px; height: 243px; left: 12px; top: 302px;" data-block-id="48dadd246a110da46d99f838ecbbdf93"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 12;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 756 243"><rect width="756" height="243" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div></div>
+<div class="sl-block" data-block-type="image" style="width: 721px; height: 212px; left: 30px; top: 318px;" data-block-id="a2282d03b8389acfec211282a23b0ab1"><div class="sl-block-content" style="z-index: 15;"><img style="" data-natural-width="466" data-natural-height="137" data-lazy-loaded="" data-src="8470-lecture-1-4/7362e46fae491e831c10ede2f33643e8.png"></div></div>
+
+<div class="sl-block" data-block-type="shape" style="width: 468px; height: 401px; left: 791px; top: 164px;" data-block-id="15c40aa1c286b14e4cd7d4a3d6abeb75"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 11;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 468 401"><rect width="468" height="401" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" style="width: 788px; left: 23px; top: 164px; height: auto;" data-block-id="41f2c1297e5f2455798bfb1ce0f57426"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 16; text-align: left; padding: 40px; font-size: 90%;">
+<p>server-side app with Ajax</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 448px; height: 282px; left: 801px; top: 224px;" data-block-id="3376549af82f4ea8c356996ae34113b1"><div class="sl-block-content" style="z-index: 17;"><img style="" data-natural-width="448" data-natural-height="282" data-lazy-loaded="" data-src="8470-lecture-1-4/4d1ad4c21d5aa34765c448693ff68652.png"></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 107px; left: 133px; top: 377px;" data-block-id="beab604d442d4ee4d4f7072cf2cb0209"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 58%;">
+<p>5. Partial Response</p>
+</div></div></section><section data-id="ce04fa278d3f515ff42be53584bd5bfd"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="386981abf55bc2edd29d532c25f59782"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 12; padding: 40px;">
+<h2><span style="color:#FFA500">Why is client-side better?</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 779px; left: 495px; top: 174px; height: auto;" data-block-id="1b1eb7997938c25fce96e514410341e9"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 13; text-align: left; padding: 40px; font-size: 99%;">
+<p>Application and user state is <span style="color:#FFA500">maintained on the client side.</span><br>
+<br>
+One full page request at the start of the session. Then just <span style="color:#FFA500">data requests.</span></p>
+
+<p> </p>
+
+<p><span style="color:#FFA500">Huge reduction in server-side resources</span>, since application only invokes API methods when data is needed, not necessarily whenever a new page is viewed.</p>
+</div></div>
+
+
+
+<div class="sl-block" data-block-type="shape" style="width: 462px; height: 507px; left: 38px; top: 157px;" data-block-id="49929d00dc6822ebcbe7ca138b7124a9"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 11;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 462 507"><rect width="462" height="507" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 407px; height: 459px; left: 73px; top: 181px;" data-block-id="5bf8505b44520665396f1270b4612987"><div class="sl-block-content" style="z-index: 14;"><img style="" data-natural-width="213" data-natural-height="240" data-lazy-loaded="" data-src="8470-lecture-1-4/ad42c32d477cd593bacdd9b8a336c23d.png"></div></div></section><section data-id="cfc1218df1052c991bd67031cc6b4f78"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="429e51825340d60582dd2694a0f24400"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; padding: 40px;">
+<h2><span style="color:#FFA500">Why is client-side better?</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 1267px; left: 4px; top: 109px; height: auto;" data-block-id="787d3fcaf6b241fbba5ef4913afc7b76"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; padding: 40px; font-size: 99%;">
+<p><span style="color:#FFA500">Comparison: </span>Click on 10 static pages (100KB/ea) and perform 5 dynamic actions on data (10KB) in each page (with 10,000 daily users).</p>
+</div></div>
+
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 340px; top: 341px;" data-block-id="36886a89b8d82479d799cbe2be4254c4"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<p>Per Day</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 414px; left: 3px; top: 413px;" data-block-id="001b703fc71a329b3f83260ad73d6de5"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p>server-side</p>
+
+<p> </p>
+
+<p><span style="font-size:0.7em">10∗10,000 = <span style="color:#FFA500">100,000</span> <span style="color:#FFA500">page loads</span></span></p>
+
+<p><span style="font-size:0.7em">10 ∗ 5 ∗ 10,000 = <span style="color:#FFA500">500,000 loads with data</span></span></p>
+
+<p><span style="font-size:0.7em">100,000 ∗100KB + 500,000 ∗110KB</span></p>
+
+<p><span style="font-size:0.7em">= <span style="color:#FFA500">65 GB bandwidth consumed</span></span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 414px; left: 433px; top: 413px;" data-block-id="2ae98bde1782df2018e24183646d0578"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;">
+<p>server-side w/ajax</p>
+
+<p><span style="font-size:0.7em">10∗10,000= <span style="color:#FFA500">100,000 page loads</span></span></p>
+
+<p><span style="font-size:0.7em">10∗5∗10000=<span style="color:#FFA500">500,000 partial page loads</span></span></p>
+
+<p><span style="font-size:0.7em">100,000 ∗100KB + 500,000∗10KB</span></p>
+
+<p><span style="font-size:0.7em">= <span style="color:#FFA500">15 GB bandwidth consumed</span></span></p>
+
+<p><span style="color:#FFA500"><span style="font-size:0.7em">Faster page transitions</span></span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 414px; left: 863px; top: 413px;" data-block-id="bcdf42673749b9b00a11866c453d2e58"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16;" dir="ui">
+<p>client-side</p>
+
+<p><span style="font-size:0.7em">1 ∗ <span style="color:#FFA500">10,000 page loads</span></span></p>
+
+<p><span style="font-size:0.7em">10 ∗ 5 ∗ 10000=<span style="color:#FFA500">500,000 data api calls</span></span></p>
+
+<p><span style="font-size:0.7em">10,000 ∗ 100KB + 500,000∗10KB =</span></p>
+
+<p><span style="color:#FFA500"><span style="font-size:0.7em">6 GB bandwidth consumed</span></span></p>
+
+<p><span style="color:#FFA500"><span style="font-size:0.7em">Instant page transitions</span></span></p>
+</div></div></section><section data-id="fff7fc0a17da9a4be204ae49918995e8"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="f7bdc690dbdc69a731022cd8445841ed"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; padding: 40px;">
+<h2><span style="color:#FFA500">Why is client-side better?</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 1267px; left: 4px; top: 109px; height: auto;" data-block-id="bf2bed404d0c76f50c37a5f918e4c019"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 11; text-align: left; padding: 40px; font-size: 99%;">
+<p><span style="color:#FFA500">Comparison: </span>Click on 10 static pages (100KB/ea) and perform 5 dynamic actions on data (10KB) in each page (with 10,000 daily users).</p>
+</div></div>
+
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 600px; left: 340px; top: 299px;" data-block-id="7c5f4bd0a7df5ffd7d741f3032ac3bea"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" dir="ui"><p>The savings adds up</p></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 414px; left: 4px; top: 357px;" data-block-id="bbfafc6c44a27b8ce08f4867ed7d6df2"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p><span style="color:#FFA500">59 GB / Day</span></p>
+
+<p><span style="color:#FFA500">413 GB / Week</span></p>
+
+<p><span style="color:#FFA500">21535 GB / Year (21.5TB)</span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1020px; left: 240px; top: 423px;" data-block-id="9eb4e846dc76ab1f3aacf6b690e5b58f"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;" dir="ui">
+<p><span style="color:#FFA500"><span style="font-size:0.7em">Amazon WS Charges about 8¢ per GB</span></span></p>
+
+<p> </p>
+
+<p><span style="font-size:0.7em">So… over the year that’s about <span style="color:#FFA500">$1722 in savings from pure server-side to client-side </span>app. If you scale up to <span style="color:#FFA500">100k daily users its $17,220</span>, <span style="color:#FFA500">1M daily users $172,200</span>…etc</span></p>
+
+<p><span style="font-size:0.7em"><span style="color:#FFA500">Facebook </span>has 936M daily users</span></p>
+
+<p><span style="font-size:0.7em">Hence this kind of change would result in about <span style="color:#FFA500">159 million dollars in savings yearly </span>for them. </span></p>
+</div></div></section></section><section class="stack" data-id="e10c8f36aa56b10d9867d497060f7573"><section data-id="ad463880ff63e5d5ff12b9c0a93db485"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 313px;" data-block-id="83b46450b739ea2037abdb11757fd1d6"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2>Part 2: <span style="color:#FFA500">What is Ember.js?</span>
+</h2>
+</div></div></section><section data-id="fc1d8e6be304fae8106b5d72aba01e5f"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="9f777b696bad499dcdd0671846fef110"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; padding: 40px;">
+<h2><span style="color:#FFA500">What is ember</span></h2>
+</div></div>
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 923px; left: 37px; top: 154px;" data-block-id="597daabe3b1772eaa7daea3051c725d6"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" dir="ui">
+<ul>
+	<li style="text-align:left">
+	<p>Browser-based MVC framework</p>
+	</li>
+	<li style="text-align:left">
+	<p>Eliminates spaghetti code</p>
+	</li>
+	<li style="text-align:left">
+	<p>Provides a standard (good) architecture for building apps</p>
+	</li>
+	<li style="text-align:left">
+	<p>Makes hard things (bindings) easy to do</p>
+	</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 452px; height: 275px; left: 734px; top: 390px;" data-block-id="5c6528e2b1105f5ffe3dd0af5d886758"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="204" data-natural-height="124" data-lazy-loaded="" data-src="8470-lecture-1-4/ca9031557f7a981d8e31e022cdf883ad.png"></div></div></section><section data-id="5b6f475ade19cd6ca5777ba028bf5eec"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="8e2dfe66dc07f5595f609f4960992430"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; padding: 40px;">
+<h2><span style="color:#FFA500">Who uses ember?</span></h2>
+</div></div>
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 1017px; height: 512px; left: 160px; top: 176px;" data-block-id="1255a13029ac2e58f70a61d9ebc4bc3a"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="679" data-natural-height="342" data-lazy-loaded="" data-src="8470-lecture-1-4/1f7a76c444b0a4ee9ea681d657ee6b6c.png"></div></div></section><section data-id="ba5effbb41677d2e72bfb547cafbcb07"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="8d2707a3037079e34dc9adadbf823379"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: center; z-index: 11; padding: 40px;">
+<h2><span style="color:#FFA500">Where it Lives</span></h2>
+</div></div>
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 343px; height: 383px; left: 57px; top: 216px;" data-block-id="e1c6c46356335039e13b15754639d055"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="343" data-natural-height="383" data-lazy-loaded="" data-src="8470-lecture-1-4/c50895be274b996782b930be29450026.png"></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 656px; height: 348px; left: 520px; top: 222px;" data-block-id="113b8b7a447fa1b30c7702d61f820bef"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="656" data-natural-height="348" data-lazy-loaded="" data-src="8470-lecture-1-4/829aaa52bf10adc1ce016e43dd4858aa.png"></div></div></section><section data-id="e19cc1c207ca78d85809b53588461e64"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="c74bee4661a38db28d1e2caf5111cf37"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: center; z-index: 11; padding: 40px;">
+<h2><span style="color:#FFA500">Where it Lives</span></h2>
+</div></div>
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 661px; height: 575px; left: 320px; top: 123px;" data-block-id="69548fbf965fe48d9e7cd49ebb6809d1"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="1553" data-natural-height="1350" data-lazy-loaded="" data-src="8470-lecture-1-4/6725440126ba7e8ead1a3c22bd908786.png"></div></div></section><section data-id="00eed9522d2855646858ebb1b69a370f"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 0px; top: 0px; height: auto;" data-block-id="d2868a97d7d293ce89a099980deae5af"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: center; z-index: 11; padding: 40px;">
+<h2><span style="color:#FFA500">Once a page is rendered</span></h2>
+</div></div>
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 823px; height: 498px; left: 217px; top: 167px;" data-block-id="603c8b8a6f8a922c91e5c7e4d746f62f"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="585" data-natural-height="354" data-lazy-loaded="" data-src="8470-lecture-1-4/3c0d1414a812188741a01b66cf2ef14f.png"></div></div></section><section data-id="a76c03aed41e8b453e116f2660acf10c"><div class="sl-block" data-block-type="text" style="width: 1274px; left: 3px; top: 266px; height: auto;" data-block-id="9e2ab1e0a1e3864987bcae427d491901"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: center; z-index: 11; padding: 40px;">
+<h2><span style="color:#FFA500">Important MVC Concpts in Ember</span></h2>
+</div></div>
+
+
+
+
+
+
+
+
+</section><section data-id="fe8804ce5a820ae16efcbdd72b11b9f8"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 186px;" data-block-id="cd37eea2655f768c0386520572aac214"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2 style="text-align:left"><span style="color:#FFA500">Router</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 275px;" data-block-id="850d9fac56114ec16c1fa82e88ac3c32"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p style="text-align: left;">The router is the switchboard statemachine that tells ember what to load based on the user’s request (urls).</p>
+
+<ul>
+	<li style="text-align: left;">urls are states</li>
+	<li style="text-align: left;">Handles actions that are transitions between states</li>
+	<li style="text-align: left;">Sets up model data for the controller to manipulate</li>
+	<li style="text-align: left;">Renders a template for user viewing</li>
+</ul>
+</div></div></section><section data-id="c134928db5078cdcbb44ed0b02ccda4a"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 186px;" data-block-id="0e63f205eb5a1e1b3344954eaf1faf4c"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2 style="text-align:left"><span style="color:#FFA500">Router (ex)</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 275px;" data-block-id="fc83254e2c6f41fa62b542f5a82275db"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<pre style="text-align: left;">Router.map(<span style="color:#40E0D0">function</span>() {
+   <span style="color:#FF0000">this</span>.route(‘<span style="color:#DAA520">home</span>'); //path will be at /home
+   <span style="color:#FF0000">this</span>.route(‘<span style="color:#DAA520">about</span>', { path: '/favs' });
+   <span style="color:#FF0000">this</span>.route(‘<span style="color:#DAA520">photos</span>’);
+   <span style="color:#FF0000">this</span>.route(‘<span style="color:#DAA520">photo</span>’, { path: ‘/photo/:photo_id’}); //dynamic segments can pass parameters
+
+});</pre>
+</div></div></section><section data-id="e45eb99d518fb3e181b4dcd77a295fae"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 186px;" data-block-id="5ca39d74cc8b23f06891ce5a0913d6f2"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2 style="text-align:left"><span style="color:#FFA500">Model</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 275px;" data-block-id="fef5f72c722c01ab4ff6411ccc71009b"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<p style="text-align: left;">Ember models are just javascript objects to represent data on the clientside</p>
+
+<ul>
+	<li style="text-align: left;">Just provides an abstraction layer to encapsulate data</li>
+	<li style="text-align: left;">You can use ember data or jQuery (Ember.$.getJSON()) to get data from a server</li>
+	<li style="text-align: left;">Ember-data uses a store (next)</li>
+</ul>
+</div></div></section><section data-id="50fc3f66cdddf3d8cbe7e20677b6ac27"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 0px;" data-block-id="5ab199067613e396cc8031fa884957c3"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2 style="text-align:left"><span style="color:#FFA500">Model (Ex)</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 119px;" data-block-id="3b0629f4d815cd83d19e91321c3dfaf0"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<pre><span style="color:#FF0000">import </span>DS <span style="color:#FF0000">from</span> '<span style="color:#DAA520">ember-data</span>';
+<span style="color:#FF0000">export default </span>DS.Model.extend({
+  eventtype: DS.attr('<span style="color:#DAA520">string</span>'),
+  timestamp: DS.attr('<span style="color:#DAA520">date</span>'),
+  userid: DS.attr('<span style="color:#DAA520">number</span>'),
+  requestor: DS.attr('<span style="color:#DAA520">string</span>'),
+});</pre>
+</div></div></section><section data-id="83014d037cefbca7c0d49c60087f9742"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 186px;" data-block-id="558041ea03838acaf209f707274030aa"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2 style="text-align:left"><span style="color:#FFA500">Controller</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 275px;" data-block-id="7a3269e234c45f334f2a1ad2f6736277"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<p style="text-align: left;">The controller is the brains of the operation.</p>
+
+<ul>
+	<li style="text-align: left;">Handles user actions, relay url state changes to the router.</li>
+	<li style="text-align: left;">Manipulates model data</li>
+	<li style="text-align: left;">Can make additional ajax requests to API</li>
+	<li style="text-align: left;">Used to control elements rendered in a template</li>
+</ul>
+</div></div></section><section data-id="3c342e263ecdd21b6b61a747ea54c4e6"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 0px;" data-block-id="182ab0a0b597872f6ffe77987ac74695"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2 style="text-align:left"><span style="color:#FFA500">Controller (Ex)</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 72px;" data-block-id="4af0450c4ccf6ac2b961c971b162738f"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<pre style="text-align:left"><span style="font-size:0.9em"><span style="color:#FF0000">import</span> Ember <span style="color:#FF0000">from</span> '<span style="color:#DAA520">ember</span>';
+<span style="color:#FF0000">export</span> <span style="color:#FF0000">default</span> Ember.Controller.extend({
+   somebooleanvariable: true,
+   somevalue: 1,
+   somecomputedproperty: function(){
+      <span style="color:#FF0000">return</span> <span style="color:#FF0000">this</span>.get(‘<span style="color:#DAA520">somevalue</span>’) +1;
+   }.property(‘<span style="color:#DAA520">somevalue</span>’),
+   actions: {
+     someAction: function(){
+<span style="color:#808080">        //do stuff here
+</span>        <span style="color:#FF0000">console</span>.log(‘<span style="color:#DAA520">this will create a debug statement in the console</span>’)
+     },
+     refreshData: function(){
+       <span style="color:#FF0000">this</span>.send(‘<span style="color:#DAA520">refreshModel</span>’);//this will fire an action off to the router
+     }
+   },
+
+});</span></pre>
+</div></div></section><section data-id="b93b4db3d7c557e766580b4b88834827"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 186px;" data-block-id="acea9e1a0a7d856ea2055aa590f4f375"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2 style="text-align:left"><span style="color:#FFA500">Templates (Handlebars)</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 275px;" data-block-id="5f761428ef7bb6744054d724b978dcee"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<p style="text-align: left;">Handlebars templates are the user interface in ember. They generate HTML when rendered and maintain bindings to controller/model variables.</p>
+
+<ul>
+	<li style="text-align: left;">Update automatically whenever bound variables are changed in the controller/model</li>
+	<li style="text-align: left;">Rendered by the router when the user visits a particular url</li>
+	<li style="text-align: left;">Pass user events to controller/router to be handled</li>
+</ul>
+</div></div></section><section data-id="2ffacdeb781143b560c5e55592a35d79"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 0px;" data-block-id="b4f47729e090faacff6c540654c28c45"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2 style="text-align:left"><span style="color:#FFA500">Template (Ex)</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 90px;" data-block-id="17a14203c624b0404755958dc37c067f"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<pre>&lt;div class="container"&gt;
+  {{#if somebooleanvariable}}
+     {{model.eventtype}} ({{model.id}})&lt;br&gt;
+      &lt;button {{action ‘refreshData'}}&gt;Refresh Photo&lt;/button&gt;
+
+  {{else}}
+      &lt;div class="jumbotron"&gt;
+         &lt;p&gt;This feature is not enabled at this time&lt;/p&gt;
+      &lt;/div&gt;
+  {{/if}}
+  &lt;button {{action ‘someAction'}}&gt;some action&lt;/button&gt; 
+  Text field binding: &lt;input type="text" value=“somevalue"/&gt;
+  {{somecomputedproperty}} – will display ^ +1
+
+&lt;/div&gt;</pre>
+</div></div></section><section data-id="e6327ebefc9ad09b23cd54c68550af5f"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 186px;" data-block-id="1fff0e4f1e0bccd55494bdcf9e9abf75"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2 style="text-align:left"><span style="color:#FFA500">Components</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 275px;" data-block-id="6aefa6b1edb298e8f30f349fc18e490b"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<p style="text-align:left">A component is basically a controller and a template grouped together for a specific purpose. The template is where the presentation (view) goes, while the component.js file is where the brains (controller) goes to control that view.</p>
+</div></div></section><section data-id="84f1de08ec49a3fc8c0a479948db6384"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 72px;" data-block-id="8c2b90393a10fee8d24e92eb57f4c138"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2 style="text-align:left"><span style="color:#FFA500">Handlebars Syntax</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 275px;" data-block-id="6cddcc1ede41ffe8416d81c8d6dad3c7"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<ul>
+	<li style="text-align:left">Simple expressions are identiﬁers that tell Handlebars.js to replace the contents of the expression at runtime</li>
+</ul>
+
+<p style="text-align:left">&lt;h1&gt;{{title}}&lt;/h1&gt;</p>
+
+<ul>
+	<li style="text-align:left">Expressions can traverse into your object-structure via dot-notation</li>
+</ul>
+
+<p style="text-align:left">  &lt;h1&gt;{{book.title}}&lt;/h1&gt;</p>
+
+<ul>
+	<li style="text-align:left">Simple expressions can also render entire components, and have properties and property-bindings</li>
+</ul>
+
+<p style="text-align:left">{{#my-component componentVar1=ContextVar1 <span style="color:rgb(255, 255, 255); text-align:left">componentVar2=ContextVar2</span> }}</p>
+</div></div></section><section data-id="61e787705b127fd35570b6de87fbc763"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 72px;" data-block-id="69a64bd7466f9e493dad33e7eea3314b"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2 style="text-align:left"><span style="color:#FFA500">Handlebars Syntax</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 275px;" data-block-id="7e09b6fd57e9c17d41b1998c0e4a0dcc"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<ul>
+	<li style="text-align:left">There are also handlebars `helpers` for doing common tasks like branching e.g. {{#if}}{{/if}} and iteration e.g. {{#each collection as |item|}} {{item}} {{/each}}</li>
+	<li style="text-align:left">also for links {{#linkTo}}</li>
+</ul>
+</div></div></section></section><section class="stack" data-id="b7b9edbd1a84aee0e9e338577f19e01a"><section data-id="85b25300e004c4171cbe6a184bbfdf91"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 313px;" data-block-id="f74b3aa6c86202d17c1b3fb273fbb290"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h3><font color="#ffa500">A Note on Ember CLI</font></h3>
+</div></div></section><section data-id="ddec74767424adb88281ba721aebcb3d"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 186px;" data-block-id="a26d39016d620776acc795b076505504"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2 style="text-align:left"><span style="color:#FFA500">Ember CLI</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 275px;" data-block-id="08f3229503a59f60c965d388d17bb3aa"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;" dir="ui">
+<p style="text-align:left">Ember ships with its own CLI tooling for creating new files within the ember namespace. It uses NPM and yarn (old school used to use bower) to handle gathering required packages. </p>
+
+<p style="text-align:left"> </p>
+
+<p style="text-align:left">It also has a MASSIVE addon community that supports so many use cases. Often you just need to do ember install &lt;addon&gt; to fully implement something you need.</p>
+
+<p style="text-align:left">More info at <span style="color:#FF8C00">emberaddons.com</span></p>
+</div></div></section><section data-id="7193e88b7869580f5ae1098c8832a76c"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 313px;" data-block-id="52234bfd4fdfac85940b66b69526e952"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h3><font color="#ffa500">Live DEMO</font></h3>
+</div></div></section><section data-id="8cb00fb42f387f9c0beac6d723c9a6f2"><div class="sl-block" data-block-type="text" style="height: auto; width: 1280px; left: 0px; top: 313px;" data-block-id="35cfe813f2f67c37e808872d3d3847c6"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h3><span style="color:#FFA500">Live OF Using with django</span></h3>
+
+<p>hint: build into /backend/static/ember folder</p>
+</div></div></section></section><section data-id="c450ccd7e173e87065c2bc95d22d31cb"><div class="sl-block" data-block-type="text" style="width: 551px; left: 691px; top: 23px; height: auto;" data-block-id="4620e42faa61f46bcba6af70ae99d103"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11;">
+<h2 style="text-align: right;"><span style="color:#FFA500">Questions?</span></h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 627px; left: 0px; top: 657px; height: auto;" data-block-id="38d6bce7c7d5bdcb4f5f66754eb1ea62"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 12; text-align: left; color: rgb(230, 145, 56); line-height: 0.78;" data-has-line-height="">
+<p>© 2014-2017 Matthew L. Hale or as listed</p>
+
+<p> </p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 613px; height: 574px; left: 627px; top: 120px;" data-block-id="b27c07b5ac48b9755c64cb102f061287"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="347" data-natural-height="325" data-lazy-loaded="" data-src="8470-lecture-1-4/0d587e2647724e0e919407ad36057a65.png"></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 120px; height: 109px; left: 23px; top: 23px;" data-block-id="4f5dab07945e36221926775e8116fe52"><div class="sl-block-content" style="z-index: 14;"><img style="" data-natural-width="96" data-natural-height="87" data-lazy-loaded="" data-src="8470-lecture-1-4/07138034456d883deee1425dfb431666.png"></div></div>
+<div class="sl-block" data-block-type="text" style="width: 551px; left: 48px; top: 289px; height: auto;" data-block-id="303d7ff86d63f6bf0e7f9b3da5b50a3e"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 15; text-align: left;">
+<h3 style="text-align:right"><strong><span style="color:#FFA500">Matt Hale, PHD</span></strong></h3>
+
+<p style="text-align:right"><span style="color:#FFA500">U</span>niversity of <span style="color:#FFA500">N</span>ebraska at <span style="color:#FFA500">O</span>maha</p>
+
+<p style="text-align:right">Assistant Professor, Cybersecurity</p>
+
+<p style="text-align:right">mlhale@unomaha.edu</p>
+
+<p style="text-align:right">twitter: <span style="color:#FFA500">@mlhale_</span></p>
+</div></div>
+</section>
+			</div>
+		</div>
+
+		<script>
+			var SLConfig = {"deck": {"id":1090826,"slug":"8470-lecture-1-4","title":"8470-Lecture-6-emberjs","description":"","width":1280,"height":720,"visibility":"self","published_at":"2017-08-21T06:45:00.421Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/b3499fddc9dae244397169936a4d0f6e/thumb.jpg?1507655749","view_count":0,"user":{"id":747632,"username":"matthale","name":"Matt Hale","description":null,"thumbnail_url":"https://lh6.googleusercontent.com/-KSSzYPPGAnk/AAAAAAAAAAI/AAAAAAAAAEI/P7Tqr95ZJSs/photo.jpg?sz=50","paid":true,"pro":true,"lite":false,"team_id":null,"settings":{"id":597999,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true}},"background_transition":"none","transition":"slide","theme_id":null,"theme_font":"quicksand","theme_color":"black-orange","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":true,"rolling_links":false,"center":false,"should_loop":false,"share_notes":false,"slide_number":true,"rtl":false,"version":2,"collaborative":false,"deck_user_editor_limit":1,"data_updated_at":1507673939215,"font_typekit":null,"font_google":null,"notes":{"e3b474a9a29a371c440fcb3260712e4a":"Convert to proper reveal.js slide at somepoint"}}};
+
+
+			// Use local fonts
+			SLConfig.fonts_url = 'lib/fonts/';
+		</script>
+
+		<script src="lib/head.min.js"></script>
+		<script src="lib/reveal.min.js"></script>
+		<script src="lib/offline.js"></script>
+
+		<!-- Initialize the presentation -->
+		<script>
+			Reveal.initialize({
+				width: 1280,
+				height: 720,
+				margin: 0.05,
+
+				controls: true,
+				progress: true,
+				history: true,
+				mouseWheel: false,
+				showNotes: false,
+				slideNumber: true,
+
+				autoSlide: 0 || 0,
+				autoSlideStoppable: true,
+
+				center: false,
+				loop: false,
+				rtl: false,
+
+				transition: "slide",
+				backgroundTransition: "none",
+
+				dependencies: [
+					{ src: 'lib/reveal-plugins/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/reveal-plugins/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/reveal-plugins/highlight/highlight.js', async: true, callback: function() { hljs.initHighlighting(); hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/reveal-plugins/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+		</script>
+
+		
+
+	</body>
+</html>
