@@ -77,27 +77,17 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * [Ember.js lab](https://guides.emberjs.com/v2.16.0/tutorial/ember-cli/)
   * Handlebars
   * AJAX for External API integration
-* Step back and think about Software engineering Principles
-  * Software Development Lifecycle
-  * Requirements Engineering and Use/Misuse case review
-  * Software Architecting
-  * Integration patterns between Servers and Clients
-* Configuration and hardening
-  * Apache Hardening
-  * [IP Tables and OS Hardening](modules/iptable-exercise.md)
+* Software Architecture
 * Time to be creative
   * Come up with your own project idea or implement something for a friend/family member or community organization
-  * [Project 1](#projects): Requirements Engineering, Product Design, Architecture, and Client-side Prototype
-  * [Project 2](#projects): Server-side API Creation and Client-side Integration
-
-## Projects
-[Project 1 rubric](/modules/IA8470-project-1-rubric.pdf) - Creating and securing a prototype application
-Project 1 will use the skills you learned in the Labs and have you create some software engineering documents to help you flesh out an idea and implement the client-side portion of the idea that will use for the rest of the semester. For this, and the rest of the projects in the course, you will be able to use your own project idea. You will be expected to satisfy the following rubrics. See the [rubric](/modules/IA8470-project-1-rubric.pdf) for specific details.
-
-[Project 2 rubric](/modules/IA8470-project-2-rubric.pdf) - Server-side API creation and Client-side Integration
-Project 2 continues the web development and design initiated in Project 1. You will create a Django REST API for servicing CRUD (create, read, update, delete) requests coming from your clientside ember app. Project 2 also offers you the first real opportunity to start realizing core security functionality. You will deploy your REST API on an Apache server and harden it against various forms of attack. Among other things you will harden your API by adding validators for each create or update operation and ensure that there are no side-effects from your methods. Additionally, you will update your design documents to reflect your server-side changes. See the [rubric](/modules/IA8470-project-2-rubric.pdf) for specific details.
-
-[Final Assignment rubric](/modules/final-project-rubric.pdf) - This last assignment tasks you with assessing your partner's install guide, user guide, and application. See the [rubric](/modules/final-project-rubric.pdf) for specific details.
+  * [Project Milestone 1](/projects/project1.md) - Product Ideation, Design, Mockup, and Prototype
+* Configuration and hardening
+  * Deployment
+  * Hardening
+  * [IP Tables and OS Hardening](modules/iptable-exercise.md)
+* Finishing up
+  * Project Milestone 2 - TBA
+  * Class-wide Final Project - TBA
 
 ## 2016 Archived Lab content
 [secwebdev.mlhale.com](http://secwebdev.mlhale.com)
@@ -129,8 +119,8 @@ Web applications are pervasive fixtures of 21st century culture. Web application
   * Containers (Lab 2 - no rubric)
   * Building a Server (Lab 3 - no rubric)
   * Penetration Testing (Lab 4 - no rubric)
- * (15%) Project 1 - Product Ideation and Mockup
- * (25%) Project 2 - Implementation and Documentation
+ * (15%) Project Milestone 1 - Product Ideation, Design, Mockup, and Prototype
+ * (25%) Project Milestone 2 - Implementation and Documentation
  * (20%) Class Wide Community Service Project
  * (10%) Class Participation
 
