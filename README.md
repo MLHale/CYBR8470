@@ -1,11 +1,11 @@
 ### Table of contents
-[Online discussion area](#online-discussion-area)  
-[Location](#location)  
-[Supplies](#supplies)  
-[Projects](#projects)  
-[Class topics](#class-topics)  
-[Syllabus](#syllabus)  
-[License](#license)  
+[Online discussion area](#online-discussion-area)
+[Location](#location)
+[Supplies](#supplies)
+[Projects](#projects)
+[Class topics](#class-topics)
+[Syllabus](#syllabus)
+[License](#license)
 
 ## Viewing these materials
 The class materials are best viewed at [https://mlhale.github.io/CYBR8470/](https://mlhale.github.io/CYBR8470/)
@@ -113,25 +113,25 @@ Project 2 continues the web development and design initiated in Project 1. You w
 * DNelson ([Waze Place Discovery and Audit](https://github.com/DaJoNel/wpda))
 
 ## Syllabus
-**Date/Time**: Tuesday 5:30pm – 8:10pm  
-**Instructor**:  Dr. Hale  
-**Office**:  PKI 174-D, `(402) 554-3978`  
-**Office Hours**:  Open door policy, or by appointment  
-**E-mail**:  `mlhale@unomaha.edu`  
+**Date/Time**: Tuesday 5:30pm – 8:10pm
+**Instructor**:  Dr. Hale
+**Office**:  PKI 174-D, `(402) 554-3978`
+**Office Hours**:  Open door policy, or by appointment
+**E-mail**:  `mlhale@unomaha.edu`
 
 
 ### Course Abstract
 Web applications are pervasive fixtures of 21st century culture. Web application security is an inclusive, amorphous, term that spans application level security, i.e. ensuring high level code cannot be exploited, server level security, i.e. ensuring server resources such as databases and file systems cannot be exploited, and network security, i.e. ensuring unauthorized parties cannot access a server or tamper with user sessions. The Secure Web Application Development course will mix traditional lecture with hands-on labs to expose students to common web development activities and cross-cut different web application security concepts. After the class, students will be proficient with web application security from the ground up, including the ability to securely deploy and configure a web server (e.g. apache or node.js), select and install a web development framework to best suit application and security requirements (e.g. Django, Ember, or both), and develop secure application architectures and code using at least one web framework. Students will also leave with a basic understanding of core web protocols including TCP/IP, SSL, and HTTP/HTTPs, web development tools (e.g. chrome dev toolkit), unit testing (e.g. QUnit), and best practices for accepting, parsing, and storing user input.
 
-### Grading Breakdown (due dates are tentative)
- * (25%) Labs
+### Grading Breakdown
+ * (30%) Labs
   * Twitter REST API (Lab 1 - no rubric)
   * Containers (Lab 2 - no rubric)
   * Building a Server (Lab 3 - no rubric)
   * Penetration Testing (Lab 4 - no rubric)
- * (20%) Project 1 - Product Design and Mockup
- * (20%) Project 2 - Implementation and Documentation
- * (25%) Project 3 - Polish and Final Delivery
+ * (15%) Project 1 - Product Ideation and Mockup
+ * (25%) Project 2 - Implementation and Documentation
+ * (20%) Class Wide Community Service Project
  * (10%) Class Participation
 
 Each project will have a specific grading rubric that includes the core requirements for the project (i.e. what the application must do), any required intermediate milestone goals (such as short progress meetings with the instructor), the project due date, and the list of items that must be submitted. Each project will include a presentation component to be presented in class on the project due date. Projects build upon each other. The final Project is considered to be comprehensive. This means that *there is no final exam*. Final Project presentations will be presented on the day of the Final (December 14th during normal class time).
@@ -169,12 +169,12 @@ The instructor may retain a copy of your exams (with names and any other identif
 
 In addition, the instructor retains the right to use any code or project artifacts developed in the course for pedagogy, research, or service learning purposes. Student web project code developed in the course may be used in future secure project development courses, by the instructor for research purposes, or by designated stakeholders.
 
-## License  
+## License
 Secure Web App Development
 Copyright (C) 2016  Dr. Matthew L. Hale
 
 ### Lesson content
-Copyright (C) [Dr. Matthew Hale](http://faculty.ist.unomaha.edu/mhale/) 2017.  
+Copyright (C) [Dr. Matthew Hale](http://faculty.ist.unomaha.edu/mhale/) 2017.
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">This lesson</span> is licensed by the author under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
