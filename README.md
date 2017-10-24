@@ -1,11 +1,10 @@
 ### Table of contents
-[Online discussion area](#online-discussion-area)
-[Location](#location)
-[Supplies](#supplies)
-[Projects](#projects)
-[Class topics](#class-topics)
-[Syllabus](#syllabus)
-[License](#license)
+[Online discussion area](#online-discussion-area)  
+[Location](#location)  
+[Supplies](#supplies)  
+[Class topics](#class-topics)  
+[Syllabus](#syllabus)  
+[License](#license)  
 
 ## Viewing these materials
 The class materials are best viewed at [https://mlhale.github.io/CYBR8470/](https://mlhale.github.io/CYBR8470/)
