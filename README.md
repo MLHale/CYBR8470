@@ -119,6 +119,8 @@ Web applications are pervasive fixtures of 21st century culture. Web application
   * Containers (Lab 2 - no rubric)
   * Building a Server (Lab 3 - no rubric)
   * Penetration Testing (Lab 4 - no rubric)
+  * Javascript (Lab 5 - no rubric)
+  * Ember (Lab 6 - no rubric)
  * (15%) Project Milestone 1 - Product Ideation, Design, Mockup, and Prototype
  * (25%) Project Milestone 2 - Implementation and Documentation
  * (20%) Class Wide Community Service Project
