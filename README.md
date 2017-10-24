@@ -77,6 +77,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Handlebars
   * AJAX for External API integration
 * Software Architecture
+  * Reading: [https://leanpub.com/visualising-software-architecture/read](https://leanpub.com/visualising-software-architecture/read)
 * Time to be creative
   * Come up with your own project idea or implement something for a friend/family member or community organization
   * [Project Milestone 1](/projects/project1.md) - Product Ideation, Design, Mockup, and Prototype
