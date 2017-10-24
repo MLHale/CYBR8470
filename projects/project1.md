@@ -7,7 +7,7 @@ Tuesday (11/7/17) at 11:59PM
 ### Total points
 315 Points (15% of total grade)
 
-### Overview
+## Overview
 For this project you will create a new web application using the skills you have built up over the various labs. The project should be a non-trivial idea that is achievable in 4-5 weeks. You should make something that helps you, someone you know, or an organization that you may be interested in (if you work with a community service organization I will award you up to 10% extra credit).
 
 This first part of the project tasks you with ideation, mockup, and a low-fidelity prototyping activities. By low fidelity, I mean bare bones functionality. You will submit the following as part of this milestone.
@@ -149,7 +149,7 @@ There isn't much formality for this part of the project. I expect you to get sta
 ### Submission
 You should submit your github repository project link on Canvas by the due date.
 
-#### Grading Criteria
+### Grading Criteria
 75 points awarded by frequency of commits and clear evidence of coding effort.
 
 #### License
