@@ -82,6 +82,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 * Time to be creative
   * Come up with your own project idea or implement something for a friend/family member or community organization
   * [Project Milestone 1](/projects/project1.md) - Product Ideation, Design, Mockup, and Prototype
+  * [Project Milestone 2](/projects/project2.md) - Implementation and Final Delivery
 * Configuration and hardening
   * Deployment
   * Hardening
