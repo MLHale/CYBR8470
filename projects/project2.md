@@ -57,6 +57,8 @@ You will be graded as follows.
 # Deployment
 You are expected to deploy your project to a set of cloud services of your choice. http://surge.sh and https://aws.amazon.com/ or https://cloud.google.com/compute/ are recommended. AWS and Google Cloud provide education credits ($100-200 to students) and are a great option for deployment.
 
+I suggest [Elastic Beanstalk](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html) or Using [Django on Google](https://cloud.google.com/python/django/) If you use Google and don't want to configure a cloud database, you can use a [Prebuilt Google Compute Django Apache VM](https://console.cloud.google.com/launcher/details/bitnami-launchpad/djangostack?pli=1&project=arklan-custom-ma-1507997989384)
+
 ## Grading Criteria
 80 points for successfully deploying your app (30 points for client, 50 points for server)
 20 points will be given for creating a `tagged release` on a code commit in your Github repository. If you are creating a generic open source library or tool - you might consider adding the release to NPM or another distribution repository.
