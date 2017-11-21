@@ -85,8 +85,9 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * [Project Milestone 2](/projects/project2.md) - Implementation and Final Delivery
 * Configuration and hardening
   * Deployment
+  * **https://realpython.com/blog/python/deploying-a-django-app-and-postgresql-to-aws-elastic-beanstalk/**
+  * **http://surge.sh/**
   * Hardening
-  * [IP Tables and OS Hardening](modules/iptable-exercise.md)
 * Finishing up
   * Project Milestone 2 - TBA
   * Class-wide Final Project - TBA
