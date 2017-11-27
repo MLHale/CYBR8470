@@ -89,7 +89,6 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * **http://surge.sh/**
   * Hardening
 * Finishing up
-  * Project Milestone 2 - TBA
   * Class-wide Final Project - TBA
 
 ## 2016 Archived Lab content
