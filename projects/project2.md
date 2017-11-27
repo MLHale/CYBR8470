@@ -6,7 +6,7 @@ Thursday (12/7/17) at 11:59PM
 Final Presentation (12/12/17) at 5:30PM
 
 ### Total points
-315 Points (25% of total grade)
+490 Points (25% of total grade)
 
 ## Overview
 This project tasks you with realizing, through implementation, the design and prototype prepared in Milestone 1.  You will also create core security functionality (if you haven't already), deploy your REST API and client app, and harden them against attack. Hardening your server should be done at the API and container levels to ensure endpoints are properly secured (particularly create and update endpoints).
