@@ -2,7 +2,7 @@
 **Assigned: Tuesday 10/24/17**
 
 ### Due Date
-Thursday (12/7/17) at 11:59PM
+Tuesday (12/12/17) at 11:59PM
 Final Presentation (12/12/17) at 5:30PM
 
 ### Total points
