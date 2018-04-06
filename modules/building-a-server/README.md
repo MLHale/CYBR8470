@@ -91,7 +91,7 @@ Open the `.gitmodules` file. Edit the `backend` submodule to point to your forke
 ```
 [submodule "backend"]
 	path = backend
-	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab
+	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab-backend
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab-frontend
