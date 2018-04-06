@@ -94,7 +94,7 @@ Open the `.gitmodules` file. Edit the `backend` submodule to point to your forke
 	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab-backend
 [submodule "frontend"]
 	path = frontend
-	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab
+	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab-frontend
 ```
 
 becomes
@@ -105,7 +105,7 @@ becomes
 	url = https://github.com/<your-github-id without the angled brackets>/CYBR8470-building-a-webservice-lab-backend
 [submodule "frontend"]
 	path = frontend
-	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab
+	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab-frontend
 ```
 
 This command tells git to use the new url as the path for the submodule. To pull down the code run the following (in the terminal/powershell):
