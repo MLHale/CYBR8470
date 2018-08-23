@@ -105,11 +105,11 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 * DNelson ([Waze Place Discovery and Audit](https://github.com/DaJoNel/wpda))
 
 ## Syllabus
-**Date/Time**: Tuesday 5:30pm – 8:10pm
-**Instructor**:  Dr. Hale
-**Office**:  PKI 174-D, `(402) 554-3978`
-**Office Hours**:  Open door policy, or by appointment
-**E-mail**:  `mlhale@unomaha.edu`
+**Date/Time**: Thursday 5:30pm – 8:10pm . 
+**Instructor**:  Dr. Hale  
+**Office**:  PKI 174-D, `(402) 554-3978`  
+**Office Hours**:  Open door policy, or by appointment  
+**E-mail**:  `mlhale@unomaha.edu` . 
 
 
 ### Course Abstract
