@@ -1,4 +1,4 @@
-# RESTFul APIs and Twitter 
+# RESTFul APIs and Twitter
 
 ### Cybersecurity First Principles in this lesson
 
@@ -42,7 +42,7 @@ None
 
 ### Table of Contents
 <!-- TOC START min:1 max:3 link:true update:true -->
-- [RESTFul APIs and Little bits](#restful-apis-and-little-bits)
+- [RESTFul APIs and Twitter](#restful-apis-and-twitter)
     - [Cybersecurity First Principles in this lesson](#cybersecurity-first-principles-in-this-lesson)
     - [Introduction](#introduction)
     - [Goals](#goals)
@@ -57,7 +57,6 @@ None
     - [Step 6: First POST request to create a new tweet](#step-6-first-post-request-to-create-a-new-tweet)
     - [Checkpoint](#checkpoint)
     - [Additional Resources](#additional-resources)
-    - [Acknowledgements](#acknowledgements)
     - [License](#license)
 
 <!-- TOC END -->
@@ -175,6 +174,8 @@ APIs allow you to get and save data back to an application, without needing to t
 
 ...Enough talk! Lets look at an API!
 
+> Note the following screenshots of the API console are prior to the July 2018 twitter developer portal update. I have left them here for informational purposes, but the console will, unfortunately, no longer work.
+
 Open Chrome and go to: [https://dev.twitter.com/rest/tools/console](https://dev.twitter.com/rest/tools/console)
 
 ![Twitter API](./img/twitter-api1.png)
@@ -202,20 +203,22 @@ To ensure that only we can issue commands to our account, Twitter requires a for
 
 * Create a new twitter app at [https://apps.twitter.com/app/new](https://apps.twitter.com/app/new) You can call the app whatever you want. I called mine _8470-twitter-app_.
 
-![Twitter API](./img/twitter-app1.png)
-
-* Click the `Keys and Access Tokens` tab once created.
-* Click `Create my access token`
-* Don't share this info with anyone, it is your private key.
+> Note you now need to first get developer permissions on your twitter account. You can do this by visiting [https://developer.twitter.com/en/apply/user](https://developer.twitter.com/en/apply/user)
 
 Sample message for rationale when creating Developer account.
 ```
 This project is part of CYBR 8470 - a class at the University of Nebraska at Omaha on secure web development.
 
-We will using the Twitter API in our web development project to learn about REST, gather tweets, and incorporate data into our developed web apps. 
+We will using the Twitter API in our web development project to learn about REST, gather tweets, and incorporate data into our developed web apps.
 
 Analysis and display of tweets within the webapp are for educational purposes. They may be displayed at row level and/or in aggregate.
 ```
+
+![Twitter API](./img/twitter-app1.png)
+
+* Click the `Keys and Access Tokens` tab once created.
+* Click `Create my access token`
+* Don't share this info with anyone, it is your private key.
 
 ### Step 4: Making your first REST request
 Now that we have our API Key, lets use it to make a request.
@@ -225,7 +228,7 @@ POSTMAN is a REST client, that allows end users to make requests to test their A
 ![Loading Postman](./img/postman1.png)
 
 In POSTMAN, lets build a new GET request targeted at the URL we explored before:
-https://api.twitter.com/1.1/trends/place.json
+[https://api.twitter.com/1.1/trends/place.json](https://api.twitter.com/1.1/trends/place.json)
 
 * Find and click the `Authorization` button and then click `Get New Access Token`
 
@@ -236,6 +239,7 @@ https://api.twitter.com/1.1/trends/place.json
 ![Twitter API](./img/twitter-app3.png)
 
 > Note that `clientID` is your `App Consumer Key` and `client secret` is `App Consumer Secret` on twitter
+> make sure to specify that the access token url is https://api.twitter.com/oauth2/token
 
 * Hit `Request token` when done. This will ask twitter for an `API Key` that `POSTMAN` can then use to authenticate subsequent requests to the API.
 
@@ -254,16 +258,16 @@ At this point your request should look something like:
 ![Twitter API](./img/postman3.png)
 
 ### Step 5: Other GET Requests
-Try some other requests using the `search API` on twitter. See: [https://dev.twitter.com/rest/public/search](https://dev.twitter.com/rest/public/search) for more information about the different options.
+Try some other requests using the `search API` on twitter. See: [https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets](https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets) for more information about the different options.
 
 Your queries should target [https://api.twitter.com/1.1/search/tweets.json](https://api.twitter.com/1.1/search/tweets.json)
 
 ### Step 6: First POST request to create a new tweet
-Now that we have the basics of `GET requests` to access tweet data, lets try making a new tweet! We will work with the `API endpoint` here: [https://dev.twitter.com/rest/reference/post/statuses/update](https://dev.twitter.com/rest/reference/post/statuses/update)
+Now that we have the basics of `GET requests` to access tweet data, lets try making a new tweet! We will work with the `API endpoint` here: [https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update](https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update)
 
 Configure a request to [https://api.twitter.com/1.1/statuses/update.json](https://api.twitter.com/1.1/statuses/update.json)
 
-* Make sure to add a `user_id` field corresponding to your twitter user id (shown on the APP page as the `owner id`) and a `status` field which will be the 140 character or less message to post to your account. In my case I'm trying to post to my account `mlhale_` (id: `	246485084`) with the status:
+* Make sure to add a `user_id` field corresponding to your twitter user id (shown on the APP page as the `owner id`) and a `status` field which will be the 140 character or less message to post to your account. In my case I'm trying to post to my account `mlhale_` (id: `246485084`) with the status:
 
 ```
 Testing%20RESTful%20API%20lesson%20for%20%23security%20%23webdev%20class%20%23unomaha
