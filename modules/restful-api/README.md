@@ -208,6 +208,14 @@ To ensure that only we can issue commands to our account, Twitter requires a for
 * Click `Create my access token`
 * Don't share this info with anyone, it is your private key.
 
+Sample message for rationale when creating Developer account.
+```
+This project is part of CYBR 8470 - a class at the University of Nebraska at Omaha on secure web development.
+
+We will using the Twitter API in our web development project to learn about REST, gather tweets, and incorporate data into our developed web apps. 
+
+Analysis and display of tweets within the webapp are for educational purposes. They may be displayed at row level and/or in aggregate.
+```
 
 ### Step 4: Making your first REST request
 Now that we have our API Key, lets use it to make a request.
