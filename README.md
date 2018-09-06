@@ -50,7 +50,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Web Service Standards (`WS-*`)
   * Methods: SOAP / REST / Web sockets
   * Data Formats: XML, JSON
-* Server-side Development in Django ([Lecture 3 Slides](/slides/lecture3/index.html))
+* Server-side Development in Django ([Lecture 3 Slides](/slides/lecture3.pdf))
   * Intro to Django
   * Server-side Model View Controller Pattern
   * Django REST Framework
