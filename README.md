@@ -57,6 +57,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Django in Docker
   * [Creating a new Web service](/modules/building-a-server/README.md)
   * [Building API endpoint exercise](/modules/building-a-server/django-exercise.md)
+  * [Django Exercise](/modules/building-a-server/django-exercise.md)
 * Test-driven Development ([Lecture 4 slides](./slides/test-driven-development.pdf))
   * Unit testing
   * [Pen testing Lab](/modules/penetration-testing/README.md)
