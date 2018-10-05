@@ -173,9 +173,9 @@ We've created this pretty cool API and nice client-side interface to use it. How
 
 > Note: This assumes your work is completed from the previous lesson.
 
-* Now open `POSTMAN` and send a simple `GET` request to your local server at `https://localhost`.
+* Now open `POSTMAN` and send a simple `GET` request to your local server at `http://localhost`.
 * What do you get?
-* Now try sending a `GET` request to `https://localhost/api/events`
+* Now try sending a `GET` request to `http://localhost/api/events`
 * What do you see?
 
 ### Step 5: Exploring Authentication and permissions
@@ -202,7 +202,7 @@ That means that anyone can get this data?
 Lets confirm this from `POSTMAN`:
 
 * open your `POSTMAN` window
-* Make a `GET` request to `https://localhost/api/events`
+* Make a `GET` request to `http://localhost/api/events`
 
 ![Unauthenticated GET Request](./img/unauthenticated-GET.png)
 > Note your data items probably look slightly different than mine, since I am developing this lesson and haven't loaded much data in the app!
@@ -263,7 +263,7 @@ TEMPLATES = [
     },
 ]
 ```
-This configuration setting joins the operating system's `BASE_DIR` (or base directory) to the `static/ember/` directory. This means, it looks for `/<path-where-django-exists>/static/ember/`. For us that is `../backend/static/ember/`. If we look in that folder we will see the index.html file that loads in the javascript and other files associated with the client you have been looking at all of this time when you visit https://localhost
+This configuration setting joins the operating system's `BASE_DIR` (or base directory) to the `static/ember/` directory. This means, it looks for `/<path-where-django-exists>/static/ember/`. For us that is `../backend/static/ember/`. If we look in that folder we will see the index.html file that loads in the javascript and other files associated with the client you have been looking at all of this time when you visit http://localhost
 
 > In practice you would need to do a full assessment of the client. For now, we will assume it is 'safe' from the point of view of the server.
 
