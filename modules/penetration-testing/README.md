@@ -425,7 +425,7 @@ To show you how bad storing arbitrary string text can be, the skeleton code in t
 * While this type of data loading is **quite typical** in many web applications it is **highly vulnerable** to a type of `cross-site scripting (XSS)` attack called `stored cross-site scripting`.
 * In our case, our server `API endpoint` did not filter the string text, so it allows for XSS text to be stored as a string. When the client loads the data from the server, it `renders it as HTML` causing the XSS attack to succeed and a popup to be generated.
 
-If you visit, https://localhost/xss_example/ you can see this `Stored XSS` attack in action.
+If you visit, https://localhost/xss-example/ you can see this `Stored XSS` attack in action.
 
 ![request](./assets/README-d6363.png)
 ![request](./assets/README-de3d7.png)
