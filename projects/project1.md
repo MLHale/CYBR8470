@@ -1,8 +1,8 @@
 # CYBR8470 Project Milestone 1: Product Ideation, Design, Mockup, and Prototype
-**Assigned: Tuesday 10/24/17**
+**Assigned: Thursday 10/11/18**
 
 ### Due Date
-Tuesday (11/7/17) at 11:59PM
+Thursday (11/1/17) at 11:59PM
 
 ### Total points
 315 Points (15% of total grade)
