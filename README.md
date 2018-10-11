@@ -74,7 +74,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Asynchronicity is your friend
   * Model View Controller
   * Ember.js
-  * [Ember.js lab](https://guides.emberjs.com/v2.16.0/tutorial/ember-cli/)
+  * [Ember.js lab](https://guides.emberjs.com/release/tutorial/ember-cli/)
   * Handlebars
   * AJAX for External API integration
 * Software Architecture
