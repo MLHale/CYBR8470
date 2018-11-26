@@ -1,9 +1,9 @@
 # CYBR8470 Project Milestone 2: Implementation and Deployment
-**Assigned: Tuesday 10/24/17**
+**Assigned: Tuesday 11/15/18**
 
 ### Due Date
-Tuesday (12/12/17) at 11:59PM
-Final Presentation (12/12/17) at 5:30PM
+Thursday (12/13/17) at 11:59PM
+Final Presentation (12/13/17) at 5:30PM
 
 ### Total points
 490 Points (25% of total grade)
