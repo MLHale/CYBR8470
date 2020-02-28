@@ -39,25 +39,24 @@ You should complete the following lessons before attempting this lesson.
 * [Containers](../containers/README.md)
 
 ### Table of Contents
-<!-- TOC START min:1 max:3 link:true update:true -->
+<!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
 - [Building a Server](#building-a-server)
-    - [Cybersecurity First Principles in this lesson](#cybersecurity-first-principles-in-this-lesson)
-    - [Introduction](#introduction)
-    - [Goals](#goals)
-    - [Materials Required](#materials-required)
-    - [Prerequisite lessons](#prerequisite-lessons)
-    - [Table of Contents](#table-of-contents)
-    - [Step 1: Review - Where are we so far?](#step-1-review---where-are-we-so-far)
-    - [Step 2: No, you won't be starting from scratch](#step-2-no-you-wont-be-starting-from-scratch)
-    - [Step 3: Setup the server](#step-3-setup-the-server)
-    - [Step 4: Run the server](#step-4-run-the-server)
-    - [Step 5: Building the server event API endpoint](#step-5-building-the-server-event-api-endpoint)
-    - [Step 6: Press the button](#step-6-press-the-button)
-    - [Step 7: Chrome Dev Tools - Your new best friend](#step-7-chrome-dev-tools---your-new-best-friend)
-    - [Step 8: Make a new REST endpoint to make the client button work with the backend](#step-8-make-a-new-rest-endpoint-to-make-the-client-button-work-with-the-backend)
-    - [Step 9: Profit!](#step-9-profit)
-    - [License](#license)
-
+        - [Cybersecurity First Principles in this lesson](#cybersecurity-first-principles-in-this-lesson)
+        - [Introduction](#introduction)
+        - [Goals](#goals)
+        - [Materials Required](#materials-required)
+        - [Prerequisite lessons](#prerequisite-lessons)
+        - [Table of Contents](#table-of-contents)
+        - [Step 1: Review - Where are we so far?](#step-1-review---where-are-we-so-far)
+        - [Step 2: No, you won't be starting from scratch](#step-2-no-you-wont-be-starting-from-scratch)
+        - [Step 3: Setup the server](#step-3-setup-the-server)
+        - [Step 4: Run the server](#step-4-run-the-server)
+        - [Step 5: Building the server event API endpoint](#step-5-building-the-server-event-api-endpoint)
+        - [Step 6: Press the button](#step-6-press-the-button)
+        - [Step 7: Chrome Dev Tools - Your new best friend](#step-7-chrome-dev-tools---your-new-best-friend)
+        - [Step 8: Make a new REST endpoint to make the client button work with the backend](#step-8-make-a-new-rest-endpoint-to-make-the-client-button-work-with-the-backend)
+        - [Step 9: Profit!](#step-9-profit)
+        - [License](#license)
 <!-- TOC END -->
 
 
@@ -68,6 +67,8 @@ Now, in this lesson, we will examine how to create our own server and deploy it 
 
 For reference, this is the overall design we are looking at. On the left side, you have some sensors - they could be anything, since this isn't an IoT class, we can just assume we are getting data from them. In this lesson, we will begin building the item marked `custom web API` in the figure below. It will have features to support authentication, logging events, and we can even include a hook to trigger another service (like `IFTTT`).
 ![Web App Architecture](./img/web-app-architecture.png)
+
+This a change
 
 ### Step 2: No, you won't be starting from scratch
 The process of creating a new application server from the ground up takes some time and attention. Instead of having you start from the ground up, I'll provide you with some **starter** skeleton code. This code does the basics - you will extend it to accepting requests, store the data that comes in, and then trigger another service.
