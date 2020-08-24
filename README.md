@@ -36,7 +36,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 * [Creating a new Web service](/modules/building-a-server/README.md)
 
 ## Class Topics
-* Class Intro ([Lecture 1 Slides](/slides/lecture1/index.html))
+* Introduction Module ([Slides](/slides/introduction/index.html))
   * Overview of Web apps
   * Concept inventory
   * Threat vectors
