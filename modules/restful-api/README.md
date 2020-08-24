@@ -156,27 +156,24 @@ APIs allow you to get and save data back to an application, without needing to t
 
 ...Enough talk! Lets look at an API!
 
-> Note the following screenshots of the API console are prior to the July 2018 twitter developer portal update. I have left them here for informational purposes, but the console will, unfortunately, no longer work.
+#### Documentation and Overview of the API
 
-Open Chrome and go to: [https://dev.twitter.com/rest/tools/console](https://dev.twitter.com/rest/tools/console)
 
-![Twitter API](./img/twitter-api1.png)
+For up-to-date documentation (as of Aug. 2020), you can view the twitter 1.1 API documentation at [https://developer.twitter.com/en/docs/twitter-api/v1](https://developer.twitter.com/en/docs/twitter-api/v1)
 
-* Select `Oauth 1` (we'll talk about this in a second)
-* Grant permission to APIGee using your twitter Login
+> Note the following screenshots show an API explorer console as it was prior to the July 2018 twitter developer portal update. I have left them here for informational purposes because it does a nice job of overviewing `API endpoints` supported by twitter.
 
-![Twitter API](./img/twitter-api2.png)
+![Twitter API](./img/twitter-api0.png)
 
-* Once authenticated, select `trends/place`
+* Lets examine the **trends** `API Endpoint`
 
 ![Twitter API](./img/twitter-api3.png)
 
-* Click this option, in the `id` field enter `2465512` (the id for omaha)
-* Click send to see the results of the query (a list of top recent trending tweets in Omaha.)
+* Using the documentation, the API accepts an `id` field that specifies the city
+* I'm going to use `2465512` (the id for omaha) in this example
+* I clicked send to see the results of the query (a list of top trends displayed by Twitter in Omaha. This was during the 2017 Eclipse)
 
 ![Twitter API](./img/twitter-api4.png)
-
-Ok, so the API works.
 
 ### Step 3: Getting our API Key
 Secure APIs don't just accept requests and provide responses to anyone. APIs use a concept called `least privilege` to allow end-users to only have access to the features they need. Since we own a twitter account, we should have the ability to do anything we want with it, but we might want to prevent other people from abusing and misusing our access.
@@ -293,7 +290,9 @@ Notice that the API Resource reference [here](https://dev.twitter.com/rest/refer
 ### Checkpoint
 Lets review what we've learned.
 
-
+- You used `OAuth 2.0` to access an `API`. 
+- You explored some various `API endpoints` on twitter.
+- You fetched (`GET`) from twitter and posted (`post`) new data using the API.
 
 ### Additional Resources
 For more information, investigate the following.
