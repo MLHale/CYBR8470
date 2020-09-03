@@ -291,6 +291,7 @@ Notice that the API Resource reference [here](https://dev.twitter.com/rest/refer
 ![Twitter API](./img/post-request-4.png)
 
 * Click send. You should see a success message now! Check your twitter account:
+> !!! Note !!! Depending on your version of postman, you may need to remove the url encoding from your status parameter. Newer versions of POSTMAN URL encode automatically for you. In that case you can just use `Testing RESTful API lesson for #security #webdev class #unomaha` as your status parameter.
 
 ![Twitter API](./img/post-request-5.png)
 > It worked!
