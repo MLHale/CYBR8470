@@ -44,7 +44,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * [REST and Twitter API Exploration](/modules/restful-api/README.md)
   * [Github primer](/modules/github/README.md)
   * [Container primer](/modules/containers/README.md)
-* Web Services ([Lecture 2 Slides](/slides/lecture2/index.html))
+* Web Services ([Lecture 2 Slides](/slides/soa-microservices/index.html))
   * Background
   * Service oriented Architectures (SOA)
   * Web Service Standards (`WS-*`)
@@ -107,11 +107,11 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 * DNelson ([Waze Place Discovery and Audit](https://github.com/DaJoNel/wpda))
 
 ## Syllabus
-**Date/Time**: Thursday 5:30pm – 8:10pm . 
+**Date/Time**: Thursday 5:30pm – 8:10pm .
 **Instructor**:  Dr. Hale  
 **Office**:  PKI 174-D, `(402) 554-3978`  
 **Office Hours**:  Open door policy, or by appointment  
-**E-mail**:  `mlhale@unomaha.edu` . 
+**E-mail**:  `mlhale@unomaha.edu` .
 
 
 ### Course Abstract
