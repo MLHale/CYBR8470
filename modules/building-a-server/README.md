@@ -1,44 +1,34 @@
 # Building a Server
 
 ### Introduction
-In this module, you will learn how to build a server of your own and connect it up to Littlebits.
+In this module, you will learn how to build a server of your own and connect it up to [IFTTT](https://ifttt.com/) (a web automation toolkit mostly used for the Internet of Things).
 
 ### Goals
 By the end of this tutorial, you will be able to:
 * Build and deploy a `Django` server into a `container`
 * Create a `REST endpoint` on the `application server`
-
+* Build a simple web service integration
 
 ### Materials Required
 For this lesson, you will need:
 
 * PC or Mac with Docker
 * Internet connection
-
-### Prerequisite lessons
-You should complete the following lessons before attempting this lesson.
-* [Web Services and REST](../restful-api/README.md)
-* [Containers](../containers/README.md)
+* An IFTTT account (if you want to connect your server up)
 
 ### Table of Contents
 <!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
-- [Building a Server](#building-a-server)
-        - [Cybersecurity First Principles in this lesson](#cybersecurity-first-principles-in-this-lesson)
-        - [Introduction](#introduction)
-        - [Goals](#goals)
-        - [Materials Required](#materials-required)
-        - [Prerequisite lessons](#prerequisite-lessons)
-        - [Table of Contents](#table-of-contents)
-        - [Step 1: Review - Where are we so far?](#step-1-review---where-are-we-so-far)
-        - [Step 2: No, you won't be starting from scratch](#step-2-no-you-wont-be-starting-from-scratch)
-        - [Step 3: Setup the server](#step-3-setup-the-server)
-        - [Step 4: Run the server](#step-4-run-the-server)
-        - [Step 5: Building the server event API endpoint](#step-5-building-the-server-event-api-endpoint)
-        - [Step 6: Press the button](#step-6-press-the-button)
-        - [Step 7: Chrome Dev Tools - Your new best friend](#step-7-chrome-dev-tools---your-new-best-friend)
-        - [Step 8: Make a new REST endpoint to make the client button work with the backend](#step-8-make-a-new-rest-endpoint-to-make-the-client-button-work-with-the-backend)
-        - [Step 9: Profit!](#step-9-profit)
-        - [License](#license)
+- [Building a Server](#building-a-server)  
+        - [Step 1: Review - Where are we so far?](#step-1-review---where-are-we-so-far)  
+        - [Step 2: No, you won't be starting from scratch](#step-2-no-you-wont-be-starting-from-scratch)  
+        - [Step 3: Setup the server](#step-3-setup-the-server)  
+        - [Step 4: Run the server](#step-4-run-the-server)  
+        - [Step 5: Building the server event API endpoint](#step-5-building-the-server-event-api-endpoint)  
+        - [Step 6: Press the button](#step-6-press-the-button)  
+        - [Step 7: Chrome Dev Tools - Your new best friend](#step-7-chrome-dev-tools---your-new-best-friend)  
+        - [Step 8: Make a new REST endpoint to make the client button work with the backend](#step-8-make-a-new-rest-endpoint-to-make-the-client-button-work-with-the-backend)  
+        - [Step 9: Profit!](#step-9-profit)  
+        - [License](#license)  
 <!-- TOC END -->
 
 
@@ -521,5 +511,5 @@ Pretty neat. Observe your handy work.
 
 
 ### License
-Lesson content: Copyright (C) [Dr. Matthew Hale](http://faculty.ist.unomaha.edu/mhale/) 2017.  
+Lesson content: Copyright (C) [Dr. Matthew Hale](http://faculty.ist.unomaha.edu/mhale/) 2017-2020.  
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">This lesson</span> is licensed by the author under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
