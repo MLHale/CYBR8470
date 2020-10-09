@@ -114,14 +114,17 @@ It will be called something like `CYBR8470-building-a-webservice-lab-backend_dja
 This server is completely new, so we need to do some setup to get it initially configured. Execute the following to run the server and open up a bash terminal to interact with it.
 
 ```bash
+docker-compose up
+```
+This will initialize the server and tell our `Django` server to setup the database. It will create a `database Schema` that our SQL server can use to store data. 
+
+in a separate terminal:
+```bash
 docker-compose run django bash
 ```
-
-In this terminal that opens in the container, we need to tell our `Django` server to setup the database and create a new user account for us. The first two lines below setup the database by creating a `database Schema` that our SQL server can use to store data. The third line creates a new superuser account. Specify a password for admin. In development, you can use something simple (e.g. admin1234) for simplicity. In practice, you would want to use a much more secure password - since the server could be accessed from the wider internet.
+In this terminal that opens in the container, we will use the manage utility to create new superuser account. Specify a password for admin. In development, you can use something simple (e.g. admin1234) for simplicity. In practice, you would want to use a much more secure password - since the server could be accessed from the wider internet.
 
 ```bash
-python manage.py makemigrations
-python manage.py migrate
 python manage.py createsuperuser --username admin --email admin
 exit
 ```
