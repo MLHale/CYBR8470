@@ -1,11 +1,7 @@
 # CYBR8470 Project Milestone 1: Product Ideation, Design, Mockup, and Prototype
-**Assigned: Thursday 10/11/18**
-
-### Due Date
-Thursday (11/1/17) at 11:59PM
 
 ### Total points
-415 Points (15% of total grade)
+415 Points
 
 ## Overview
 For this project you will create a new web application using the skills you have built up over the various labs. The project should be a non-trivial idea that is achievable in 4-5 weeks. You should make something that helps you, someone you know, or an organization that you may be interested in (if you work with a community service organization I will award you up to 10% extra credit).
