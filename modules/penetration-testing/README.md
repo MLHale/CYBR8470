@@ -12,21 +12,6 @@ By the end of this tutorial, you will be able to:
 * Conduct a `risk assessment`
 
 
-### Materials Required
-For this lesson, you will need:
-
-* PC
-* Internet connection
-* Little bits cloud bit and API Key
-* Little bits sensor and actuator
-
-### Prerequisite lessons
-You should complete the following lessones before proceeding with this one.
-* [Web Services and REST](../restful-api/README.md)
-* [Containers](../containers/README.md)
-* [Building a server](../building-a-server/README.md)
-
-
 ### Table of Contents
 <!-- TOC START min:1 max:3 link:true update:true -->
 - [Penetration Testing](#penetration-testing)
