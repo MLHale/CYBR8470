@@ -31,7 +31,7 @@ To do this, do the following:
  - track all of your changes using github. You can use the github repo you used for the webservice lab.
  - add a `Dog` and `Breed` models to models.py
  - migrate your database to include tables for `Dog` and `Breed`
- - add a two `class-based API view` controllers for handling `Breed` REST endpoints to controllers.py
+ - add a two `class-based API view` controllers for handling `Dog` REST endpoints to controllers.py
     - call one `DogDetail` and one `DogList` to conform to best practice nomenclature
     - The `DogDetail` class should have three methods named `get`, `put`, `delete`
     - The `DogList` class should have two methods named `get` and `post`
