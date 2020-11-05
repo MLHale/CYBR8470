@@ -385,7 +385,7 @@ To show you how bad storing arbitrary string text can be, the skeleton code in t
   <head>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script type="text/javascript">
-      $.get('../api/deviceevents').then(function(events){
+      $.get('../api/events').then(function(events){
         console.log(events)
         events.forEach(function(event){
           $('#this-is-bad').append("<br>");
