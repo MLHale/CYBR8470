@@ -1,12 +1,5 @@
 # CYBR8470 Project Milestone 2: Implementation and Deployment
-**Assigned: Tuesday 11/15/18**
 
-### Due Date
-Thursday (12/13/18) at 11:59PM
-Final Presentation (12/13/18) at 5:30PM
-
-### Total points
-490 Points (25% of total grade)
 
 ## Overview
 This project tasks you with realizing, through implementation, the design and prototype prepared in Milestone 1.  You will also create core security functionality (if you haven't already), deploy your REST API and client app, and harden them against attack. Hardening your server should be done at the API and container levels to ensure endpoints are properly secured (particularly create and update endpoints).
@@ -55,7 +48,7 @@ You will be graded as follows.
 | Anonymous user | App. includes a user group for anonymous unauthenticated users. Minimal permissions are assigned as appropriate. | App includes a user group for anonymous users, but there are minor permission issues. | No anonymous user group or permissions are completely wrong. |
 
 # Deployment
-You are expected to deploy your project to a set of cloud services of your choice. http://surge.sh and https://aws.amazon.com/ or https://cloud.google.com/compute/ are recommended. AWS and Google Cloud provide education credits ($100-200 to students) and are a great option for deployment.
+You are expected to deploy your project to a set of cloud services of your choice. http://surge.sh and https://aws.amazon.com/ or https://cloud.google.com/compute/ are recommended. AWS and Google Cloud provide education credits and are a great option for deployment.
 
 I suggest [Elastic Beanstalk](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html) or Using [Django on Google](https://cloud.google.com/python/django/) If you use Google and don't want to configure a cloud database, you can use a [Prebuilt Google Compute Django Apache VM](https://console.cloud.google.com/launcher/details/bitnami-launchpad/djangostack?pli=1&project=arklan-custom-ma-1507997989384)
 
@@ -64,7 +57,7 @@ I suggest [Elastic Beanstalk](http://docs.aws.amazon.com/elasticbeanstalk/latest
 20 points will be given for creating a `tagged release` on a code commit in your Github repository. If you are creating a generic open source library or tool - you might consider adding the release to NPM or another distribution repository.
 
 # Final Presentation
-You will be expected to prepare and deliver a final presentation on the class final day. The presentation will be graded using the following rubric.
+You will be expected to prepare and deliver a final presentation video. The presentation will be graded using the following rubric.
 
 ## Grading Criteria
 | | Meets expectations (9-10) | Some Issues (6-8) | Does not meet expectations (0-5)|
@@ -80,7 +73,7 @@ You will be expected to prepare and deliver a final presentation on the class fi
 | Demo* | Deliverable is demonstrated with accompanied explanation of outcomes and success. Product functionality is successfully demoed. | Demo is mildly successful. | Demo fails or is not included in the presentation |
 | Results | Results are overviewed, summarized, and relayed to the audience. | Limited results are presented or too much time is spent on minor results. | No results are presented or presenters waste a lot of time on minor results, missing time to present significant outcomes. |
 
-> * Note that Demos should be live demos, but may include videos if the conditions necessary to replicate the demo cannot be re-created in a live in-class demo.
+> * note that the demo should show you walking through your product
 
 #### License
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">CYBER8470 and related works</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://faculty.ist.unomaha.edu/mlhale" property="cc:attributionName" rel="cc:attributionURL">Matt Hale</a> are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
