@@ -113,12 +113,13 @@ It will be called something like `CYBR8470-building-a-webservice-lab-backend_dja
 ### Step 3: Setup the server
 This server is completely new, so we need to do some setup to get it initially configured. Execute the following to run the server and open up a bash terminal to interact with it.
 
-> Note, for newer versions of the postgres database server, you may need to use the following command in your docker-compose file. 
+> Note, for newer versions of the postgres database server, you may need to use the following command in your docker-compose file. This text should be added beneath the `volumes` listing in the `db` section of the service file.
 
 ```
 environment:
    - POSTGRES_HOST_AUTH_METHOD=trust
-``` (under the db section under volumes)
+```  
+
 
 ```bash
 docker-compose up
