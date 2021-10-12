@@ -143,12 +143,12 @@ exit
 <!-- ![Add folder](./img/add-folder.png)
 > note that your interface may look slightly different on windows. -->
 
-* Find your `CYBR8470-building-a-webservice-lab-backend` folder (it should be located at `C:/Users/student/Desktop/`)
+* Find your `CYBR8470-building-a-webservice-lab/backend` folder (it should be located at `C:/Users/student/Desktop/`)
 * Upon opening it you should see the file tree of the folder structure.
 
 <!-- ![File Tree](./img/file-tree1.png) -->
 
-Now, in `Atom`, open the `/CYBR8470-building-a-webservice-lab-backend/backend/django_backend/settings.py` file by navigating to it in the file tree (on the left) and clicking it.
+Now, in `Atom`, open the `/CYBR8470-building-a-webservice-lab/backend/django_backend/settings.py` file by navigating to it in the file tree (on the left) and clicking it.
 
 find the line marked:
 ```
