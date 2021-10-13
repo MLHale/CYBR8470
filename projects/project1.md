@@ -108,12 +108,14 @@ For each mis-user story identify at least one `mitigation criteria`. The mitigat
 ### Grading Criteria
 
 #### User stories
+
 | | Meets expectations (45-50) | Some Issues (35-44) | Does not meet expectations (0-34)|
 |---|---|---|---|
 |Stated correctly| The user stories identify a user role, goal, and rationale that dictates a user's behavior in the product to be created or assessed. | A few roles, goals, or rationales are missing. | Many issues with role, goal, or rationale identification |
 |Acceptance Criteria| The user stories have reasonable, well thought out, acceptance criteria that dictate when the stories are satisfied. | Some criteria are ill defined or ambiguous. Not enough criteria defined. | Many ill-defined or missing criteria.|
 
 #### Mis User stories
+
 | | Meets expectations (45-50) | Some Issues (35-44) | Does not meet expectations (0-34)|
 |---|---|---|---|
 |Stated correctly| The mis-user stories identify a user role, goal, and rationale that dictates a user's behavior in the product to be created or assessed. | A few roles, goals, or rationales are missing. | Many issues with role, goal, or rationale identification |
@@ -134,6 +136,7 @@ You should have a diagram for the first 3 C's - Context, Container, and Componen
 You should submit your mockup and architecture diagrams as image files included in the same README.md file in `docs` where your user and misuser stories are located.
 
 ### Grading Criteria
+
 | | Meets expectations (45-50) | Some Issues (35-44) | Does not meet expectations (0-34)|
 |---|---|---|---|
 |Mockup   |Mockup captures important interface elements that should be present to realize the user stories. It is easy to infer how the app will look when it is completed.   | The mockup captures some information, but leaves a few open questions about how the app will realize the user stories. | The mockup doesn't provide much clarity in terms of how the app will look or function.  |
