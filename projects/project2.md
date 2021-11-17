@@ -18,6 +18,7 @@ In this milestone, the major deliverable is code. All of your code deliverables 
 You will be graded as follows.
 
 ### Functionality and Design
+
 | | Meets expectations (33-40) | Some Issues (25-32) | Does not meet expectations (0-24)|
 |---|---|---|---|
 | Effort and progress| It is clear that the team has made non-trivial effort and progress towards user story realization.| There is some evidence of effort and progress, but more could have been done in the time. | Little effort or progress was made towards user story realization.|
@@ -32,6 +33,7 @@ In addition to the code artifacts related to user story realization, you should 
 You will be graded as follows.
 
 ### Sanitation and Validation
+
 | | Meets expectations (15-20) | Some Issues (10-14) | Does not meet expectations (0-9)|
 |---|---|---|---|
 | Escapes HTML | All HTML is escaped or rationale is provided as to why raw HTML is needed. Escapes are applied to all html-capable fields (i.e. char, text, etc) | Most HTML is escaped, possibly some issues with escape method leads to possible vulnerabilities.| Raw HTML is not escaped and model fields are vulnerable to POST/PUT attacks.|
@@ -39,6 +41,7 @@ You will be graded as follows.
 | Validator use | Validator are used appropriately for custom validations (such as email, zipcode, or ssn fileds) to ensure fields are well formed. | Most validator use is well founded and applicable, but some obvious needs are missed. | Poor or no use of validators where needed |
 
 ### Authentication and Permissions
+
 | | Meets expectations (15-20) | Some Issues (10-14) | Does not meet expectations (0-9)|
 |---|---|---|---|
 | Session or token-based auth | Application uses session or token auth.| Application uses weak authentication.  | Application does not use authentication |
@@ -60,6 +63,7 @@ I suggest [Elastic Beanstalk](http://docs.aws.amazon.com/elasticbeanstalk/latest
 You will be expected to prepare and deliver a final presentation video. The presentation will be graded using the following rubric.
 
 ## Grading Criteria
+
 | | Meets expectations (9-10) | Some Issues (6-8) | Does not meet expectations (0-5)|
 |---|---|---|---|
 | Enthusiasm and clarity | Presenter exhibits enthusiasm about the work and speaks clearly and confidently. | Some issues with clarity and enthusiasm. | Presenter mumbles, is not clear, and/or does not demonstrate any enthusiasm. |
