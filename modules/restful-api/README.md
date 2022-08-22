@@ -159,7 +159,7 @@ APIs allow you to get and save data back to an application, without needing to t
 #### Examine the Documentation and Overview of the API
 Before you get started using an API, you should always read over its documentation. In particular, you want to understand what `parameters` the API accepts, what `authentication` it uses, and what `output data` it generates.
 
-For up-to-date documentation of the Twitter API(as of Aug. 2020), you can view the 1.1 API documentation at [https://developer.twitter.com/en/docs/twitter-api/v1](https://developer.twitter.com/en/docs/twitter-api/v1).
+For up-to-date documentation of the Twitter API(as of Aug. 2022), you can view the 1.1 API documentation at [https://developer.twitter.com/en/docs/twitter-api/v1](https://developer.twitter.com/en/docs/twitter-api/v1).
 
 > Note the following screenshots show an API explorer console as it was prior to the July 2018 twitter developer portal update. I have left them here for informational purposes because it does a nice job of overviewing `API endpoints` supported by twitter.
 
