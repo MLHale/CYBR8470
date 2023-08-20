@@ -1,7 +1,7 @@
-# RESTFul APIs and Twitter
+# RESTFul APIs
 
 ### Introduction
-In this module, you will learn what a RESTful API is, how Twitter uses APIs to expose their data to the world, and how you can interact with an API.
+In this module, you will learn what a RESTful API is, how real APIs to expose their data to the world, and how you can interact with an API.
 
 ### Goals
 By the end of this tutorial, you will be able to:
@@ -15,7 +15,6 @@ For this lesson, you will need:
 
 * PC
 * Internet connection
-* A twitter account
 * Google Chrome
 * [The POSTMAN Chrome App](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
 
@@ -24,7 +23,7 @@ None
 
 ### Table of Contents
 <!-- TOC START min:1 max:3 link:true update:true -->
-- [RESTFul APIs and Twitter](#restful-apis-and-twitter)
+- [RESTFul APIs](#restful-apis)
     - [Cybersecurity First Principles in this lesson](#cybersecurity-first-principles-in-this-lesson)
     - [Introduction](#introduction)
     - [Goals](#goals)
@@ -159,142 +158,26 @@ APIs allow you to get and save data back to an application, without needing to t
 #### Examine the Documentation and Overview of the API
 Before you get started using an API, you should always read over its documentation. In particular, you want to understand what `parameters` the API accepts, what `authentication` it uses, and what `output data` it generates.
 
-For up-to-date documentation of the Twitter API(as of Aug. 2022), you can view the 1.1 API documentation at [https://developer.twitter.com/en/docs/twitter-api/v1](https://developer.twitter.com/en/docs/twitter-api/v1).
-
-> Note the following screenshots show an API explorer console as it was prior to the July 2018 twitter developer portal update. I have left them here for informational purposes because it does a nice job of overviewing `API endpoints` supported by twitter.
-
-![Twitter API](./img/twitter-api0.png)
-
-* Lets examine the **trends** `API Endpoint`
-
-![Twitter API](./img/twitter-api3.png)
-
-* Using the documentation, the API accepts an `id` field that specifies the city
-* I'm going to use `2465512` (the id for omaha) in this example
-* I clicked send to see the results of the query (a list of top trends displayed by Twitter in Omaha. This was during the 2017 Eclipse)
-
-![Twitter API](./img/twitter-api4.png)
-
 ### Step 3: Getting our API Key
-Secure APIs don't just accept requests and provide responses to anyone. APIs use a concept called `least privilege` to allow end-users to only have access to the features they need. Since we own a twitter account, we should have the ability to do anything we want with it, but we might want to prevent other people from abusing and misusing our access.
+Secure APIs don't just accept requests and provide responses to anyone. APIs use a concept called `least privilege` to allow end-users to only have access to the features they need. On our own account we should have the ability to do anything we want with it, but we might want to prevent other people from abusing and misusing our access.
 
-To ensure that only we can issue commands to our account, Twitter requires a form of authentication called an `API Key`. This key is a really long alphanumerical string that would be hard to crack. There are several types of `API Keys`. Some are single strings that don't change over time. Some are `tokens` that persist for a certain amount of time and can be `revoked` as necessary. Twitter uses the most popular and wide spread authentication framework called `Oauth`. Twitter uses both `Ouath 1.0` and `Oauth 2.0` depending on the type of request you are making. Instead of just using tools like APIGee, we are going to create a new `twitter app` that uses `Oauth 2.0` to authenticate and receive an `API Key` in the form of an `Oauth 2.0 Access Token`.
+To ensure that only we can issue commands to our account, most APIs requires a form of authentication called an `API Key`. This key is a really long alphanumerical string that would be hard to crack. There are several types of `API Keys`. Some are single strings that don't change over time. Some are `tokens` that persist for a certain amount of time and can be `revoked` as necessary. Most APIS uses the most popular and wide spread authentication framework called `Oauth`. 
 
-* First setup a Twitter account (if you don't have one).
-* Once you have a Twitter account, you now need to add developer permissions to your account. You can do this by visiting [https://developer.twitter.com/en/apply/user](https://developer.twitter.com/en/apply/user). You will be asked to provide a rationale for development privileges - but twitter should handle your request quickly. I suggest you use the following rationale.
-
-Sample message for rationale when creating Developer account.
-```
-This project is part of CYBR 8470 - a class at the University of Nebraska at Omaha on secure web development.
-
-We will using the Twitter API in our web development project to learn about REST, gather tweets, and incorporate data into our developed web apps.
-
-Analysis and display of tweets within the webapp are for educational purposes. They may be displayed at row level and/or in aggregate.
-```
-
-* Once you have a developer credential, create a new twitter app at [https://developer.twitter.com/en/apps](https://developer.twitter.com/en/apps). You can call the app whatever you want. I called mine _8470-twitter-app_. For the website URL, you can use any url. For the description, you can add `testing twitter in CYBR8470` (or anything else you prefer).
-
-
-
-![Twitter API](./img/twitter-app1.png)
-> Please note twitter constantly changes their UI, so your new app page may look different.
-
-* Click the `Keys and Tokens` tab once created.
-* Under `consumer API Key`, click `Create my access token` or `regenerate` (whichever button is available)
-* Don't share this info with anyone, it is your private key.
+* First setup a 
 
 ### Step 4: Making your first REST request
 Now that we have our API Key, lets use it to make a request.
 
-POSTMAN is a REST client, that allows end users to make requests to test their APIs. Lets use it to test the `twitter API`. Launch POSTMAN by typing ```chrome://apps``` into the Chrome address bar, hit enter, and then click the POSTMAN icon. Alternatively, you can download the desktop client here: [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
+POSTMAN is a REST client, that allows end users to make requests to test their APIs. Lets use it to test the `Dog API`. Launch POSTMAN by typing ```chrome://apps``` into the Chrome address bar, hit enter, and then click the POSTMAN icon. Alternatively, you can download the desktop client here: [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
 
 ![Loading Postman](./img/postman1.png)
 
-In POSTMAN, lets build a new GET request targeted at the trends `API endpoint` we explored before in my example:
-[https://api.twitter.com/1.1/trends/place.json](https://api.twitter.com/1.1/trends/place.json)
-
-* Enter `https://api.twitter.com/1.1/trends/place.json` into the URL bar to the right of the `GET` keyword.
-* Find and click the `Authorization` tab, set the type to OAuth 2.0, and then click `Get New Access Token`
-
-![Twitter API](./img/twitter-app2.png)
-
-* In the popup, select `Grant Type` to be `Client Credentials`. 
-* Set the `access token URL` to `https://api.twitter.com/oauth2/token`. 
-* Set the `Client ID` to your `public key` listed on your Twitter App page.
-* Set the `Client Secret` to your `private key` also on your Twitter App page.
-* Set `Client authentication` to `Send as Basic Auth Header`
-
-> Note, depending on the version of POSTMAN, your window should look something like mine:
-
-![Twitter API](./img/twitter-app3.png)
-
-* Hit `Request token` when done. This will ask twitter for an `API Key` that `POSTMAN` can then use to authenticate subsequent requests to the API.
-
-> For reference this is what happens in the background:
-
-![Twitter API](./img/app-auth-diagram.png)
-
-* Now that we have a token, you should see that the token has been added as a parameter called `access_token`. Lets add the `id` for Omaha again.
-
-At this point your request should look something like:
-
-![Twitter API](./img/postman2.png)
-
-* Hit the ```send``` button to issue the _GET request_ to the URL. You should see recent results. In my case I wrote this during the 2017 eclipse and saw the following as the eclipse went through Omaha.
-
-![Twitter API](./img/postman3.png)
 
 ### Step 5: Other GET Requests
-Try some other requests using the `search API` on twitter. See: [https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets](https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets) for more information about the different options.
+Try some other requests 
 
-Your queries should target [https://api.twitter.com/1.1/search/tweets.json](https://api.twitter.com/1.1/search/tweets.json)
+### Step 6: First POST request 
 
-### Step 6: First POST request to create a new tweet
-Now that we have the basics of `GET requests` to access tweet data, lets try making a new tweet! We will work with the `API endpoint` here: [https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update](https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update)
-
-Configure a request to [https://api.twitter.com/1.1/statuses/update.json](https://api.twitter.com/1.1/statuses/update.json)
-
-* Make sure to add a `user_id` field corresponding to your twitter user id (shown on the APP page as the `owner id`) and a `status` field which will be the 140 character or less message to post to your account. In my case I'm trying to post to my account `mlhale_` (id: `246485084`) with the status:
-
-```
-Testing%20RESTful%20API%20lesson%20for%20%23security%20%23webdev%20class%20%23unomaha
-```
-
-Which is a URL encoded (to remove spaces and special characters) of the status:
-
-```
-Testing RESTful API lesson for #security #webdev class #unomaha
-```
-
-![Twitter API](./img/post-request-1.png)
-
-* Hit the ```send``` button to issue the _POST request_ to the URL.
-* What happened?
-
-![Twitter API](./img/post-request-2.png)
-
-* Twitter restricts the access of `Tokens` to the context that it has access to. Since we are using an `App Key` we do not have access to the user.
-
-Notice that the API Resource reference [here](https://dev.twitter.com/rest/reference/post/statuses/update) marks the required authentication with `user context only`. This means that you need to be logged in using that user's context to successfully `POST` as them.
-
-![Twitter API](./img/post-request-3.png)
-
-* To do this, we need to switch to `Oauth 1` and provide a user context. Remember that `access token` you generated in Step 3? Now is where it will be useful. Basically, what you did was grant the app you created access to your twitter account. Now we are going to use the token it was given to authorize it to post on your behalf. Usually you would implement a 3 way oauth chain to get this token:
-
-![Twitter API](./img/sign-in-flow3-3legged.png)
-
-* For now lets use what we have. Visit [https://apps.twitter.com/](https://apps.twitter.com/)
-* Click the app you created.
-* Now in `POSTMAN` select `Authorization` and then set the type to `Oauth 1`
-* Enter your information:
-
-![Twitter API](./img/post-request-4.png)
-
-* Click send. You should see a success message now! Check your twitter account:
-> !!! Note !!! Depending on your version of postman, you may need to remove the url encoding from your status parameter. Newer versions of POSTMAN URL encode automatically for you. In that case you can just use `Testing RESTful API lesson for #security #webdev class #unomaha` as your status parameter.
-
-![Twitter API](./img/post-request-5.png)
-> It worked!
 
 ### Checkpoint
 Lets review what we've learned.
