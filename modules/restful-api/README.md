@@ -153,38 +153,131 @@ These concepts, i.e. _request_ and _response_, are central to the concept of `RE
 
 APIs allow you to get and save data back to an application, without needing to tightly integrate with that application. This improves __simplicity__ and helps your code to be more __modular__. APIs include `endpoints`, such as `/api/events`, that allow you to access certain specific data (e.g. events in this example). API endpoints help provide __minimization__ since users can only interact with the application through those interfaces provided by the developer.
 
-...Enough talk! Lets look at an API!
+...Enough talk! Lets look at an API! I present the Dog API:
+
+![Dog API](./img/dogapi.png)
+
+If you arent a fan of dogs, you can use the catapi too! (It is the same service provider)
 
 #### Examine the Documentation and Overview of the API
 Before you get started using an API, you should always read over its documentation. In particular, you want to understand what `parameters` the API accepts, what `authentication` it uses, and what `output data` it generates.
 
+In this lab, we will use the Cat/Dog API. This API allows users to get images of dogs and cats. It features several capabilities that include searching for pictures by breed, voting capabilities so users can vote on their favorite photos, uploading images, and integrations with Discord. It also uses a basic API Key authentication. Overall, this is a simple API, but it is great for an introductory lesson on the topic - and its fun.
+
+Lets look over the documentation here:
+
+https://developers.thecatapi.com/
+
 ### Step 3: Getting our API Key
 Secure APIs don't just accept requests and provide responses to anyone. APIs use a concept called `least privilege` to allow end-users to only have access to the features they need. On our own account we should have the ability to do anything we want with it, but we might want to prevent other people from abusing and misusing our access.
 
-To ensure that only we can issue commands to our account, most APIs requires a form of authentication called an `API Key`. This key is a really long alphanumerical string that would be hard to crack. There are several types of `API Keys`. Some are single strings that don't change over time. Some are `tokens` that persist for a certain amount of time and can be `revoked` as necessary. Most APIS uses the most popular and wide spread authentication framework called `Oauth`. 
+To ensure that only we can issue commands to our account, most APIs require a form of authentication called an `API Key`. This key is a really long alphanumerical string that would be hard to crack. There are several types of `API Keys`. Some are single strings that don't change over time. Some are `tokens` that persist for a certain amount of time and can be `revoked` as necessary. Most APIS uses the most popular and wide spread authentication framework called `Oauth`. 
 
-* First setup a 
+**The Dog / Cat API uses a simple query parameter key/value pair as follows:**
+
+```
+{'x-api-key': 'YOUR_API_KEY'}
+```
+
+Getting our key is simple - simply visit https://www.thedogapi.com/signup and then check your email after signing up.
+
 
 ### Step 4: Making your first REST request
 Now that we have our API Key, lets use it to make a request.
 
-POSTMAN is a REST client, that allows end users to make requests to test their APIs. Lets use it to test the `Dog API`. Launch POSTMAN by typing ```chrome://apps``` into the Chrome address bar, hit enter, and then click the POSTMAN icon. Alternatively, you can download the desktop client here: [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
+POSTMAN is a REST client, that allows end users to make requests to test their APIs. Lets use it to test the `Dog API`. You can download a desktop client for Mac, Windows, or Linux here: [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
 
-![Loading Postman](./img/postman1.png)
+In any case, I suggest creating an account with POSTMAN. While the tool is free to use, creating an account lets you save your history of prior API calls in data structures called `workspaces`. For the purposes of the lab, we are going to use the online browser-based version of POSTMAN, so that you dont need to download any tools.
 
+* For that, you can visit https://web.postman.co/home
+* Once there, login (e.g. using social login with your uno account)
+* Once you have an account click `workspaces` then `create workspace`
+* Select `blank workspace`, then hit next
+* Give your workspace a name (e.g. CYBR8470-Lab1) and change the access type to personal.
+* Once done, you should see an overview page with a + icon, something like the below image:
+
+![Postman workspace](./img/postmanworkspace.png)
+
+* click the + icon to create a new request
+* Notice the type is `GET` and that we can change the type to make different types of `HTTP requests`.
+* For the first request, lets issue a simple get to get a Dog or a Cat (depending on which API you are using)
+* I like dogs, so I am going to use `https://api.thecatapi.com/v1/images/search` -> ill enter that in the URL section of the get request
+* Once entered, hit `send`
+* You should see something like:
+
+![Dog API](./img/dogapi-first-get-request.png)
+
+If you follow the url you should see the picture of the dog associated with that entry in the database.
+
+#### Quick review
+So what happened here? 
+
+Well, just like a browser makes GET requests on our behalf to display content in normal web pages, we made a request in POSTMAN, the API gave us the data and we can see the properties of that data object (in this case an image of a dog, its id, the URL where it lives, and its width and height). This object lives somewhere on the web (probably in a relational database somewhere) and it is being made available for access using an API.
+
+**We didn't use the API Key we generated - why not? Why did it work anyway?**
+
+Well, some APIs allow for basic unauthenticated access. The dog/cat api is one of them. If we take a look at the authentication page, we can see what the limitations are for unauthenticated accounts:
+
+![Dog API](./img/dogapi-unauth-limitations.png)
+
+According to this, we can access up to 10 images without authentication - let's test it.
+
+* Back in our POSTMAN workspace, lets make a new request (in a new postman tab) to: `https://api.thedogapi.com/v1/images/search?limit=100`
+* The authentication documentation page, says that the API should restrict the max returned items to 10, if we are not authenticated. Does it?
+* It does for me, but you try it.
+* Lets adjust our request, by adding our `API KEY` as a parameter.
+* In POSTMAN, click on the `params` tab and add the key `api_key` with the value equal to whatever your key is. Here is mine, (with my key partially obfuscated so you cant use it - keep your keys safe folks!).
+
+![Dog API](./img/dogapi-second-get-request.png)
+
+* Notice, now that we can get 100 images, and (as the documentation says) we have access to more information about the dogs (such as its breed if known).
 
 ### Step 5: Other GET Requests
-Try some other requests 
+Try some other requests using the `/breeds` endpoint - you can find the documentation here:
+
+https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=gpN-ReBkp
+
 
 ### Step 6: First POST request 
+Now that we have made some GET requests, lets try a POST:
 
+I'm going to add my doggo (Luna) to the dogapi
+
+![Dog API](./img/luna.jpg)
+
+We can find the upload documentation here:
+
+[https://documenter.getpostman.com/view/5578104/2s935hRnak#9c332599-c96f-4e0b-a327-183f5f21e601](https://documenter.getpostman.com/view/5578104/2s935hRnak#bd46f692-a52f-4b66-938f-11a66d7eea7e)
+
+For Luna I need to make the following request:
+![Dog API](./img/post-luna.png)
+
+I can check and see that the image was posted by searching for it using its ID or by searching the subid I provided (mlhale)
+
+A get request to `https://api.thedogapi.com/v1/images/?sub_id=mlhale` should show you the result. The actual image is given by this entry
+
+```
+[
+    {
+        "breeds": [],
+        "id": "g_8dpXzAZ",
+        "url": "https://cdn2.thedogapi.com/images/g_8dpXzAZ.jpg",
+        "width": 979,
+        "height": 1305,
+        "sub_id": "mlhale",
+        "created_at": "2023-08-21T05:47:50.000Z",
+        "original_filename": "luna.jpg",
+        "breed_ids": null
+    }
+]
+```
 
 ### Checkpoint
 Lets review what we've learned.
 
-- You used `OAuth 2.0` to access an `API`. 
-- You explored some various `API endpoints` on twitter.
-- You fetched (`GET`) from twitter and posted (`post`) new data using the API.
+- You used an `API KEY` to access an `API`. 
+- You explored some various `API endpoints` on the dog or cat api.
+- You fetched (`GET`) from the api and posted (`post`) new data using the API.
 
 ### Additional Resources
 For more information, investigate the following.
@@ -197,5 +290,5 @@ For more information, investigate the following.
 ### License
 Based upon [GenCyber Littlebits RESTFul API Lesson](https://github.com/MLHale/nebraska-gencyber/tree/master/teachers/restful-api) Copyright (C) [Dr. Matthew Hale](http://faculty.ist.unomaha.edu/mhale/) 2017.  
 
-Adapted for Twitter: Copyright (C) [Dr. Matthew Hale](http://faculty.ist.unomaha.edu/mhale/) 2017-2022.  
+Adapted for Twitter: Copyright (C) [Dr. Matthew Hale](http://faculty.ist.unomaha.edu/mhale/) 2017-2023.  
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">This lesson</span> is licensed by the author under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
