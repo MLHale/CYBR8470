@@ -93,18 +93,6 @@ All classroom activities will take place in PKI room 361 unless otherwise noted 
 * Finishing up
   * Class-wide Final Project - TBA
 
-## 2016 Archived Lab content
-[secwebdev.mlhale.com](http://secwebdev.mlhale.com)
-
-## 2016 Projects and Final Presentations:
-* MHefley (PEViewer - Private REPO)
-* SFrench (FlightPlanCompanion - Private REPO)
-* DEllis and GFilter ([SimpleFit](https://github.com/dlellis/SimpleFit))
-* Fkangaye (Micro - Private REPO)
-* IShrestha ([Karyalaya](https://github.com/IsaacShrestha/Final-Karyalaya-Project))
-* GWethor ([Chartreuse](https://github.com/gewethor/Chartreuse-Front-End))
-* Lanreogunmola and SBagayogo ([Afrimat](https://github.com/lanreogunmola/Afrimat))
-* DNelson ([Waze Place Discovery and Audit](https://github.com/DaJoNel/wpda))
 
 ## Syllabus
 **Date/Time**: Thursday 5:30pm – 8:10pm .
