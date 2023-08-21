@@ -63,6 +63,9 @@ All classroom activities will take place in PKI room 361 unless otherwise noted 
   * [Pen testing Lab](/modules/penetration-testing/README.md)
   * Acceptance critera
   * think-test-build-test-repeat
+* Software Architecture
+  * Reading: [https://leanpub.com/visualising-software-architecture/read](https://leanpub.com/visualising-software-architecture/read)
+  * C4 MetaModel and Description: [https://c4model.com/](https://c4model.com/)
 * Client-side Development
   * Browser Object Model Overview ([Lecture 5 Slides](/slides/intro-to-clientside-lecture.pdf))([Lecture 6 Slides](/slides/lecture6/index.html))
   * JQuery Overview
@@ -77,14 +80,13 @@ All classroom activities will take place in PKI room 361 unless otherwise noted 
   * [Ember.js lab](https://guides.emberjs.com/release/tutorial/ember-cli/)
   * Handlebars
   * AJAX for External API integration
-* Software Architecture
-  * Reading: [https://leanpub.com/visualising-software-architecture/read](https://leanpub.com/visualising-software-architecture/read)
-  * C4 MetaModel and Description: [https://c4model.com/](https://c4model.com/)
 * Time to be creative
   * Come up with your own project idea or implement something for a friend/family member or community organization
   * [Project Starter Code Example](https://github.com/MLHale/starter-app-cybr8470)
   * [Project Milestone 1](/projects/project1.md) - Product Ideation, Design, Mockup, and Prototype
   * [Project Milestone 2](/projects/project2.md) - Implementation and Final Delivery
+* Transition and Operation in Production
+* POSTMAN and Continuous Integration
 * Configuration and hardening
   * Deployment
   * **https://realpython.com/blog/python/deploying-a-django-app-and-postgresql-to-aws-elastic-beanstalk/**
