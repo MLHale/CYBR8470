@@ -15,7 +15,7 @@ I have setup an online discussion board on slack.com for usage in this class. If
 Go to [drhale8470.slack.com](https://drhale8470.slack.com) and use your unomaha email address to register an account. Alternatively, you can use [this link](https://join.slack.com/t/drhale8470/shared_invite/enQtNDI1Nzk4MDY3MDEwLTAyNDk5NTYzZWQ5M2RiOTZkNmFlYTJlN2NmZDYyMjQxNTk0Yjg3MjM5Mjk0MzNlZWY1YjZlODljYjI4ZjVjYTI).This will give you access to the class slack channel. The chat channel is for general discussions with me or your fellow classmates. The questions channel is for you to ask public questions that I will answer for the whole class. This is better than email if you think that the answer to your question might benefit everyone. You can also send me private messages. Generally I am faster at replying on slack than I am by email.
 
 ## Location
-All classroom activities will take place in PKI room 260 unless otherwise noted ahead of time.
+All classroom activities will take place in PKI room 361 unless otherwise noted ahead of time.
 
 ## Supplies
 * Laptop with the ability to run Docker and a text editor
