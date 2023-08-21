@@ -196,7 +196,7 @@ In any case, I suggest creating an account with POSTMAN. While the tool is free 
 * Give your workspace a name (e.g. CYBR8470-Lab1) and change the access type to personal.
 * Once done, you should see an overview page with a + icon, something like the below image:
 
-![Postman workspace](./img/postmanworkspace.png)
+![Postman workspace](./img/postman-workspace.png)
 
 * click the + icon to create a new request
 * Notice the type is `GET` and that we can change the type to make different types of `HTTP requests`.
