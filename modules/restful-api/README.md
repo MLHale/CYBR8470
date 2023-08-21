@@ -280,27 +280,27 @@ To prove the point that APIs generally all work similarly, try using any of the 
 
 #### JSONPlaceholder
 
-URL: [JSONPlaceholder](https://jsonplaceholder.typicode.com/)
-Description: This is a free fake online REST API that you can use whenever you need some fake data. It's great for tutorials, testing new libraries, sharing code examples.
-Endpoints: Posts, Comments, Albums, Photos, Todos, Users.
+URL: [JSONPlaceholder](https://jsonplaceholder.typicode.com/)  
+Description: This is a free fake online REST API that you can use whenever you need some fake data. It's great for tutorials, testing new libraries, sharing code examples.  
+Endpoints: Posts, Comments, Albums, Photos, Todos, Users.  
 
 #### REST Countries
 
-URL: [REST Countries](https://restcountries.com/)
-Description: Get information about countries, like name, population, area, flag, and more.
-Endpoints: All countries, specific country, country by currency, language, etc.
+URL: [REST Countries](https://restcountries.com/)  
+Description: Get information about countries, like name, population, area, flag, and more.  
+Endpoints: All countries, specific country, country by currency, language, etc.  
 
 #### JokeAPI
 
-URL: [JokeAPI](https://jokeapi.dev/)
-Description: Fetch programming jokes or general jokes. Great for creating a simple "joke of the day" web app.
-Endpoints: Random jokes, categories, specific categories.
+URL: [JokeAPI](https://jokeapi.dev/)  
+Description: Fetch programming jokes or general jokes. Great for creating a simple "joke of the day" web app.  
+Endpoints: Random jokes, categories, specific categories.  
 
 #### OpenWeatherMap
 
-URL: [OpenWeatherMap](https://openweathermap.org/api)
-Description: Allows you to access current weather data for any location including over 200,000 cities.
-Endpoints: Current weather data, forecast, hourly data, etc. (Please note: While they offer a free tier, there are limitations on the number of requests.)
+URL: [OpenWeatherMap](https://openweathermap.org/api)  
+Description: Allows you to access current weather data for any location including over 200,000 cities.  
+Endpoints: Current weather data, forecast, hourly data, etc. (Please note: While they offer a free tier, there are limitations on the number of requests.)  
 
 #### PokeAPI
 
