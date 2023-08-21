@@ -23,17 +23,12 @@ All classroom activities will take place in PKI room 361 unless otherwise noted 
 
 ### Hardware/software
 * [Docker](https://www.docker.com/get-docker)
-* [Lucidchart](http://www.lucidchart.com)
+* [Slack](https://slack.com)
+* Various dev tools
 
 ### Texts
 * Ember Textbook (optional): [Rock and Roll with Ember.js](http://balinterdi.com/rock-and-roll-with-emberjs/)
 * [Django Documentation](https://www.djangoproject.com/)
-
-## Lab Listing (links also in Class topics)
-* [Github primer](/modules/github/README.md)
-* [REST API Exploration](/modules/restful-api/README.md)
-* [Container primer](/modules/containers/README.md)
-* [Creating a new Web service](/modules/building-a-server/README.md)
 
 ## Class Topics
 * Introduction Module ([Slides](/slides/introduction/index.html))
