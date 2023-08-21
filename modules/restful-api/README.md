@@ -275,6 +275,39 @@ A get request to `https://api.thedogapi.com/v1/images/?sub_id=mlhale` should sho
 #### Practice
 Try uploading your own dog or cat to the API. Or (if you either dont feel comfortable uploading your own pet or dont have a pet) - feel free to upload a dog sourced from the standford open dog image collection here: http://vision.stanford.edu/aditya86/ImageNetDogs/
 
+### Try another API
+To prove the point that APIs generally all work similarly, try using any of the following other APIs
+
+#### JSONPlaceholder
+
+URL: [JSONPlaceholder](https://jsonplaceholder.typicode.com/)
+Description: This is a free fake online REST API that you can use whenever you need some fake data. It's great for tutorials, testing new libraries, sharing code examples.
+Endpoints: Posts, Comments, Albums, Photos, Todos, Users.
+
+#### REST Countries
+
+URL: [REST Countries](https://restcountries.com/)
+Description: Get information about countries, like name, population, area, flag, and more.
+Endpoints: All countries, specific country, country by currency, language, etc.
+
+#### JokeAPI
+
+URL: [JokeAPI](https://jokeapi.dev/)
+Description: Fetch programming jokes or general jokes. Great for creating a simple "joke of the day" web app.
+Endpoints: Random jokes, categories, specific categories.
+
+#### OpenWeatherMap
+
+URL: [OpenWeatherMap](https://openweathermap.org/api)
+Description: Allows you to access current weather data for any location including over 200,000 cities.
+Endpoints: Current weather data, forecast, hourly data, etc. (Please note: While they offer a free tier, there are limitations on the number of requests.)
+
+#### PokeAPI
+
+URL: [PokeAPI](https://pokeapi.co/)
+Description: All the Pokémon data you'll ever need in one place, easily accessible through a modern RESTful API.
+Endpoints: Pokémon, Abilities, Types, Evolution, and more.
+
 ### Checkpoint
 Lets review what we've learned.
 
