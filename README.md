@@ -31,7 +31,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
 
 ## Lab Listing (links also in Class topics)
 * [Github primer](/modules/github/README.md)
-* [REST and Twitter API Exploration](/modules/restful-api/README.md)
+* [REST API Exploration](/modules/restful-api/README.md)
 * [Container primer](/modules/containers/README.md)
 * [Creating a new Web service](/modules/building-a-server/README.md)
 
@@ -41,7 +41,7 @@ All classroom activities will take place in PKI room 260 unless otherwise noted 
   * Concept inventory
   * Threat vectors
   * HTTP Review
-  * [REST and Twitter API Exploration](/modules/restful-api/README.md)
+  * [REST API Exploration](/modules/restful-api/README.md)
   * [Github primer](/modules/github/README.md)
   * [Container primer](/modules/containers/README.md)
 * Web Services ([Lecture 2 Slides](/slides/soa-microservices/index.html))
