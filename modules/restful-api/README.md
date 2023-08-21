@@ -272,6 +272,9 @@ A get request to `https://api.thedogapi.com/v1/images/?sub_id=mlhale` should sho
 ]
 ```
 
+#### Practice
+Try uploading your own dog or cat to the API. Or (if you either dont feel comfortable uploading your own pet or dont have a pet) - feel free to upload a dog sourced from the standford open dog image collection here: http://vision.stanford.edu/aditya86/ImageNetDogs/
+
 ### Checkpoint
 Lets review what we've learned.
 
