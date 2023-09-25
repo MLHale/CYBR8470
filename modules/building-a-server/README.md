@@ -43,64 +43,21 @@ For reference, this is the overall design we are looking at. On the left side, y
 ### Step 2: No, you won't be starting from scratch
 The process of creating a new application server from the ground up takes some time and attention. Instead of having you start from the ground up, I'll provide you with some **starter** skeleton code. This code does the basics - you will extend it to accepting requests, store the data that comes in, and then trigger another service.
 
-* First, `fork` the repo for this lab by visiting the https://github.com/MLHale/CYBR8470-building-a-webservice-lab and clicking 'fork'. This will copy the code from our repository into your GitHub account - so you can track your changes as you go.
-* Since this project includes a `submodule` that you will edit, you need to fork it as well. Visit https://github.com/MLHale/CYBR8470-building-a-webservice-lab-backend and click `fork`.
+* First, `fork` the repo for this lab by visiting the https://github.com/MLHale/cybr8470-web-service-lab and clicking 'fork'. This will copy the code from our repository into your GitHub account - so you can track your changes as you go.
 * Let's get started locally on your machine by changing into the Desktop directory and then using `git` to clone the skeleton code repository and get it in onto our local machine.
 
-Open a new `Powershell terminal instance:
+Open a new terminal instance:
 
 ```bash
 cd Desktop
-git clone https://github.com/<your-github-id without the brackets>/CYBR8470-building-a-webservice-lab
-cd CYBR8470-building-a-webservice-lab/
+git clone https://github.com/<your-github-id without the brackets>/cybr8470-web-service-lab
+cd cybr8470-web-service-lab/
 ```
 
-Add the folder to your `Atom` workspace.
-
-Open the `.gitmodules` file. Edit the `backend` submodule to point to your forked copy, instead of the base repo.
-
-```
-[submodule "backend"]
-	path = backend
-	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab-backend
-[submodule "frontend"]
-	path = frontend
-	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab-frontend
-```
-
-becomes
-
-```
-[submodule "backend"]
-	path = backend
-	url = https://github.com/<your-github-id without the angled brackets>/CYBR8470-building-a-webservice-lab-backend
-[submodule "frontend"]
-	path = frontend
-	url = https://github.com/MLHale/CYBR8470-building-a-webservice-lab-frontend
-```
-
-This command tells git to use the new url as the path for the submodule. To pull down the code run the following (in the terminal/powershell):
+Now use `docker` to build the `image` that our container will use, from the `cybr8470-web-service-lab` directory:
 
 ```bash
-git submodule sync
-git submodule update --init --recursive --remote
-cd backend/
-git checkout master
-git checkout -b my-work
-git push --set-upstream origin my-work
-cd ..
-git add -A
-git commit -m "updated to forked submodule repository"
-git push
-```
-
-This should checkout the code for the start of this lesson and create a new branch called `my-work`. It also updates the `CYBR8470-building-a-webservice-lab-backend` repository you forked to include the correct pointer to the new forked submodule. You should also see your file tree in `Atom` update. Any new updates you make you can always run the commands `git add`, `git commit`, and `git push` to save your changes in the branch to your remote repo.
-
-For now, we have our code ready.
-Now use `docker` to build the `image` that our container will use, from the `CYBR8470-building-a-webservice-lab-backend` directory:
-
-```bash
-docker-compose build
+docker compose build
 ```
 
 With this, we should be able to type the following and see our new image.
@@ -108,27 +65,19 @@ With this, we should be able to type the following and see our new image.
 ```bash
 docker images
 ```
-It will be called something like `CYBR8470-building-a-webservice-lab-backend_django`.
+It will be called something like `cybr8470-web-service-lab-backend_django`.
 
 ### Step 3: Setup the server
 This server is completely new, so we need to do some setup to get it initially configured. Execute the following to run the server and open up a bash terminal to interact with it.
 
-> Note, for newer versions of the postgres database server, you may need to use the following command in your docker-compose file. This text should be added beneath the `volumes` listing in the `db` section of the service file.
-
-```
-environment:
-   - POSTGRES_HOST_AUTH_METHOD=trust
-```  
-
-
 ```bash
-docker-compose up
+docker compose up
 ```
 This will initialize the server and tell our `Django` server to setup the database. It will create a `database Schema` that our SQL server can use to store data. 
 
 in a separate terminal:
 ```bash
-docker-compose run django bash
+docker compose exec django bash
 ```
 In this terminal that opens in the container, we will use the manage utility to create new superuser account. Specify a password for admin. In development, you can use something simple (e.g. admin1234) for simplicity. In practice, you would want to use a much more secure password - since the server could be accessed from the wider internet.
 
@@ -137,18 +86,11 @@ python manage.py createsuperuser --username admin --email admin
 exit
 ```
 
-* Now open `Atom` on your desktop,
-* go to the File -> "Add Project Folder..."
-
-<!-- ![Add folder](./img/add-folder.png)
-> note that your interface may look slightly different on windows. -->
-
-* Find your `CYBR8470-building-a-webservice-lab/backend` folder (it should be located at `C:/Users/student/Desktop/`)
+* Now open your source code editor 
+* Find your `cybr8470-web-service-lab` folder
 * Upon opening it you should see the file tree of the folder structure.
 
-<!-- ![File Tree](./img/file-tree1.png) -->
-
-Now, in `Atom`, open the `/CYBR8470-building-a-webservice-lab/backend/django_backend/settings.py` file by navigating to it in the file tree (on the left) and clicking it.
+Now, in your source code editor, open the `/cybr8470-web-service-lab/backend/django_backend/settings.py` file by navigating to it in the file tree (on the left) and clicking it.
 
 find the line marked:
 ```
@@ -161,35 +103,33 @@ Replace '137.48.185.230' with your `ip address`.
 ipconfig --all
 ```
 * find your ipv4 address on the ip record for the ethernet card attached to your machine
-* alternatively, you can go to http://google.com and search for 'my ip address'
 
 
 ### Step 4: Run the server
 With the database initialized, you should be able to easily run the app. All you need to do is:
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
 This server, diagrammatically looks like:
 
 ![Django Architecture](./img/django-architecture.png)
 
-The docker command executes the container using the `docker-compose.yml` file located in your `/CYBR8470-building-a-webservice-lab-backend/` folder.
+The docker command executes the container using the `docker-compose.yml` file located in your `/cybr8470-web-service-lab/` folder.
 * Leave this terminal running
 * It works by mapping `port 80` on the `host` to `port 8000` in the container.
-* Inside the container, Django executes its `runserver` utility - which works like a web server.
+* Inside the container, Django executes using a wsgi wrapper utility gunicorn - which works like a web server.
 * There is also a second container that starts up and runs our `postgres` database server.
-* You can take a look at the `Dockerfile` in your `/CYBR8470-building-a-webservice-lab-backend/` folder to learn more about what happens behind the scenes.
+* a third container map django out of its application container into a webserver called nginx
+* You can take a look at the `Dockerfile` in your `/cybr8470-web-service-lab/` folder to learn more about what happens behind the scenes.
 
-With the server running, you should be able to visit [http://localhost](http://localhost) to see your server. You should an interface that looks something like the following.  
-
-<!-- ![skeleton client app](./img/skeleton-client.png) -->
+With the server running, you should be able to visit [http://localhost](http://localhost) to see your server. 
 
 This is a `web client` (also called a `frontend`) that I've built for demo purposes to work with our server. You will be making the server work with the client. I've included the client code in the `/frontend` folder, but you won't need to modify it for this lab. Later labs will deal with client-side development.
 
 ### Step 5: Building the server event API endpoint
-Since our focus is the `backend` - lets take a look at our server environment. First. Lets explore the file tree.
+Since our focus is the `backend` - lets take a look at our server environment. This is built with Python 2.7 and is intentionally using an old version of Django (the reasons will become clear in the next lab). First, Lets explore the file tree.
 
 * click `backend` in the file tree to explore the actual files our server is using
 * Click `api` and `django_backend` to expand out the folders and see what we have.
@@ -499,7 +439,7 @@ This is because we haven't added our `API Key` to our server, so the field `api_
 
 * Since you made some changes to your code repository, lets track the changes with `git`:
 
-* in a terminal change directory in the the `/backend` folder and execute the following:
+* in a terminal in your lab director execute the following:
 
 ```bash
 git status
@@ -508,6 +448,8 @@ git status
 git commit -m "added endpoints for events and IFTTT"
 git push
 ```
+
+> note if you have a git authentication error - it is probably because you need to handle your credentials correctly - i recommend github desktop or the git credential manager (https://github.com/git-ecosystem/git-credential-manager)
 
 You just pushed your local changes to `remote` on `github`!
 
