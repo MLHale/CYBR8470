@@ -410,7 +410,14 @@ urlpatterns = [
 
 This will make the endpoint available on the webserver. Now go back to http://localhost and try to click the button. What happens?
 
-Did you get an error?
+Did you get an error? Did you restart your server? If not, press control+C on the docker terminal and then:
+
+```
+docker compose up
+```
+again.
+
+Now try? Did you get a different error?
 
 This is because we haven't added our `API Key` to our server, so the field `api_key = ApiKey.objects.all().first()` returns null (or `NoneType`). To fix this, open your browser and go to http://localhost/admin/api/apikey/. Click 'add api key'.
 
@@ -422,7 +429,7 @@ This is because we haven't added our `API Key` to our server, so the field `api_
   * Your API Key is the part that comes in the url after `https://maker.ifttt.com/use/`
 * we also need to create a new webhook applet named `test` to receive our events.
   * go to: [https://ifttt.com/create](https://ifttt.com/create)
-  * for the `IF` condition select `webhook`
+  * for the `IF` condition select `webhook`, then select receive a web request
   * For the `then` condition you can have IFTTT send you an email or any number of other events. Pick one. When done, save the applet.
 
 * Now go back to your app at localhost and click the green button. What happened?
@@ -430,7 +437,7 @@ This is because we haven't added our `API Key` to our server, so the field `api_
 
 * Since you made some changes to your code repository, lets track the changes with `git`:
 
-* in a terminal in your lab director execute the following:
+* in a terminal in your lab directory execute the following:
 
 ```bash
 git status
