@@ -295,6 +295,10 @@ urlpatterns = [
 
 ![request](./img/post-an-event.png)
 
+* What happened?
+* -> Since we made changes to our code we need to take the server down and bring it back up - this is because we are using a production webserver (nginx). In development you'd be better off using django's runserver for quick iteration.
+* Go ahead and restart your server (press control+C) then do `docker compose up`
+* Now resend your postman request
 * Now revist http://localhost and refresh the page. Do you see your event?
 * Try posting some more from POSTMAN. It auto-refreshes!
 * Well thats neat. What about that other button in the app though to turn IFTTT on?
@@ -309,6 +313,7 @@ urlpatterns = [
 ### Step 6: Press the button
 Ok, so you now have a loose familiarity with the skeleton `backend` code that was provided to you. Lets build some more upon it.
 
+Go ahead and click login (on the left hand side menu). Authenticate with the username/password we made earlier (admin/admin1234).
 When you login, you should see a green button that says **turn IFTTT on** when visiting `localhost`. Time to push it!
 
 
