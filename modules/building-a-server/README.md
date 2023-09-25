@@ -275,15 +275,14 @@ class Events(APIView):
   * Add this method in and save the file.
 
 * Now that our methods for this endpoint are defined, we need to now create a URL to expose the endpoint to the web.
-* open `api/urls.py` and edit it to look like the following:
+* open `api/urls.py` and we can see that we already have a url for /events:
 
 **new api/urls.py**
 ```python
 urlpatterns = [
-    url(r'^session', csrf_exempt(controllers.Session.as_view())),
-    url(r'^register', csrf_exempt(controllers.Register.as_view())),
+    ...
     url(r'^events', csrf_exempt(controllers.Events.as_view())),
-    url(r'^', include(router.urls)),
+    ...
 ]
 
 ```
