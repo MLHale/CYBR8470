@@ -90,23 +90,10 @@ exit
 * Find your `cybr8470-web-service-lab` folder
 * Upon opening it you should see the file tree of the folder structure.
 
-Now, in your source code editor, open the `/cybr8470-web-service-lab/backend/django_backend/settings.py` file by navigating to it in the file tree (on the left) and clicking it.
-
-find the line marked:
-```
-ALLOWED_HOSTS = ['137.48.185.230', 'localhost']
-```
-Replace '137.48.185.230' with your `ip address`.
-
-* to get your server ip, you need to open a `Powershell` and type (use `ifconfig` instead for Mac/Linux):
-```bash
-ipconfig --all
-```
-* find your ipv4 address on the ip record for the ethernet card attached to your machine
 
 
 ### Step 4: Run the server
-With the database initialized, you should be able to easily run the app. All you need to do is:
+Although our server is already running, any time you want to stop it you can press Control + C. To bring it back up just type:
 
 ```bash
 docker compose up
