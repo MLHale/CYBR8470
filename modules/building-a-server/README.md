@@ -290,7 +290,7 @@ urlpatterns = [
 * This tells Django to serve our new endpoint in controllers.py at the url `api/events`
 * now refresh the app
 * examine the console and notice that the GET requests are now succeeding, but no data is being returned.
-* in your browser, navigate to `chrome://apps/` and launch `POSTMAN`
+* now launch `POSTMAN`
 * Craft a request that looks like the following:
 
 ![request](./img/post-an-event.png)
