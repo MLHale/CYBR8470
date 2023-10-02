@@ -71,7 +71,7 @@ There can be many different scenarios that lead to errors.
 * Maybe something went wrong with the implementation (an `algorithm fault`)
 * Maybe something occurs in the deployment environment that changes the setup and causes a `mechanical fault`
 
-![bad design](./img/10-watering-can.jpg)
+![bad design](./img/10_watering-can.jpg)
 > Image credit: Katerina Kamprani (Wired), https://www.wired.com/2014/04/perfect-terrible-redesigns/
 
 ![error-slides](./img/error-slide3.png)
