@@ -4,13 +4,13 @@
   font-family: 'Asul';
   font-style: normal;
   font-weight: 400;
-  src: url('asul-regular.woff') format('woff'),
-       url('asul-regular.ttf') format('truetype');
+  font-display: auto;
+  src: url('asul-regular.woff') format('woff');
 }
 @font-face {
   font-family: 'Asul';
   font-style: normal;
   font-weight: 700;
-  src: url('asul-bold.woff') format('woff'),
-       url('asul-bold.ttf') format('truetype');
+  font-display: auto;
+  src: url('asul-bold.woff') format('woff');
 }
