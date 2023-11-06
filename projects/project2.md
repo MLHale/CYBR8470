@@ -51,9 +51,7 @@ You will be graded as follows.
 | Anonymous user | App. includes a user group for anonymous unauthenticated users. Minimal permissions are assigned as appropriate. | App includes a user group for anonymous users, but there are minor permission issues. | No anonymous user group or permissions are completely wrong. |
 
 # Deployment
-You are expected to deploy your project to a set of cloud services of your choice. http://surge.sh and https://aws.amazon.com/ or https://cloud.google.com/compute/ are recommended. AWS and Google Cloud provide education credits and are a great option for deployment.
-
-I suggest [Elastic Beanstalk](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html) or Using [Django on Google](https://cloud.google.com/python/django/) If you use Google and don't want to configure a cloud database, you can use a [Prebuilt Google Compute Django Apache VM](https://console.cloud.google.com/launcher/details/bitnami-launchpad/djangostack?pli=1&project=arklan-custom-ma-1507997989384)
+You are expected to deploy your project to a set of cloud services of your choice. [http://surge.sh](http://surge.sh) and [https://aws.amazon.com/](https://aws.amazon.com/) or [https://cloud.google.com/compute/](https://cloud.google.com/compute/) are recommended. Google Cloud provide education and new customer credits - making it a great option for (free) deployment.
 
 ## Grading Criteria
 80 points for successfully deploying your app (30 points for client, 50 points for server)
