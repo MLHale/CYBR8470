@@ -58,7 +58,7 @@ You are expected to deploy your project to a set of cloud services of your choic
 20 points will be given for creating a `tagged release` on a code commit in your Github repository. If you are creating a generic open source library or tool - you might consider adding the release to NPM or another distribution repository.
 
 # Final Presentation
-You will be expected to prepare and deliver a final presentation video. The presentation will be graded using the following rubric.
+You will be expected to prepare and deliver a final presentation. The presentation will be graded using the following rubric. You may prepare your presentation as a video or present it live on the final day of class. An extra credit of 5 points will be provided to everyone choosing to present live.
 
 ## Grading Criteria
 
