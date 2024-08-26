@@ -16,7 +16,7 @@ For this lesson, you will need:
 * PC
 * Internet connection
 * Google Chrome
-* [The POSTMAN Chrome App](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
+* [The POSTMAN App](https://www.postman.com/downloads/)
 
 ### Prerequisites
 None
