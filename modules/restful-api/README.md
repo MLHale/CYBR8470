@@ -201,7 +201,7 @@ In any case, I suggest creating an account with POSTMAN. While the tool is free 
 * click the + icon to create a new request
 * Notice the type is `GET` and that we can change the type to make different types of `HTTP requests`.
 * For the first request, lets issue a simple get to get a Dog or a Cat (depending on which API you are using)
-* I like dogs, so I am going to use `https://api.thecatapi.com/v1/images/search` -> ill enter that in the URL section of the get request
+* I like dogs, so I am going to use `https://api.thedogapi.com/v1/images/search` -> ill enter that in the URL section of the get request
 * Once entered, hit `send`
 * You should see something like:
 
