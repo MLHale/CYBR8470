@@ -235,7 +235,7 @@ According to this, we can access up to 10 images without authentication - let's 
 ### Step 5: Other GET Requests
 Try some other requests using the `/breeds` endpoint - you can find the documentation here:
 
-https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=gpN-ReBkp
+https://developers.thedogapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=gpN-ReBkp
 
 
 ### Step 6: First POST request 
