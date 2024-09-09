@@ -342,6 +342,7 @@ Now, to access your rest endpoint, simply call it using a get request in postman
 - Open Postman and create a new request.
 - Set the method to `GET` and the URL to your service endpoint (e.g., `http://localhost:8000/rest/dog/1/`).
 - Click Send.
+- You should get back the dog you populated in your database (Luna in my case).g
 
 ## GraphQL API Example
 
@@ -399,6 +400,64 @@ query {
     name
     age
     breed
+  }
+}
+```
+
+### 4. Testing in POSTMAN
+
+#### Create a New Request
+- Click on the **+** button or **New** to create a new request.
+- Set the request method to `POST`.
+- Set the request URL to your GraphQL endpoint: `http://localhost:8000/graphql/`
+
+#### Headers
+In Postman, under the Headers tab, add the following header:
+
+```text
+Content-Type: application/json
+```
+
+#### Define the GraphQL Query in the Body
+Go to the Body tab, select raw, and then set the format to JSON from the dropdown.
+
+In the body, you need to define the GraphQL query inside a JSON object like this:
+
+```json
+{
+  "query": "query { dog(id: 1) { id name age breed } }"
+}
+```
+
+This is equivalent to the GraphQL query you would run in GraphiQL:
+
+```graphql
+query {
+  dog(id: 1) {
+    id
+    name
+    age
+    breed
+  }
+}
+```
+
+#### Send the Request
+Once you've set everything up:
+
+Click Send to send the request.
+The response should return the data for the Dog object with the given id, Luna in my case.
+
+#### Example Response
+```json
+{
+  "data": {
+    "dog": {
+      "id": 1,
+      "name": "Luna",
+      "age": 4,
+      "breed": "Corgi"
+    }
   }
 }
 ```
