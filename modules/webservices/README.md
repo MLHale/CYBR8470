@@ -114,6 +114,9 @@ cd webservices
 python manage.py startapp dogapp
 ```
 
+> On mac you may need to invoke django-admin as
+> ```python3 -m django startproject webservices```
+
 ### 2. Create a `Dog` Model
 Let's create a new database object to hold our dog information. It will have a name, an age, and a breed.
 
