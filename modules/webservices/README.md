@@ -180,6 +180,24 @@ class DogAdmin(admin.ModelAdmin):
 admin.site.register(Dog, DogAdmin)
 ```
 
+
+
+### 4. Accessing the admin dashboard
+Now, lets create a superuser admin for use in the admin interface. Open a `terminal`
+
+```bash
+python manage.py createsuperuser
+```
+
+Give your admin a username and a password. I used admin/admin1234 for the purposes of this lab (even though this is not a secure password). 
+
+Now, visit `http://localhost:8000/admin/` and login with the username/password that you set. You should see a users tab and a dog app tab with the dog model.
+
+### 5. Populating our database
+Lets create a single dog. I made one for my dog Luna. Click the `add` button in the top right, then fill in the data for a dog (it can be fake).
+
+Once you have finished, click save and you should see that a single entry (with id 1) exists in the dog table.
+
 ## SOAP Service Example
 
 ### 1. Install Required Libraries (Spyne)
@@ -297,7 +315,7 @@ from .models import Dog
 from .serializers import DogSerializer
 
 @api_view(['GET'])
-def get_dog(request, dog_id):
+def rest_get_dog(request, dog_id):
     try:
         dog = Dog.objects.get(pk=dog_id)
         serializer = DogSerializer(dog)
@@ -312,14 +330,18 @@ In `dogapp/urls.py`:
 
 ```python
 from django.urls import path
-from .views import get_dog
+from dogapp.views import rest_get_dog
 
 urlpatterns = [
-    path('dog/<int:dog_id>/', get_dog, name='get_dog'),
+    path('rest/dog/<int:dog_id>/', rest_get_dog, name='rest_get_dog'),
 ]
 ```
+### 5. Test with Postman
+Now, to access your rest endpoint, simply call it using a get request in postman
 
----
+- Open Postman and create a new request.
+- Set the method to `GET` and the URL to your service endpoint (e.g., `http://localhost:8000/rest/dog/1/`).
+- Click Send.
 
 ## GraphQL API Example
 
