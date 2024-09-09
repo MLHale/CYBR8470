@@ -332,7 +332,7 @@ def rest_get_dog(request, dog_id):
 
 ### 4. URL Configuration
 
-In `dogapp/urls.py`:
+In `webservices/urls.py`:
 
 ```python
 from django.urls import path
