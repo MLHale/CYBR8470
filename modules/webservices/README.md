@@ -225,6 +225,7 @@ from spyne import Application, rpc, ServiceBase, Integer, Unicode
 from spyne.protocol.soap import Soap11
 from spyne.server.django import DjangoApplication
 from dogapp.models import Dog
+from django.views.decorators.csrf import csrf_exempt
 
 class DogService(ServiceBase):
     @rpc(Integer, _returns=Unicode)
@@ -239,7 +240,7 @@ soap_app = Application([DogService], 'dogapp.soap',
                        in_protocol=Soap11(validator='lxml'),
                        out_protocol=Soap11())
 
-dog_service = DjangoApplication(soap_app)
+dog_service = csrf_exempt(DjangoApplication(soap_app))
 ```
 
 ### 3. URL Configuration
