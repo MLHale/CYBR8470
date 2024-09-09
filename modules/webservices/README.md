@@ -385,9 +385,10 @@ In `urls.py`:
 from django.urls import path
 from graphene_django.views import GraphQLView
 from django.views.decorators.csrf import csrf_exempt
+from dogapp.schema import schema
 
 urlpatterns = [
-    path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
+    path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
 ]
 ```
 
@@ -419,7 +420,7 @@ Content-Type: application/json
 ```
 
 #### Define the GraphQL Query in the Body
-Go to the Body tab, select raw, and then set the format to JSON from the dropdown.
+There are multiple postman options to interact with GraphQL. First, you can use basic json as follows.
 
 In the body, you need to define the GraphQL query inside a JSON object like this:
 
@@ -429,7 +430,7 @@ In the body, you need to define the GraphQL query inside a JSON object like this
 }
 ```
 
-This is equivalent to the GraphQL query you would run in GraphiQL:
+You can also use the `GraphQL` tab to run the following GraphiQL query:
 
 ```graphql
 query {
@@ -443,9 +444,7 @@ query {
 ```
 
 #### Send the Request
-Once you've set everything up:
-
-Click Send to send the request.
+In either case, once you have everything setup, click Send to send the request.
 The response should return the data for the Dog object with the given id, Luna in my case.
 
 #### Example Response
@@ -464,4 +463,4 @@ The response should return the data for the Dog object with the given id, Luna i
 
 ## Summary
 
-This repository demonstrates how to implement a simple `Dog` model in Django and expose it through SOAP, REST, and GraphQL APIs.
+This lab demonstrates how to implement a simple `Dog` model in Django and expose it through SOAP, REST, and GraphQL APIs.
