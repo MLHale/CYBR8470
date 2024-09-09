@@ -2,6 +2,22 @@
 
 This repository contains examples of how to implement SOAP, REST, and GraphQL APIs in Django to access a `Dog` model.
 
+### Introduction
+In this module, you will learn how to build several different types of webservices in Django. We will use the DogAPI as a reference to recreate our own service.
+
+### Goals
+By the end of this tutorial, you will be able to:
+* Build a `Django` application
+* Create a `REST endpoint` on the `application server`
+* Create a `SOAP service`
+* Create a `GraphQL backend`
+
+### Materials Required
+For this lesson, you will need:
+
+* PC - Windows, Mac, or Linux
+* Internet connection
+
 ## Installing Python and Adding it to PATH (Windows)
 Before we begin, you will need the latest version of Python and you will need to install *Django*, a web application framework built in Python.
 
@@ -126,16 +142,18 @@ Now we are ready for the real content...
 
 ## SOAP Service Example
 
-### 1. Install Required Libraries
-Install Required Libraries Install the required packages via pip:
+### 1. Install Required Libraries (Spyne)
+We will use a remote procedure call python library called spyne to build our SOAP-based service
+
+Lets start by installing the required library via pip:
 
 ```bash
 pip install django spyne
 ```
 
-### 3. Define SOAP Service
+### 2. Define SOAP Service
 
-In `dogapp/views.py`:
+Create the SOAP service by using the `spyne` library. In `dogapp/views.py`:
 
 ```python
 from spyne import Application, rpc, ServiceBase, Integer, Unicode
@@ -159,9 +177,9 @@ soap_app = Application([DogService], 'dogapp.soap',
 dog_service = DjangoApplication(soap_app)
 ```
 
-### 4. URL Configuration
+### 3. URL Configuration
 
-In `myproject/urls.py`:
+In `myproject/urls.py`, add a URL that points to the SOAP service:
 
 ```python
 from django.urls import path
@@ -171,6 +189,16 @@ urlpatterns = [
     path('soap/dogservice/', dog_service),
 ]
 ```
+
+### 4. Start the server
+Start your Django server in development mode:
+
+```bash
+python manage.py runserver
+```
+
+### 5. Access your SOAP service
+You can access the service at `http://localhost:8000/soap/dogservice/?wsdl` to see the WSDL. To make SOAP requests, you can use a SOAP client to call the `get_dog` method by passing the `dog_id`.
 
 ### Example SOAP Request:
 
@@ -185,7 +213,26 @@ urlpatterns = [
 </soapenv:Envelope>
 ```
 
----
+### Postman (for manual testing)
+Postman is a popular API testing tool that supports SOAP requests. Here's how you can use it:
+
+- Open Postman and create a new request.
+- Set the method to `POST` and the URL to your service endpoint (e.g., `http://localhost:8000/soap/dogservice/`).
+- Go to the Body tab and select raw.
+- Set the body type to XML.
+- Enter the SOAP request XML in the body (see example below).
+- Click Send.
+
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dog="dogapp.soap">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <dog:get_dog>
+         <dog_id>1</dog_id>
+      </dog:get_dog>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
 
 ## REST API Example
 
