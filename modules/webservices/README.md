@@ -48,13 +48,13 @@ After installation, verify that Python is installed and available on your PATH:
 - Press `Win + R`, type `cmd`, and press Enter.
 
 #### 5.2 Check Python Version
-- Type `python --version` and press Enter. You should see something like:
+- Type `python --version` and press Enter. You should see something like: 3.12.6 (or whatever version you installed). If you see an old version, you might want to remove and add a more recent version. This is particularly true if your python version is 2.X.X. Django will require v3+.
 
 #### 5.3 Check `pip` Version
 - Type `pip --version` and press Enter. You should see the installed version of `pip`, which is the package manager for Python.
 
 ### 6. Manually Add Python to PATH (If Not Added Automatically)
-If Python wasn’t added to your PATH environment variable during installation, you can add it manually:
+If Python wasn’t added to your PATH environment variable during installation, you can add it manually using the following instructions.
 
 #### 6.1 Locate the Python Installation Path
 - The default location is usually `C:\Users\<YourUsername>\AppData\Local\Programs\Python\Python<version>\` (for the Python executable).
@@ -82,6 +82,9 @@ macOS comes with a version of Python pre-installed, usually Python 2.x. You can 
 python --version
 python3 --version
 ```
+
+You will need to use python3 for this lesson. It is ok for Python 2 and Python3 to coexist. Please make sure to use **python3 command_name** for all commands below, since you do not want to use python2.
+
 ### 2. Install Homebrew (If Not Already Installed)
 Homebrew is a package manager for macOS that simplifies the installation of software. First, check if Homebrew is installed by typing the following command in Terminal:
 
@@ -113,6 +116,9 @@ django-admin startproject webservices
 cd webservices
 python manage.py startapp dogapp
 ```
+> On mac you may need to invoke django-admin as
+> ```python3 -m django startproject webservices```
+
 
 Now in `webservices/settings.py` make the following change to `INSTALLED_APPS`:
 
@@ -124,8 +130,7 @@ INSTALLED_APPs = [
 ]
 ```
 
-> On mac you may need to invoke django-admin as
-> ```python3 -m django startproject webservices```
+
 
 ### 2. Create a `Dog` Model
 Let's create a new database object to hold our dog information. It will have a name, an age, and a breed.
