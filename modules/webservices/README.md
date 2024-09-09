@@ -25,6 +25,11 @@ Before we begin, you will need the latest version of Python and you will need to
 - Go to the official Python website: [https://www.python.org/downloads/](https://www.python.org/downloads/)
 - Click the **Download Python** button. This will automatically download the latest version for your Windows system.
 
+> Note - there is currently a broken issue with 3.12 python.
+
+Please uninstall python and reinstall python with 3.11. You can find the installer her.
+https://www.python.org/downloads/release/python-3119/
+
 ### 2. Run the Installer
 - Locate the downloaded Python installer (`python-x.x.x.exe`) in your `Downloads` folder and run it.
 - On the first screen, **check the box that says "Add Python x.x to PATH"** at the bottom. This is crucial for automatically adding Python to your PATH environment variable.
