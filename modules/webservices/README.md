@@ -109,8 +109,8 @@ python -m pip install Django
 
 ### 2. Create Django Project and App:
 ```bash
-django-admin startproject myproject
-cd myproject
+django-admin startproject webservices
+cd webservices
 python manage.py startapp dogapp
 ```
 
