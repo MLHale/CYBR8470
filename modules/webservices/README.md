@@ -242,19 +242,6 @@ python manage.py runserver
 ### 5. Access your SOAP service
 You can access the service at `http://localhost:8000/soap/dogservice/?wsdl` to see the WSDL. To make SOAP requests, you can use a SOAP client to call the `get_dog` method by passing the `dog_id`.
 
-### Example SOAP Request:
-
-```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dog="dogapp.soap">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <dog:get_dog>
-         <dog_id>1</dog_id>
-      </dog:get_dog>
-   </soapenv:Body>
-</soapenv:Envelope>
-```
-
 ### Postman (for manual testing)
 Postman is a popular API testing tool that supports SOAP requests. Here's how you can use it:
 
@@ -270,7 +257,7 @@ Postman is a popular API testing tool that supports SOAP requests. Here's how yo
    <soapenv:Header/>
    <soapenv:Body>
       <dog:get_dog>
-         <dog_id>1</dog_id>
+         <dog:dog_id>1</dog:dog_id> 
       </dog:get_dog>
    </soapenv:Body>
 </soapenv:Envelope>
