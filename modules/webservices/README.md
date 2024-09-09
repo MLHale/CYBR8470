@@ -114,6 +114,16 @@ cd webservices
 python manage.py startapp dogapp
 ```
 
+Now in `webservices/settings.py` make the following change to `INSTALLED_APPS`:
+
+```python
+...
+INSTALLED_APPs = [
+    ...
+    'dogapp',
+]
+```
+
 > On mac you may need to invoke django-admin as
 > ```python3 -m django startproject webservices```
 
@@ -143,6 +153,33 @@ python manage.py migrate
 
 Now we are ready for the real content...
 
+### 3. Make an admin class so we can populate our database via webportal:
+In your `dogapp/admin.py`, define the following:
+
+```python
+from django.contrib import admin
+from .models import Dog
+
+class DogAdmin(admin.ModelAdmin):
+    # Define the list of fields to display in the admin interface
+    list_display = ('name', 'age', 'breed')
+    
+    # Add search functionality for specific fields
+    search_fields = ('name', 'breed')
+
+    # Add filters for the age and breed fields in the sidebar
+    list_filter = ('age', 'breed')
+
+    # Define which fields can be clicked to view the details page
+    list_display_links = ('name',)
+
+    # Define how fields are displayed when editing a Dog instance
+    fields = ('name', 'age', 'breed')
+
+# Register the model and admin class
+admin.site.register(Dog, DogAdmin)
+```
+
 ## SOAP Service Example
 
 ### 1. Install Required Libraries (Spyne)
@@ -151,7 +188,9 @@ We will use a remote procedure call python library called spyne to build our SOA
 Lets start by installing the required library via pip:
 
 ```bash
+pip install lxml
 pip install django spyne
+
 ```
 
 ### 2. Define SOAP Service
@@ -182,7 +221,7 @@ dog_service = DjangoApplication(soap_app)
 
 ### 3. URL Configuration
 
-In `myproject/urls.py`, add a URL that points to the SOAP service:
+In `webservices/urls.py`, add a URL that points to the SOAP service:
 
 ```python
 from django.urls import path
