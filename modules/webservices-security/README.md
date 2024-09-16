@@ -261,3 +261,131 @@ urlpatterns = [
 #### 3.3.6. Test with Postman
 - Obtain a JWT token by making a POST request to `http://localhost:8000/api/token/` with your username and password in the body.
 - Use the obtained token to authenticate your requests to the REST API by adding an `Authorization` header with the value `Bearer your_token_here`.
+
+## 4. Securing the GraphQL API
+Now, we'll secure the GraphQL API using authentication and permissions.
+
+### 4.1. Update the GraphQL Schema
+In `dogapp/schema.py`, import the required modules and enforce authentication:
+
+```python
+import graphene
+from graphene_django.types import DjangoObjectType
+from dogapp.models import Dog
+from graphql import GraphQLError
+from django.contrib.auth import get_user_model
+
+class DogType(DjangoObjectType):
+    class Meta:
+        model = Dog
+
+class Query(graphene.ObjectType):
+    dog = graphene.Field(DogType, id=graphene.Int())
+
+    def resolve_dog(self, info, id):
+        user = info.context.user
+        if user.is_anonymous:
+            raise GraphQLError('Not authenticated')
+        try:
+            dog = Dog.objects.get(pk=id)
+            if dog.owner != user:
+                raise GraphQLError('You do not have permission to view this dog.')
+            return dog
+        except Dog.DoesNotExist:
+            return None
+```
+
+Again - thinks about the kinds of error's you give. Is this object-level error sufficient? What might it tell an attacker about the existence of the dog they are searching for? Think like an adversary and adjust your error messages to reveal as little as possible (preferrably nothing).
+
+### 4.2. Update `settings.py`
+In `webservices/settings.py`, add the following setting to enable authentication in GraphQL:
+
+```python
+GRAPHENE = {
+    'SCHEMA': 'dogapp.schema.schema',
+}
+```
+
+### 4.3. Test the GraphQL API
+#### 4.3.1. Obtain a Session (Using Cookies)
+- Log in via the login page at `http://localhost:8000/accounts/login/`.
+- Once logged in, you can access the GraphiQL interface at `http://localhost:8000/graphql/`.
+
+#### 4.3.2. Use the Session Cookie in Postman
+- In Postman, send a POST request to `http://localhost:8000/graphql/`.
+- In the Headers tab, make sure to include the session cookie.
+- In the Body tab, select `GraphQL`, and enter the following query:
+
+```graphql
+query {
+  dog(id: 1) {
+    id
+    name
+    age
+    breed
+  }
+}
+```
+
+- Send the request.
+
+You should receive the data for the dog if you own it, or an error message if you do not.
+
+### 4.4. Using JWT Authentication (Optional)
+You can also implement JWT authentication in GraphQL using the `django-graphql-jwt` library.
+
+#### 4.4.1. Install `django-graphql-jwt`
+```bash
+pip install django-graphql-jwt
+```
+
+#### 4.4.2. Update `settings.py`
+Add the following to your `AUTHENTICATION_BACKENDS`:
+
+```python
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+```
+Update your `GRAPHENE` settings:
+
+```python
+GRAPHENE = {
+    'SCHEMA': 'dogapp.schema.schema',
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
+}
+```
+
+#### 4.4.3. Update the Schema
+In `dogapp/schema.p`, add the authentication mutations:
+
+```python
+import graphene
+import graphql_jwt
+
+class Mutation(graphene.ObjectType):
+    token_auth = graphql_jwt.ObtainJSONWebToken.Field()
+    verify_token = graphql_jwt.Verify.Field()
+    refresh_token = graphql_jwt.Refresh.Field()
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
+
+In GraphQL, a mutation is a type of operation that allows clients to create, update, or delete data on the server. Mutations enable clients to send data to the server and define precisely how the data should change. Each mutation can also specify what data should be returned after the operation, which can be particularly useful for updating the client-side state immediately after the mutation.
+
+```
+
+#### 4.4.4. Test with Postman
+Obtain a JWT token by making a mutation request:
+
+```graphql
+mutation {
+  tokenAuth(username: "your_username", password: "your_password") {
+    token
+  }
+}
+```
+
+Use the obtained token to authenticate your GraphQL requests by adding an `Authorization` header with the value `JWT your_token_here`.
