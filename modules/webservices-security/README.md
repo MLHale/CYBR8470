@@ -73,8 +73,8 @@ admin.site.register(Dog, DogAdmin)
 ```
 
 ### 1.4. Create Some Users and Dogs
-Create a few users using the Django admin interface at `http://localhost:8000/admin/`.
-Assign different dogs to different users.
+- Create a few users using the Django admin interface at `http://localhost:8000/admin/`.
+- Assign different dogs to different users.
 
 ## 2. Implementing Authentication
 We will now implement authentication mechanisms for our APIs to ensure that only authenticated users can access them.
@@ -106,7 +106,7 @@ REST_FRAMEWORK = {
 python manage.py runserver
 ```
 
-#### 2.3. Implementing Login and Logout Views
+### 2.3. Implementing Login and Logout Views
 To authenticate users, we need to provide login and logout views. We'll use Django's built-in authentication views.
 
 #### 2.3.1. Update `urls.py`
@@ -153,9 +153,56 @@ Create a file named `login.html` inside `templates/registration/`:
 </body>
 </html>
 ```
-#### 2.4. Test Authentication
+### 2.4. Test Authentication
 Run the server, navigate to `http://localhost:8000/accounts/login/`, and try to login using your username and password to ensure the login page is working. Test to see what happens with an incorrect username/password or both. Is the error message a good one? What might be better?
 
+## 3. Securing the REST API
+Now, we will secure the REST API so that only authenticated users can access it, and users can only access their own `Dog` objects.
 
+### 3.1. Update the REST API View
+In `dogapp/views.py`, update the `rest_get_dog` view to enforce permissions:
+
+```python
+from rest_framework import status, permissions
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes
+from .models import Dog
+from .serializers import DogSerializer
+
+@api_view(['GET'])
+@permission_classes([permissions.IsAuthenticated])
+def rest_get_dog(request, dog_id):
+    try:
+        dog = Dog.objects.get(pk=dog_id)
+        if dog.owner != request.user:
+            return Response({'error': 'You do not have permission to view this dog.'}, status=status.HTTP_403_FORBIDDEN)
+        serializer = DogSerializer(dog)
+        return Response(serializer.data)
+    except Dog.DoesNotExist:
+        return Response({'error': 'Dog not found.'}, status=status.HTTP_404_NOT_FOUND)
+```
+        
+### 3.2. Test the REST API
+#### 3.2.1. Using Session Authentication in Postman
+Since we are using `SessionAuthentication`, we need to log in to obtain a session cookie.
+
+- Open Postman.
+- Create a new request to `http://localhost:8000/accounts/login/`.
+- Set the method to `POST`.
+- In the Body tab, select `x-www-form-urlencoded`.
+- Add the following key-value pairs:
+  - `username`: your username
+  - `password`: your password
+- Send the request.
+
+If the login is successful, Postman will receive a session cookie.
+
+#### 3.2.2. Use the Session Cookie for API Requests
+- In Postman, the session cookie should be automatically saved in the Cookies section.
+- Now, create a new GET request to `http://localhost:8000/rest/dog/1/`.
+- Ensure that the session cookie is included in the request (Postman does this automatically).
+- Send the request.
+
+You should receive the data for the dog if you own it, or a permission error if you do not.
 
 
