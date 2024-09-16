@@ -205,4 +205,59 @@ If the login is successful, Postman will receive a session cookie.
 
 You should receive the data for the dog if you own it, or a permission error if you do not.
 
+### 3.3. Using Token Authentication
+Alternatively, you can use Token Authentication, which is useful for APIs because not all invocations happen within a same-domain session. Some might come from mobile apps or other applications using the API.
 
+#### 3.3.1. Install `TokenAuthentication`
+```bash
+pip install djangorestframework
+pip install djangorestframework-simplejwt
+```
+
+#### 3.3.2. Update `settings.py`
+In `webservices/settings.py`, update the REST framework settings:
+
+```python
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+```
+
+#### 3.3.3. Add `rest_framework_simplejwt` to `INSTALLED_APPS`
+```python
+INSTALLED_APPS = [
+    # ... other apps ...
+    'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
+]
+```
+
+#### 3.3.4. Run Migrations
+```bash
+python manage.py migrate
+```
+#### 3.3.5. Update `urls.py` to Include Token Paths
+Add the following imports and URL patterns to `webservices/urls.py`:
+
+```python
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+urlpatterns = [
+    # ... existing URLs ...
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+]
+```
+
+#### 3.3.6. Test with Postman
+- Obtain a JWT token by making a POST request to `http://localhost:8000/api/token/` with your username and password in the body.
+- Use the obtained token to authenticate your requests to the REST API by adding an `Authorization` header with the value `Bearer your_token_here`.
