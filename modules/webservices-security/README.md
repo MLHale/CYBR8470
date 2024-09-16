@@ -54,3 +54,108 @@ After modifying the model, you need to create a new migration and apply it:
 python manage.py makemigrations
 python manage.py migrate
 ```
+
+### 1.3. Update the Admin Interface
+In `dogapp/admin.py`, update the `DogAdmin` class to include the `owner` field:
+
+```python
+from django.contrib import admin
+from .models import Dog
+
+class DogAdmin(admin.ModelAdmin):
+    list_display = ('name', 'age', 'breed', 'owner')
+    search_fields = ('name', 'breed')
+    list_filter = ('age', 'breed', 'owner')
+    list_display_links = ('name',)
+    fields = ('owner', 'name', 'age', 'breed')
+
+admin.site.register(Dog, DogAdmin)
+```
+
+### 1.4. Create Some Users and Dogs
+Create a few users using the Django admin interface at `http://localhost:8000/admin/`.
+Assign different dogs to different users.
+
+## 2. Implementing Authentication
+We will now implement authentication mechanisms for our APIs to ensure that only authenticated users can access them.
+
+### 2.1. Setting Up Django Authentication
+Django provides built-in authentication mechanisms. Ensure that the `django.contrib.auth` and `django.contrib.sessions` apps are included in your `INSTALLED_APPS` in `webservices/settings.py` (they are included by default).
+
+### 2.2. Enabling Authentication in REST Framework
+Since we are using Django REST Framework (DRF) for the REST API, we can use DRF's authentication mechanisms.
+
+#### 2.2.1. Update settings.py
+In `webservices/settings.py`, add REST framework settings:
+
+```python
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        # Alternatively, you can use TokenAuthentication
+        # 'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+```
+
+#### 2.2.2 Restart your server
+```bash
+python manage.py runserver
+```
+
+#### 2.3. Implementing Login and Logout Views
+To authenticate users, we need to provide login and logout views. We'll use Django's built-in authentication views.
+
+#### 2.3.1. Update `urls.py`
+In `webservices/urls.py`, add the following imports and URL patterns:
+
+```python
+from django.contrib import admin
+from django.urls import path, include
+from django.contrib.auth import views as auth_views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    # ... existing URLs ...
+    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
+]
+```
+
+#### 2.3.2. Create Login Template
+Create a directory named `templates` in your project root (where `manage.py` is located), and inside it, create a directory named `registration`.
+
+Create a file named `login.html` inside `templates/registration/`:
+
+```html
+<!-- templates/registration/login.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" autofocus required><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required><br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>
+```
+#### 2.4. Test Authentication
+Run the server, navigate to `http://localhost:8000/accounts/login/`, and try to login using your username and password to ensure the login page is working. Test to see what happens with an incorrect username/password or both. Is the error message a good one? What might be better?
+
+
+
+
