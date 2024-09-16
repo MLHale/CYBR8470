@@ -372,10 +372,9 @@ class Mutation(graphene.ObjectType):
     refresh_token = graphql_jwt.Refresh.Field()
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
+```
 
 In GraphQL, a mutation is a type of operation that allows clients to create, update, or delete data on the server. Mutations enable clients to send data to the server and define precisely how the data should change. Each mutation can also specify what data should be returned after the operation, which can be particularly useful for updating the client-side state immediately after the mutation.
-
-```
 
 #### 4.4.4. Test with Postman
 Obtain a JWT token by making a mutation request:
