@@ -88,7 +88,7 @@ class DogSerializer(serializers.ModelSerializer):
         model = Dog
         fields = ['id', 'name', 'age', 'breed', 'owner']
 ```
-
+In a real API, we would also want an endpoint to fetch information about the related `owner` user object...e.g. `/rest/user/<int:user_id>/`.
 ## 2. Implementing Authentication
 We will now implement authentication mechanisms for our APIs to ensure that only authenticated users can access them.
 
