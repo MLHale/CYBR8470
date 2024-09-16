@@ -89,6 +89,7 @@ class DogSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'age', 'breed', 'owner']
 ```
 In a real API, we would also want an endpoint to fetch information about the related `owner` user object...e.g. `/rest/user/<int:user_id>/`.
+
 ## 2. Implementing Authentication
 We will now implement authentication mechanisms for our APIs to ensure that only authenticated users can access them.
 
@@ -126,12 +127,9 @@ To authenticate users, we need to provide login and logout views. We'll use Djan
 In `webservices/urls.py`, add the following imports and URL patterns:
 
 ```python
-from django.contrib import admin
-from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     # ... existing URLs ...
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
@@ -139,9 +137,9 @@ urlpatterns = [
 ```
 
 #### 2.3.2. Create Login Template
-Create a directory named `templates` in your project root (where `manage.py` is located), and inside it, create a directory named `registration`.
+Create a directory named `templates` in your project root (where `manage.py` is located), and inside it, create a directory named `templates`, in it make another directory called `registration/`.
 
-Create a file named `login.html` inside `templates/registration/`:
+Create a file named `login.html` inside `registration/`:
 
 ```html
 <!-- templates/registration/login.html -->
@@ -166,8 +164,37 @@ Create a file named `login.html` inside `templates/registration/`:
 </body>
 </html>
 ```
+
+#### 2.3.3 Tell settings.py where to find your templates
+In `settings.py` update the `TEMPLATES` section to the following:
+
+```python
+import os
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+```
+This will tell django that the `/templates/` directory is a place where it can look for particular template paths...including the `registration/login.html` template.
+
 ### 2.4. Test Authentication
-Run the server, navigate to `http://localhost:8000/accounts/login/`, and try to login using your username and password to ensure the login page is working. Test to see what happens with an incorrect username/password or both. Is the error message a good one? What might be better?
+Run the server, navigate to `http://localhost:8000/accounts/login/`, and try to login using your username and password to ensure the login page is working. If all goes well, you will be authenticated, receive a session token, and redirected to a profile page (that doesn't exist). You could create one, but it is outside the scope of this lesson. 
+
+Once you've logged in, try to logout at `http://localhost:8000/accounts/logout`. Now test to see what happens when you try to login with an incorrect username/password or both. Is the error message a good one? What might be better?
+
+Notice, since we didnt create our own logout page, django defaults to using the admin interface logout page (which ships with django by default). We could override that by writing out own logout html template, but again that is outside the scope of this lesson.
 
 ## 3. Securing the REST API
 Now, we will secure the REST API so that only authenticated users can access it, and users can only access their own `Dog` objects.
@@ -176,14 +203,13 @@ Now, we will secure the REST API so that only authenticated users can access it,
 In `dogapp/views.py`, update the `rest_get_dog` view to enforce permissions:
 
 ```python
-from rest_framework import status, permissions
-from rest_framework.response import Response
-from rest_framework.decorators import api_view, permission_classes
-from .models import Dog
-from .serializers import DogSerializer
+from rest_framework import status, permissions, renderers
+from rest_framework.decorators import api_view, permission_classes, renderer_classes
+
 
 @api_view(['GET'])
 @permission_classes([permissions.IsAuthenticated])
+@renderer_classes([renderers.JSONRenderer])
 def rest_get_dog(request, dog_id):
     try:
         dog = Dog.objects.get(pk=dog_id)
@@ -196,27 +222,22 @@ def rest_get_dog(request, dog_id):
 ```
         
 ### 3.2. Test the REST API
-#### 3.2.1. Using Session Authentication in Postman
+#### 3.2.1. Using Session Authentication in Browser
 Since we are using `SessionAuthentication`, we need to log in to obtain a session cookie.
 
-- Open Postman.
-- Create a new request to `http://localhost:8000/accounts/login/`.
-- Set the method to `POST`.
-- In the Body tab, select `x-www-form-urlencoded`.
+- Open a new browswer tab and navigate to `http://localhost:8000/accounts/login/`.
 - Add the following key-value pairs:
   - `username`: your username
   - `password`: your password
 - Send the request.
-
-If the login is successful, Postman will receive a session cookie.
+- If login is successful, your browser will capture a session token for the rest of your session. It will get sent in subsequent requests.
 
 #### 3.2.2. Use the Session Cookie for API Requests
-- In Postman, the session cookie should be automatically saved in the Cookies section.
-- Now, create a new GET request to `http://localhost:8000/rest/dog/1/`.
-- Ensure that the session cookie is included in the request (Postman does this automatically).
-- Send the request.
+The session cookie will automatically be sent with future requests in the same browser tab. Lets try using it to access our dog objects.
 
-You should receive the data for the dog if you own it, or a permission error if you do not.
+Try visiting `localhost:8000/rest/dog/1` does it work? How about `localhost:8000/rest/dog/2`?
+
+if you have assigned those dogs to different users, you should only be able to view the ones you own.
 
 ### 3.3. Using Token Authentication
 Alternatively, you can use Token Authentication, which is useful for APIs because not all invocations happen within a same-domain session. Some might come from mobile apps or other applications using the API.
@@ -247,7 +268,7 @@ REST_FRAMEWORK = {
 INSTALLED_APPS = [
     # ... other apps ...
     'rest_framework',
-    'rest_framework_simplejwt.token_blacklist',
+    'rest_framework_simplejwt',
 ]
 ```
 
@@ -272,12 +293,61 @@ urlpatterns = [
 ```
 
 #### 3.3.6. Test with Postman
-- Obtain a JWT token by making a POST request to `http://localhost:8000/api/token/` with your username and password in the body.
+- Obtain a JWT token by making a POST request to `http://localhost:8000/api/token/` with your username and password in the body (make sure the request is `raw` with contentype `application/json`.
 - Use the obtained token to authenticate your requests to the REST API by adding an `Authorization` header with the value `Bearer your_token_here`.
 
-## 4. Securing the GraphQL API
-Now, we'll secure the GraphQL API using authentication and permissions.
+#### 3.3.7 Using the token
+Make a new request to `http://localhost:8000/rest/dog/1`. 
+- Add the key `Authorization` header to the `headers` tab in POSTMAN.
+- For the value set it to `Bearer your_token_here`, replacing your_token with the value returned from the `access` token retrieved in the earlier request to `/api/token`
+- Once you have the header set, send the request to `http://localhost:8000/rest/dog/1` and `http://localhost:8000/rest/dog/2`, the API should only allow you access to the dog you own, not the others owned by other owners.
 
+
+## 4. Securing the GraphQL API
+In this section, we will secure the GraphQL API using JSON Web Tokens (JWT) for authentication instead of session-based authentication. JWT is a stateless authentication mechanism suitable for APIs, allowing clients to authenticate without the need for CSRF tokens or session cookies.
+
+### 4.1. Install `django-graphql-jwt`
+We will use the `django-graphql-jwt` library to implement JWT authentication in our GraphQL API.
+
+#### 4.1.1 Install the library
+Run the following command to install `django-graphql-jwt`:
+
+```bash
+pip install django-graphql-jwt
+```
+
+#### 4.1.2 Configure django
+Configure your Django project to use JWT authentication for GraphQL.
+
+Add `graphql_jwt` to INSTALLED_APPS
+In `webservices/settings.py`, add `graphql_jwt` to the list of installed apps:
+
+```python
+INSTALLED_APPS = [
+    # ... other installed apps ...
+    'graphene_django',
+    'graphql_jwt',
+]
+```
+#### 4.1.3. Configure Authentication Backends
+Update the AUTHENTICATION_BACKENDS setting to include JSONWebTokenBackend:
+
+```python
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+```
+
+#### 4.1.4. Configure `GRAPHENE`
+```python
+GRAPHENE = {
+    'SCHEMA': 'dogapp.schema.schema',
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
+}
+```
 ### 4.1. Update the GraphQL Schema
 In `dogapp/schema.py`, import the required modules and enforce authentication:
 
@@ -287,6 +357,7 @@ from graphene_django.types import DjangoObjectType
 from dogapp.models import Dog
 from graphql import GraphQLError
 from django.contrib.auth import get_user_model
+import graphql_jwt
 
 class DogType(DjangoObjectType):
     class Meta:
@@ -306,28 +377,38 @@ class Query(graphene.ObjectType):
             return dog
         except Dog.DoesNotExist:
             return None
+        
+class Mutation(graphene.ObjectType):
+    token_auth = graphql_jwt.ObtainJSONWebToken.Field()
+    verify_token = graphql_jwt.Verify.Field()
+    refresh_token = graphql_jwt.Refresh.Field()
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
 ```
+
+In GraphQL, a mutation is a type of operation that allows clients to create, update, or delete data on the server. Mutations enable clients to send data to the server and define precisely how the data should change. Each mutation can also specify what data should be returned after the operation, which can be particularly useful for updating the client-side state immediately after the mutation.
 
 Again - thinks about the kinds of error's you give. Is this object-level error sufficient? What might it tell an attacker about the existence of the dog they are searching for? Think like an adversary and adjust your error messages to reveal as little as possible (preferrably nothing).
 
-### 4.2. Update `settings.py`
-In `webservices/settings.py`, add the following setting to enable authentication in GraphQL:
 
-```python
-GRAPHENE = {
-    'SCHEMA': 'dogapp.schema.schema',
+### 4.2. Testing with Postman
+
+#### 4.2.1
+Obtain a JWT token by making a mutation request:
+
+```graphql
+mutation {
+  tokenAuth(username: "your_username", password: "your_password") {
+    token
+  }
 }
 ```
+#### 4.2.2
+Use the obtained token to authenticate your GraphQL requests by adding an `Authorization` header with the value `JWT your_token_here`.
 
-### 4.3. Test the GraphQL API
-#### 4.3.1. Obtain a Session (Using Cookies)
-- Log in via the login page at `http://localhost:8000/accounts/login/`.
-- Once logged in, you can access the GraphiQL interface at `http://localhost:8000/graphql/`.
-
-#### 4.3.2. Use the Session Cookie in Postman
-- In Postman, send a POST request to `http://localhost:8000/graphql/`.
-- In the Headers tab, make sure to include the session cookie.
-- In the Body tab, select `GraphQL`, and enter the following query:
+- make a new request to `localhost:8000/graphql/`
+- include the key/value `Authorization` and `JWT your_token_here` replacing the `your_token_here` part with the token you received from the prior request
+- Now try the following query to see what you see:
 
 ```graphql
 query {
@@ -340,67 +421,7 @@ query {
 }
 ```
 
-- Send the request.
-
-You should receive the data for the dog if you own it, or an error message if you do not.
-
-### 4.4. Using JWT Authentication (Optional)
-You can also implement JWT authentication in GraphQL using the `django-graphql-jwt` library.
-
-#### 4.4.1. Install `django-graphql-jwt`
-```bash
-pip install django-graphql-jwt
-```
-
-#### 4.4.2. Update `settings.py`
-Add the following to your `AUTHENTICATION_BACKENDS`:
-
-```python
-AUTHENTICATION_BACKENDS = [
-    'graphql_jwt.backends.JSONWebTokenBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]
-```
-Update your `GRAPHENE` settings:
-
-```python
-GRAPHENE = {
-    'SCHEMA': 'dogapp.schema.schema',
-    'MIDDLEWARE': [
-        'graphql_jwt.middleware.JSONWebTokenMiddleware',
-    ],
-}
-```
-
-#### 4.4.3. Update the Schema
-In `dogapp/schema.p`, add the authentication mutations:
-
-```python
-import graphene
-import graphql_jwt
-
-class Mutation(graphene.ObjectType):
-    token_auth = graphql_jwt.ObtainJSONWebToken.Field()
-    verify_token = graphql_jwt.Verify.Field()
-    refresh_token = graphql_jwt.Refresh.Field()
-
-schema = graphene.Schema(query=Query, mutation=Mutation)
-```
-
-In GraphQL, a mutation is a type of operation that allows clients to create, update, or delete data on the server. Mutations enable clients to send data to the server and define precisely how the data should change. Each mutation can also specify what data should be returned after the operation, which can be particularly useful for updating the client-side state immediately after the mutation.
-
-#### 4.4.4. Test with Postman
-Obtain a JWT token by making a mutation request:
-
-```graphql
-mutation {
-  tokenAuth(username: "your_username", password: "your_password") {
-    token
-  }
-}
-```
-
-Use the obtained token to authenticate your GraphQL requests by adding an `Authorization` header with the value `JWT your_token_here`.
+Try it for id 2 instead. Do you get a permission issue?
 
 ## 5. Securing the SOAP API
 Securing SOAP APIs in Django using `spyne` requires custom authentication mechanisms because `spyne` doesn't directly integrate with Django's authentication system.
