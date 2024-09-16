@@ -76,6 +76,19 @@ admin.site.register(Dog, DogAdmin)
 - Create a few users using the Django admin interface at `http://localhost:8000/admin/`.
 - Assign different dogs to different users.
 
+### 1.5 Update your rest endpoint to show the owner id
+Since our `rest_get_dog` view is using a serializer to serialize the python model into json, we just need to update our serializer to tell it to send the new owner id field.
+
+```python
+from rest_framework import serializers
+from .models import Dog
+
+class DogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Dog
+        fields = ['id', 'name', 'age', 'breed', 'owner']
+```
+
 ## 2. Implementing Authentication
 We will now implement authentication mechanisms for our APIs to ensure that only authenticated users can access them.
 
