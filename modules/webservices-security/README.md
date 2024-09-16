@@ -549,6 +549,7 @@ from dogapp.views import DogDetailAPIView
 
 urlpatterns = [
     # ... existing URLs ...
+    #path('rest/dog/<int:dog_id>/', rest_get_dog, name='rest_get_dog'),
     path('rest/dog/<int:pk>/', DogDetailAPIView.as_view(), name='rest_get_dog'),
 ]
 ```
@@ -569,10 +570,7 @@ def IsOwnerGQL(user, obj):
 And in `dogapp/schema.py`:
 
 ```python
-import graphene
-from graphene_django.types import DjangoObjectType
-from dogapp.models import Dog
-from dogapp.permissions import IsOwner  # Import the permission
+from dogapp.permissions import IsOwnerGQL  # Import the permission
 
 class DogType(DjangoObjectType):
     class Meta:
