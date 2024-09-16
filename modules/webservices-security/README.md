@@ -388,3 +388,180 @@ mutation {
 ```
 
 Use the obtained token to authenticate your GraphQL requests by adding an `Authorization` header with the value `JWT your_token_here`.
+
+## 5. Securing the SOAP API
+Securing SOAP APIs in Django using `spyne` requires custom authentication mechanisms because `spyne` doesn't directly integrate with Django's authentication system.
+
+### 5.1. Implementing Basic Authentication for SOAP
+We will implement HTTP Basic Authentication for the SOAP service.
+
+#### 5.1.1. Update the SOAP Service
+In `dogapp/views.py`, update the `DogService` class to check for authentication:
+
+```python
+from spyne import Application, rpc, ServiceBase, Integer, Unicode
+from spyne.protocol.soap import Soap11
+from spyne.server.django import DjangoApplication
+from dogapp.models import Dog
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate
+
+class DogService(ServiceBase):
+    @rpc(Integer, _returns=Unicode)
+    def get_dog(ctx, dog_id):
+        request = ctx.transport.req
+        user = None
+
+        # Get the Basic Auth credentials
+        if 'HTTP_AUTHORIZATION' in request.META:
+            auth = request.META['HTTP_AUTHORIZATION'].split()
+            if len(auth) == 2 and auth[0].lower() == 'basic':
+                import base64
+                username, password = base64.b64decode(auth[1]).decode('utf-8').split(':')
+                user = authenticate(username=username, password=password)
+
+        if user is None or not user.is_authenticated:
+            ctx.transport.resp_code = 401
+            ctx.transport.resp_headers['WWW-Authenticate'] = 'Basic realm="DogService"'
+            return "Unauthorized"
+
+        try:
+            dog = Dog.objects.get(pk=dog_id)
+            if dog.owner != user:
+                ctx.transport.resp_code = 403
+                return "You do not have permission to view this dog."
+            return f"Dog: {dog.name}, Age: {dog.age}, Breed: {dog.breed}"
+        except Dog.DoesNotExist:
+            ctx.transport.resp_code = 404
+            return "Dog not found."
+
+soap_app = Application([DogService], 'dogapp.soap',
+                       in_protocol=Soap11(validator='lxml'),
+                       out_protocol=Soap11())
+
+dog_service = csrf_exempt(DjangoApplication(soap_app))
+```
+
+### 5.2. Test the SOAP API
+#### 5.2.1. Using Postman to Send Authenticated Requests
+- Open Postman and create a new request.
+- Set the method to `POST` and the URL to `http://localhost:8000/soap/dogservice/`.
+- In the Authorization tab, select `Basic Auth`.
+    - Enter your username and password.
+- In the Body tab, select `raw` and set the type to `XML`.
+- Enter the SOAP request XML:
+
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dog="dogapp.soap">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <dog:get_dog>
+         <dog:dog_id>1</dog:dog_id> 
+      </dog:get_dog>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+- Send the request.
+
+You should receive the dog's information if you own it, or an error message if you do not.
+
+## 6. Implementing Object-Level Permissions as a centralized permission
+We have already implemented object-level permissions in our API views by checking if the `dog.owner` matches the `request.user`. For better code organization, more efficient use of your time, and better maintainability (and therefore better security) you can create a custom permission class that can be reused across endpoints for your APIs. In general it doesn't make sense to write the same code over and over again, so why not write it once and reuse it? This also prevents a lot of errors that can occur if you need to make updates to your permissioning functions. Instead of copy pasting the same code-level patch for every endpoint, it is a single fix for all of them.
+
+### 6.1. For REST Framework
+Create a custom permission in `dogapp/permissions.py`:
+
+```python
+from rest_framework import permissions
+
+class IsOwner(permissions.BasePermission):
+    """
+    Custom permission to only allow owners of an object to view it.
+    """
+
+    def has_object_permission(self, request, view, obj):
+        return obj.owner == request.user
+```
+
+Update the `rest_get_dog` view to use this permission:
+
+```python
+from .permissions import IsOwner
+from rest_framework import generics
+
+class DogDetailAPIView(generics.RetrieveAPIView):
+    queryset = Dog.objects.all()
+    serializer_class = DogSerializer
+    permission_classes = [permissions.IsAuthenticated, IsOwner]
+```
+
+Update `urls.py`:
+
+```python
+from dogapp.views import DogDetailAPIView
+
+urlpatterns = [
+    # ... existing URLs ...
+    path('rest/dog/<int:pk>/', DogDetailAPIView.as_view(), name='rest_get_dog'),
+]
+```
+
+#### 6.2. For GraphQL
+We can create a similar `IsOwner` permission function for graphQL that can be reused across all GraphQL endpoints.
+
+In `dogapp/permissions.py`
+
+```python
+from graphql import GraphQLError
+
+def IsOwnerGQL(user, obj):
+    if obj.owner != user:
+        raise GraphQLError('You do not have appropriate permissions.')
+```
+
+And in `dogapp/schema.py`:
+
+```python
+import graphene
+from graphene_django.types import DjangoObjectType
+from dogapp.models import Dog
+from dogapp.permissions import IsOwner  # Import the permission
+
+class DogType(DjangoObjectType):
+    class Meta:
+        model = Dog
+
+class Query(graphene.ObjectType):
+    dog = graphene.Field(DogType, id=graphene.Int())
+
+    def resolve_dog(self, info, id):
+        user = info.context.user
+        if user.is_anonymous:
+            raise Exception('You do not have appropriate permissions.')
+        try:
+            dog = Dog.objects.get(pk=id)
+            # Use the IsOwnerGQL permission
+            IsOwnerGQL(user, dog)
+            return dog
+        except Dog.DoesNotExist:
+            return None
+```
+Now, the permission logic is centralized, and any changes to permission checks can be made in one place.
+
+### 6.3 SOAP
+You can do the same sort of thing for SOAP, but this will probably be the last SOAP example I put you through, so that exercise is left to your own imagination. 
+
+
+
+## 7. Summary
+In this lab, you enhanced the security of your Django APIs by implementing authentication, access control, and object-level permissions. You learned how to:
+
+- Secure your REST API using Django REST Framework's authentication and permissions
+- Secure your GraphQL API using JWT authentication and GraphQL permissions
+- Secure your SOAP API by implementing HTTP Basic Authentication in spyne
+- Enforce object-level permissions to ensure users can only access data they are authorized to view
+- Centralize and reuse permissioning functions to increase the maintainability and security of your code. 
+
+## License
+Lesson content: Copyright (C) Dr. Matthew Hale 2024-present.
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">This lesson</span> is licensed by the author under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
