@@ -433,40 +433,53 @@ We will implement HTTP Basic Authentication for the SOAP service.
 In `dogapp/views.py`, update the `DogService` class to check for authentication:
 
 ```python
-from spyne import Application, rpc, ServiceBase, Integer, Unicode
-from spyne.protocol.soap import Soap11
-from spyne.server.django import DjangoApplication
-from dogapp.models import Dog
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate
+
+
+def authenticate_user(request):
+    """
+    Authenticates a user using HTTP Basic Authentication.
+
+    Returns:
+        user (User): The authenticated user object, or None if authentication fails.
+        error_response (tuple): A tuple containing the HTTP status code and message if authentication fails.
+    """
+    if 'HTTP_AUTHORIZATION' in request:
+        auth = request['HTTP_AUTHORIZATION'].split()
+        if len(auth) == 2 and auth[0].lower() == 'basic':
+            import base64
+            try:
+                username, password = base64.b64decode(auth[1]).decode('utf-8').split(':')
+                user = authenticate(username=username, password=password)
+                if user is not None and user.is_authenticated:
+                    return user, None
+            except (UnicodeDecodeError, ValueError):
+                pass
+
+    # Authentication failed
+    return None, (401, 'Unauthorized', {'WWW-Authenticate': 'Basic realm="DogService"'})
 
 class DogService(ServiceBase):
     @rpc(Integer, _returns=Unicode)
     def get_dog(ctx, dog_id):
         request = ctx.transport.req
         user = None
-
+        
+        user, error_response = authenticate_user(request)
         # Get the Basic Auth credentials
-        if 'HTTP_AUTHORIZATION' in request.META:
-            auth = request.META['HTTP_AUTHORIZATION'].split()
-            if len(auth) == 2 and auth[0].lower() == 'basic':
-                import base64
-                username, password = base64.b64decode(auth[1]).decode('utf-8').split(':')
-                user = authenticate(username=username, password=password)
-
-        if user is None or not user.is_authenticated:
-            ctx.transport.resp_code = 401
-            ctx.transport.resp_headers['WWW-Authenticate'] = 'Basic realm="DogService"'
-            return "Unauthorized"
+        if user is None:
+            status_code, message, headers = error_response
+            ctx.transport.resp_code = status_code
+            for header, value in headers.items():
+                ctx.transport.resp_headers[header] = value
+            return message
 
         try:
             dog = Dog.objects.get(pk=dog_id)
             if dog.owner != user:
-                ctx.transport.resp_code = 403
-                return "You do not have permission to view this dog."
+                return f"You do not have permission to view this dog."
             return f"Dog: {dog.name}, Age: {dog.age}, Breed: {dog.breed}"
         except Dog.DoesNotExist:
-            ctx.transport.resp_code = 404
             return "Dog not found."
 
 soap_app = Application([DogService], 'dogapp.soap',
