@@ -140,7 +140,7 @@ urlpatterns = [
 Create a directory named `templates` in your project root (where `manage.py` is located), and inside it, create a directory named `templates`, in it make another directory called `registration/`.
 
 Create a file named `login.html` inside `registration/`:
-
+<!-- {% raw %}-->
 ```html
 <!-- templates/registration/login.html -->
 <!DOCTYPE html>
@@ -164,6 +164,7 @@ Create a file named `login.html` inside `registration/`:
 </body>
 </html>
 ```
+<!-- {% endraw %} -->
 
 #### 2.3.3 Tell settings.py where to find your templates
 In `settings.py` update the `TEMPLATES` section to the following:
