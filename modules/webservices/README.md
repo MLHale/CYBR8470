@@ -257,6 +257,7 @@ from django.urls import path
 from dogapp.views import dog_service
 
 urlpatterns = [
+    # ... other urls here ...
     path('soap/dogservice/', dog_service),
 ]
 ```
@@ -316,14 +317,17 @@ class DogSerializer(serializers.ModelSerializer):
 
 ### 3. Create API View
 
-In `dogapp/views.py`:
+In `dogapp/views.py` update the code as follows:
 
 ```python
+# ... other imports here ...
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Dog
 from .serializers import DogSerializer
+
+# ... other views here ...
 
 @api_view(['GET'])
 def rest_get_dog(request, dog_id):
@@ -340,10 +344,12 @@ def rest_get_dog(request, dog_id):
 In `webservices/urls.py`:
 
 ```python
+# ... other imports here ...
 from django.urls import path
 from dogapp.views import rest_get_dog
 
 urlpatterns = [
+    # ... other urls here ...
     path('rest/dog/<int:dog_id>/', rest_get_dog, name='rest_get_dog'),
 ]
 ```
@@ -393,12 +399,14 @@ schema = graphene.Schema(query=Query)
 In `urls.py`:
 
 ```python
+# ... other imports here ...
 from django.urls import path
 from graphene_django.views import GraphQLView
 from django.views.decorators.csrf import csrf_exempt
 from dogapp.schema import schema
 
 urlpatterns = [
+    # ... other urls here ...
     path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
 ]
 ```
