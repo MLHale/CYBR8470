@@ -103,6 +103,7 @@ Since we are using Django REST Framework (DRF) for the REST API, we can use DRF'
 In `webservices/settings.py`, add REST framework settings:
 
 ```python
+# ... other settings properties  ...
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
@@ -127,10 +128,11 @@ To authenticate users, we need to provide login and logout views. We'll use Djan
 In `webservices/urls.py`, add the following imports and URL patterns:
 
 ```python
+# ... other imports here ...
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    # ... existing URLs ...
+    # ... other URLs here ...
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
@@ -170,8 +172,10 @@ Create a file named `login.html` inside `registration/`:
 In `settings.py` update the `TEMPLATES` section to the following:
 
 ```python
+# ... other imports here ...
 import os
 
+# ... other settings properties here ...
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -204,9 +208,11 @@ Now, we will secure the REST API so that only authenticated users can access it,
 In `dogapp/views.py`, update the `rest_get_dog` view to enforce permissions:
 
 ```python
+# ... other imports here ...
 from rest_framework import status, permissions, renderers
 from rest_framework.decorators import api_view, permission_classes, renderer_classes
 
+# ... other views here ...
 
 @api_view(['GET'])
 @permission_classes([permissions.IsAuthenticated])
@@ -253,6 +259,9 @@ pip install djangorestframework-simplejwt
 In `webservices/settings.py`, update the REST framework settings:
 
 ```python
+
+# ... other settings properties here ...
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         # 'rest_framework.authentication.SessionAuthentication',
@@ -266,6 +275,9 @@ REST_FRAMEWORK = {
 
 #### 3.3.3. Add `rest_framework_simplejwt` to `INSTALLED_APPS`
 ```python
+
+# ... other settings properties here ...
+
 INSTALLED_APPS = [
     # ... other apps ...
     'rest_framework',
@@ -281,13 +293,14 @@ python manage.py migrate
 Add the following imports and URL patterns to `webservices/urls.py`:
 
 ```python
+# ... other imports here ...
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
 
 urlpatterns = [
-    # ... existing URLs ...
+    # ... other URLs here ...
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
@@ -320,10 +333,11 @@ pip install django-graphql-jwt
 #### 4.1.2 Configure django
 Configure your Django project to use JWT authentication for GraphQL.
 
-Add `graphql_jwt` to INSTALLED_APPS
+Add `graphql_jwt` to `INSTALLED_APPS`
 In `webservices/settings.py`, add `graphql_jwt` to the list of installed apps:
 
 ```python
+# ... other settings properties here ...
 INSTALLED_APPS = [
     # ... other installed apps ...
     'graphene_django',
@@ -334,6 +348,7 @@ INSTALLED_APPS = [
 Update the AUTHENTICATION_BACKENDS setting to include JSONWebTokenBackend:
 
 ```python
+# ... other settings properties here ...
 AUTHENTICATION_BACKENDS = [
     'graphql_jwt.backends.JSONWebTokenBackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -342,6 +357,8 @@ AUTHENTICATION_BACKENDS = [
 
 #### 4.1.4. Configure `GRAPHENE`
 ```python
+# ... other settings properties here ...
+
 GRAPHENE = {
     'SCHEMA': 'dogapp.schema.schema',
     'MIDDLEWARE': [
@@ -434,8 +451,10 @@ We will implement HTTP Basic Authentication for the SOAP service.
 In `dogapp/views.py`, update the `DogService` class to check for authentication:
 
 ```python
+# ... other imports here ...
 from django.contrib.auth import authenticate
 
+# ... other views here ...
 
 def authenticate_user(request):
     """
@@ -534,9 +553,11 @@ class IsOwner(permissions.BasePermission):
 Update the `rest_get_dog` view to use this permission:
 
 ```python
+# ... other imports here ...
 from .permissions import IsOwner
 from rest_framework import generics
 
+# ... other views here ...
 class DogDetailAPIView(generics.RetrieveAPIView):
     queryset = Dog.objects.all()
     serializer_class = DogSerializer
@@ -546,10 +567,11 @@ class DogDetailAPIView(generics.RetrieveAPIView):
 Update `urls.py`:
 
 ```python
+# ... other imports here ...
 from dogapp.views import DogDetailAPIView
 
 urlpatterns = [
-    # ... existing URLs ...
+    # ... other URLs here ...
     #path('rest/dog/<int:dog_id>/', rest_get_dog, name='rest_get_dog'),
     path('rest/dog/<int:pk>/', DogDetailAPIView.as_view(), name='rest_get_dog'),
 ]
@@ -561,8 +583,10 @@ We can create a similar `IsOwner` permission function for graphQL that can be re
 In `dogapp/permissions.py`
 
 ```python
+# ... other imports here ...
 from graphql import GraphQLError
 
+# ... other permissions here ...
 def IsOwnerGQL(user, obj):
     if obj.owner != user:
         raise GraphQLError('You do not have appropriate permissions.')
@@ -571,6 +595,7 @@ def IsOwnerGQL(user, obj):
 And in `dogapp/schema.py`:
 
 ```python
+# ... other imports here ...
 from dogapp.permissions import IsOwnerGQL  # Import the permission
 
 class DogType(DjangoObjectType):
@@ -591,6 +616,8 @@ class Query(graphene.ObjectType):
             return dog
         except Dog.DoesNotExist:
             return None
+
+# ... mutations and other stuff here ...
 ```
 Now, the permission logic is centralized, and any changes to permission checks can be made in one place.
 
