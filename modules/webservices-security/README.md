@@ -139,7 +139,7 @@ urlpatterns = [
 ```
 
 #### 2.3.2. Create Login Template
-Create a directory named `templates` in your project root (where `manage.py` is located), and inside it, create a directory named `templates`, in it make another directory called `registration/`.
+Create a directory named `templates` in your project root (where `manage.py` is located), and inside it, create a directory another directory called `registration/`.
 
 Create a file named `login.html` inside `registration/`:
 <!-- {% raw %}-->
