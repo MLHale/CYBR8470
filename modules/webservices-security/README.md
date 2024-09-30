@@ -310,7 +310,10 @@ urlpatterns = [
 - Obtain a JWT token by making a POST request to `http://localhost:8000/api/token/` with your username and password in the body (make sure the request is `raw` with contentype `application/json`.
 
 ```json
-{ username: "your_username", password: "your_password" }
+{
+    "username": "your_username",
+    "password": "your_password"
+}
 ```
 
 - Use the obtained token to authenticate your requests to the REST API by adding an `Authorization` header with the value `Bearer your_token_here`.
