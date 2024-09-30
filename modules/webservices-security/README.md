@@ -308,6 +308,11 @@ urlpatterns = [
 
 #### 3.3.6. Test with Postman
 - Obtain a JWT token by making a POST request to `http://localhost:8000/api/token/` with your username and password in the body (make sure the request is `raw` with contentype `application/json`.
+
+```json
+{ username: "your_username", password: "your_password" }
+```
+
 - Use the obtained token to authenticate your requests to the REST API by adding an `Authorization` header with the value `Bearer your_token_here`.
 
 #### 3.3.7 Using the token
@@ -412,7 +417,7 @@ Again - thinks about the kinds of error's you give. Is this object-level error s
 ### 4.2. Testing with Postman
 
 #### 4.2.1
-Obtain a JWT token by making a mutation request:
+Obtain a JWT token by making a mutation request. Make a post request to `localhost:8000/graphql/`, set the `BODY` content type to `GraphQL`, then send the following request:
 
 ```graphql
 mutation {
