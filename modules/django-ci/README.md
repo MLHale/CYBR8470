@@ -76,3 +76,106 @@ class DogAPITestCase(TestCase):
         self.assertEqual(Dog.objects.count(), 0)
 ```
 
+## Running the test cases
+Lets try out test cases locally. To run them using our containerized django app, we can simply do the following:
+
+```bash
+docker compose run web python manage.py test
+```
+
+This tells docker compose to run the service named web and then pipe in the command "python manage.py test". This gets run just as if you ran it in your CLI on your local machine. You should see some output on command line indicating that the tests ran.
+
+...ok cool - so we have some code tests, but how do we integrate them with github?
+
+## Defining continuous integration tests in GitHub Actions
+
+### Step 1: Create a Workflow Directory
+In your project directory, create a directory for GitHub workflows.
+
+```bash
+mkdir -p .github/workflows
+```
+
+### Step 2: Create a Workflow File
+Create a new file named `ci.yml` inside `.github/workflows/.` Edit the file to include the following steps:
+
+```yml
+# .github/workflows/ci.yml
+
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Check Docker version
+      run: docker version
+      
+    - name: Build Docker Image
+      run: docker compose up -d --build
+
+    - name: Run Migrations
+      run: docker compose exec web python manage.py migrate
+
+    - name: Run Tests
+      run: docker compose exec web python manage.py test
+
+    - name: Shut down services
+      run: docker compose down
+```
+
+This file specifies the triggers, i.e. the `on` block and the actions, i.e. the `jobs` block that should occur on the repo. This file tells GitHub to run all of the jobs, including multi-step setup, testing, and teardown, whenever a repo user pushes to the repo or makes a pull request between branches. The second to last step in the test job actually runs the django tests we wrote for our dogapi.
+
+Go and and save the file and then lets test it out on Github by making a new commit and pushing it to our repository (the one you forked earlier).
+
+```bash
+git add -A
+git commit -m "added test cases and a github actions ci workflow"
+git push
+```
+
+- Now go to github
+- click on the repository you forked
+- click on `actions` tab
+- click on the `test` job button to view the details. You should see everything complete successfully and eventually create a green checkmark next to the tests.
+
+## What happens when tests fail?
+To find out what failing tests look like, lets create a new test that will always fail. Open `webservices/dogapi/tests.py` and add the following to the bottom of the file
+
+```python
+   def test_fail_on_purpose(self):
+        """This test is designed to fail."""
+        self.assertEqual(1, 0, "Intentional failure to test CI pipeline")
+```
+
+This tests claims that 1=0, which will always be false. It will generate a failed test.
+
+We can test it locally using docker compose again:
+
+```bash
+docker compose run web python manage.py test
+```
+
+Now lets see what happens on github:
+```bash
+git add -A
+git commit -m "added an auto-failing test"
+git push
+```
+
+- Now go to github
+- click on the repository you forked
+- click on `actions` tab
+- click on the `test` job button to view the details. You should see everything complete successfully and eventually create a `red checkmark` next to the tests.
+
+Pretty cool yeah? This is how you can help do automate your testing workflow and check your code continuously as you make edits.
