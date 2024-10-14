@@ -31,6 +31,7 @@ Once in this folder, consider adding the directory to your favorite IDE (e.g. VS
 To run the app and confirm that it is working, do the following:
 
 ```bash
+docker compose build
 docker compose up
 ```
 
